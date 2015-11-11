@@ -1,0 +1,720 @@
+
+/*
+	Dopetrope by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* CSS GoOut */
+
+	html, body, div, span, p, blockquote, a, img, ins, kbd, strong, center, ul, li,table,thead, tr, th, td, footer, header, nav  {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+        font-style: normal;
+	}
+
+	body {
+		line-height: 1;
+		-webkit-text-size-adjust: none;
+		
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	
+	#nav{
+		color:black;
+		 font-weight: bold;
+	}
+	
+	img#logo{
+		width:400px;
+	}
+
+    #global{
+        #border: 2px solid black;
+    }
+	
+	/*HEADER*/
+
+	#findFriends{
+	border-radius: 110px 110px 110px 110px;
+	-moz-border-radius: 110px 110px 110px 110px;
+	-webkit-border-radius: 110px 110px 110px 110px;
+	border: 1px solid #807480;
+	 text-align: center;
+	}
+	
+	#find{
+	float: left;
+	margin:20px;
+
+	
+	}
+
+	#login{
+	position:relative;
+	
+	float: right;
+		
+	}
+	#loginText{
+	float: right;	
+	text-align: left;
+	margin:5px;
+	}
+		 
+    .i_profile
+	{	
+		width:70px;
+		height:70px;
+		border-radius:500px;
+		border: 2px 
+		margin:30px;
+		object-fit: cover;
+	}
+/*Pantalla principal*/
+	
+	
+	#sugerencias{
+		width:40%;
+		height: 700px;
+		float:right;
+	}
+	
+	#novedades{
+		width:60%;
+		height: 700px;
+		float:left;
+		overflow-y:auto;
+	}
+	
+	.globo{
+		border: 2px solid #000000;
+		border-radius: 800px;
+	}
+	
+	#text{
+	font-weight: bold;
+	text-align: center;
+	
+	
+	
+	}
+/*Pantalla creacion*/
+
+	
+	#vista_prev{
+		border-radius:50px;
+		object-fit: cover;
+		height: 80px;
+		width: 80px;
+		
+	}
+	
+	#creacion{
+
+		height: 700px;
+		clear:both;		
+	}
+	
+	#crear_1{
+		border-radius: 50px;
+		background: rgba(153,153,204,0.5);
+		width:31%;
+		height: 700px;	
+		float:left;
+	}
+	
+		
+	#fecha_regreso{
+		display:none;
+	}
+	
+	#crear_2{
+		border-radius: 50px;
+		background: rgba(153,153,204,0.5);
+		width:33%;
+		height: 500px;/*700px;*/
+		display: inline-block;
+	}
+	
+	#crear_3{
+		
+		border-radius: 50px;
+		background: rgba(153,153,204,0.5);
+		width:35%;
+		height: 700px;	
+		float:right;
+	
+	}
+	
+	#num_participantes{
+		width:40px;
+		height:40px;
+		margin-bottom:50px;
+	}
+	
+	#nombre_actv{
+		text-align:center;
+		
+	}
+	
+	#tipo_actividad{
+		margin-left:10px;
+	}
+	
+	#mapa{
+		border:2px solid black;
+		width:394px;
+		height:304px;
+		margin:20px;
+	}
+	
+	#boton_crear{
+		margin:80px;
+	}
+	
+	#b_crear{
+		width:200px;
+		color:black;
+		font-weight: bold;
+		border-radius:20px;
+	}
+	
+	.caja{
+		  border-radius:6px;
+	}
+	
+	.titulos{
+	
+		padding-bottom:10px;
+	}
+	
+	#imagen_grupo{
+		border-radius:50px;
+		object-fit:cover;
+		height: 80px;
+		width: 80px;
+	}
+	
+	#upload {
+	border-radius:50px;
+	object-fit:cover;
+    width: 80px;
+    height: 80px;
+    background: url(../images/subir.png);
+    background-repeat:no-repeat;
+    background-size:contain;
+    overflow: hidden;
+	}
+	
+	div#upload input {
+	    display: block !important;
+	    width: 80px !important;
+	    height: 80px !important;
+	    opacity: 0 !important;
+	    overflow: hidden !important;
+	}
+/*Pantalla Mis Actividades*/
+
+	#fotos{
+		
+		height:800px;
+	}
+	.i_actv, .img_desc{
+		/*object-fit: cover;	*/	
+		width:100px;
+		height:100px;
+		border-radius:500px;
+		/*border: 2px solid black;*/
+		margin:0px;
+	}
+	
+	
+	#actividad{
+	 font-size: 10px;
+	 font-family: sans-serif;
+	 line-height:3px;
+	 font-weight: bold;
+	 
+	 
+	}
+	#encMisAct{
+	text-align: center;
+	
+	}
+
+	.img_thumb{
+	display: block;
+	float: left;
+	position: relative;
+	top: 50px;
+    padding: 10px 10px 10px 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    margin-bottom: 35px;
+	transition: 1.0s ease;
+ 	-moz-transition: 1.0s ease; /* Firefox */
+ 	-webkit-transition: 1.0s ease; /* Chrome - Safari */
+ 	-o-transition: 1.0s ease; /* Opera */
+}
+
+
+/*  capa hover con la descripcion de cada miniatura */
+.img_desc{   /*aplicar tb propiedad de i_act a este para la forma radial*/
+   
+    position: absolute;
+    background-color: white;
+    opacity: 0.7;
+    padding: 40px 5px 5px 5px;
+    display: none;
+	transition: 1.5s ease;
+ 	-moz-transition: 1.5s ease; /* Firefox */
+ 	-webkit-transition: 1.5s ease; /* Chrome - Safari */
+ 	-o-transition: 1.5s ease; /* Opera */
+	
+	}
+
+.img_thumb:hover{		
+		transform : scale(1.5);
+		-moz-transform : scale(1.5); /* Firefox */
+		-webkit-transform : scale(1.5); /* Chrome - Safari */
+		-o-transform : scale(1.5); /* Opera */
+		-ms-transform : scale(1.5); /* IE9 */
+		}
+	
+.img_thumb img{
+
+}
+	
+/*Pantalla Buscar*/
+
+	#boton_buscar{
+	float:right;
+	background-image:url(../images/lupa.png);
+	background-size: 40px 40px;
+	background-repeat:no-repeat;
+	background-position:center;
+	height:50px;
+	width:50px;
+	border-radius:100%;
+	margin-bottom:20px;
+	cursor:pointer;
+	object-fit:cover;
+	}
+
+	#buscar{
+		margin-top:10px;
+		height: 700px;
+		clear:both;		
+	}
+	
+	#buscar_1{
+		border: 2px solid black;
+		width:33%;
+		height: 120px;	
+		float:left;
+		border-radius:20px;	
+	}
+	
+	#buscar_2{
+		border: 2px solid black;
+		width:33%;
+		height: 120px;
+		display: inline-block;
+		border-radius:20px;				
+	}
+	
+	#buscar_3{
+		border: 2px solid black;
+		width:33%;
+		height: 120px;	
+		float:right;
+		border-radius:20px;		
+	}
+	
+	#resultados1{
+		margin-top:5px;
+		height: 575px;	
+	}
+	
+	#resultados2{
+		display:none;
+		margin-top:5px;
+		height: 575px;
+	}
+
+	#actv_a{
+		margin-bottom:20px;
+	}
+
+	#actv_amigos{
+		display:none;
+		border:2px solid black;
+		border-radius:20px;	
+		height:150px;
+		margin-bottom: 20px;
+		line-height:150px;
+		overflow:auto;
+	}
+	
+	.img_amigos{
+		width:120px;
+		height:120px;
+		border-radius: 100px;
+		vertical-align:middle;
+		margin-right: 20px;
+		margin-left:20px;
+	}
+
+	
+
+	
+/* Para la vista de Actividad */
+	#i_actv
+	{
+		object-fit: cover;
+		width:250px;
+		height:250px;
+		border-radius:500px;
+		margin:30px;
+		vertical-align: middle;
+
+	}
+
+	.s_actv{
+		float: left;	
+	}
+
+	.info_actv{
+		width: 800px;
+		height: 300px;
+		float: right;
+	}
+
+	#datos_actv{
+		float: left;
+	}
+
+
+
+	#gente_actv{
+		width:400px;
+		height:400px;
+		float:right;
+	}
+
+	.i_people{
+		width:70px;
+		height:70px;
+		border-radius:500px;
+		object-fit: cover;
+		margin:10px;
+		vertical-align: middle;
+		padding: 0px 0px;
+		transition: 1.5s ease;
+ 		-moz-transition: 1.5s ease; /* Firefox */
+ 		-webkit-transition: 1.5s ease; /* Chrome - Safari */
+ 		-o-transition: 1.5s ease; /* Opera */
+
+	}
+	.i_people:hover{		
+		transform : scale(1.2);
+		-moz-transform : scale(1.2); /* Firefox */
+		-webkit-transform : scale(1.2); /* Chrome - Safari */
+		-o-transform : scale(1.2); /* Opera */
+		-ms-transform : scale(1.2); /* IE9 */
+	}
+	
+	
+	.t_actv{
+		font-size: 3em;
+		clear: left;
+		margin:10px 10px;
+	}
+
+	.fecha_actv{
+		clear: left;
+		margin:10px 10px;
+
+	}
+
+	.zona_actv{
+		clear: left;
+		margin:10px 10px;
+
+	}
+
+	.descripcion_actv{
+		margin:30px 50px;
+		clear: left;
+	}
+
+	.proxHito_actv{
+		width:400px;
+		height:400px;
+	}
+	.btn {
+ 		background: #ffffff;
+  		-webkit-border-radius: 60;
+  		-moz-border-radius: 60;
+  		border-radius: 60px;
+  		font-size: 15px;
+  		color: #287494;
+  		outline:0;
+  		border:0;
+  		margin: 10px;
+		position:relative;
+	}
+
+	.btn:hover {
+		color: #287494;
+ 	 	background: #fafafa;
+  		text-decoration: none;
+	}	
+
+	.btn:active{
+		-moz-box-shadow: 0.2px 0.2px 0.2px 0.2px rgb(222, 222, 222);
+		-webkit-box-shadow: 0.2px 0.2px 0.2px 0.2px rgb(222, 222, 222);
+		box-shadow: 0.2px 0.2px 0.2px 0.2px rgb(222, 222, 222);
+	}
+
+	.foro_actv{
+		margin: 10px 100px;
+		border-radius: 50px;
+		background: rgba(253,253,253,0.5);
+	}
+
+	.m_actv{
+		margin: 40px 250px;
+		background: #fafafa;
+		border-radius: 50px;
+
+	}
+	.mensajes_actv{
+		display: inline;
+	}
+	
+	.m_actv2{
+		margin: 40px 250px;
+		background: #fafafa;
+		border-radius: 50px;
+
+	}
+	.mensajes_actv2{
+		display: inline;
+	}
+    .i_flecha{
+        height: 15px;    
+    }
+	
+	#escribir
+	{
+		resize:both;
+	}
+
+	
+/* Box Model */
+
+	*, *:before, *:after {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+/* Containers */
+
+	.container {
+		margin-left: auto;
+		margin-right: auto;
+		width: 1200px;
+		height:100%;
+	}
+
+/* Grid */
+
+	.row:after, .row:before {
+		content: '';
+		display: block;
+		clear: both;
+		height: 0;
+	}
+
+	.\31 2u, .\31 2u\24 {
+		width: 100%;
+		clear: none;
+		margin-left: 0;
+	}
+
+/* Basic */
+
+	input, textarea, select {
+		font-family: 'Source Sans Pro';
+		font-weight: 300;
+		color: #5d5d5d;
+		outline:none;
+	}
+
+	a {
+		color: black;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+
+	p,table {
+		margin-bottom: 1em;
+	}
+
+/* Wrappers */
+
+	#header-wrapper {
+	background: #3B4D62;
+	background: -moz-linear-gradient(top, #3B4D62 0%, #124252 0%, #8991A4 38%, #ACB0C2 64%, #F4F3F4 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, #3B4D62), color-stop(0%, #124252), color-stop(38%, #8991A4), color-stop(64%, #ACB0C2), color-stop(100%, #F4F3F4));
+	background: -webkit-linear-gradient(top, #3B4D62 0%, #124252 0%, #8991A4 38%, #ACB0C2 64%, #F4F3F4 100%);
+	background: -o-linear-gradient(top, #3B4D62 0%, #124252 0%, #8991A4 38%, #ACB0C2 64%, #F4F3F4 100%);
+	background: -ms-linear-gradient(top, #3B4D62 0%, #124252 0%, #8991A4 38%, #ACB0C2 64%, #F4F3F4 100%);
+	background: linear-gradient(to bottom, #3B4D62 0%, #124252 0%, #8991A4 38%, #ACB0C2 64%, #F4F3F4 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3B4D62', endColorstr='#F4F3F4', GradientType=0 );
+
+		position: relative;
+		border-bottom: solid 1px #ccc;
+		padding: 10px 0 10px 0;
+	}
+	
+	#main-wrapper {
+		padding: 2em 0 4em 0;
+		background-image: url(../images/fondo2.jpg);
+		background-repeat:repeat-x;
+		background-color: #000;
+	}
+	
+	#footer-wrapper {
+			padding: 4em 0 4em 0;
+            background: black;
+	}
+
+/* Desktop */
+
+
+		/* Basic */
+
+			body, input, textarea, select {
+				font-size: 13pt;
+				line-height: 1.75em;
+			}
+
+		/* Header */
+
+			#header {
+				text-align: center;
+			}
+
+		/* Nav */
+
+				#nav > ul > li {
+					display: inline-block;
+					font-style: italic;
+					margin: 0 0.35em 0 0.35em;
+				}
+
+					#nav > ul > li > ul {
+						display: none;
+					}
+
+					#nav > ul > li > a {
+						border-radius: 5px;
+						text-decoration: none;
+						padding: 0.6em 1.2em 0.6em 1.2em;
+						-moz-transition: background-color .25s ease-in-out;
+						-webkit-transition: background-color .25s ease-in-out;
+						-ms-transition: background-color .25s ease-in-out;
+						transition: background-color .25s ease-in-out;
+						outline: 0;
+					}
+
+					#nav > ul > li:hover > a, #nav > ul > li.active > a {
+						background: #3B4D62;
+						color:#FFF;
+					}
+
+
+	#navPanel, #titleBar {
+		display: none;
+	}
+
+
+
+	/*Perfil*/
+
+	
+	.s_perfil{
+		float: left;	
+	}
+
+	.info_perfil{
+		width: 800px;
+		height: 300px;
+		float: right;
+	}
+
+	#datos_perfil{
+		float: left;
+	}
+
+	.n_perfil{
+		width:400px;
+		height:400px;
+		float:left;
+
+	}
+	#i_perfil
+	{
+		object-fit: cover;
+		width:250px;
+		height:250px;
+		border-radius:500px;
+		margin:30px;
+		vertical-align: middle;
+
+	}
+
+	#amigos{
+		width:400px;
+		height:400px;
+		float: right;
+
+	}
+
+	.historial_actv{
+		background-color: white;
+		width:1200px;
+		height:400px;
+
+	}
+	#campos_Perfil{
+	font-weight: bold;
+	font-family: sans-serif;
+		
+	}
+	#relleno_Campos{
+	font-family: sans-serif;
+	}
+	
+	#datos_perfil{
+	position:relative;
+	top: 20px;
+	}
+
