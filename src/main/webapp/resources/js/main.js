@@ -1,9 +1,3 @@
-/*
-	Dopetrope by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 
 $("#comentar").click(function() {
 	var com = document.getElementById("escribir").value;
@@ -15,7 +9,7 @@ var midiv = document.createElement("div");
 		midiv.setAttribute("id","id de mi div");
 		midiv.setAttribute("otros atributos","otros");
 		midiv.innerHTML = "<p>Este es el contenido de mi div</p>";
-document.body.appendChild(midiv); // Lo pones en "body", si quieres ponerlo dentro de algún id en concreto usas document.getElementById('donde lo quiero poner').appendChild(midiv);
+document.body.appendChild(midiv); // Lo pones en "body", si quieres ponerlo dentro de algï¿½n id en concreto usas document.getElementById('donde lo quiero poner').appendChild(midiv);
 
 
 

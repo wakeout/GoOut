@@ -269,7 +269,7 @@
 }
 
 
-/*  capa hover con la descripcion de cada miniatura */
+			 /*  capa hover con la descripcion de cada miniatura */
 .img_desc{   /*aplicar tb propiedad de i_act a este para la forma radial*/
    
     position: absolute;
@@ -522,6 +522,26 @@
 		resize:both;
 	}
 
+
+/* Vista Mi_Perfil*/
+
+	#menu{
+		padding: 0;
+	}
+	
+	#menu li{
+		display:inline;
+	}
+	
+#menu li a {
+font-family: Arial;
+font-size:11px;
+text-decoration: none;
+padding: 10px;
+background-color: #2175bc;
+color: #fff;
+}
+
 	
 /* Box Model */
 
@@ -670,16 +690,20 @@
 		float: right;
 	}
 
-	#datos_perfil{
-		float: left;
-	}
 
-	.n_perfil{
+	.mod_perfil{
+		display:none;
 		width:400px;
-		height:400px;
 		float:left;
 
 	}
+	.mi_perfil
+	{
+		width:400px;
+		float:left;
+	}
+	
+	
 	#i_perfil
 	{
 		object-fit: cover;
@@ -692,8 +716,6 @@
 	}
 
 	#amigos{
-		width:400px;
-		height:400px;
 		float: right;
 
 	}
@@ -704,14 +726,30 @@
 		height:400px;
 
 	}
-	#campos_Perfil{
-	font-weight: bold;
-	font-family: sans-serif;
+	.campos_Perfil{
+	margin: .4em 0;
 		
 	}
-	#relleno_Campos{
-	font-family: sans-serif;
+	.campos_Perfil label {
+		width:35%;
+  		float: left;
 	}
+	
+	.campos_Perfil input {
+		width:180px;
+		border-radius:10px;
+	}
+	
+	.actualizar
+	{
+		padding-top:10px;
+		width: 200px;
+ 		margin: 0 auto;
+	}
+	.activ_Perfil{
+		margin-top:20px;
+	}
+
 	
 	#datos_perfil{
 	position:relative;
