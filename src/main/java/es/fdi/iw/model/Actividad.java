@@ -16,7 +16,7 @@ import javax.persistence.NamedQuery;
 
 import java.util.Date;
 
-
+//jijiji
 
 @Entity
 @NamedQueries({
