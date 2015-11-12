@@ -1,44 +1,4 @@
 package es.fdi.iw.controller;
-/*
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.UUID;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.persistence.NoResultException;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.apache.commons.io.IOUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-*/
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -46,9 +6,16 @@ import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Handles requests for the application home page.
@@ -64,6 +31,22 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	
+	public String login(HttpServletRequest request,
+	        HttpServletResponse response, 
+	        Model model, HttpSession session) {
+	         if (true/* formulario tiene buen aspecto */) {
+	            session.setAttribute("user", "paco");
+	         } else {
+	            /* guardo errores en el modelo */
+	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+	            model.addAttribute("loginError", 
+	                "Te lo estás inventando!");
+	         }
+	         return "home";
+	    }
+
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -112,6 +95,11 @@ public class HomeController {
 	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
 	public String perfil(){
 		return "perfil";
+	}
+	
+	@RequestMapping(value = "/mi_perfil", method = RequestMethod.GET)
+	public String mi_perfil(){
+		return "mi_perfil";
 	}
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.GET)
