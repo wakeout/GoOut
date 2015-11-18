@@ -42,7 +42,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 										    </div>
 											<span class="titulos">Nombre de la actividad</span>
 											<tr>
-												<td><input type="text" class="caja"/></td>
+												<td><input type="text" class="caja" name="nombre"/></td>
 											</tr>
 											
 											<table id="tipo_actividad">

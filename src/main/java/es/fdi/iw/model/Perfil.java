@@ -15,7 +15,9 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allPerfiles",
-            query="select p from Perfil p")
+            query="select p from Perfil p"),
+    @NamedQuery(name="addPerfil",
+    query="insert into Perfil values(:emailParam, :nombreParam)")
 })
 public class Perfil {
 	private String email;//key
@@ -48,6 +50,15 @@ public class Perfil {
 		this.amigos = amigos;
 	}
 
+	public static Perfil createPerfil(String email, String nombre){
+		Perfil p=new Perfil();
+		
+		p.email=email;
+		p.nombre=nombre;
+		
+		return p;
+	}
+	
 	@Id
     @GeneratedValue
     public String getMail() {

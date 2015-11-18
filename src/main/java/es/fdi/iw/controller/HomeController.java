@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,9 +14,15 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import es.fdi.iw.model.Actividad;
+import es.fdi.iw.model.Perfil;
 
 /**
  * Handles requests for the application home page.
@@ -46,7 +53,32 @@ public class HomeController {
 	         return "home";
 	    }
 
+//createActividad
+	/*@Transactional
+	public String actividadFactory(@RequestParam("id") long id, @RequestParam("nombre") String nombre){
+		
+		Actividad a=Actividad.createActividad(id, nombre);
+		id=001;
+		entityManager.persist(a);
+		
+		
+		return "redirect:mis_actividades";
+	}
 	
+	//createPerfil
+	@RequestMapping(value=" /addPerfil", method=RequestMethod.POST)
+	@Transactional
+	public String perfilFactory(@RequestParam("email") String email, @RequestParam("nombre") String nombre){
+		
+		Perfil p=Perfil.createPerfil(email, nombre);
+		entityManager.persist(p);
+		
+	
+		
+		return "redirect:registro";
+	}
+	*/
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);

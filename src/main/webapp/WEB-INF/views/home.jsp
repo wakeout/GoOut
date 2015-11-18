@@ -11,6 +11,12 @@
 			<!-- Header -->
 			<%@ include file="../fragments/header.jsp" %>
 			
+			
+			<c:forEach items="${Actividades}" var="a">
+			<tr><td>${a.id}<td>${a.latitud}<td>${a.longitud}
+			<td>
+			</c:forEach>
+			
 			<!-- Main -->
 				<div id="main-wrapper">
 					<div class="container">

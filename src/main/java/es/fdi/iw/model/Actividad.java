@@ -16,7 +16,6 @@ import javax.persistence.NamedQuery;
 
 import java.util.Date;
 
-//jijiji
 
 @Entity
 @NamedQueries({
@@ -42,9 +41,32 @@ public class Actividad{
 	
 	private Foro foro;
 	
-	Actividad(){
+	public Actividad(){
 		
 	}
+	
+	public static Actividad createActividad(long id, String nombre/*, Date fecha, double latitud,
+			double longitud, List<Hito> proximosHitos, long idImagen,
+			int maxPersonas, List<Perfil> personas, int nPersonas, Foro foro*/){
+		Actividad actividad=new Actividad();
+		
+		actividad.id = id;
+		actividad.nombre = nombre;
+		/*actividad.fecha = fecha;
+		actividad.latitud = latitud;
+		actividad.longitud = longitud;
+		actividad.proximosHitos = proximosHitos;
+		actividad.idImagen = idImagen;
+		actividad.maxPersonas = maxPersonas;
+		actividad.personas = personas;
+		actividad.nPersonas = nPersonas;
+		actividad.foro = foro;*/
+		
+		return actividad;
+	}
+	
+	
+	
 	public Actividad(long id, String nombre, Date fecha, double latitud,
 			double longitud, List<Hito> proximosHitos, long idImagen,
 			int maxPersonas, List<Perfil> personas, int nPersonas, Foro foro) {
@@ -61,6 +83,26 @@ public class Actividad{
 		this.nPersonas = nPersonas;
 		this.foro = foro;
 	}
+	/*
+	public Actividad createActividad(long id, String nombre, Date fecha, double latitud,
+			double longitud, List<Hito> proximosHitos, long idImagen,
+			int maxPersonas, List<Perfil> personas, int nPersonas, Foro foro) {
+		
+		this.id = id;
+		this.nombre = nombre;
+		this.fecha = fecha;
+		this.latitud = latitud;
+		this.longitud = longitud;
+		this.proximosHitos = proximosHitos;
+		this.idImagen = idImagen;
+		this.maxPersonas = maxPersonas;
+		this.personas = personas;
+		this.nPersonas = nPersonas;
+		this.foro = foro;
+		
+		return a; 
+	}
+	*/
 	 @Id
      @GeneratedValue
      public long getId() {

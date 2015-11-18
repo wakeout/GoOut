@@ -11,13 +11,13 @@
 		
  </head>
     <body>
-				<form class="form3" name="log" method="post">
+				<form class="form3" name="log" method="post" action="home">
 					<p class="logo">
 				        <img id="logo2" src="${prefix}resources/images/logo_login.png">
 				    </p>
 				    <p class="a">
 				        <label for="login">Usuario</label>
-				        <input type="text" name="login" id="login" placeholder="Usuario">
+				        <input type="text" name="nombre" id="login" placeholder="Usuario" value="${perfil.nombre}">
 				    </p>
 				    <p class="a">
 				        <label for="password">Contraseña</label>
@@ -29,11 +29,11 @@
 				    </p>
 					<p class="a">
 				        <label for="email">Email</label>
-				        <input type="email" name="email" id="email" placeholder="Email"> 
+				        <input type="email" name="email" id="email" placeholder="Email" value="${perfil.email}"> 
 				    </p>
 
 				    <p class="a">
-				        <input type="button" name="submit" value="Registrarse" onClick="registro()"/>
+				        <button type="submit" name="upload" value="ok"">Registrarse</button>
 				    </p>    
 				</form>		
 				
