@@ -1,105 +1,199 @@
 package es.fdi.iw.model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
+import java.util.Random;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="allUsuarios",
-            query="select u from Usuario u")
+    @NamedQuery(name="allUsers",
+            query="select u from Usuario u"),
+    @NamedQuery(name="userByLogin",
+        query="select u from Usuario u where u.login = :loginParam"),
+    @NamedQuery(name="delUser",
+    	query="delete from Usuario u where u.id= :idParam")
 })
-public class Usuario {
+public class Usuario {	
+	
+    private static BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
+	
+	// do not change these fields - all web applications with user authentication need them
 	private long id;
-	private String email;
-	
-	private String nombre;
-	
+	private String login;
+	private String role;
+	private String hashedAndSalted;
+
 	private Date nacimiento;
 	private String provincia;
-	private String password;
+	private String email;
+	
 	
 	private List<Actividad> historial;
 	private List<Actividad> actuales;
 	
 	private List<Usuario>  amigos;
+		
+	// change fields below here to suit your application
+
+	public Usuario() {}
+
+	public static Usuario createUser(String login, String pass, String role) {
+		Usuario u = new Usuario();
+		u.login = login;
+		u.hashedAndSalted = generateHashedAndSalted(pass);
+		u.role = role;
+		return u;
+	}
+	
+	public boolean isPassValid(String pass) {
+		return bcryptEncoder.matches(pass, hashedAndSalted);		
+	}
+	
+	/**
+	 * Generate a hashed&salted hex-string from a user's pass and salt
+	 * @param pass to use; no length-limit!
+	 * @param salt to use
+	 * @return a string to store in the BD that does not reveal the password even
+	 * if the DB is compromised. Note that brute-force is possible, but it will
+	 * have to be targeted (ie.: use the same salt)
+	 */
+	public static String generateHashedAndSalted(String pass) {
+		/*
+		Código viejo: sólo 1 iteración de SHA-1. bCrypt es mucho más seguro (itera 1024 veces...)
+		
+		Además, bcryptEncoder guarda la sal junto a la contraseña
+		byte[] saltBytes = hexStringToByteArray(user.salt);
+		byte[] passBytes = pass.getBytes();
+		byte[] toHash = new byte[saltBytes.length + passBytes.length];
+		System.arraycopy(passBytes, 0, toHash, 0, passBytes.length);
+		System.arraycopy(saltBytes, 0, toHash, passBytes.length, saltBytes.length);
+		return byteArrayToHexString(sha1hash(toHash));
+		*/
+		return bcryptEncoder.encode(pass);
+	}	
+
+	/**
+	 * Converts a byte array to a hex string
+	 * @param b converts a byte array to a hex string; nice for storing
+	 * @return the corresponding hex string
+	 */
+	public static String byteArrayToHexString(byte[] b) {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<b.length; i++) {
+			sb.append(Integer.toString((b[i]&0xff) + 0x100, 16).substring(1));
+		}
+		return sb.toString();
+	}
+	
+	/**
+	 * Converts a hex string to a byte array
+	 * @param hex string to convert
+	 * @return equivalent byte array
+	 */
+	public static byte[] hexStringToByteArray(String hex) {
+		byte[] r = new byte[hex.length()/2];
+		for (int i=0; i<r.length; i++) {
+			String h = hex.substring(i*2, (i+1)*2);
+			r[i] = (byte)Integer.parseInt(h, 16);
+		}
+		return r;
+	}
 	
 	@Id
-    @GeneratedValue
-    public long getId() {
+	@GeneratedValue
+	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
 	}
-    public String getMail() {
-      return email;
-    }
-	public void setMail(String email) {
-		this.email = email;
+
+	@Column(unique=true)
+	public String getLogin() {
+		return login;
 	}
-	public String getNombre() {
-		return nombre;
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public String getHashedAndSalted() {
+		return hashedAndSalted;
 	}
-	public Date getNacimiento() {
-		return nacimiento;
+
+	public void setHashedAndSalted(String hashedAndSalted) {
+		this.hashedAndSalted = hashedAndSalted;
 	}
-	public void setNacimiento(Date nacimiento) {
-		this.nacimiento = nacimiento;
+
+	public String getRole() {
+		return role;
 	}
-	public String getProvincia() {
-		return provincia;
+
+	public void setRole(String role) {
+		this.role = role;
 	}
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	@ManyToMany(targetEntity=Actividad.class)
-	public List<Actividad> getHistorial() {
-		return historial;
-	}
-	public void setHistorial(List<Actividad> historial) {
-		this.historial = historial;
-	}
-	@ManyToMany(targetEntity=Actividad.class)
-	public List<Actividad> getActuales() {
-		return actuales;
-	}
-	public void setActuales(List<Actividad> actuales) {
-		this.actuales = actuales;
+
+	public String toString() {
+		return "" + id + " " + login + " " + hashedAndSalted;
 	}
 	
-	@ManyToOne(targetEntity=Usuario.class)
-	public List<Usuario> getAmigos() {
-		return amigos;
-	}
-	public void setAmigos(List<Usuario> amigos) {
-		this.amigos = amigos;
-	}
-	
-	
-	/*
-	private String descripcion;
-	private int idDescripcion;
-	*/
-	
+	 public String getMail() {
+	      return email;
+	    }
+		public void setMail(String email) {
+			this.email = email;
+		}
+		
+		public Date getNacimiento() {
+			return nacimiento;
+		}
+		public void setNacimiento(Date nacimiento) {
+			this.nacimiento = nacimiento;
+		}
+		public String getProvincia() {
+			return provincia;
+		}
+		public void setProvincia(String provincia) {
+			this.provincia = provincia;
+		}
+
+		
+		@ManyToMany(targetEntity=Actividad.class)
+		public List<Actividad> getHistorial() {
+			return historial;
+		}
+		public void setHistorial(List<Actividad> historial) {
+			this.historial = historial;
+		}
+		@ManyToMany(targetEntity=Actividad.class)
+		public List<Actividad> getActuales() {
+			return actuales;
+		}
+		public void setActuales(List<Actividad> actuales) {
+			this.actuales = actuales;
+		}
+		
+		@ManyToOne(targetEntity=Usuario.class)
+		public List<Usuario> getAmigos() {
+			return amigos;
+		}
+		public void setAmigos(List<Usuario> amigos) {
+			this.amigos = amigos;
+		}
+		
+
 }

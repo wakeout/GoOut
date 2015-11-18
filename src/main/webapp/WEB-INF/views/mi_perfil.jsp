@@ -19,7 +19,7 @@
 					<a><img id="i_perfil" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 					<br>
 					<center>
-						<button class="btn">Enviar Mensaje a Julio</button>
+						<button class="btn">Cambiar imagen de perfil</button>
 					</center>
 				</div>
 
@@ -32,8 +32,6 @@
 						  <li><a id="menu3" href="#">Privacidad</a></li>
 						</ul>
 						</div>
-						
-	
 
 					<div id="datos_perfil">
 					
@@ -62,61 +60,10 @@
 								<label id="union">10 de Noviembre del 2015</label>
 							</div>
 							</fieldset>
-						</div>
-
-						<div class="mod_perfil">
-							<form action="#" method="get">
-							<fieldset>
-  							<legend>Datos usuario</legend>
-  							<div class="campos_Perfil">
-								<label for="nombre_perfil">Nombre:</label> 
-								<input id="nombre_perfil" type="text" value="Julio Garcí­a Sánchez"/>
-							</div>
-							
-							<div class="campos_Perfil">
-								<label for="fecha_perfil">Fecha Nac:</label> 
-								<input id="fecha_perfil" type="date" value=""/>
-							</div>
-							<div class="campos_Perfil">
-								<label for="prov_perfil">Provincia:</label> 
-								<input id="prov_perfil" type="text" value="Madrid"/>
-							</div>
-							<div class="campos_Perfil">
-								<label for="email_perfil">Email: </label> 
-								<input id="email_perfil" type="email" value="julio1958@gmail.com"/>
-							</div>
-							<div class="actualizar">
-								<input id="actualizar_perfil" type="submit" value="Actualizar Informacion"/>
-							</div>
-							</fieldset>
-							</form>
-							
-							<form action="#" method="get">
-							<fieldset>
-  							<legend>Cambio password</legend>
-  							<div class="campos_Perfil">
-								<label for="psw_actual_perfil">Password Actual:</label> 
-								<input id="psw_actual_perfil" type="password" />
-							</div>
-							
-							<div class="campos_Perfil">Nuevo Password:</label> 
-								<input id="psw_nuevo_perfil" type="password"/>
-							</div>
-							<div class="campos_Perfil">
-								<label for="psw_nuevo2_perfil">Repite Password:</label> 
-								<input id="psw_nuevo2_perfil" type="password"/>
-							</div>
-							<div class="actualizar">
-								<input id="actualizar_password" type="submit" value="Cambiar Password"/>
-							</div>
-							</fieldset>
-							</form>
-							
-							<div class="activ_Perfil">
+														<div class="activ_Perfil">
 							<label id="campos_Perfil">ACTIVIDADES EN LAS QUE ESTÁ APUNTADO</labe>
-												<!-- COPIADO DE MIS ACTIVIDADES, HAY QUE LINKARLO -->
-		
-								<div id="">
+							<!-- COPIADO DE MIS ACTIVIDADES, HAY QUE LINKARLO -->
+								<div id="actv_perfil">
 									<a class="" href="actividad">
 										<div class="img_thumb">
 											<div class="img_desc">
@@ -127,7 +74,8 @@
 		
 											<img class="i_actv" src="${prefix}resources/images/senderismo.jpg" alt="" />
 										</div>
-									</a> <a class="" href="actividad">
+										</a> 
+										<a href="actividad">
 										<div class="img_thumb">
 		
 											<div class="img_desc">
@@ -142,6 +90,55 @@
 									</a>
 								</div>
 							</div>	
+						</div>
+
+						<div class="mod_perfil">
+							<form action="#" method="get">
+								<fieldset>
+	  							<legend>Datos usuario</legend>
+	  							<div class="campos_Perfil">
+									<label for="nombre_perfil">Nombre:</label> 
+									<input id="nombre_perfil" type="text" value="Julio Garcí­a Sánchez"/>
+								</div>
+								
+								<div class="campos_Perfil">
+									<label for="fecha_perfil">Fecha Nac:</label> 
+									<input id="fecha_perfil" type="date" value=""/>
+								</div>
+								<div class="campos_Perfil">
+									<label for="prov_perfil">Provincia:</label> 
+									<input id="prov_perfil" type="text" value="Madrid"/>
+								</div>
+								<div class="campos_Perfil">
+									<label for="email_perfil">Email: </label> 
+									<input id="email_perfil" type="email" value="julio1958@gmail.com"/>
+								</div>
+								<div class="actualizar">
+									<input id="actualizar_perfil" type="submit" value="Actualizar Informacion"/>
+								</div>
+								</fieldset>
+							</form>
+							<form action="#" method="get">
+								<fieldset>
+	  							<legend>Cambio password</legend>
+	  							<div class="campos_Perfil">
+									<label for="psw_actual_perfil">Password Actual:</label> 
+									<input id="psw_actual_perfil" type="password" />
+								</div>
+								
+								<div class="campos_Perfil">Nuevo Password:</label> 
+									<input id="psw_nuevo_perfil" type="password"/>
+								</div>
+								<div class="campos_Perfil">
+									<label for="psw_nuevo2_perfil">Repite Password:</label> 
+									<input id="psw_nuevo2_perfil" type="password"/>
+								</div>
+								<div class="actualizar">
+									<input id="actualizar_password" type="submit" value="Cambiar Password"/>
+								</div>
+								</fieldset>
+							</form>
+						</div>
 						</div>
 					</div>
 					
@@ -181,11 +178,6 @@
 					
 				</div>
 			</div>
-
-
-
-
-
 
 			<!-- Footer -->
 			<%@ include file="../fragments/footer.jsp" %>

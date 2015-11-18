@@ -11,7 +11,7 @@
 					<!-- login-->
 					<div id="login">
 
-					<a href="perfil"><img class="i_profile" src="${prefix}resources/images/minion.jpg"></a>
+					<a href="mi_perfil"><img class="i_profile" src="${prefix}resources/images/minion.jpg"></a>
 					
 					<div id= "loginText">
 

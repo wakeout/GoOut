@@ -11,7 +11,7 @@
 		
  </head>
     <body>
-				<form class="form3" name="log" method="post">
+				<form action="${prefix}registro" class="form3" name="log" method="POST">
 					<p class="logo">
 				        <img id="logo2" src="${prefix}resources/images/logo_login.png">
 				    </p>
@@ -21,7 +21,7 @@
 				    </p>
 				    <p class="a">
 				        <label for="password">Contraseña</label>
-				        <input type="password" name="password" id="password" placeholder="Contraseña"> 
+				        <input type="password" name="pass" id="pass" placeholder="Contraseña"> 
 				    </p>
 				    <p class="a">
 				        <label for="password2">Repite Contraseña</label>
@@ -33,7 +33,7 @@
 				    </p>
 
 				    <p class="a">
-				        <input type="button" name="submit" value="Registrarse" onClick="registro()"/>
+				        <button name="submit" value="Registrarse" type="submit">Registrarse</button>
 				    </p>    
 				</form>		
 				

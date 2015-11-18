@@ -21,9 +21,3 @@
 			}*/
             
 }
-
-function registro(){
-
-window.location='index.html';
-
-} 
