@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 })
 public class Comentario {
 	private long id;
-	private Perfil perfil;// key perfil
+	private Usuario usuario;// key Usuario
 	private String asunto;
 	private boolean sugiero;
 	
@@ -23,10 +23,10 @@ public class Comentario {
 	Comentario(){
 		
 	}
-	public Comentario(long id, Perfil perfil, String asunto, boolean sugiero) {
+	public Comentario(long id, Usuario usuario, String asunto, boolean sugiero) {
 		super();
 		this.id = id;
-		this.perfil = perfil;
+		this.usuario = usuario;
 		this.asunto = asunto;
 		this.sugiero = sugiero;
 	}
@@ -52,12 +52,12 @@ public class Comentario {
 		this.sugiero = sugiero;
 	 }
 	
-	 @OneToOne(targetEntity=Perfil.class)
-	 public Perfil getPerfil() {
-		return perfil;
+	 @OneToOne(targetEntity=Usuario.class)
+	 public Usuario getUsuario() {
+		return usuario;
 	 }
-	 public void setPerfil(Perfil perfil){
-		this.perfil = perfil;
+	 public void setUsuario(Usuario usuario){
+		this.usuario = usuario;
 	 }
 	 
 	 

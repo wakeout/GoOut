@@ -18,15 +18,15 @@ import javax.persistence.NamedQuery;
 })
 public class Mensaje {
 	private long id;
-	private Perfil origen;
-	private List<Perfil> destinos;
+	private Usuario origen;
+	private List<Usuario> destinos;
 	private int nDestinos;
 	private String titulo;
 	
 	Mensaje(){
 		
 	}
-	public Mensaje(long id, Perfil origen, List<Perfil> destinos,
+	public Mensaje(long id, Usuario origen, List<Usuario> destinos,
 			int nDestinos, String titulo) {
 		super();
 		this.id = id;
@@ -56,19 +56,19 @@ public class Mensaje {
 	  this.titulo = titulo;
 	}
 	
-	@OneToOne(targetEntity=Perfil.class)//----------?
-	public Perfil getOrigen() {
+	@OneToOne(targetEntity=Usuario.class)//----------?
+	public Usuario getOrigen() {
 		return origen;
 	}
-	public void setOrigen(Perfil origen) {
+	public void setOrigen(Usuario origen) {
 		this.origen = origen;
 	}
 	
-	@ManyToMany(targetEntity=Perfil.class)
-	public List<Perfil> getDestinos() {
+	@ManyToMany(targetEntity=Usuario.class)
+	public List<Usuario> getDestinos() {
 		return destinos;
 	}
-	public void setDestinos(List<Perfil> destinos) {
+	public void setDestinos(List<Usuario> destinos) {
 		this.destinos = destinos;
 	}
 	/*

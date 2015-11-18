@@ -16,7 +16,6 @@ import javax.persistence.NamedQuery;
 
 import java.util.Date;
 
-//jijiji
 
 @Entity
 @NamedQueries({
@@ -37,7 +36,7 @@ public class Actividad{
 	
 	
 	private int maxPersonas;
-	private List<Perfil>  personas;//email de perfiles
+	private List<Usuario>  personas;//email de perfiles
 	private int nPersonas;
 	
 	private Foro foro;
@@ -47,7 +46,7 @@ public class Actividad{
 	}
 	public Actividad(long id, String nombre, Date fecha, double latitud,
 			double longitud, List<Hito> proximosHitos, long idImagen,
-			int maxPersonas, List<Perfil> personas, int nPersonas, Foro foro) {
+			int maxPersonas, List<Usuario> personas, int nPersonas, Foro foro) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -120,11 +119,11 @@ public class Actividad{
 	 public void setWritings(List<Hito> hitos) {
 		 this.proximosHitos = hitos;
 	 }
-	 @ManyToMany(targetEntity=Perfil.class, fetch=FetchType.EAGER)
-	 public List<Perfil> getPersonas() {
+	 @ManyToMany(targetEntity=Usuario.class, fetch=FetchType.EAGER)
+	 public List<Usuario> getPersonas() {
 		 return personas;
 	 }
-	 public void setPersonas(List<Perfil> perfiles) {
+	 public void setPersonas(List<Usuario> perfiles) {
 		 this.personas = perfiles;
 	 }
 	@OneToOne(targetEntity=Foro.class)
