@@ -7,7 +7,7 @@
 <html>
 	<head>
 	
-	<%@ include file="../fragments/head.jsp" %>
+	<%@ include file="../fragments/head.jspf" %>
 	<link rel="stylesheet" href="${prefix}resources/css/sliding.css">
 	</head>
 	
@@ -16,7 +16,7 @@
 
 			<!-- Header -->
 
-			<%@ include file="../fragments/header.jsp" %>
+			<%@ include file="../fragments/header.jspf" %>
 			<!-- Main -->
 				<div id="main-wrapper">
 					<div class="container">
@@ -123,11 +123,11 @@
 				</div>
 
 			<!-- Footer -->
-			<%@ include file="../fragments/footer.jsp" %>
+			<%@ include file="../fragments/footer.jspf" %>
 			
 		</div>
 
-	<%@ include file="../fragments/scripts.jsp" %>
+	<%@ include file="../fragments/scripts.jspf" %>
 
 	</body>
 </html>

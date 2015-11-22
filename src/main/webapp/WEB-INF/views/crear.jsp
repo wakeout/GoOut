@@ -7,7 +7,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <html>
 <head>
 
-<%@ include file="../fragments/head.jsp" %>
+<%@ include file="../fragments/head.jspf" %>
 <link rel="stylesheet" href="${prefix}resources/css/jquery-ui-1.7.2.custom.css">
 <link rel="stylesheet" href="${prefix}resources/css/jsDatePick_ltr.min.css">
 
@@ -17,7 +17,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 	<!-- Header -->
 	
-	<%@ include file="../fragments/header.jsp" %>
+	<%@ include file="../fragments/header.jspf" %>
 	
 	<!-- Main -->
 	<div id="main-wrapper">
@@ -144,10 +144,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 
 	<!-- Footer -->
-	<%@ include file="../fragments/footer.jsp" %>
+	<%@ include file="../fragments/footer.jspf" %>
 
 </div>
-	<%@ include file="../fragments/scripts.jsp" %>
+	<%@ include file="../fragments/scripts.jspf" %>
 
 
 

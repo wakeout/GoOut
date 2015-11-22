@@ -204,4 +204,10 @@ public class HomeController {
 	public String sin_registro(){
 		return "sin_registro";
 	}
+	
+	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
+	public String administrador(){
+		return "administrador";
+	}
+	
 }

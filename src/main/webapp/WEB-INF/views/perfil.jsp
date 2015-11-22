@@ -1,7 +1,7 @@
 <html>
 <head>
 
-<%@ include file="../fragments/head.jsp" %>
+<%@ include file="../fragments/head.jspf" %>
 
 </head>
 <body class="homepage">
@@ -9,7 +9,7 @@
 
 		<!-- Header -->
 
-		<%@ include file="../fragments/header.jsp" %>
+		<%@ include file="../fragments/header.jspf" %>
 		
 		<!-- Main -->
 		<div id="main-wrapper">
@@ -119,10 +119,10 @@
 
 
 			<!-- Footer -->
-			<%@ include file="../fragments/footer.jsp" %>
+			<%@ include file="../fragments/footer.jspf" %>
 		</div>
 
 		<!-- Scripts -->
-		<%@ include file="../fragments/scripts.jsp" %>
+		<%@ include file="../fragments/scripts.jspf" %>
 </body>
 </html>

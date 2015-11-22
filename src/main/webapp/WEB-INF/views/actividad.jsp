@@ -1,16 +1,12 @@
 <!DOCTYPE HTML>
-<!--
-	Dopetrope by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		
 		<link rel="stylesheet" href="${prefix}resources/css/reset.css"> <!-- CSS reset -->
 		<link rel="stylesheet" href="${prefix}resources/css/style.css"> <!-- Resource style -->
 		
-		<%@ include file="../fragments/head.jsp" %>
+		<%@ include file="../fragments/head.jspf" %>
 		
 		
 
@@ -19,7 +15,7 @@
 	<div id="page-wrapper">
 
 			<!-- Header -->
-			<%@ include file="../fragments/header.jsp" %>
+			<%@ include file="../fragments/header.jspf" %>
 			<!-- Main -->
 	<div id="main-wrapper">			
 		<div class="container">
@@ -130,11 +126,11 @@
 			
 	</div>	
 		
-	<%@ include file="../fragments/footer.jsp" %>
+	<%@ include file="../fragments/footer.jspf" %>
 
 	</div>
 
 	
-	<%@ include file="../fragments/scripts.jsp" %>
+	<%@ include file="../fragments/scripts.jspf" %>
 </body>
 </html>
