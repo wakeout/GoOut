@@ -19,49 +19,48 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="allUsers",
-            query="select u from Usuario u"),
-    @NamedQuery(name="userByLogin",
-        query="select u from Usuario u where u.login = :loginParam"),
-    @NamedQuery(name="delUser",
-    	query="delete from Usuario u where u.id= :idParam")
+	@NamedQuery(name="allUsers",
+			query="select u from Usuario u"),
+			@NamedQuery(name="userByLogin",
+			query="select u from Usuario u where u.login = :loginParam"),
+			@NamedQuery(name="delUser",
+			query="delete from Usuario u where u.id= :idParam")
 })
 public class Usuario {	
-	
-    private static BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
-	
-	// do not change these fields - all web applications with user authentication need them
+
+	private static BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
+
 	private long id;
 	private String login;
-	private String role;
-	private String hashedAndSalted;
-
+	private String pass_cifrado;
+	private String rol;
 	private Date nacimiento;
 	private String provincia;
 	private String email;
 	
-	
 	private List<Actividad> historial;
 	private List<Actividad> actuales;
-	
-	private List<Usuario>  amigos;
-		
-	// change fields below here to suit your application
+	private List<Usuario> amigos;
+
 
 	public Usuario() {}
 
-	public static Usuario createUser(String login, String pass, String role) {
+	public static Usuario createUser(String login, String pass, String rol, 
+									Date nacimiento, String prov, String email) {
 		Usuario u = new Usuario();
 		u.login = login;
-		u.hashedAndSalted = generateHashedAndSalted(pass);
-		u.role = role;
+		u.pass_cifrado = generateHashedAndSalted(pass);
+		u.rol = rol;
+		u.nacimiento=nacimiento;
+		u.provincia=prov;
+		u.email=email;
 		return u;
 	}
-	
+
 	public boolean isPassValid(String pass) {
-		return bcryptEncoder.matches(pass, hashedAndSalted);		
+		return bcryptEncoder.matches(pass, pass_cifrado);		
 	}
-	
+
 	/**
 	 * Generate a hashed&salted hex-string from a user's pass and salt
 	 * @param pass to use; no length-limit!
@@ -73,7 +72,7 @@ public class Usuario {
 	public static String generateHashedAndSalted(String pass) {
 		/*
 		Código viejo: sólo 1 iteración de SHA-1. bCrypt es mucho más seguro (itera 1024 veces...)
-		
+
 		Además, bcryptEncoder guarda la sal junto a la contraseña
 		byte[] saltBytes = hexStringToByteArray(user.salt);
 		byte[] passBytes = pass.getBytes();
@@ -81,7 +80,7 @@ public class Usuario {
 		System.arraycopy(passBytes, 0, toHash, 0, passBytes.length);
 		System.arraycopy(saltBytes, 0, toHash, passBytes.length, saltBytes.length);
 		return byteArrayToHexString(sha1hash(toHash));
-		*/
+		 */
 		return bcryptEncoder.encode(pass);
 	}	
 
@@ -97,7 +96,7 @@ public class Usuario {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
 	 * Converts a hex string to a byte array
 	 * @param hex string to convert
@@ -111,7 +110,7 @@ public class Usuario {
 		}
 		return r;
 	}
-	
+
 	@Id
 	@GeneratedValue
 	public long getId() {
@@ -132,68 +131,67 @@ public class Usuario {
 	}
 
 	public String getHashedAndSalted() {
-		return hashedAndSalted;
+		return pass_cifrado;
 	}
 
 	public void setHashedAndSalted(String hashedAndSalted) {
-		this.hashedAndSalted = hashedAndSalted;
+		this.pass_cifrado = hashedAndSalted;
 	}
 
 	public String getRole() {
-		return role;
+		return rol;
 	}
 
 	public void setRole(String role) {
-		this.role = role;
+		this.rol = role;
 	}
 
 	public String toString() {
-		return "" + id + " " + login + " " + hashedAndSalted;
+		return "" + id + " " + login + " " + pass_cifrado;
 	}
-	
-	 public String getMail() {
-	      return email;
-	    }
-		public void setMail(String email) {
-			this.email = email;
-		}
-		
-		public Date getNacimiento() {
-			return nacimiento;
-		}
-		public void setNacimiento(Date nacimiento) {
-			this.nacimiento = nacimiento;
-		}
-		public String getProvincia() {
-			return provincia;
-		}
-		public void setProvincia(String provincia) {
-			this.provincia = provincia;
-		}
 
-		
-		@ManyToMany(targetEntity=Actividad.class)
-		public List<Actividad> getHistorial() {
-			return historial;
-		}
-		public void setHistorial(List<Actividad> historial) {
-			this.historial = historial;
-		}
-		@ManyToMany(targetEntity=Actividad.class)
-		public List<Actividad> getActuales() {
-			return actuales;
-		}
-		public void setActuales(List<Actividad> actuales) {
-			this.actuales = actuales;
-		}
-		
-		@ManyToOne(targetEntity=Usuario.class)
-		public List<Usuario> getAmigos() {
-			return amigos;
-		}
-		public void setAmigos(List<Usuario> amigos) {
-			this.amigos = amigos;
-		}
-		
+	public String getMail() {
+		return email;
+	}
+	public void setMail(String email) {
+		this.email = email;
+	}
+
+	public Date getNacimiento() {
+		return nacimiento;
+	}
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+	public String getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	@ManyToMany(targetEntity=Actividad.class)
+	public List<Actividad> getHistorial() {
+		return historial;
+	}
+	public void setHistorial(List<Actividad> historial) {
+		this.historial = historial;
+	}
+	@ManyToMany(targetEntity=Actividad.class)
+	public List<Actividad> getActuales() {
+		return actuales;
+	}
+	public void setActuales(List<Actividad> actuales) {
+		this.actuales = actuales;
+	}
+
+	@ManyToOne(targetEntity=Usuario.class)
+	public List<Usuario> getAmigos() {
+		return amigos;
+	}
+	public void setAmigos(List<Usuario> amigos) {
+		this.amigos = amigos;
+	}
+
 
 }

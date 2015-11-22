@@ -13,7 +13,7 @@
 		
    </head>
     <body>
-				<form class="form3" name="log" method="post">
+				<form action="${prefix}login" class="form3" name="log" method="POST">
 					<p class="logo">
 				        <img id="logo2" src="${prefix}resources/images/logo_login.png">
 				    </p>
@@ -23,7 +23,7 @@
 				    </p>
 				    <p class="a">
 				        <label for="password">Contraseña</label>
-				        <input type="password" name="password" id="password" placeholder="Contraseña"> 
+				        <input type="password" name="pass" id="pass" placeholder="Contraseña"> 
 				    </p>
 				    <p class="a">
 				        <input type="checkbox" name="remember" id="remember">
@@ -32,9 +32,13 @@
 				    </p>
 
 				    <p class="a">
-				        <input type="button" name="submit" value="Entrar" onClick="validate()"/>
+				       <button class="boton" name="submit" value="Login" type="submit">Entrar</button>
 				    </p>
 					<p id="reg"><a href='registro'>Si aún no tienes cuenta registrate aquí</a></p>
+					
+					<c:if test="${not empty loginError}">
+						<br><span class='errorLogin'></span>
+					</c:if>
 				</form>
 	<div id="actv">
 				<table>

@@ -157,7 +157,7 @@ div#actv table
     vertical-align: middle;
 }
 
-.form3 input[type=button]{
+.boton{
     /* Width and position */
     width: 100%;
     padding: 8px 5px;

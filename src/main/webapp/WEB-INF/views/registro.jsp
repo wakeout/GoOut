@@ -25,7 +25,7 @@
 				    </p>
 				    <p class="a">
 				        <label for="password2">Repite Contraseña</label>
-				        <input type="password" name="password2" id="password2" placeholder="Repite contraseña"> 
+				        <input type="password" name="pass2" id="pass2" placeholder="Repite contraseña"> 
 				    </p>
 					<p class="a">
 				        <label for="email">Email</label>
@@ -33,7 +33,7 @@
 				    </p>
 
 				    <p class="a">
-				        <button name="submit" value="Registrarse" type="submit">Registrarse</button>
+				        <button class="boton" name="submit" value="Registrarse" type="submit">Registrarse</button>
 				    </p>    
 				</form>		
 				

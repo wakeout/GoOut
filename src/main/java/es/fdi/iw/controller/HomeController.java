@@ -42,7 +42,7 @@ public class HomeController {
 	        HttpServletResponse response, 
 	        Model model, HttpSession session) {
 	         if (true/* formulario tiene buen aspecto */) {
-	            session.setAttribute("user", "paco");
+	            session.setAttribute("user", "usuario");
 	         } else {
 	            /* guardo errores en el modelo */
 	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
@@ -58,38 +58,86 @@ public class HomeController {
 	public String registro(
 			@RequestParam("login") String formLogin,
 			@RequestParam("pass") String formPass,
+			@RequestParam("pass2") String formPass2,
+			@RequestParam("email") String formEmail,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 		
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
 		
 		// validate request
-		if (formLogin == null || formLogin.length() < 4 || formPass == null || formPass.length() < 4) {
+		if (formLogin == null || formLogin.length() < 4 || formPass == null || formPass.length() < 4) 
+		{
 			model.addAttribute("loginError", "usuarios y contraseñas: 4 caracteres mínimo");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		} else {
+		} 
+		else 
+		{
 			Usuario u = null;
 			try {
 				u = (Usuario)entityManager.createNamedQuery("userByLogin")
 					.setParameter("loginParam", formLogin).getSingleResult();
 				
 			} catch (NoResultException nre) {
-				if (formPass.length() == 4) {
+				if (formPass.equals(formPass2)) 
+				{
 					// UGLY: register new users if they do not exist and pass is 4 chars long
 					logger.info("no-such-user; creating user {}", formLogin);				
-					Usuario user = Usuario.createUser(formLogin, formPass, "user");
+					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", null, "Sin especificar", formEmail);
 					entityManager.persist(user);				
-				
-				} else {
+				} 
+				else {
 					logger.info("no such login: {}", formLogin);
 				}
 				model.addAttribute("loginError", "error en usuario o contraseña");
 			}
 		}
 		
-		// redirects to view from which login was requested
-		return "redirect:perfil";
+		// redireccion a login cuando el registro ha sido correcto
+		return "redirect:login";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@Transactional
+	public String login(
+			@RequestParam("login") String formLogin,
+			@RequestParam("pass") String formPass,
+			String destino,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session) {
+		
+		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
+		destino="login";
+		
+		// La instruccion model.addAtribute creo que pone en el modelo (los jsp) el mensaje del seguindo parametro 
+			//en el nombre de la clase que es el primer parametro
+		
+				if (formLogin == null || formLogin.length() < 4 || formPass == null || formPass.length() < 4) {
+					model.addAttribute("loginError", "usuarios y contraseñas: 4 caracteres mínimo");
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				} else {
+					Usuario u = null;
+					try {
+						//Hay que entender que hace esta instruccion
+						u = (Usuario)entityManager.createNamedQuery("userByLogin")
+							.setParameter("loginParam", formLogin).getSingleResult();
+						if (u.isPassValid(formPass)) {
+							model.addAttribute("loginError","pass valido");
+							logger.info("pass valido");
+							destino="home";
+						} else {
+							logger.info("pass no valido");
+							model.addAttribute("loginError", "error en usuario o contraseña");
+							response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+						}
+					} catch (NoResultException nre) {
+						
+						model.addAttribute("loginError", "error en usuario o contraseña");
+					}
+				}
+
+				return "redirect:" + destino;
+			}
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
