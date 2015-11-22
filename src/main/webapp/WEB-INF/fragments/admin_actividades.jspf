@@ -1,0 +1,11 @@
+
+<header>
+<h2>Actividades</h2>
+<div class="search">
+
+    <input>
+    <input type="submit"  value="Buscar en las Actividades">
+</div>
+
+</header>
+<hr></hr>

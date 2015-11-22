@@ -1,0 +1,15 @@
+insert into Usuario (id, login, mail, role, hashed_and_salted) values(1 ,'marquitos', 'mlaina@ucm.es', 'admin', 'dda01fa89b3cb112eb5df2c534ac72b7')
+insert into Usuario (id, login, mail, role, hashed_and_salted) values(2 ,'victor', 'victga04@ucm.es', 'admin', 'ffc150a160d37e92012c196b6af4160d')
+insert into Usuario (id, login, mail, role, hashed_and_salted) values(3 ,'lis', 'lisiro01@ucm.es', 'admin', '3723f3084fb6561d5e2415dc57935883')
+insert into Usuario (id, login, mail, role, hashed_and_salted) values(4 ,'david','david@ucm.es', 'admin', '172522ec1028ab781d9dfd17eaca4427')
+insert into Usuario (id, login, mail, role, hashed_and_salted) values(5 ,'jorge','jorge@ucm.es', 'user', 'd67326a22642a324aa1b0745f2f17abb')
+
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(1, 'cerves', 12, 1234, 1244, 1, 15)
+insert into Actividad (id, nombre, npersonas, latitud, longitud  ,id_imagen, max_personas) values(2, 'zombies',  4,1200, 1214, 2, 4)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(3, 'cine estreno starwars',9,  1000, 1000, 3, 20)
+
+insert into Mensaje (id, titulo, nDestinos) values(1, 'victor me cae fatal',  2)
+insert into Mensaje (id, titulo, nDestinos) values(2, 'david me cae fatal',  2)
+insert into Mensaje (id, titulo, nDestinos) values(3, 'lis me cae fatal',  2)
+insert into Mensaje (id, titulo, nDestinos) values(4, 'marcos es un crak',  8)
+insert into Mensaje (id, titulo, nDestinos) values(5, 'amo a marcos',  8)

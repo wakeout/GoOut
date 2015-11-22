@@ -27,6 +27,7 @@ public class Actividad{
 	private long id;//key
 	private String nombre;
 	private Date fecha;
+	private Usuario creador;
 	
 	/*ubicacion*/
 	private double latitud;
