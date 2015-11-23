@@ -1,8 +1,8 @@
-insert into Usuario (id, login, mail, role, hashed_and_salted) values(1 ,'marquitos', 'mlaina@ucm.es', 'admin', 'dda01fa89b3cb112eb5df2c534ac72b7')
-insert into Usuario (id, login, mail, role, hashed_and_salted) values(2 ,'victor', 'victga04@ucm.es', 'admin', 'ffc150a160d37e92012c196b6af4160d')
-insert into Usuario (id, login, mail, role, hashed_and_salted) values(3 ,'lis', 'lisiro01@ucm.es', 'admin', '3723f3084fb6561d5e2415dc57935883')
-insert into Usuario (id, login, mail, role, hashed_and_salted) values(4 ,'david','david@ucm.es', 'admin', '172522ec1028ab781d9dfd17eaca4427')
-insert into Usuario (id, login, mail, role, hashed_and_salted) values(5 ,'jorge','jorge@ucm.es', 'user', 'd67326a22642a324aa1b0745f2f17abb')
+insert into Usuario (id, login, mail, rol, password) values(1 ,'marquitos', 'mlaina@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
+insert into Usuario (id, login, mail, rol, password) values(2 ,'victor', 'victga04@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
+insert into Usuario (id, login, mail, rol, password) values(3 ,'lis', 'lisiro01@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
+insert into Usuario (id, login, mail, rol, password) values(4 ,'david','david@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
+insert into Usuario (id, login, mail, rol, password) values(5 ,'jorge','jorge@ucm.es', 'usuario', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
 
 insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(1, 'cerves', 12, 1234, 1244, 1, 15)
 insert into Actividad (id, nombre, npersonas, latitud, longitud  ,id_imagen, max_personas) values(2, 'zombies',  4,1200, 1214, 2, 4)

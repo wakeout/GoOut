@@ -36,31 +36,46 @@
 					<div id="datos_perfil">
 					
 						<div class="mi_perfil">
+										
 						<fieldset>
   							<legend>Datos usuario</legend>
   							<div class="campos_Perfil">
 								<label for="nombre_perfil">Nombre:</label> 
-								<label id="nombre_perfil">Julio Garcí­a Sánchez</label>
+								<label id="nombre_perfil">${usuario.login}</label>
 							</div>
-							
+							<br>
 							<div class="campos_Perfil">
 								<label for="fecha_perfil">Fecha Nac:</label> 
-								<label id="fecha_perfil">15 de marzo 1990</label>
+								<label id="fecha_perfil">${usuario.nacimiento}</label>
 							</div>
+							<br>
 							<div class="campos_Perfil">
 								<label for="prov_perfil">Provincia:</label> 
-								<label id="prov_perfil">Madrid</label>
+								<label id="prov_perfil">${usuario.provincia}</label>
 							</div>
+							<br>
 							<div class="campos_Perfil">
 								<label for="email_perfil">Email: </label> 
-								<label id="email_perfil">julio1958@gmail.com</label>
+								<label id="email_perfil">${usuario.mail}</label>
 							</div>
+							<br>
+							<div class="campos_Perfil">
+								<label for="tipo_usuario">Tipo de usuario: </label> 
+								<label id=""tipo_usuario"">${usuario.rol}</label>
+							</div>
+							<br>
+							<div class="campos_Perfil">
+								<label for="n_amigos">Amigos:</label> 
+								<label id="n_amigos"> 0 </label>
+							</div>
+							<br>
 							<div class="campos_Perfil">
 								<label for="union">Unido: </label> 
-								<label id="union">10 de Noviembre del 2015</label>
+								<label id="union">10-11-2015</label>
 							</div>
 							</fieldset>
-														<div class="activ_Perfil">
+							
+							<div class="activ_Perfil">
 							<label id="campos_Perfil">ACTIVIDADES EN LAS QUE ESTÁ APUNTADO</labe>
 							<!-- COPIADO DE MIS ACTIVIDADES, HAY QUE LINKARLO -->
 								<div id="actv_perfil">
@@ -92,33 +107,37 @@
 							</div>	
 						</div>
 
+						<!--<c:set var="prov" scope="session" value="Sin especificar"/>
+						<c:if test="${not empty usuario.nacimiento}">No esta vacio</c:if>-->
+
 						<div class="mod_perfil">
-							<form action="#" method="get">
+							<form action="${prefix}mi_perfil" method="POST">
 								<fieldset>
 	  							<legend>Datos usuario</legend>
 	  							<div class="campos_Perfil">
-									<label for="nombre_perfil">Nombre:</label> 
-									<input id="nombre_perfil" type="text" value="Julio Garcí­a Sánchez"/>
+									<label for="nick_perfil">Nick de usuario:</label> 
+									<input id="nick_perfil" type="text" value="${usuario.login}" disabled/>
 								</div>
 								
 								<div class="campos_Perfil">
 									<label for="fecha_perfil">Fecha Nac:</label> 
-									<input id="fecha_perfil" type="date" value=""/>
+									<input id="fecha_perfil" type="date" value="${usuario.nacimiento}" />
 								</div>
 								<div class="campos_Perfil">
 									<label for="prov_perfil">Provincia:</label> 
-									<input id="prov_perfil" type="text" value="Madrid"/>
+									<input id="prov_perfil" type="text" value="${usuario.provincia}"/>
 								</div>
 								<div class="campos_Perfil">
 									<label for="email_perfil">Email: </label> 
-									<input id="email_perfil" type="email" value="julio1958@gmail.com"/>
+									<input id="email_perfil" type="email" value="${usuario.mail}"/>
 								</div>
 								<div class="actualizar">
-									<input id="actualizar_perfil" type="submit" value="Actualizar Informacion"/>
+									<button id="actualizar_perfil" name="submit" type="submit">Actualizar Informacion</button>
 								</div>
 								</fieldset>
 							</form>
-							<form action="#" method="get">
+							
+							<form action="${prefix}mod_password" method="POST">
 								<fieldset>
 	  							<legend>Cambio password</legend>
 	  							<div class="campos_Perfil">
@@ -126,7 +145,8 @@
 									<input id="psw_actual_perfil" type="password" />
 								</div>
 								
-								<div class="campos_Perfil">Nuevo Password:</label> 
+								<div class="campos_Perfil">
+								<label>Nuevo Password:</label> 
 									<input id="psw_nuevo_perfil" type="password"/>
 								</div>
 								<div class="campos_Perfil">
@@ -134,7 +154,7 @@
 									<input id="psw_nuevo2_perfil" type="password"/>
 								</div>
 								<div class="actualizar">
-									<input id="actualizar_password" type="submit" value="Cambiar Password"/>
+									<button id="actualizar_password" name="submit" type="submit">Cambiar Password</button>
 								</div>
 								</fieldset>
 							</form>
