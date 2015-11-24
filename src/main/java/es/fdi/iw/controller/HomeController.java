@@ -38,20 +38,20 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	
-	/*@SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	public String login(HttpServletRequest request,
 	        HttpServletResponse response, 
 	        Model model, HttpSession session) {
-	         if (true formulario tiene buen aspecto ) {
+	         if (true ) {
 	            session.setAttribute("user", "usuario");
 	         } else {
-	             guardo errores en el modelo 
+	             
 	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 	            model.addAttribute("loginError", 
 	                "Te lo estás inventando!");
 	         }
 	         return "home";
-	    }*/
+	    }
 	
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.POST)
@@ -186,6 +186,8 @@ public class HomeController {
 		return "redirect:home";
 	}
 
+
+
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -253,7 +255,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
-	public String administrador(){
+	@Transactional
+	public String administrador(Model model){
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+		model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
+		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+		
 		return "administrador";
 	}
 	

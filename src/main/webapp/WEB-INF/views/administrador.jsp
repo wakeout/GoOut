@@ -32,7 +32,7 @@
 	</ul>
 
 	<div class="lista">
-		<%@ include file="../fragments/admin_actividades.jspf" %>
+		<%@ include file="../fragments/admin_lista.jspf" %>
 	</div>	
 		
 		

@@ -16,8 +16,31 @@
 	<input type="button" class="add">
 </div>	
 	
-<div class="list">	
+<div class="list">
+
+	<c:set var="rol" scope="session" value="admin"/>	
 	
+	<c:if test="${usuario.rol == rol}">
+	<table>
+		<c:forEach items="${actividades}" var="a">
+		<tr><td><input type="checkbox"><a href="actividad"> ${a.id}</a><td>${a.nombre}
+		</c:forEach>
+	</table>
+	
+	<table>
+		<c:forEach items="${usuarios}" var="u">
+		<tr><td><input type="checkbox"><a href="actividad"> ${u.id}</a><td>${u.login}
+		</c:forEach>
+	</table>	
+	
+	<table>
+		<c:forEach items="${mensajes}" var="m">
+		<tr><td><input type="checkbox"><a href="actividad"> ${m.id}</a><td>${m.titulo}
+		</c:forEach>
+	</table>
+	</c:if>
+	
+	<!--
 	<ul class="enumeracion">
 	
 		<li class="elemento">
@@ -27,5 +50,5 @@
 
 
 	</ul>
-	
+	-->
 	</div>
