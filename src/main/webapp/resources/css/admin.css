@@ -23,7 +23,6 @@ li {
     -webkit-user-select: none;
     cursor: pointer;
     width: 139px;
-    padding-top: 15px;
     
 }
 
@@ -66,7 +65,6 @@ h1 {
 h2 {
     color: rgb(92, 97, 102);
     margin: 0;
-    padding: 21px 0 13px;
 }
 .lista{
 	top: 2%;
@@ -77,11 +75,80 @@ h2 {
 	
 }
 hr {
+    position: relative;
     height: 0;
+    width: 1000px;
     border: 0;
     border-top: 1px solid #eee;
+    top: 15px;
 }
 .search{
 	position: relative;
-	left: 15%;
+	float: right;
+}
+.add{
+	background-image: url(../images/add.png);
+	width: 30px;
+    height: 30px;
+    background-size: 100%;
+   	object-fit: cover;
+    border-radius: 3px 3px 3px 3px;
+    border:0;
+    outline:0;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color:white;
+    float: right;
+}
+.add:hover{
+	background-color:#dddddd;
+}
+.papelera{
+	background-image: url(../images/papelera.png);
+	width: 30px;
+    height: 30px;
+    background-size: 100%;
+   	object-fit: cover;
+    border-radius: 3px 3px 3px 3px;
+    border:0;
+    outline:0;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color:white;
+    float: right;
+}
+.papelera:hover{
+	background-color:#dddddd;
+}
+.titulo{
+    width: 150px;
+	margin:0;
+	position: relative;
+	float:left;
+}
+.linea{
+	bottom: 0;
+}
+.arriba{
+	position:relative;
+	top:0;
+}
+.list{
+	position: relative;
+	margin: 0;
+	padding:0;
+	width: 1000px;
+	height:500px;
+	
+}
+.op{
+	padding: 20px;
+	height: 30px;
+	width: 900px;
+}
+.enumeracion{
+	top:0;
+}
+.elemento{
+	color-font:black;
 }

@@ -624,6 +624,8 @@ color: #fff;
 	#footer-wrapper {
 			padding: 4em 0 4em 0;
             background: black;
+            position:relative;
+            bottom: opx;
 	}
 
 /* Desktop */
