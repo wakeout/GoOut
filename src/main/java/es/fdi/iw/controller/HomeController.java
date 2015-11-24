@@ -3,6 +3,7 @@ package es.fdi.iw.controller;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -37,20 +38,20 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	
-	@SuppressWarnings("unused")
+	/*@SuppressWarnings("unused")
 	public String login(HttpServletRequest request,
 	        HttpServletResponse response, 
 	        Model model, HttpSession session) {
-	         if (true/* formulario tiene buen aspecto */) {
+	         if (true formulario tiene buen aspecto ) {
 	            session.setAttribute("user", "usuario");
 	         } else {
-	            /* guardo errores en el modelo */
+	             guardo errores en el modelo 
 	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 	            model.addAttribute("loginError", 
 	                "Te lo estás inventando!");
 	         }
 	         return "home";
-	    }
+	    }*/
 	
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.POST)
@@ -124,6 +125,8 @@ public class HomeController {
 						if (u.isPassValid(formPass)) {
 							model.addAttribute("loginError","pass valido");
 							logger.info("pass valido");
+							session.setAttribute("usuario", u);
+							getTokenForSession(session);
 							destino="home";
 						} else {
 							logger.info("pass no valido");
@@ -138,6 +141,50 @@ public class HomeController {
 
 				return "redirect:" + destino;
 			}
+	
+	/**
+	 * Logout. Elimina la sesion actual y cierra sesion redirigiendo a la pantalla de login.
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		logger.info("User '{}' logged out", session.getAttribute("usuario"));
+		session.invalidate();
+		return "redirect:login";
+	}
+	
+	
+	/*
+	 *	Metodo donde se pueden modificar los datos del usuario una vez esta logueado.
+	 *	Además se puede agregar informacion como provincia, fecha de nacimiento etc.
+	 */
+	
+	@SuppressWarnings("unused")
+	@RequestMapping(value = "/mi_perfil", method = RequestMethod.POST)
+	@Transactional
+	public String mod_perfil(
+			@RequestParam("nick_perfil") String nick,
+			//@RequestParam("fecha_perfil") Date fecha,
+			@RequestParam("prov_perfil") String provincia,
+			@RequestParam("email_perfil") String email,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session) {
+		
+			Usuario u = null;
+			try {
+				u = (Usuario)entityManager.createNamedQuery("userByLogin")
+					.setParameter("nick_perfil", nick).getSingleResult();
+
+			} catch (NoResultException nre) {
+		
+					//Preguntar como se hace un update de una tabla??
+					u = Usuario.modUser(null,"Madrid",email);
+					entityManager.merge(u);
+				//model.addAttribute("modError", "error en la modificacion");
+			}
+		
+		// redireccion a login cuando el registro ha sido correcto
+		return "redirect:home";
+	}
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -208,6 +255,13 @@ public class HomeController {
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	public String administrador(){
 		return "administrador";
+	}
+	
+	
+	static String getTokenForSession (HttpSession session) {
+	    String token=UUID.randomUUID().toString();
+	    session.setAttribute("csrf_token", token);
+	    return token;
 	}
 	
 }

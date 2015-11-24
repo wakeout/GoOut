@@ -32,7 +32,7 @@
 				    </p>
 
 				    <p class="a">
-				       <button class="boton" name="submit" value="Login" type="submit">Entrar</button>
+				       <button class="boton" name="submit" type="submit">Entrar</button>
 				    </p>
 					<p id="reg"><a href='registro'>Si aún no tienes cuenta registrate aquí</a></p>
 					

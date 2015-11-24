@@ -25,6 +25,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 			query="select u from Usuario u where u.login = :loginParam"),
 			@NamedQuery(name="delUser",
 			query="delete from Usuario u where u.id= :idParam")
+			/*@NamedQuery(name="modUser",
+			query="update Usuario u set u.login= :nick_perfil")*/
 })
 public class Usuario {	
 
@@ -52,6 +54,15 @@ public class Usuario {
 		u.pass_cifrado = generateHashedAndSalted(pass);
 		u.rol = rol;
 		u.nacimiento=nacimiento;
+		u.provincia=prov;
+		u.email=email;
+		return u;
+	}
+	
+
+	public static Usuario modUser(java.util.Date fecha, String prov, String email) {
+		Usuario u = new Usuario();
+		u.nacimiento=(Date) fecha;
 		u.provincia=prov;
 		u.email=email;
 		return u;
@@ -130,20 +141,20 @@ public class Usuario {
 		this.login = login;
 	}
 
-	public String getHashedAndSalted() {
+	public String getPassword() {
 		return pass_cifrado;
 	}
 
-	public void setHashedAndSalted(String hashedAndSalted) {
+	public void setPassword(String hashedAndSalted) {
 		this.pass_cifrado = hashedAndSalted;
 	}
 
-	public String getRole() {
+	public String getRol() {
 		return rol;
 	}
 
-	public void setRole(String role) {
-		this.rol = role;
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 	public String toString() {

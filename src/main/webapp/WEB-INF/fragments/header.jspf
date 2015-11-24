@@ -14,9 +14,15 @@
 					<a href="mi_perfil"><img class="i_profile" src="${prefix}resources/images/minion.jpg"></a>
 					
 					<div id= "loginText">
-
-					<a href="login"> Login </a><br>
-					<a href="login"> Cerrar Sesion </a><br>
+					<c:choose>
+						<c:when test="${not empty usuario}">
+							<a href="mi_perfil">${usuario.login}</a><br>
+							<a href="${prefix}logout"> Cerrar Sesion </a><br>
+						</c:when>
+						<c:otherwise>
+						<a href="login"> Login </a><br>
+						</c:otherwise>
+					</c:choose>
 					</div>
 					</div>
 
