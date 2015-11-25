@@ -92,15 +92,9 @@
 								<td>Pagos realizados: 6/9 </td>
 							</tr>
 							<tr>
-<<<<<<< HEAD
 								<td>Fecha limite: 26-11-15</td>
 							<tr>
-								<td><button>Ajustes pagos</button>
-=======
-								<td>Fecha limite: 26-11-15 </td>
-							<tr>
-								<td><button> Ajustes de pagos </button></td>
->>>>>>> 5c9b3f042fd32ff81202c98146074bbe21cd3b82
+								<td><button>Ajustes de pagos</button>
 						</table>
 					</div>
 				</div>
@@ -143,16 +137,10 @@
 		</div> <!-- cd-modal -->
 
 		<a href="#0" class="cd-modal-close">Close</a>
-	</section> <!-- .cd-section -->
-	
-	
-			
-								
+	</section> <!-- .cd-section -->			
 				</div>
 			</div>
 		</div>
-
-				
 
 		<div>
 			<p class="descripcion_actv">
@@ -169,21 +157,11 @@
 				</p>
 				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
 			</div>
-<<<<<<< HEAD
-			<div class="m_actv2">
-				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
-				<p  class="mensajes_actv2">
-					hellooo!! estoy muy contento de estar aqui
-				</p>
-				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
-=======
 			<div class="m_actv">
 			<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
-				
->>>>>>> 5c9b3f042fd32ff81202c98146074bbe21cd3b82
 			</div>
 			<div class="m_actv" id="comentario">
 			

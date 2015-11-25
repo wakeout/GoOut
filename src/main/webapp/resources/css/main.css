@@ -388,8 +388,6 @@
 		margin-left:20px;
 	}
 
-<<<<<<< HEAD
-=======
 
 	#cambio_modo{
 		display:none;
@@ -453,7 +451,6 @@
 		padding-right: 50px;
 	}
 	
->>>>>>> 5c9b3f042fd32ff81202c98146074bbe21cd3b82
 
 /*Para la vista de creador actividad*/
 	
@@ -465,6 +462,8 @@
 		margin-left: 50px;
 	
 	}
+	
+	
 	
 /* Para la vista de Actividad */
 	#i_actv
@@ -550,6 +549,7 @@
 	.descripcion_actv{
 		margin:30px 50px;
 		clear: left;
+		padding-top:50px;
 	}
 
 	.proxHito_actv{
