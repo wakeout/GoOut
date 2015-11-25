@@ -2,14 +2,8 @@ Manifest-Version: 1.0
 Implementation-Vendor: Pivotal Software, Inc.
 Implementation-Title: GoOut
 Implementation-Version: 1.0.0-BUILD-SNAPSHOT
-<<<<<<< HEAD
 Implementation-Vendor-Id: es.fdi
 Build-Jdk: 1.7.0_79
 Built-By: david
-=======
-Built-By: marcos
-Implementation-Vendor-Id: es.fdi
-Build-Jdk: 1.8.0_66
->>>>>>> e6bdca8e481500cee928400b7b5be10be20a952d
 Created-By: Maven Integration for Eclipse
 

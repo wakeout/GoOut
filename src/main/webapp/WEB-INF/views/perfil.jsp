@@ -26,6 +26,27 @@
 				<div class="info_perfil">
 
 					<div id="datos_perfil">
+					
+						<div id="amigos">
+							<table>
+								<thead>
+								Amigos
+								</thead>
+								<tbody>
+									<c:forEach var="i" begin="1" end="3">
+									<tr>
+										<td><a href="perfil"><img class="i_people"
+												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+										<td><a href="perfil"><img class="i_people"
+												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+										<td><a href="perfil"><img class="i_people"
+												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+								</c:forEach>
+								</tbody>
+							</table>
+							<a href="">Ver amigos de Julio</a>
+						</div>					
+					
 
 						<div class="n_perfil">
 
@@ -42,38 +63,6 @@
 							</br>
 						</div>
 
-						<div id="amigos">
-							<table>
-								<thead>
-									<tr>
-										<th rowspan="2">
-										<th colspan="2"><span id="campos_Perfil">Amigos</span>
-								</thead>
-								<tbody>
-									<tr>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-									<tr>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-									<tr>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-								</tbody>
-							</table>
-						</div>
 
 						<div class="activ_Perfil">
 							<span id="campos_Perfil">ACTIVIDADES EN LAS QUE ESTÁ

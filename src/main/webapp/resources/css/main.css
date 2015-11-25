@@ -752,23 +752,26 @@ color: #fff;
 		float: left;	
 	}
 
-	/*.info_perfil{
-		width: 800px;
-		height: 300px;
-		float: right;
-	}*/
-
-
 	.mod_perfil{
 		display:none;
 		width:400px;
-		float:left;
+		margin:0 auto;
 
 	}
 	.mi_perfil
 	{
 		width:400px;
-		float:left;
+		margin:0 auto;
+	}
+	
+	#opciones_perfil{
+		
+		width:400px;
+		margin:0 auto 15 auto;
+	}
+	
+	.info_perfil{
+		
 	}
 	
 	
@@ -785,6 +788,7 @@ color: #fff;
 
 	#amigos{
 		float: right;
+		text-align: center;
 
 	}
 

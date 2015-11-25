@@ -74,18 +74,20 @@
 								<td>PAGOS</td>
 								<br>
 							<tr>
-								<td>Precio individual: 5E</td>
-								<td>Pagos realizados: 6/9</td>
+								<td>Precio individual: 5 euros</td>
+							<tr>	
+								<td>Pagos realizados: 6/9 </td>
+							</tr>
 							<tr>
-								<td>Fecha límite: 26-11-15</td>
+								<td>Fecha limite: 26-11-15 </td>
 							<tr>
-								<td><button>Ajuestes pagos</button>
+								<td><button> Ajustes de pagos </button></td>
 						</table>
 					</div>
 				</div>
 			
 				<div id="gente_actv">
-					<a>Estado actividad<select>
+					<a>Estado actividad  <select>
 						<option value="abierta">Abierta</option>
 						<option value="cerrada">Cerrada</option>
 					</select></a>
@@ -146,11 +148,12 @@
 					hellooo!! estoy muy contento de estar aqui
 				</p>
 			</div>
-			<div class="m_actv2">
-				<p  class="mensajes_actv2">
+			<div class="m_actv">
+			<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
-				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				
 			</div>
 			<div class="m_actv" id="comentario">
 			
