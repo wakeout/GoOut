@@ -30,30 +30,31 @@
 									
 							<div id="contenido" align="center">
 							<p id = "text">BUSCA NUEVAS COSAS QUE HACER!</p><button id="boton_buscar" type="button"></button>
-							<input type="checkbox" name="check" id="check"/>
+							<input type="checkbox" name="check_amigos" id="check_amigos"/>
 							<label  for="check" id="actv_a">Actividades de tus amigos</label>
 
 								<div id="buscar">
 								
 									<div id="actv_amigos">
-									<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
-									<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
-									<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
-									<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
-									<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
-									<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
-									<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
+									<c:forEach var="i" begin="1" end="6">
+   										<a href="actividad"><img class="img_amigos" src="${prefix}resources/images/luna2.png"></a>
+									</c:forEach>
+									
 									</div>
 									
-									<div id="mostrar_bus1">	
-										
+									<div id="mostrar_bus1">
+
 										<div id="buscar_1">
 											<p id = "text">¿QUE?</p>
 											<input id="buscar_que" type="text">
 										</div>
+										
 										<div id="buscar_2">
 											<p id = "text">¿CUANDO?</p>
-											<input id="buscar_cuando" type="text">
+											<input id="buscar_cuando" type="date">
+											<input type="checkbox" name="check_ahora" id="check_ahora"/>
+											<input type="checkbox" name="check" id="check"/>
+											<input type="checkbox" name="check" id="check"/>
 										</div>
 										
 										<div id="buscar_3">
@@ -109,14 +110,10 @@
 									</div>
 					
 								</div>
-								
-								
+
 							</div>
-	
 									</div>
-
 									</section>
-
 							</div>
 						</div>
 					</div>

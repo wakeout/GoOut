@@ -35,13 +35,4 @@ public class SpringBootLauncherTests {
 		this.mvc.perform(get("/")).andExpect(status().isOk());
 	}
 
-	@Test
-	public void testBadBook() throws Exception {
-		this.mvc.perform(get("/book/100000")).andExpect(status().isNotFound());
-	}
-
-	@Test
-	public void testGoodBook() throws Exception {
-		this.mvc.perform(get("/book/1")).andExpect(status().isOk());
-	}
 }

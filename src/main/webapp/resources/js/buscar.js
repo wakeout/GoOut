@@ -15,7 +15,7 @@ $("#boton_buscar").click(function() {
   }
 });
 
-$("#check").click(function() {
+$("#check_amigos").click(function() {
   if ( $( "#actv_amigos" ).is( ":hidden" ) ) {
     $( "#actv_amigos" ).show( "slow" );
   } else {
