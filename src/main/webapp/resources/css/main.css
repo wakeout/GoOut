@@ -105,9 +105,6 @@
 	#text{
 	font-weight: bold;
 	text-align: center;
-	
-	
-	
 	}
 /*Pantalla creacion*/
 
@@ -245,9 +242,20 @@
 	 font-family: sans-serif;
 	 line-height:3px;
 	 font-weight: bold;
-	 
-	 
 	}
+	
+	#filtro_MisActividades{
+		border:2px solid black;
+		width:800px;
+		height:50px;
+		/*margin:20px;*/
+	}
+	
+	#cajaA{
+		margin: 10px;
+		float: center;
+	}
+	
 	#encMisAct{
 	text-align: center;
 	
@@ -380,8 +388,17 @@
 		margin-left:20px;
 	}
 
-	
 
+/*Para la vista de creador actividad*/
+	
+	#pagos{
+		
+	}
+	
+	#boton_reportar{
+		margin-left: 50px;
+	
+	}
 	
 /* Para la vista de Actividad */
 	#i_actv
@@ -444,6 +461,12 @@
 		font-size: 3em;
 		clear: left;
 		margin:10px 10px;
+	}
+	
+	.privacidad_actividad{
+		clear: left;
+		margin:10px 10px;
+		color: silver;
 	}
 
 	.fecha_actv{
