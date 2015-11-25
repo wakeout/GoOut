@@ -87,18 +87,26 @@
 								<td>PAGOS</td>
 								<br>
 							<tr>
-								<td>Precio individual: 5E</td>
-								<td>Pagos realizados: 6/9</td>
+								<td>Precio individual: 5 euros</td>
+							<tr>	
+								<td>Pagos realizados: 6/9 </td>
+							</tr>
 							<tr>
+<<<<<<< HEAD
 								<td>Fecha limite: 26-11-15</td>
 							<tr>
 								<td><button>Ajustes pagos</button>
+=======
+								<td>Fecha limite: 26-11-15 </td>
+							<tr>
+								<td><button> Ajustes de pagos </button></td>
+>>>>>>> 5c9b3f042fd32ff81202c98146074bbe21cd3b82
 						</table>
 					</div>
 				</div>
 			
 				<div id="gente_actv">
-					<a>Estado actividad<select>
+					<a>Estado actividad  <select>
 						<option value="abierta">Abierta</option>
 						<option value="cerrada">Cerrada</option>
 					</select></a>
@@ -161,12 +169,21 @@
 				</p>
 				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
 			</div>
+<<<<<<< HEAD
 			<div class="m_actv2">
 				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 				<p  class="mensajes_actv2">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
 				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
+=======
+			<div class="m_actv">
+			<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				<p  class="mensajes_actv">
+					hellooo!! estoy muy contento de estar aqui
+				</p>
+				
+>>>>>>> 5c9b3f042fd32ff81202c98146074bbe21cd3b82
 			</div>
 			<div class="m_actv" id="comentario">
 			

@@ -108,11 +108,12 @@
 					hellooo!! estoy muy contento de estar aqui
 				</p>
 			</div>
-			<div class="m_actv2">
-				<p  class="mensajes_actv2">
+			<div class="m_actv">
+			<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
-				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				
 			</div>
 			<div class="m_actv" id="comentario">
 			
