@@ -75,10 +75,12 @@
 		width:70px;
 		height:70px;
 		border-radius:500px;
-		border: 2px 
-		margin:30px;
+		border: 2px;
+		margin-right:40px;
 		object-fit: cover;
 	}
+
+	
 /*Pantalla principal*/
 	
 	
@@ -314,14 +316,13 @@
 
 	#buscar{
 		margin-top:10px;
-		height: 700px;
+		height: 100%;
 		clear:both;		
 	}
 	
 	#buscar_1{
 		border: 2px solid black;
 		width:33%;
-		height: 120px;	
 		float:left;
 		border-radius:20px;	
 	}
@@ -329,7 +330,6 @@
 	#buscar_2{
 		border: 2px solid black;
 		width:33%;
-		height: 120px;
 		display: inline-block;
 		border-radius:20px;				
 	}
@@ -337,9 +337,13 @@
 	#buscar_3{
 		border: 2px solid black;
 		width:33%;
-		height: 120px;	
 		float:right;
 		border-radius:20px;		
+	}
+	
+	.cuadro_bus
+	{
+		margin-bottom: 8%;		
 	}
 	
 	#resultados1{

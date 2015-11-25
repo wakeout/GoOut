@@ -15,7 +15,7 @@
     <body>
 				<form action="${prefix}login" class="form3" name="log" method="POST">
 					<p class="logo">
-				        <img id="logo2" src="${prefix}resources/images/logo_login.png">
+				        <a href="${prefix}sin_registro"><img id="logo2" src="${prefix}resources/images/logo_login.png"></a>
 				    </p>
 				    <p class="a">
 				        <label for="login">Usuario</label>
