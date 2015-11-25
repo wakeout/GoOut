@@ -33,6 +33,11 @@
 									<button id="boton_buscar" type="button"></button>
 									<input type="checkbox" name="check_amigos" id="check_amigos" />
 									<label for="check" id="actv_a">Actividades de tus amigos</label>
+									
+									<div id="cambio_modo">
+									    <input type="checkbox" id="switch1" name="switch1" class="switch" />
+									    <label for="switch1">Modo lista</label>
+									</div>
 
 									<div id="buscar">
 
@@ -69,22 +74,43 @@
 												<input type="checkbox" name="check_donde" id="check_donde"/>Cerca de mi
 											</div>
 
-											<div id="resultados1"></div>
+											<div id="resultados1">
+
+											</div>
 
 											<div id="resultados2">
 												
-												<c:forEach var="i" begin="1" end="6">
-												<a href="actividad" class="">
-													<div class="img_thumb">
-														<div class="img_desc">
-															<p id="actividad">Senderismo</p>
-															<p id="actividad">10/11/2015 8:00</p>
-															<p id="actividad">Sierra Guadarrama</p>
+												<div id="modo_burbuja">
+													
+													<c:forEach var="i" begin="1" end="6">
+													<a href="actividad" class="">
+														<div class="img_thumb">
+															<div class="img_desc">
+																<p id="actividad">Senderismo</p>
+																<p id="actividad">10/11/2015 8:00</p>
+																<p id="actividad">Sierra Guadarrama</p>
+															</div>
+															<img class="i_actv" src="${prefix}resources/images/senderismo.jpg" alt="" />
 														</div>
-														<img class="i_actv" src="${prefix}resources/images/senderismo.jpg" alt="" />
-													</div>
-												</a>
-												</c:forEach>
+													</a>
+													</c:forEach>
+												</div>
+												
+												<div id="modo_lista">
+												<table id="lista_actv">
+												<tr><td>Nombre Actividad</td><td>Personas unidas</td>
+												<td>Máximo</td><td>Dia</td><td>Hora</td>
+												<td>Lugar</td><td>Estado</td></tr>
+													<c:forEach items="${actividades}" var="a">
+														<tr><td><a href="actividad"> ${a.nombre} </a></td>
+														<td>10</td><td>15</td>
+														<td>09-01-2015</td><td>19:30</td>
+														<td>C/Ni Idea Nº 9</td><td style="color:green">Abierta</td>
+														</tr>
+													</c:forEach>
+													 
+												</table>
+												</div>
 												
 											</div>
 										</div>
