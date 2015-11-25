@@ -1,0 +1,17 @@
+<div id="ajustes_actividad">
+	<form>
+		<table>
+			<tr>
+				<td>Nombre de la actividad</td>
+				<td><input type="text" class="caja" name="nombre_actividad"/></td>
+			<br>
+			<tr>
+				<td>Fecha inicio</td>
+				<td><input type="date" size="12" id="inputField" /></td>
+			<tr>
+				<td>Fecha fin</td>
+				<td><input type="date" size="12" id="inputField" /></td>
+		</table>
+	</form>
+	
+</div>
