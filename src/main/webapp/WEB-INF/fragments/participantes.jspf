@@ -1,0 +1,53 @@
+	<div id="participantes_actv">
+	<form>
+		<table>
+			<tbody>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>Realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+					<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>Realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+					<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>Realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+					<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>Realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+				<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>Realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+				<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>Realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+				<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>No realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+				<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>No realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+				<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+				<tr><th>
+					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
+					<td>No realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
+					<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+			</tbody>
+		</table>
+	</form>						
+	</div>
