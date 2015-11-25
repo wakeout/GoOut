@@ -228,6 +228,10 @@ public class HomeController {
 	public String actividad(){
 		return "actividad";
 	}
+	@RequestMapping(value = "/actividad_creador", method = RequestMethod.GET)
+	public String actividad_creador(){
+		return "actividad_creador";
+	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(){

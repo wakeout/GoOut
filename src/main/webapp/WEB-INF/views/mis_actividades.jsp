@@ -22,8 +22,21 @@
 
 								<div id="global" align="center">
 
-									<div id="ActRecientes">
+									<!--<div id="ActRecientes">
 										<p id="text">ACTIVIDADES RECIENTES </p>
+									</div>-->
+									
+									<div id="filtro_MisActividades">
+										<div id="cajaA">
+										<input type="checkbox" id="act_fin" name="activas"/>Activas
+										<input type="checkbox" id="act_fin" name="finalizadas" />Finalizadas
+										
+										<input type="checkbox" id="tiempo" name="hoy" />Hoy
+										<input type="checkbox" id="tiempo" name="semana" />Esta semana
+										<input type="checkbox" id="tiempo" name="mes" />Este mes
+										<input type="checkbox" id="tiempo" name="mes_siguiente" />Proximos meses
+										<button class="boton" id="filtrarMis" name="submit" type="submit">Filtrar</button>
+										</div>
 									</div>
 
 									<div id="fotos">
