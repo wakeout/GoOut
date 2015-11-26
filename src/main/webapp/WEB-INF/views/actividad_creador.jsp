@@ -1,9 +1,5 @@
 <!DOCTYPE HTML>
-<!--
-	Dopetrope by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		
@@ -23,12 +19,28 @@
 			<!-- Main -->
 	<div id="main-wrapper">			
 		<div class="container">
-
 			<div class="s_actv">
 				<a class=""><img id="i_actv" src="${prefix}resources/images/33.jpg" alt="" /></a> 
 				<br>
 				<center><button class="btn">Mensaje a administradores de actividad</button></center>
-				<center><button>Ajustes actividad</button></center>
+					
+	<section class="cd-section">
+
+		<div class="cd-modal-action">
+			<a href="#0"  data-type="modal-trigger"><center><button>Ajustes actividad</button></center></a>
+			<span class="cd-modal-bg"></span>
+		</div> <!-- cd-modal-action -->
+
+		<div class="cd-modal">	
+			<div class="cd-modal-content">
+				<%@ include file="../fragments/ajustes_actividad.jspf" %>
+			</div> <!-- cd-modal-content -->
+		</div> <!-- cd-modal -->
+
+		<a href="#0" class="cd-modal-close">Close</a>
+	</section> <!-- .cd-section -->
+	
+				<!--<center><button>Ajustes actividad</button></center>-->
 				<br>
 				<center><button class="btn">Propon algo!</button></center>
 
@@ -38,7 +50,8 @@
 
 				<div id="datos_actv">
 
-					<div class="t_actv">Ir a la luna</div>
+					<div class="t_actv">Ir a la luna </div>
+					<div class="privacidad_actividad">Publica</div>
 					<div class="fecha_actv">Miercoles 12/07/2016 entre las 13:00-19:50</div>
 					<div class="zona_actv">  
 							Despegue de Moncloa
@@ -74,18 +87,20 @@
 								<td>PAGOS</td>
 								<br>
 							<tr>
-								<td>Precio individual: 5E</td>
-								<td>Pagos realizados: 6/9</td>
+								<td>Precio individual: 5 euros</td>
+							<tr>	
+								<td>Pagos realizados: 6/9 </td>
+							</tr>
 							<tr>
-								<td>Fecha límite: 26-11-15</td>
+								<td>Fecha limite: 26-11-15</td>
 							<tr>
-								<td><button>Ajuestes pagos</button>
+								<td><button>Ajustes de pagos</button>
 						</table>
 					</div>
 				</div>
 			
 				<div id="gente_actv">
-					<a>Estado actividad<select>
+					<a>Estado actividad  <select>
 						<option value="abierta">Abierta</option>
 						<option value="cerrada">Cerrada</option>
 					</select></a>
@@ -108,29 +123,24 @@
 					</table>
 					
 					Aun faltan 4 por apuntarse!   <button class="btn">Invitar a un amigo</button>  
-		<section class="cd-section">
+	<section class="cd-section">
 
-			<div class="cd-modal-action">
+		<div class="cd-modal-action">
 			<a href="#0"  data-type="modal-trigger">Ver a todos los que se han apuntado  (9)</a>
 			<span class="cd-modal-bg"></span>
-			</div> <!-- cd-modal-action -->
+		</div> <!-- cd-modal-action -->
 
-			<div class="cd-modal">	
+		<div class="cd-modal">	
 			<div class="cd-modal-content">
 				<%@ include file="../fragments/participantes.jspf" %>
 			</div> <!-- cd-modal-content -->
-			</div> <!-- cd-modal -->
+		</div> <!-- cd-modal -->
 
 		<a href="#0" class="cd-modal-close">Close</a>
-	</section> <!-- .cd-section -->
-	
-					<!--<a href="participantes_actividad"><button  class="btn" >Ver a todos los que se han apuntado  (9)</button></a>-->
-								
+	</section> <!-- .cd-section -->			
 				</div>
 			</div>
 		</div>
-
-				
 
 		<div>
 			<p class="descripcion_actv">
@@ -145,12 +155,13 @@
 				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
+				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
 			</div>
-			<div class="m_actv2">
-				<p  class="mensajes_actv2">
+			<div class="m_actv">
+			<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
-				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 			</div>
 			<div class="m_actv" id="comentario">
 			
@@ -161,6 +172,9 @@
 				<button id="comentar" class="btn">Comentar</button>
 			</div>
 		</div>
+		
+		<br>
+		<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar actividad por contenido inadecuado</button>
 			
 	</div>	
 		

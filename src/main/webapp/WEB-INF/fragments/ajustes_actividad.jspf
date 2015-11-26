@@ -1,17 +1,47 @@
 <div id="ajustes_actividad">
 	<form>
 		<table>
-			<tr>
+			<tbody>
+				<tr>
 				<td>Nombre de la actividad</td>
-				<td><input type="text" class="caja" name="nombre_actividad"/></td>
-			<br>
-			<tr>
+				<td><input type="text" size="19" class="caja" name="nombre_actividad"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
 				<td>Fecha inicio</td>
-				<td><input type="date" size="12" id="inputField" /></td>
-			<tr>
+				<td><input type="date" size="12" id="inputField" class="caja" /></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
 				<td>Fecha fin</td>
-				<td><input type="date" size="12" id="inputField" /></td>
+				<td><input type="date" size="12" id="inputField" class="caja" /></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Lugar</td>
+				<td><input type="text" size="19" class="caja"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Hora de inicio</td>
+				<td><input type="text" size="19" class="caja" /></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Numero de participantes</td>
+				<td><input type="number" min="9" value="9" id="num_participantes" class="caja"></td>
+			</tbody>
 		</table>
+		<hr>
+		<br>
+		<a>Descripcion</a>
+		<br>
+		<textarea rows="5" cols="105"></textarea>
 	</form>
 	
 </div>

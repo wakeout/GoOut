@@ -220,12 +220,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/buscar", method = RequestMethod.GET)
-	public String buscar(){
+	public String buscar(Model model){
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+		
 		return "buscar";
 	}
 	
 	@RequestMapping(value = "/actividad", method = RequestMethod.GET)
-	public String actividad(){
+	public String actividad(Model model){
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+		
 		return "actividad";
 	}
 	@RequestMapping(value = "/actividad_creador", method = RequestMethod.GET)

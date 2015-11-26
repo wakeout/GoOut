@@ -25,17 +25,39 @@
 
 				<div class="info_perfil">
 
-						<div>
-						<ul id="menu">
-						  <li><a id="menu1" href="#">Mi Perfil</a></li>
-						  <li><a id="menu2" href="#">Modificar Perfil</a></li>
-						  <li><a id="menu3" href="#">Privacidad</a></li>
-						</ul>
-						</div>
-
 					<div id="datos_perfil">
 					
+					<div id="amigos">
+							<table>
+								<thead>
+									Amigos
+								</thead>
+								<tbody>
+									<c:forEach var="i" begin="1" end="3">
+									<tr>
+										<td><a href="perfil"><img class="i_people"
+												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+										<td><a href="perfil"><img class="i_people"
+												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+										<td><a href="perfil"><img class="i_people"
+												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+								</c:forEach>
+								</tbody>
+							</table>
+							<a href="">Ver todos mis amigos</a>
+						</div>
+						
+						<div id="opciones_perfil">
+							<ul id="menu">
+							  <li><a id="menu1" href="#">Mi Perfil</a></li>
+							  <li><a id="menu2" href="#">Modificar Perfil</a></li>
+							  <li><a id="menu3" href="#">Privacidad</a></li>
+							</ul>
+						</div>					
+					
+					
 						<div class="mi_perfil">
+						
 										
 						<fieldset>
   							<legend>Datos usuario</legend>
@@ -107,10 +129,9 @@
 							</div>	
 						</div>
 
-						<!--<c:set var="prov" scope="session" value="Sin especificar"/>
-						<c:if test="${not empty usuario.nacimiento}">No esta vacio</c:if>-->
 
 						<div class="mod_perfil">
+						
 							<form action="${prefix}mi_perfil" method="POST">
 								<fieldset>
 	  							<legend>Datos usuario</legend>
@@ -161,39 +182,6 @@
 						</div>
 						</div>
 					</div>
-					
-					<div id="amigos">
-							<table>
-								<thead>
-									<tr>
-										<th rowspan="2">
-										<th colspan="2"><span id="campos_Perfil">Amigos</span>
-								</thead>
-								<tbody>
-									<tr>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-									<tr>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-									<tr>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-								</tbody>
-							</table>
-						</div>					
 					
 					
 				</div>

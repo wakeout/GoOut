@@ -105,9 +105,6 @@
 	#text{
 	font-weight: bold;
 	text-align: center;
-	
-	
-	
 	}
 /*Pantalla creacion*/
 
@@ -245,9 +242,20 @@
 	 font-family: sans-serif;
 	 line-height:3px;
 	 font-weight: bold;
-	 
-	 
 	}
+	
+	#filtro_MisActividades{
+		border:2px solid black;
+		width:800px;
+		height:50px;
+		/*margin:20px;*/
+	}
+	
+	#cajaA{
+		margin: 10px;
+		float: center;
+	}
+	
 	#encMisAct{
 	text-align: center;
 	
@@ -380,8 +388,82 @@
 		margin-left:20px;
 	}
 
+
+	#cambio_modo{
+		display:none;
+	}
+	input.switch:empty {
+	    margin-left: -9999px;
+	}
+	input.switch:empty ~ label {
+	    position: relative;
+	    float: left;
+	    line-height: 1.6em;
+	    text-indent: 4em;
+	    margin: 0.2em 0;
+	    cursor: pointer;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	}
+	input.switch:empty ~ label:before, input.switch:empty ~ label:after {
+	    position: absolute;
+	    display: block;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    content:' ';
+	    width: 3.6em;
+	    background-color: #c33;
+	    border-radius: 0.3em;
+	    box-shadow: inset 0 0.2em 0 rgba(0, 0, 0, 0.3);
+	    -webkit-transition: all 100ms ease-in;
+	    transition: all 100ms ease-in;
+	}
+	input.switch:empty ~ label:after {
+	    width: 1.4em;
+	    top: 0.1em;
+	    bottom: 0.1em;
+	    margin-left: 0.1em;
+	    background-color: #fff;
+	    border-radius: 0.15em;
+	    box-shadow: inset 0 -0.2em 0 rgba(0, 0, 0, 0.2);
+	}
+	input.switch:checked ~ label:before {
+	    background-color: #393;
+	}
+	input.switch:checked ~ label:after {
+	    margin-left: 2em;
+	}
+	
+	
+	#modo_lista
+	{
+		display:none;
+		margin-top:5%;
+		float:left;
+	
+	}
+	
+	#lista_actv td
+	{
+		padding-right: 50px;
+	}
 	
 
+/*Para la vista de creador actividad*/
+	
+	#pagos{
+		
+	}
+	
+	#boton_reportar{
+		margin-left: 50px;
+	
+	}
+	
+	
 	
 /* Para la vista de Actividad */
 	#i_actv
@@ -445,6 +527,12 @@
 		clear: left;
 		margin:10px 10px;
 	}
+	
+	.privacidad_actividad{
+		clear: left;
+		margin:10px 10px;
+		color: silver;
+	}
 
 	.fecha_actv{
 		clear: left;
@@ -461,6 +549,7 @@
 	.descripcion_actv{
 		margin:30px 50px;
 		clear: left;
+		padding-top:50px;
 	}
 
 	.proxHito_actv{
@@ -690,23 +779,26 @@ color: #fff;
 		float: left;	
 	}
 
-	/*.info_perfil{
-		width: 800px;
-		height: 300px;
-		float: right;
-	}*/
-
-
 	.mod_perfil{
 		display:none;
 		width:400px;
-		float:left;
+		margin:0 auto;
 
 	}
 	.mi_perfil
 	{
 		width:400px;
-		float:left;
+		margin:0 auto;
+	}
+	
+	#opciones_perfil{
+		
+		width:400px;
+		margin:0 auto 15 auto;
+	}
+	
+	.info_perfil{
+		
 	}
 	
 	
@@ -723,6 +815,7 @@ color: #fff;
 
 	#amigos{
 		float: right;
+		text-align: center;
 
 	}
 
