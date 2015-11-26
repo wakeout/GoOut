@@ -11,6 +11,7 @@ import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -39,10 +40,10 @@ public class Actividad{
 	private int maxPersonas;
 	private List<Usuario>  personas;//email de perfiles
 	private int nPersonas;
-	private int [] pagados;
 	private Foro foro;
 	private List<Tag> tags;
 	private List<Novedad> novedades;
+	private Pago pago;
 	
 	 @Id
      @GeneratedValue
@@ -52,6 +53,7 @@ public class Actividad{
 	 public void setId(long id) {
 			this.id = id;
 	 }
+	 @NotNull
 	 public String getNombre() {
 		return nombre;
 	 }
@@ -83,6 +85,9 @@ public class Actividad{
 	 public void setMaxPersonas(int max){
 		 this.maxPersonas=max;
 	 }
+	 
+	 
+	 
 	 public int getNPersonas(){
 		 return nPersonas;
 	 }
@@ -91,11 +96,11 @@ public class Actividad{
 	 }
 	 
 	 //-----
-	 @ManyToOne(targetEntity=Hito.class)
-	 public List<Hito> getWritings() {
+	 @OneToMany(targetEntity=Hito.class)
+	 public List<Hito> getHitos() {
 		 return proximosHitos;
 	 }
-	 public void setWritings(List<Hito> hitos) {
+	 public void setHitos(List<Hito> hitos) {
 		 this.proximosHitos = hitos;
 	 }
 	 @ManyToMany(targetEntity=Usuario.class, fetch=FetchType.EAGER)
@@ -137,25 +142,26 @@ public class Actividad{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public int [] getPagados() {
-		return pagados;
-	}
-	public void setPagados(int [] pagados) {
-		this.pagados = pagados;
-	}
-	@ManyToOne(targetEntity=Novedad.class)	
+	@OneToMany(targetEntity=Novedad.class)	
 	public List<Novedad> getNovedades() {
 		return novedades;
 	}
 	public void setNovedades(List<Novedad> novedades) {
 		this.novedades = novedades;
 	}
-	@ManyToOne(targetEntity=Tag.class)
+	@ManyToMany(targetEntity=Tag.class)
 	public List<Tag> getTags() {
 		return tags;
 	}
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+	@OneToOne(targetEntity=Pago.class)
+	public Pago getPago() {
+		return pago;
+	}
+	public void setPago(Pago pago) {
+		this.pago = pago;
 	}
 
 }

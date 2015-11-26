@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -190,7 +191,7 @@ public class Usuario {
 		this.actuales = actuales;
 	}
 
-	@ManyToOne(targetEntity=Usuario.class)
+	@OneToMany(targetEntity=Usuario.class)
 	public List<Usuario> getAmigos() {
 		return amigos;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 
@@ -31,8 +32,7 @@ public class Foro {
 	 public void setId(long id) {
 			this.id = id;
 	 }
-	 
-	 @ManyToOne(targetEntity=Comentario.class)
+	 @OneToMany(targetEntity=Comentario.class)
 	 public List<Comentario> getComentarios() {
 		return comentarios;
 	 }
@@ -41,15 +41,3 @@ public class Foro {
 	 }
 	 
 }
-/*
- * boton comentar;
- * boton sugerir;
- * 
- * text sugerirHora;
- * text sugerirLugar;
- * text sugerirFecha;
- * 
- * text comentario;
- * 
- * desplegable importancia;
- * */

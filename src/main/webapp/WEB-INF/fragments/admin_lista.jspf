@@ -13,7 +13,8 @@
 <div class="op">
 	<input type="button" class="papelera">	
 	<input type="button" class="add">
-</div>	
+</div>
+
 	
 <div class="list">
 
@@ -31,12 +32,17 @@
 	
 	</div>
 	
+	<div class='l_usuarios'>
+	
 	<h1>Usuarios</h1>
 	<table>
 		<c:forEach items="${usuarios}" var="u">
 		<tr><td><input type="checkbox"><a href="actividad"> ${u.id}</a><td>${u.login}
 		</c:forEach>
 	</table>	
+	</div>
+	
+	<div id='oculto' style='display:none;'>
 	
 	<h1>Mensajes</h1>
 	<table>
@@ -45,12 +51,20 @@
 		</c:forEach>
 	</table>
 	
+	<div>
+	
+	<div id='oculto' style='display:none;'>
+	
 	<h1>Tags</h1>
 	<table>
 		<c:forEach items="${tags}" var="t">
 		<tr><td><input type="checkbox"><a href="actividad"> ${t.id}</a><td>${t.nombre}
 		</c:forEach>
 	</table>
+	
+	</div>
+	
+	<div id='oculto' style='display:none;'>
 	
 	<h1>Comentarios</h1>
 	<table>
@@ -59,12 +73,20 @@
 		</c:forEach>
 	</table>
 	
+	</div>
+	
+	<div id='oculto' style='display:none;'>
+	
 	<h1>Novedades</h1>
 	<table>
 		<c:forEach items="${novedades}" var="n">
 		<tr><td><input type="checkbox"><a href="actividad"> ${n.id}</a><td>${n.mensaje}
 		</c:forEach>
 	</table>
+	
+	</div>
+	
+	<div id='oculto' style='display:none;'>
 	
 	<h1>Hitos</h1>
 	<table>
@@ -73,6 +95,10 @@
 		</c:forEach>
 	</table>
 	
+	</div>
+	
+	<div id='oculto' style='display:none;'>
+	
 	<h1>Foros</h1>
 	<table>
 		<c:forEach items="${foros}" var="f">
@@ -80,17 +106,8 @@
 		</c:forEach>
 	</table>
 	
+	</div>
+	
 	</c:if>
 	
-	<!--
-	<ul class="enumeracion">
-	
-		<li class="elemento">
-			<input type="checkbox">
-			<a href=actividad/id>Actividad 1</a>
-		</li>
-
-
-	</ul>
-	-->
 	</div>

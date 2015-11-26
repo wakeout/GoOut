@@ -1,13 +1,14 @@
 package es.fdi.iw.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -20,8 +21,8 @@ public class Pago {
 	private double precioIndividual;
 	private Date fechaLimitePago;
 	private String descripcionFormaPago;
+	private List<Pago> pagados;
 	
-
 	@Id
     @GeneratedValue
 	public long getId() {
@@ -47,5 +48,13 @@ public class Pago {
 	}
 	public void setDescripcionFormaPago(String descripcionFormaPago) {
 		this.descripcionFormaPago = descripcionFormaPago;
+	}
+	
+	@OneToMany(targetEntity=Usuario.class)	
+	public List<Pago> getPagados() {
+		return pagados;
+	}
+	public void setPagados(List<Pago> pagados) {
+		this.pagados = pagados;
 	}
 }

@@ -24,7 +24,7 @@
  		  <button>Actividades </button>
  		</li>
  		<li>
- 		  <button>Usuarios</button>
+ 		  <button id="b_usuarios">Usuarios</button>
   		</li>
   		<li>
   		  <button>Mensajes</button>
