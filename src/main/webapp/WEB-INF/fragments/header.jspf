@@ -22,12 +22,13 @@
 								<c:choose>
 
 									<c:when test="${not empty usuario}">
-										<li class="submenu"><a href="mi_perfil">${usuario.login}</a></li>
+										<li class="submenu"><a href="mi_perfil" style="text-transform: uppercase;" >${usuario.login}</a></li>
 										<c:set var="rol" scope="session" value="admin"/>	
 	
 										<c:if test="${usuario.rol == rol}">
 										<li class="submenu"><a href="${prefix}administrador"> Administrar </a></li>
 										</c:if>
+										<li class="submenu"><a href="${prefix}mensajes"> Mensajes </a></li>
 										<li class="submenu"><a href="${prefix}logout"> Cerrar Sesion </a></li>
 									</c:when>
 

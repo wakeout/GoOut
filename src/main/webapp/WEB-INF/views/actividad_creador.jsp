@@ -6,8 +6,6 @@
 		<link rel="stylesheet" href="${prefix}resources/css/style.css"> <!-- Resource style -->
 				<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
 		<%@ include file="../fragments/head.jspf" %>
-		
-		
 
 	</head>
 <body>
@@ -37,10 +35,8 @@
 		</div> <!-- cd-modal -->
 
 		<a href="#0" class="cd-modal-close">Close</a>
-	</section> <!-- .cd-section -->
+	</section>
 	
-				<!--<center><button>Ajustes actividad</button></center>-->
-				<br>
 				<center><button class="btn">Propon algo!</button></center>
 
 			</div>
@@ -174,7 +170,7 @@
 		</div>
 		
 		<br>
-		<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar actividad por contenido inadecuado</button>
+		
 			
 	</div>	
 		

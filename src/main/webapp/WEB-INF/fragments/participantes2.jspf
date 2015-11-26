@@ -3,22 +3,18 @@
 		<table class="tabla_participantes">
 			<tbody>
 			
-			
 			<c:forEach var="i" begin="1" end="6">
-				<tr><th>
+			<tr><th>
 					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
 					<td>Realizado</td>
-					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
 					<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
 			</c:forEach>
 			<c:forEach var="i" begin="1" end="3">
-				<tr><th>
+			<tr><th>
 					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />
-					<td>No realizado</td>
-					<td><button name="submit" value="eliminar" type="submit">Eliminar</button></td>
-				<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
+					<td>No Realizado</td>
+					<td><button name="submit" value="eliminar" type="submit">Enviar mensaje</button></td>
 			</c:forEach>
-			
 				</tbody>
 		</table>
 	</form>						

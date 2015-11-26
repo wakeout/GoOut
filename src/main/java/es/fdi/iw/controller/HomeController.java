@@ -67,7 +67,7 @@ public class HomeController {
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
 		
 		// validate request
-		if (formLogin == null || formLogin.length() < 4 || formPass == null || formPass.length() < 4) 
+		if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 4) 
 		{
 			model.addAttribute("loginError", "usuarios y contraseñas: 4 caracteres mínimo");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -113,8 +113,8 @@ public class HomeController {
 		// La instruccion model.addAtribute creo que pone en el modelo (los jsp) el mensaje del seguindo parametro 
 			//en el nombre de la clase que es el primer parametro
 		
-				if (formLogin == null || formLogin.length() < 4 || formPass == null || formPass.length() < 4) {
-					model.addAttribute("loginError", "usuarios y contraseñas: 4 caracteres mínimo");
+				if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 3) {
+					model.addAttribute("loginError", "usuarios y contraseñas: 3 caracteres mínimo");
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				} else {
 					Usuario u = null;
@@ -161,9 +161,8 @@ public class HomeController {
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.POST)
 	@Transactional
-	public String mod_perfil(
+	public String modPerfil(
 			@RequestParam("nick_perfil") String nick,
-			//@RequestParam("fecha_perfil") Date fecha,
 			@RequestParam("prov_perfil") String provincia,
 			@RequestParam("email_perfil") String email,
 			HttpServletRequest request, HttpServletResponse response, 
@@ -171,19 +170,23 @@ public class HomeController {
 		
 			Usuario u = null;
 			try {
+								
 				u = (Usuario)entityManager.createNamedQuery("userByLogin")
-					.setParameter("nick_perfil", nick).getSingleResult();
-
+					.setParameter("loginParam", nick).getSingleResult();
+				
+				u.setProvincia(provincia);
+				u.setMail(email);
+				
+				entityManager.merge(u);
+				
+				
 			} catch (NoResultException nre) {
 		
-					//Preguntar como se hace un update de una tabla??
-					u = Usuario.modUser(null,"Madrid",email);
-					entityManager.merge(u);
-				//model.addAttribute("modError", "error en la modificacion");
+					//Error
 			}
 		
 		// redireccion a login cuando el registro ha sido correcto
-		return "redirect:home";
+		return "redirect:mi_perfil";
 	}
 
 
@@ -250,6 +253,11 @@ public class HomeController {
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.GET)
 	public String mi_perfil(){
 		return "mi_perfil";
+	}
+	
+	@RequestMapping(value = "/mensajes", method = RequestMethod.GET)
+	public String mensajes(){
+		return "mensajes";
 	}
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.GET)
