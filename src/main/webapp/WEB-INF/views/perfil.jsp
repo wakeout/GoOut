@@ -3,6 +3,7 @@
 
 <%@ include file="../fragments/head.jspf" %>
 
+		<link rel="stylesheet" href="${prefix}resources/css/style_perfil.css"> 
 </head>
 <body class="homepage">
 	<div id="page-wrapper">

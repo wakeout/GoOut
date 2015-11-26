@@ -52,7 +52,6 @@ public class Actividad{
 	 public void setId(long id) {
 			this.id = id;
 	 }
-	 @NotNull
 	 public String getNombre() {
 		return nombre;
 	 }
@@ -84,7 +83,6 @@ public class Actividad{
 	 public void setMaxPersonas(int max){
 		 this.maxPersonas=max;
 	 }
-	 @NotNull
 	 public int getNPersonas(){
 		 return nPersonas;
 	 }
@@ -133,7 +131,6 @@ public class Actividad{
 	public void setFecha_fin(Date fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
-	@NotNull
 	public String getEstado() {
 		return estado;
 	}

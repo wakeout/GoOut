@@ -31,7 +31,6 @@ public class Hito {
 	 public void setId(long id) {
 			this.id = id;
 	 }
-	 @NotNull
 	 public String getAnuncio() {
        return anuncio;
      }

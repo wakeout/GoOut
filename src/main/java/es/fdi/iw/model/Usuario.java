@@ -128,7 +128,6 @@ public class Usuario {
 	public void setId(long id) {
 		this.id = id;
 	}
-	@NotNull
 	@Column(unique=true)
 	public String getLogin() {
 		return login;
@@ -137,7 +136,6 @@ public class Usuario {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	@NotNull
 	public String getPassword() {
 		return pass_cifrado;
 	}
@@ -145,7 +143,6 @@ public class Usuario {
 	public void setPassword(String hashedAndSalted) {
 		this.pass_cifrado = hashedAndSalted;
 	}
-	@NotNull
 	public String getRol() {
 		return rol;
 	}
@@ -157,7 +154,6 @@ public class Usuario {
 	public String toString() {
 		return "" + id + " " + login + " " + pass_cifrado;
 	}
-	@NotNull
 	@Column(unique=true)
 	public String getMail() {
 		return email;

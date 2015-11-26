@@ -26,7 +26,6 @@ public class Tag {
 	public void setId(long id) {
 		this.id = id;
 	}
-	@NotNull
 	@Column(unique=true)
 	public String getNombre() {
 		return nombre;

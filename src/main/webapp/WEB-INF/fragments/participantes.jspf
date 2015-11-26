@@ -1,6 +1,6 @@
 	<div id="participantes_actv">
 	<form>
-		<table>
+		<table class="tabla_participantes">
 			<tbody>
 				<tr><th>
 					<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" />

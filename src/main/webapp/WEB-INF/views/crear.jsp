@@ -1,16 +1,10 @@
 <!DOCTYPE HTML>
-<!--
-Dopetrope by HTML5 UP
-html5up.net | @n33co
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head>
 
 <%@ include file="../fragments/head.jspf" %>
-<link rel="stylesheet" href="${prefix}resources/css/jquery-ui-1.7.2.custom.css">
-<link rel="stylesheet" href="${prefix}resources/css/jsDatePick_ltr.min.css">
-
+<link rel="stylesheet" href="${prefix}resources/css/style_crear.css"> 
 </head>
 <body class="homepage">
 <div id="page-wrapper">

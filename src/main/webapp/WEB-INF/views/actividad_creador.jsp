@@ -3,9 +3,8 @@
 <html>
 	<head>
 		
-		<link rel="stylesheet" href="${prefix}resources/css/reset.css"> <!-- CSS reset -->
 		<link rel="stylesheet" href="${prefix}resources/css/style.css"> <!-- Resource style -->
-		
+				<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
 		<%@ include file="../fragments/head.jspf" %>
 		
 		

@@ -30,7 +30,6 @@ public class Pago {
 	public void setId(long id) {
 		this.id = id;
 	}
-	@NotNull
 	public double getPrecioIndividual() {
 		return precioIndividual;
 	}
@@ -43,7 +42,6 @@ public class Pago {
 	public void setFechaLimitePago(Date fechaLimitePago) {
 		this.fechaLimitePago = fechaLimitePago;
 	}
-	@NotNull
 	public String getDescripcionFormaPago() {
 		return descripcionFormaPago;
 	}

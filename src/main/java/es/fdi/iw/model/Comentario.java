@@ -38,7 +38,6 @@ public class Comentario {
 	 public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	 }
-	 @NotNull
 	 public boolean getSugiero() {
 	    return sugiero;
 	 }

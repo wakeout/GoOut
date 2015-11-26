@@ -1,0 +1,83 @@
+
+	.t_actv{
+		font-size: 3em;
+		clear: left;
+		margin:10px 10px;
+	}
+	
+	.privacidad_actividad{
+		clear: left;
+		margin:10px 10px;
+		color: silver;
+	}
+
+	.fecha_actv{
+		clear: left;
+		margin:10px 10px;
+
+	}
+
+	.zona_actv{
+		clear: left;
+		margin:10px 10px;
+
+	}
+
+	.descripcion_actv{
+		margin:30px 50px;
+		clear: left;
+		padding-top:50px;
+	}
+
+	.proxHito_actv{
+		width:400px;
+		height:400px;
+	}
+	.foro_actv{
+		margin: 10px 100px;
+		border-radius: 50px;
+		background: rgba(253,253,253,0.5);
+	}
+
+	.m_actv{
+		margin: 40px 250px;
+		background: #fafafa;
+		border-radius: 50px;
+
+	}
+	.mensajes_actv{
+		display: inline;
+	}
+	#i_actv
+	{
+		object-fit: cover;
+		width:250px;
+		height:250px;
+		border-radius:500px;
+		margin:30px;
+		vertical-align: middle;
+
+	}
+
+	.s_actv{
+		float: left;	
+	}
+
+	.info_actv{
+		width: 800px;
+		height: 300px;
+		float: right;
+	}
+
+	#datos_actv{
+		float: left;
+	}
+
+
+
+	#gente_actv{
+		width:400px;
+		height:400px;
+		float:right;
+	}
+	

@@ -34,7 +34,6 @@ public class Mensaje {
 	public void setId(long id) {
 	  this.id = id;
 	}
-	@NotNull
 	public int getNDestinos() {
 	  return nDestinos;
 	}
@@ -63,14 +62,12 @@ public class Mensaje {
 	public void setDestinos(List<Usuario> destinos) {
 		this.destinos = destinos;
 	}
-	@NotNull
 	public String getContenido() {
 		return contenido;
 	}
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
 	}
-	@NotNull
 	public String getTipo() {
 		return tipo;
 	}

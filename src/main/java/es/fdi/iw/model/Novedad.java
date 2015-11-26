@@ -32,7 +32,6 @@ public class Novedad {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-	@NotNull
 	public String getTipo() {
 		return tipo;
 	}

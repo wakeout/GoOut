@@ -1,0 +1,115 @@
+/*Pantalla creacion*/
+
+	
+	#vista_prev{
+		border-radius:50px;
+		object-fit: cover;
+		height: 80px;
+		width: 80px;
+		
+	}
+	
+	#creacion{
+
+		height: 700px;
+		clear:both;		
+	}
+	
+	#crear_1{
+		border-radius: 50px;
+		background: rgba(153,153,204,0.5);
+		width:31%;
+		height: 700px;	
+		float:left;
+	}
+	
+		
+	#fecha_regreso{
+		display:none;
+	}
+	
+	#crear_2{
+		border-radius: 50px;
+		background: rgba(153,153,204,0.5);
+		width:33%;
+		height: 500px;/*700px;*/
+		display: inline-block;
+	}
+	
+	#crear_3{
+		
+		border-radius: 50px;
+		background: rgba(153,153,204,0.5);
+		width:35%;
+		height: 700px;	
+		float:right;
+	
+	}
+	
+	#num_participantes{
+		width:40px;
+		height:40px;
+		margin-bottom:50px;
+	}
+	
+	#nombre_actv{
+		text-align:center;
+		
+	}
+	
+	#tipo_actividad{
+		margin-left:10px;
+	}
+	
+	#mapa{
+		border:2px solid black;
+		width:394px;
+		height:304px;
+		margin:20px;
+	}
+	
+	#boton_crear{
+		margin:80px;
+	}
+	
+	#b_crear{
+		width:200px;
+		color:black;
+		font-weight: bold;
+		border-radius:20px;
+	}
+	
+	.caja{
+		  border-radius:6px;
+	}
+	
+	.titulos{
+	
+		padding-bottom:10px;
+	}
+	
+	#imagen_grupo{
+		border-radius:50px;
+		object-fit:cover;
+		height: 80px;
+		width: 80px;
+	}
+	
+	#upload {
+		border-radius:50px;
+		object-fit:cover;
+	    width: 80px;
+	    height: 80px;
+	    background: url(../images/subir.png);
+	    background-repeat:no-repeat;
+	    background-size:contain;
+	    overflow: hidden;
+	}
+	
+	div#upload input {
+	    display: block !important;
+	    width: 80px !important;
+	    height: 80px !important;
+	    opacity: 0 !important;
+	    overflow: hidden !important;
+	}
