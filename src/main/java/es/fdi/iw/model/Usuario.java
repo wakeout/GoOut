@@ -58,14 +58,6 @@ public class Usuario {
 	}
 	
 
-	public static Usuario modUser(java.util.Date fecha, String prov, String email) {
-		Usuario u = new Usuario();
-		u.nacimiento=(Date) fecha;
-		u.provincia=prov;
-		u.email=email;
-		return u;
-	}
-
 	public boolean isPassValid(String pass) {
 		return bcryptEncoder.matches(pass, pass_cifrado);		
 	}

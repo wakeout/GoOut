@@ -1,0 +1,99 @@
+.mensajes
+{
+	color: white;
+	border: 1px solid white;
+	text-align: center;	
+	border-radius:20px;
+	padding:10px;
+	position:relative;
+	margin:0 auto;
+	width:600px;
+	background:#35596a;
+	margin-top:20px;
+}
+
+.mensajes2
+{
+	padding:10px;
+	position:relative;
+	margin:0 auto;
+	width:600px;	
+	margin-top:20px;
+	border: none;
+	color: none;
+}
+
+#cuerpo_msj
+{
+	margin-top:20px;	
+}
+
+.enviados, .recibidos
+{
+	color: white;
+	font-weight: bold;
+	text-shadow: 0 0 0.2em purple;
+}
+
+tr
+{
+	margin-top:20px;
+}
+
+#cont_inicio
+{
+	border: 1px solid white;
+	border-radius:20px;
+	margin-left:2%;
+	margin-right:2%;
+	width: 96%;
+	height: 460px;
+}
+
+.cambio
+{
+	border-radius:20px;
+	padding:10px;
+	position:relative;
+	margin:0 auto;
+	background:#3a4652 url("../imagenes/metal.jpg") repeat;
+	margin-top:20px;
+}
+
+.cambiar
+{
+	color: #16193B;
+	padding: 5px;
+	border: 1px solid white;
+	border-radius:20px;
+	margin: 10px;
+}
+.cambiar:hover
+{
+	background-color: white;
+	color: #16193B;
+	padding: 5px;
+	border: 1px solid white;
+	border-radius:20px;
+	margin: 10px;
+	border-color: rgba(82, 168, 236, 0.8);
+    outline: 0px none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+}
+
+.cambiar2
+{
+	background-color: white;
+	color: #16193B;
+	padding: 5px;
+	border: 1px solid white;
+	border-radius:20px;
+	margin: 10px;
+	border-color: rgba(82, 168, 236, 0.8);
+    outline: 0px none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+}
+
+a:hover{text-decoration:none;}
+
+a{text-decoration:none;}

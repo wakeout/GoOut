@@ -20,8 +20,8 @@
 				<a class=""><img id="i_actv" src="${prefix}resources/images/33.jpg" alt="" /></a> 
 				<br>
 				<center><button class="btn">Mensaje a administradores de actividad</button></center>
-				<br>
 				<center><button class="btn">Propon algo!</button></center>
+				<center><button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar actividad</button></center>
 
 			</div>
 
@@ -30,6 +30,7 @@
 				<div id="datos_actv">
 
 					<div class="t_actv">Ir a la luna</div>
+					<div class="privacidad_actividad">Publica</div>
 					<div class="fecha_actv">Miercoles 12/07/2016 entre las 13:00-19:50</div>
 					<div class="zona_actv">  
 							Despegue de Moncloa
@@ -50,11 +51,6 @@
 		<a href="#0" class="cd-modal-close">Close</a>
 	</section> <!-- .cd-section -->
 
-
-
-
-							<!--<button class="btn"><img class="i_people" src="images/localizacion.jpg"></button> --> 
-						
 					</div>
 					
 					<left>PROXIMO HITO </left><img class="i_flecha" src="${prefix}resources/images/flecha.png" />
@@ -64,6 +60,7 @@
 				</div>
 
 				<div id="gente_actv">
+					<div>Estado actividad: <a class="privacidad_actividad">Abierta</a></div>
 					<table>
 						<thead><tr><th rowspan="2"><th colspan="2"> Gente que se apunta  9/13</thead>		
 						<tbody>
@@ -82,8 +79,25 @@
 						</tbody>
 					</table>
 					
-					Aun faltan 4 por apuntarse!   <button class="btn">Invitar a un amigo</button>   <button class="btn">Ver a todos los que se han apuntado  (9)</button>
+					Aun faltan 4 por apuntarse!   <button class="btn">Invitar a un amigo</button> 
 								
+								
+	<section class="cd-section">
+
+		<div class="cd-modal-action">
+			<a href="#0"  data-type="modal-trigger">Ver a todos los que se han apuntado  (9)</a>
+			<span class="cd-modal-bg"></span>
+		</div> <!-- cd-modal-action -->
+
+		<div class="cd-modal">	
+			<div class="cd-modal-content">
+				<%@ include file="../fragments/participantes2.jspf" %>
+			</div> <!-- cd-modal-content -->
+		</div> <!-- cd-modal -->
+
+		<a href="#0" class="cd-modal-close">Close</a>
+	</section> <!-- .cd-section -->	
+		
 				</div>
 			</div>
 		</div>
@@ -103,12 +117,14 @@
 				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
+				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
 			</div>
 			<div class="m_actv">
 				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
+				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
 				</div>
 			<div class="m_actv" id="comentario">
 			

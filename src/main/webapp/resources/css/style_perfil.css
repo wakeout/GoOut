@@ -20,10 +20,6 @@
 		margin:0 auto 15 auto;
 	}
 	
-	.info_perfil{
-		
-	}
-	
 	
 	#i_perfil
 	{
@@ -75,4 +71,21 @@
 	#datos_perfil{
 		position:relative;
 		top: 20px;
+	}
+	
+	#menu{
+		padding: 0;
+	}
+	
+	#menu li{
+		display:inline;
+	}
+	
+	#menu li a {
+	font-family: Arial;
+	font-size:11px;
+	text-decoration: none;
+	padding: 10px;
+	background-color: #2175bc;
+	color: #fff;
 	}

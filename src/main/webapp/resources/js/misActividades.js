@@ -39,4 +39,12 @@ $('.img_thumb5' ).hover(function(e){
     $(temp4[0].firstElementChild).fadeOut(200);
 });
 
+$("#mis_creaciones").click(function() {
+	  if ( $( "#mis_creaciones" ).prop('checked') ) {
+	    $( ".actv_creadas" ).show();
+	    $(".actv_mostradas").hide();
+	  } else {
+		  $(".actv_mostradas").show();
+	  }
+});
 

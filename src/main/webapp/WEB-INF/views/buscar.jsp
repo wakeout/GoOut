@@ -4,7 +4,7 @@
 <head>
 
 <%@ include file="../fragments/head.jspf"%>
-<link rel="stylesheet" href="${prefix}resources/css/sliding.css">
+<link rel="stylesheet" href="${prefix}resources/css/style_buscar.css">
 </head>
 
 <body class="homepage">

@@ -138,19 +138,20 @@
 	  							<div class="campos_Perfil">
 									<label for="nick_perfil">Nick de usuario:</label> 
 									<input id="nick_perfil" type="text" value="${usuario.login}" disabled/>
+									<input type="hidden" name="nick_perfil" type="text" value="${usuario.login}"/>
 								</div>
 								
 								<div class="campos_Perfil">
 									<label for="fecha_perfil">Fecha Nac:</label> 
-									<input id="fecha_perfil" type="date" value="${usuario.nacimiento}" />
+									<input id="fecha_perfil" name="fecha_perfil" type="date" value="${usuario.nacimiento}" />
 								</div>
 								<div class="campos_Perfil">
 									<label for="prov_perfil">Provincia:</label> 
-									<input id="prov_perfil" type="text" value="${usuario.provincia}"/>
+									<input id="prov_perfil" name="prov_perfil" type="text" value="${usuario.provincia}"/>
 								</div>
 								<div class="campos_Perfil">
 									<label for="email_perfil">Email: </label> 
-									<input id="email_perfil" type="email" value="${usuario.mail}"/>
+									<input id="email_perfil" name="email_perfil" type="email" value="${usuario.mail}"/>
 								</div>
 								<div class="actualizar">
 									<button id="actualizar_perfil" name="submit" type="submit">Actualizar Informacion</button>
