@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
@@ -22,19 +23,9 @@ public class Mensaje {
 	private List<Usuario> destinos;
 	private int nDestinos;
 	private String titulo;
-	
-	Mensaje(){
-		
-	}
-	public Mensaje(long id, Usuario origen, List<Usuario> destinos,
-			int nDestinos, String titulo) {
-		super();
-		this.id = id;
-		this.origen = origen;
-		this.destinos = destinos;
-		this.nDestinos = nDestinos;
-		this.titulo = titulo;
-	}
+	private String contenido;
+	private String tipo;
+
 	@Id
     @GeneratedValue
     public long getId() {
@@ -43,6 +34,7 @@ public class Mensaje {
 	public void setId(long id) {
 	  this.id = id;
 	}
+	@NotNull
 	public int getNDestinos() {
 	  return nDestinos;
 	}
@@ -71,8 +63,18 @@ public class Mensaje {
 	public void setDestinos(List<Usuario> destinos) {
 		this.destinos = destinos;
 	}
-	/*
-	private String texto;
-	private int idTexto;
-	*/
+	@NotNull
+	public String getContenido() {
+		return contenido;
+	}
+	public void setContenido(String contenido) {
+		this.contenido = contenido;
+	}
+	@NotNull
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 }

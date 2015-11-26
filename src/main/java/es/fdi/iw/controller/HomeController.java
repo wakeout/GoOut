@@ -264,7 +264,13 @@ public class HomeController {
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
-		
+		model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
+		model.addAttribute("novedades", entityManager.createNamedQuery("allNovedades").getResultList());
+		model.addAttribute("pagos", entityManager.createNamedQuery("allPagos").getResultList());
+		model.addAttribute("hitos", entityManager.createNamedQuery("allHitos").getResultList());
+		model.addAttribute("comentarios", entityManager.createNamedQuery("allComentarios").getResultList());
+		model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
+
 		return "administrador";
 	}
 	

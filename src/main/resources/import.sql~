@@ -1,5 +1,6 @@
 insert into Usuario (id, login, mail, rol, password) values(1 ,'marquitos', 'mlaina@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
 insert into Usuario (id, login, mail, rol, password) values(2 ,'victor', 'victga04@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
+insert into Usuario (id, login, mail, rol, password) values(3 ,'lis', 'lisiro01@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
 insert into Usuario (id, login, mail, rol, password) values(4 ,'david','david@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
 insert into Usuario (id, login, mail, rol, password) values(5 ,'jorge','jorge@ucm.es', 'usuario', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
 insert into Usuario (id, login, mail, rol, password) values(1 ,'freire', 'manu@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
@@ -30,6 +31,5 @@ insert into foro (id) values (3)
 insert into novedad (id, mensaje, tipo) values (1, 'Juan: al final jimmy se viene?', 'Alguien ha comentado la actividad!')
 
 insert into comentario (id, asunto, sugiero) values (1, 'necesito que alguien me recoja!', false)
-insert into comentario (id, asunto, sugiero) values (2, 'yo paso', false)
-
+insert into comentario (id, asunto, sugiero) values (1, 'yo paso', false)
 insert into pago (id, descripcion_forma_pago, precio_individual) values (1, 'contactar con David para pagar las entradas del concierto', 30)

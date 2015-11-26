@@ -2,18 +2,16 @@ package es.fdi.iw.model;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -39,13 +37,12 @@ public class Usuario {
 	private Date nacimiento;
 	private String provincia;
 	private String email;
+	private String idFoto;
 	
 	private List<Actividad> historial;
 	private List<Actividad> actuales;
 	private List<Usuario> amigos;
 
-
-	public Usuario() {}
 
 	public static Usuario createUser(String login, String pass, String rol, 
 									Date nacimiento, String prov, String email) {
@@ -131,7 +128,7 @@ public class Usuario {
 	public void setId(long id) {
 		this.id = id;
 	}
-
+	@NotNull
 	@Column(unique=true)
 	public String getLogin() {
 		return login;
@@ -140,7 +137,7 @@ public class Usuario {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
+	@NotNull
 	public String getPassword() {
 		return pass_cifrado;
 	}
@@ -148,7 +145,7 @@ public class Usuario {
 	public void setPassword(String hashedAndSalted) {
 		this.pass_cifrado = hashedAndSalted;
 	}
-
+	@NotNull
 	public String getRol() {
 		return rol;
 	}
@@ -160,7 +157,8 @@ public class Usuario {
 	public String toString() {
 		return "" + id + " " + login + " " + pass_cifrado;
 	}
-
+	@NotNull
+	@Column(unique=true)
 	public String getMail() {
 		return email;
 	}
@@ -202,6 +200,14 @@ public class Usuario {
 	}
 	public void setAmigos(List<Usuario> amigos) {
 		this.amigos = amigos;
+	}
+
+	public String getIdFoto() {
+		return idFoto;
+	}
+
+	public void setIdFoto(String idFoto) {
+		this.idFoto = idFoto;
 	}
 
 

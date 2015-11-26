@@ -3,6 +3,7 @@ package es.fdi.iw.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -26,41 +28,22 @@ public class Actividad{
 
 	private long id;//key
 	private String nombre;
-	private Date fecha;
 	private Usuario creador;
-	
-	/*ubicacion*/
+	private Date fecha_ini;
+	private Date fecha_fin;
 	private double latitud;
 	private double longitud;
 	private List<Hito>  proximosHitos;
 	private long idImagen;
-	
-	
+	private String estado;
 	private int maxPersonas;
 	private List<Usuario>  personas;//email de perfiles
 	private int nPersonas;
-	
+	private int [] pagados;
 	private Foro foro;
+	private List<Tag> tags;
+	private List<Novedad> novedades;
 	
-	Actividad(){
-		
-	}
-	public Actividad(long id, String nombre, Date fecha, double latitud,
-			double longitud, List<Hito> proximosHitos, long idImagen,
-			int maxPersonas, List<Usuario> personas, int nPersonas, Foro foro) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.fecha = fecha;
-		this.latitud = latitud;
-		this.longitud = longitud;
-		this.proximosHitos = proximosHitos;
-		this.idImagen = idImagen;
-		this.maxPersonas = maxPersonas;
-		this.personas = personas;
-		this.nPersonas = nPersonas;
-		this.foro = foro;
-	}
 	 @Id
      @GeneratedValue
      public long getId() {
@@ -69,18 +52,14 @@ public class Actividad{
 	 public void setId(long id) {
 			this.id = id;
 	 }
+	 @NotNull
 	 public String getNombre() {
 		return nombre;
 	 }
 	 public void setNombre(String nombre) {
 		this.nombre = nombre;
 	 }
-	 public Date getFecha() {
-		return fecha;
-	 }
-	 public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	 }
+	
 	 public double getLatitud(){
 		 return latitud;
 	 }
@@ -105,6 +84,7 @@ public class Actividad{
 	 public void setMaxPersonas(int max){
 		 this.maxPersonas=max;
 	 }
+	 @NotNull
 	 public int getNPersonas(){
 		 return nPersonas;
 	 }
@@ -133,6 +113,52 @@ public class Actividad{
 	}
 	public void setForo(Foro foro) {
 		this.foro = foro;
+	}
+	@OneToOne(targetEntity=Usuario.class)
+	public Usuario getCreador() {
+		return creador;
+	}
+	public void setCreador(Usuario creador) {
+		this.creador = creador;
+	}
+	public Date getFecha_ini() {
+		return fecha_ini;
+	}
+	public void setFecha_ini(Date fecha_ini) {
+		this.fecha_ini = fecha_ini;
+	}
+	public Date getFecha_fin() {
+		return fecha_fin;
+	}
+	public void setFecha_fin(Date fecha_fin) {
+		this.fecha_fin = fecha_fin;
+	}
+	@NotNull
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public int [] getPagados() {
+		return pagados;
+	}
+	public void setPagados(int [] pagados) {
+		this.pagados = pagados;
+	}
+	@ManyToOne(targetEntity=Novedad.class)	
+	public List<Novedad> getNovedades() {
+		return novedades;
+	}
+	public void setNovedades(List<Novedad> novedades) {
+		this.novedades = novedades;
+	}
+	@ManyToOne(targetEntity=Tag.class)
+	public List<Tag> getTags() {
+		return tags;
+	}
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 }

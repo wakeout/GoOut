@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 
 
@@ -21,16 +22,6 @@ public class Hito {
 	private String anuncio;
 	private Date fecha;
 	
-	Hito(){
-		
-	}
-	
-	public Hito(long id, String anuncio, Date fecha) {
-		super();
-		this.id = id;
-		this.anuncio = anuncio;
-		this.fecha = fecha;
-	}
 
 	@Id
      @GeneratedValue
@@ -40,6 +31,7 @@ public class Hito {
 	 public void setId(long id) {
 			this.id = id;
 	 }
+	 @NotNull
 	 public String getAnuncio() {
        return anuncio;
      }

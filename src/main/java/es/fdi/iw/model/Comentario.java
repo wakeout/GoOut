@@ -1,11 +1,13 @@
 package es.fdi.iw.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -20,16 +22,7 @@ public class Comentario {
 	private boolean sugiero;
 	
 	
-	Comentario(){
-		
-	}
-	public Comentario(long id, Usuario usuario, String asunto, boolean sugiero) {
-		super();
-		this.id = id;
-		this.usuario = usuario;
-		this.asunto = asunto;
-		this.sugiero = sugiero;
-	}
+
 	
 	 @Id
      @GeneratedValue
@@ -45,6 +38,7 @@ public class Comentario {
 	 public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	 }
+	 @NotNull
 	 public boolean getSugiero() {
 	    return sugiero;
 	 }

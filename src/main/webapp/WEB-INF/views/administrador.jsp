@@ -29,6 +29,21 @@
   		<li>
   		  <button>Mensajes</button>
   		</li>
+  		<li>
+  		  <button>Tags</button>
+  		</li>
+   		<li>
+  		  <button>Comentarios</button>
+  		</li>
+   		<li>
+  		  <button>Novedades</button>
+  		</li>
+  		<li>
+  		  <button>Hitos</button>
+  		</li>
+  		<li>
+  		  <button>Foros</button>
+  		</li>  		
 	</ul>
 
 	<div class="lista">

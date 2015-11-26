@@ -22,15 +22,6 @@ public class Foro {
 	private long id;
 	private List<Comentario>  comentarios;
 
-	public Foro(long id, List<Comentario> comentarios) {
-		super();
-		this.id = id;
-		this.comentarios = comentarios;
-	}
-
-	Foro(){
-		
-	}
 	
 	 @Id
      @GeneratedValue
