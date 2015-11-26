@@ -162,6 +162,7 @@
 				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
+				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
 			</div>
 			<div class="m_actv" id="comentario">
 			
