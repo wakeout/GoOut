@@ -80,4 +80,21 @@
 		height:400px;
 		float:right;
 	}
+	.add{
+    background-image: url(../images/add.png);
+    width: 30px;
+    height: 30px;
+    background-size: 100%;
+    object-fit: cover;
+    border-radius: 3px 3px 3px 3px;
+    border: 0;
+    outline: 0;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color: white;
+    margin-right: 15px;
+}
+.add:hover{
+	background-color:#dddddd;
+}
 	

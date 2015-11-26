@@ -18,24 +18,39 @@
 <li>nick: jorge       pass:  1234       rol:  usuario
 </ul>
 
+<a href="./iwdb.jpeg">Diagrama de la base de datos</a>
+
 <h2>Vistas que componen esta entrega</h2>
 <ul>
-<li><a href="./iwdb.jpeg">Diagrama de la base de datos</a>
-<li><a href="http://localhost:8080/goout/login">login</a> - Página de Login, se necesita un usuario y contraseña para entrar, o Regisrarse. 
-<li><a href="http://localhost:8080/goout/registro">registro</a> - Permite al usuario registrarse para iniciar sesión. 
-<li><a href="http://localhost:8080/goout/sin_registro">sin_registro</a> - Vista de la web sin estar logueado. Muestra actividades públicas, creadas por otros usuarios.
-<li><a href="http://localhost:8080/goout/">home</a> - Página de inicio que tiene una vista general de las funcionalidades de GoOut.
-<li><a href="http://localhost:8080/goout/crear">crear</a> - Permite crear una nueva actividad. Especificando varias opciones.
-<li><a href="http://localhost:8080/goout/mis_actividades">mis_actividades</a> - Pagina donde el usuario puede consultar sus actividades recientes e Historial de actividades pasadas.
+<li><a href="http://localhost:8080/goout/home"> - Página de inicio</a> en la que puedes ver las novedades de las actividades en las que participas. También hay un apartado un 
+de sugerencias de actividades.
+<li><a href="http://localhost:8080/goout/login">login</a> - Página de Login, se necesita un usuario y contraseña para entrar. En la base de datos se encuentran los siguientes usuarios 
+victor, david, marquitos, jorge y freire. La contraseña para todos los usuarios es 1234.
+<li><a href="http://localhost:8080/goout/registro">registro</a> - En esta página puedes registrarte, al registrarte tu usuario se introduce en la base de datos.
+<li><a href="http://localhost:8080/goout/sin_registro">sin_registro</a> - En la ventana de login al pinchar en el símbolo de GoOut entras en esta ventana (ya que no te has logeado
+o no estás registrado).
+<li><a href="http://localhost:8080/goout/crear">crear</a> - Permite crear una nueva actividad. Tienes que poner el nombre de la actividad, seleccionar el género, hora de inicio y lugar
+entre otras opciones.
 <li><a href="http://localhost:8080/goout/buscar">buscar</a> - Vista para buscar una actividad concreta.
-<li><a href="http://localhost:8080/goout/actividad">actividad</a> -(solo visible cuando pinchas en una actividad anteriormente listada) Contiene detalles de una actividad y un foro que pueden hacer comentarios los participantes de la misma.
+<li><a href="http://localhost:8080/goout/mis_actividades">mis_actividades</a> - Pagina donde el usuario puede consultar todas tus actividades (finalizadas y activas).
+Se puede filtar por actividades activas o finalizadas y por tiempo, es decir, actividades de hoy, esta semana, de dentro de un mes o próximos meses y también puedes filtrar
+tus actividades en las que eres el creador. (La actividad de fútbol te lleva a la ventana actividad_creador)
+<li><a href="http://localhost:8080/goout/actividad">actividad</a> -(solo visible cuando pinchas en una actividad anteriormente listada) Contiene detalles de una actividad 
+y un foro que pueden hacer comentarios los participantes de la misma.
+<li><a href="http://localhost:8080/goout/actividad_creador">actividad_creador</a> - Es la misma vista que actividad pero desde el punto de vista del creador de la actividad,
+teniendo la opción de modificar los datos de la actividad, eliminar usuarios entre otras opciones que no tienen el resto de usuarios.
 <li><a href="http://localhost:8080/goout/perfil">perfil</a> - (solo accesible cuando pienchas en la foto de perfil) Muestra los datos de un usuario, así como las actividades a las que asistirá.
+<li><a href="http://localhost:8080/goout/administrador">administrador</a>- solo accseible cuando te has logeado con un usuario de la base de datos que tenga el rol de administrador.
+En esta ventana puedes modificar todos los aspectos de la página web, por ejemplo eliminar, editar o añadir usuarios, actividades etc.
+<li><a href="http://localhost:8080/goout/mensajes">mensajes</a> - en esta vista puedes mandar mensajes a todos tus amigos y el administrador.
 </ul>
 
 <h2>Recursos externos utilizados</h2>
 <ul>
 <li><a href="http://freebiesbug.com/">freebiesbug</a> (licencia <a href="http://freebiesbug.com/">Creative Commons</a>) - Algunos efectos y estilos en la página.
 <li><a href="https://jquery.com/">jquery</a> (licencia <a href="https://github.com/jquery/jquery/blob/master/LICENSE.txt">MIT</a>) - Dependencia de bootstrap.
+<li><a href="http://www.bluenileinfra.com/we-love-design/attachment/savin-ny-website-background-web/">fondo</a> (licencia <a href="http://www.bluenileinfra.com/we-love-design/attachment/savin-ny-website-background-web/">dominio público</a>) - Imagen utilizada como fondo de la web.
+<li><a href="http://html5up.net/">html5up</a> (licencia <a href="http://html5up.net/license">Creative Commons</a>) - Plantilla html para la web.
 <li><a href="http://api.jqueryui.com/datepicker/">datepicker</a> (licencia <a href="http://api.jqueryui.com/datepicker/">MIT</a>) - Calendarios JQuery.
 <li><a href="http://www.desarrolloweb.com">efectos javascript</a> (licencia <a href="http://www.desarrolloweb.com">Creative Commons</a>) - Efectos javascript en crear.html.
 </ul>

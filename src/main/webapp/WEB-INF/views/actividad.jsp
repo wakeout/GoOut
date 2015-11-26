@@ -15,10 +15,11 @@
 			<!-- Main -->
 	<div id="main-wrapper">			
 		<div class="container">
-
+		
 			<div class="s_actv">
 				<a class=""><img id="i_actv" src="${prefix}resources/images/33.jpg" alt="" /></a> 
 				<br>
+				<center><input type="button" class="add"> <span>Unirse a la actividad</span></center> <br>
 				<center><button class="btn">Mensaje a administradores de actividad</button></center>
 				<center><button class="btn">Propon algo!</button></center>
 				<center><button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar actividad</button></center>
