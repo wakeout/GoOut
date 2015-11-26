@@ -42,6 +42,8 @@
 		<a>Descripcion</a>
 		<br>
 		<textarea rows="5" cols="105"></textarea>
+		<br>
+		<button class="boton" name="submit" type="submit">Modificar</button>
 	</form>
 	
 </div>
