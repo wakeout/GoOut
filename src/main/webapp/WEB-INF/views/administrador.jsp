@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		
-		
+
 		<title>GoOut</title>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,28 +20,28 @@
 
 	<ul>
  		<li>
- 		  <button>Actividades </button>
+ 		  <button id="b_actividad">Actividades </button>
  		</li>
  		<li>
- 		  <button>Usuarios</button>
+ 		  <button id="b_usuarios" >Usuarios</button>
   		</li>
   		<li>
-  		  <button>Mensajes</button>
+  		  <button id="b_mensajes">Mensajes</button>
   		</li>
   		<li>
-  		  <button>Tags</button>
+  		  <button id="b_tags">Tags</button>
   		</li>
    		<li>
-  		  <button>Comentarios</button>
+  		  <button id="b_comentarios">Comentarios</button>
   		</li>
    		<li>
-  		  <button>Novedades</button>
+  		  <button id="b_novedades">Novedades</button>
   		</li>
   		<li>
-  		  <button>Hitos</button>
+  		  <button id="b_hitos">Hitos</button>
   		</li>
   		<li>
-  		  <button>Foros</button>
+  		  <button id="b_foros">Foros</button>
   		</li>  		
 	</ul>
 

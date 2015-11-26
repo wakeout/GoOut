@@ -1,6 +1,6 @@
 
 <header>
-	<div class="titulo"><h2>Actividades</h2></div>
+	<div class="titulo"><h2>Administración</h2></div>
 	
 	<div class="search">
    		<input>
@@ -20,77 +20,81 @@
 	<c:set var="rol" scope="session" value="admin"/>	
 	<c:if test="${usuario.rol == rol}">
 	
-	<div id='oculto' style='display:none;'>
+	<div class="admin_actv">
 	
 	<h1>Actividades</h1>
-	<table>
-		<c:forEach items="${actividades}" var="a">
-		<tr><td><input type="checkbox"><a href="actividad"> ${a.id}</a><td>${a.nombre}
-		</c:forEach>
-	</table>
-	
+		<table>
+			<c:forEach items="${actividades}" var="a">
+			<tr><td><input type="checkbox"><a href="actividad"> ${a.id}</a><td>${a.nombre}
+			</c:forEach>
+		</table>
 	</div>
 	
+	<div class="admin_usuario">
+	
 	<h1>Usuarios</h1>
-	<table>
-		<c:forEach items="${usuarios}" var="u">
-		<tr><td><input type="checkbox"><a href="actividad"> ${u.id}</a><td>${u.login}
-		</c:forEach>
-	</table>	
+		<table>
+			<c:forEach items="${usuarios}" var="u">
+			<tr><td><input type="checkbox"><a href="actividad"> ${u.id}</a><td>${u.login}
+			</c:forEach>
+		</table>
+	</div>	
+	
+	<div class="admin_mensaje">
 	
 	<h1>Mensajes</h1>
-	<table>
-		<c:forEach items="${mensajes}" var="m">
-		<tr><td><input type="checkbox"><a href="actividad"> ${m.id}</a><td>${m.titulo}
-		</c:forEach>
-	</table>
+		<table>
+			<c:forEach items="${mensajes}" var="m">
+			<tr><td><input type="checkbox"><a href="actividad"> ${m.id}</a><td>${m.titulo}
+			</c:forEach>
+		</table>
+	</div>
 	
-	<h1>Tags</h1>
-	<table>
-		<c:forEach items="${tags}" var="t">
-		<tr><td><input type="checkbox"><a href="actividad"> ${t.id}</a><td>${t.nombre}
-		</c:forEach>
-	</table>
+	<div class="admin_tags">
+		<h1>Tags</h1>
+		<table>
+			<c:forEach items="${tags}" var="t">
+			<tr><td><input type="checkbox"><a href="actividad"> ${t.id}</a><td>${t.nombre}
+			</c:forEach>
+		</table>
+	</div>
 	
-	<h1>Comentarios</h1>
-	<table>
-		<c:forEach items="${comentarios}" var="c">
-		<tr><td><input type="checkbox"><a href="actividad"> ${c.id}</a><td>${c.asunto}
-		</c:forEach>
-	</table>
+	<div class="admin_comentarios">
+		<h1>Comentarios</h1>
+		<table>
+			<c:forEach items="${comentarios}" var="c">
+			<tr><td><input type="checkbox"><a href="actividad"> ${c.id}</a><td>${c.asunto}
+			</c:forEach>
+		</table>
+	</div>
 	
-	<h1>Novedades</h1>
-	<table>
-		<c:forEach items="${novedades}" var="n">
-		<tr><td><input type="checkbox"><a href="actividad"> ${n.id}</a><td>${n.mensaje}
-		</c:forEach>
-	</table>
+	<div class="admin_novedades">
+		<h1>Novedades</h1>
+		<table>
+			<c:forEach items="${novedades}" var="n">
+			<tr><td><input type="checkbox"><a href="actividad"> ${n.id}</a><td>${n.mensaje}
+			</c:forEach>
+		</table>
+	</div>
 	
-	<h1>Hitos</h1>
-	<table>
-		<c:forEach items="${hitos}" var="h">
-		<tr><td><input type="checkbox"><a href="actividad"> ${h.id}</a><td>${h.anuncio}
-		</c:forEach>
-	</table>
+	<div class="admin_hitos">
+		<h1>Hitos</h1>
+		<table>
+			<c:forEach items="${hitos}" var="h">
+			<tr><td><input type="checkbox"><a href="actividad"> ${h.id}</a><td>${h.anuncio}
+			</c:forEach>
+		</table>
+	</div>
 	
-	<h1>Foros</h1>
-	<table>
-		<c:forEach items="${foros}" var="f">
-		<tr><td><input type="checkbox"><a href="actividad"> ${f.id}</a>
-		</c:forEach>
-	</table>
-	
+	<div class="admin_foros">
+		<h1>Foros</h1>
+		<table>
+			<c:forEach items="${foros}" var="f">
+			<tr><td><input type="checkbox"><a href="actividad"> ${f.id}</a>
+			</c:forEach>
+		</table>
+	</div>
+		
 	</c:if>
-	
-	<!--
-	<ul class="enumeracion">
-	
-		<li class="elemento">
-			<input type="checkbox">
-			<a href=actividad/id>Actividad 1</a>
-		</li>
 
-
-	</ul>
-	-->
 	</div>

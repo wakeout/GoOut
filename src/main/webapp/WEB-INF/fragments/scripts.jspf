@@ -12,4 +12,5 @@
 		<script src="${prefix}resources/js/misActividades.js"></script>
 		<script src="${prefix}resources/js/otros.js"></script>
 		<script src="${prefix}resources/js/buscar.js"></script>
+		<script src="${prefix}resources/js/admin.js"></script>
 		
