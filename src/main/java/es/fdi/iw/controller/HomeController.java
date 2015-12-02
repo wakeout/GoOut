@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.fdi.iw.model.Actividad;
+import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Usuario;
 
 /**
@@ -38,23 +39,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
-	@SuppressWarnings("unused")
-	public String login(HttpServletRequest request,
-	        HttpServletResponse response, 
-	        Model model, HttpSession session) {
-	         if (true ) {
-	            session.setAttribute("user", "usuario");
-	         } else {
-	             
-	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-	            model.addAttribute("loginError", 
-	                "Te lo estás inventando!");
-	         }
-	         return "home";
-	    }
-	
-	
+		
 	@RequestMapping(value = "/registro", method = RequestMethod.POST)
 	@Transactional
 	public String registro(
@@ -201,12 +186,13 @@ public class HomeController {
 
 			Actividad a = null;
 			Usuario u = null;
+			Novedad n = null;
+			
 			try {
-				u = (Usuario)entityManager.createNamedQuery("userByLogin")
-						.setParameter("loginParam", session.getAttribute("usuario")).getSingleResult();
 				
+				u=(Usuario)session.getAttribute("usuario");
 				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
-				
+				//n = Novedad.crearNovedad(a.getId(),u.getLogin()+" ha creado una actividad "+nombre_actv);
 				entityManager.persist(a);
 				
 				
@@ -235,7 +221,8 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
-	public String crear(){
+	public String crear(Model model){
+		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		return "crear";
 	}
 	
