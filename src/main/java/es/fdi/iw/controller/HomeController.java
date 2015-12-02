@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.fdi.iw.model.Actividad;
 import es.fdi.iw.model.Usuario;
 
 /**
@@ -189,22 +190,43 @@ public class HomeController {
 		return "redirect:mi_perfil";
 	}
 
+	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
+	@Transactional
+	public String crearActividad(
+			@RequestParam("nombre_actv") String nombre_actv,
+			@RequestParam("max_participantes") int max_participantes,
+			//@RequestParam("fecha_ini") Date fecha_ini,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session) {
+
+			Actividad a = null;
+			Usuario u = null;
+			try {
+				u = (Usuario)entityManager.createNamedQuery("userByLogin")
+						.setParameter("loginParam", session.getAttribute("usuario")).getSingleResult();
+				
+				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
+				
+				entityManager.persist(a);
+				
+				
+			} catch (NoResultException nre) {
+	
+				//Error
+		}
+
+				return "redirect:mis_actividades";
+			}
 
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
 	}
+	
+	
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(){
 		
@@ -218,7 +240,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
-	public String mis_actividades(){
+	public String mis_actividades(Model model){
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		return "mis_actividades";
 	}
 	
