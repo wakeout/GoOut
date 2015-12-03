@@ -9,7 +9,7 @@
 		<div id="page-wrapper">
 
 			<!-- Header -->
-			<%@ include file="../fragments/header.jspf" %>
+			<%@ include file="../fragments/header_main.jspf" %>
 			
 			<!-- Main -->
 			<div id="main-wrapper">
@@ -39,31 +39,19 @@
 
 									<div id="fotos">
 									
-									<c:forEach var="i" begin="1" end="20">
-   										<a class="actv_mostradas" href="actividad">
-											<div class="img_thumb">
-												<div class="img_desc">
-													<p id="actividad"> Senderismo </p>
-													<p id="actividad">10/11/2015 8:00 </p>
-													<p id="actividad">Guadarrama</p>
-												</div>
+										<c:forEach items="${actividades}" var="a">
+											<a class="" href="actividad/${a.id}">
+												<div class="img_thumb">
 
-												<img class="i_actv" src="${prefix}resources/images/senderismo.jpg" alt="" />
-											</div>
-										</a>
-									</c:forEach>
-									
-									<a class="actv_creadas" href="actividad_creador">
-											<div class="img_thumb">
-												<div class="img_desc">
-													<p id="actividad"> Futbol </p>
-													<p id="actividad">10/11/2015 8:00 </p>
-													<p id="actividad">Paraninfo</p>
-												</div>
+													<div class="img_desc">
+														<p id="actividad">${a.nombre}</p>
+													</div>
 
-												<img class="i_actv" src="${prefix}resources/images/futbol.jpg" alt="" />
-											</div>
-									</a>
+													<img class="i_actv"
+														src="${prefix}resources/images/${a.idImagen}.jpg" alt="" />
+												</div>
+											</a>
+										</c:forEach>
 
 								</div>
 

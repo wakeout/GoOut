@@ -12,7 +12,7 @@
 
 		<!-- Header -->
 
-		<%@ include file="../fragments/header.jspf"%>
+		<%@ include file="../fragments/header_main.jspf"%>
 		<!-- Main -->
 		<div id="main-wrapper">
 			<div class="container">
@@ -37,10 +37,11 @@
 
 									<div id="buscar">
 
+
 										<div id="actv_amigos">
-											<c:forEach var="i" begin="1" end="6">
+											<c:forEach  items="${actividades}" var="a" begin="0" end="6">
 												<a href="actividad"><img class="img_amigos"
-													src="${prefix}resources/images/luna2.png"></a>
+													src="${prefix}resources/images/${a.idImagen}.jpg"></a>
 											</c:forEach>
 
 										</div>
@@ -78,30 +79,32 @@
 												
 												<div id="modo_burbuja">
 													
-													<c:forEach var="i" begin="1" end="6">
-													<a href="actividad" class="">
-														<div class="img_thumb">
-															<div class="img_desc">
-																<p id="actividad">Senderismo</p>
-																<p id="actividad">10/11/2015 8:00</p>
-																<p id="actividad">Sierra Guadarrama</p>
-															</div>
-															<img class="i_actv" src="${prefix}resources/images/senderismo.jpg" alt="" />
-														</div>
-													</a>
-													</c:forEach>
+										<c:forEach items="${actividades}" var="a">
+											<a class="" href="actividad/${a.id}">
+												<div class="img_thumb">
+
+													<div class="img_desc">
+														<p id="actividad">${a.nombre}</p>
+													</div>
+
+													<img class="i_actv"
+														src="${prefix}resources/images/${a.idImagen}.jpg" alt="" />
+												</div>
+											</a>
+										</c:forEach>
+
 												</div>
 												
 												<div id="modo_lista">
 												<table id="lista_actv">
 												<tr><td>Nombre Actividad</td><td>Personas unidas</td>
-												<td>Máximo</td><td>Dia</td><td>Hora</td>
+												<td>Máximo</td><td>Dia</td>
 												<td>Lugar</td><td>Estado</td></tr>
 													<c:forEach items="${actividades}" var="a">
-														<tr><td><a href="actividad"> ${a.nombre} </a></td>
-														<td>10</td><td>15</td>
-														<td>09-01-2015</td><td>19:30</td>
-														<td>C/Ni Idea Nº 9</td><td style="color:green">Abierta</td>
+														<tr><td><a href="actividad/${a.id}"> ${a.nombre} </a></td>
+														<td>1</td><td>${a.maxPersonas}</td>
+														<td>${a.fecha_ini}</td>
+														<td>C/Ni Idea Nº 9</td><td style="color:green">${a.estado}</td>
 														</tr>
 													</c:forEach>
 													 

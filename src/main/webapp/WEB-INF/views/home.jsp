@@ -9,7 +9,7 @@
 	<div id="page-wrapper">
 
 		<!-- Header -->
-		<%@ include file="../fragments/header.jspf"%>
+		<%@ include file="../fragments/header_main.jspf"%>
 
 		<!-- Main -->
 		<div id="main-wrapper">
@@ -23,19 +23,17 @@
 								<div id="novedades">
 									<div id="actv_nov">
 										<p id="text">NOVEDADES</p>
-
-										<c:forEach var="i" begin="1" end="20">
-											<a class="" href="actividad">
+								
+										<c:forEach items="${actividades}" var="a">
+											<a class="" href="actividad/${a.id}">
 												<div class="img_thumb">
 
 													<div class="img_desc">
-														<p id="actividad">Jugar Futbol</p>
-														<p id="actividad">15/11/2015 16:00</p>
-														<p id="actividad">Polideportivo</p>
+														<p id="actividad">${a.nombre}</p>
 													</div>
 
 													<img class="i_actv"
-														src="${prefix}resources/images/futbol.jpg" alt="" />
+														src="${prefix}resources/images/${a.idImagen}.jpg" alt="" />
 												</div>
 											</a>
 										</c:forEach>
@@ -45,19 +43,19 @@
 							</div>
 							<div id="sugerencias">
 								<p id="text">SUGERENCIAS</p>
-								<c:forEach var="i" begin="1" end="6">
-									<a class="" href="actividad">
-										<div class="img_thumb">
-											<div class="img_desc">
-												<p id="actividad">Fiesta</p>
-												<p id="actividad">7/11/2015 23:00</p>
-												<p id="actividad">Kapital</p>
-											</div>
-											<img class="i_actv"
-												src="${prefix}resources/images/fiesta.jpg" alt="" />
-										</div>
-									</a>
-								</c:forEach>
+									<c:forEach items="${actividades}" var="a">
+											<a class="" href="actividad/${a.id}">
+												<div class="img_thumb">
+
+													<div class="img_desc">
+														<p id="actividad">${a.nombre}</p>
+													</div>
+
+													<img class="i_actv"
+														src="${prefix}resources/images/${a.idImagen}.jpg" alt="" />
+												</div>
+											</a>
+										</c:forEach>
 
 
 							</div>

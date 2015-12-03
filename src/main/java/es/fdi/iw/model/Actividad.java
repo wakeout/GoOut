@@ -88,11 +88,11 @@ public class Actividad{
 	 
 	 
 	 
-	 public int getNPersonas(){
+	 public int getNpersonas(){
 		 return nPersonas;
 	 }
-	 public void setNPersonas(int nPersonas){
-		 this.nPersonas=nPersonas;
+	 public void setNpersonas(int n){
+		 this.nPersonas=n;
 	 }
 	 
 	 //-----

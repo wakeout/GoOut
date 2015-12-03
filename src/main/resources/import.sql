@@ -1,12 +1,21 @@
-insert into Usuario (id, login, mail, rol, password) values(1 ,'marquitos', 'mlaina@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
-insert into Usuario (id, login, mail, rol, password) values(2 ,'victor', 'victga04@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
-insert into Usuario (id, login, mail, rol, password) values(4 ,'david','david@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
-insert into Usuario (id, login, mail, rol, password) values(5 ,'jorge','jorge@ucm.es', 'usuario', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
-insert into Usuario (id, login, mail, rol, password) values(1 ,'freire', 'manu@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe')
+insert into Usuario (id, login, email, rol, password, id_Foto) values(1 ,'marquitos', 'mlaina@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', 101)
+insert into Usuario (id, login, email, rol, password, id_Foto) values(2 ,'victor', 'victga04@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', 102)
+insert into Usuario (id, login, email, rol, password, id_Foto) values(4 ,'david','david@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', 102)
+insert into Usuario (id, login, email, rol, password, id_Foto) values(5 ,'jorge','jorge@ucm.es', 'usuario', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', 101)
+insert into Usuario (id, login, email, rol, password, id_Foto) values(6 ,'freire', 'manu@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', 101)
 
 insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(1, 'cerves', 12, 1234, 1244, 1, 15)
 insert into Actividad (id, nombre, npersonas, latitud, longitud  ,id_imagen, max_personas) values(2, 'zombies',  4,1200, 1214, 2, 4)
-insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(3, 'cine estreno starwars',9,  1000, 1000, 3, 20)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(3, 'futbol',9,  1000, 1000, 3, 20)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(4, 'xbox',9,  1000, 1000, 33, 20)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(5, 'concierto', 12, 1234, 1244, 5, 15)
+insert into Actividad (id, nombre, npersonas, latitud, longitud  ,id_imagen, max_personas) values(6, 'senderismo',  4,1200, 1214, 6, 4)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(7, 'fiesta',9,  1000, 1000, 5, 20)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(8, 'visitar la ciudad',9,  1000, 1000, 4, 20)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(9, 'viaje a benidorm',9,  1000, 1000, 7, 20)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(10, 'cable esquí en el lago',9,  1000, 1000, 8, 20)
+insert into Actividad (id, nombre, npersonas, latitud, longitud, id_imagen, max_personas) values(8, 'paintball',9,  1000, 1000, 9, 20)
+
 
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(1, 'victor me cae fatal',  2, 'pues eso', 'ordinario')
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(2, 'david me cae fatal',  2, 'pues eso', 'ordinario')
@@ -22,10 +31,6 @@ insert into hito (id, anuncio) values (4, 'mañana reunion de planificacion de v
 insert into tag (id, nombre) values (1, 'bares')
 insert into tag (id, nombre) values (2, 'deportes')
 insert into tag (id, nombre) values (3, 'cine')
-
-insert into foro (id) values (1)
-insert into foro (id) values (2)
-insert into foro (id) values (3)
 
 insert into novedad (id, mensaje, tipo) values (1, 'Juan: al final jimmy se viene?', 'Alguien ha comentado la actividad!')
 

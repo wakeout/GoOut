@@ -11,13 +11,13 @@
 	<div id="page-wrapper">
 
 			<!-- Header -->
-			<%@ include file="../fragments/header.jspf" %>
+			<%@ include file="../fragments/header_especific.jspf" %>
 			<!-- Main -->
 	<div id="main-wrapper">			
 		<div class="container">
 		
 			<div class="s_actv">
-				<a class=""><img id="i_actv" src="${prefix}resources/images/33.jpg" alt="" /></a> 
+				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}.jpg" alt="" /></a> 
 				<br>
 				<center><input type="button" class="add"> <span>Unirse a la actividad</span></center> <br>
 				<center><button class="btn">Mensaje a administradores de actividad</button></center>
@@ -30,7 +30,7 @@
 
 				<div id="datos_actv">
 
-					<div class="t_actv">Ir a la luna</div>
+					<div class="t_actv">${actividad.nombre}</div>
 					<div class="privacidad_actividad">Publica</div>
 					<div class="fecha_actv">Miercoles 12/07/2016 entre las 13:00-19:50</div>
 					<div class="zona_actv">  
@@ -61,22 +61,14 @@
 				</div>
 
 				<div id="gente_actv">
-					<div>Estado actividad: <a class="privacidad_actividad">Abierta</a></div>
+					<div>Estado actividad: <a class="privacidad_actividad">${actividad.estado}</a></div>
 					<table>
-						<thead><tr><th rowspan="2"><th colspan="2"> Gente que se apunta  9/13</thead>		
+						<thead><tr><th rowspan="2"><th colspan="2"> Gente que se apunta  9/${actividad.maxPersonas}</thead>		
 						<tbody>
-							<tr>
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-							<tr>
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-							<tr>
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
-								<td><a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a> 
+							<c:forEach items="${actividad.personas}" var="p">
+							<tr>	
+								<td><a href="../perfil/${p.id}"><img class="i_people" src="${prefix}resources/images/${p.idFoto}.jpg" alt="" /></a> 
+							</c:forEach>	
 						</tbody>
 					</table>
 					
@@ -114,14 +106,14 @@
 
 		<div class="foro_actv">
 			<div class="m_actv">
-				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				<a href="../perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
 				<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
 			</div>
 			<div class="m_actv">
-				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				<a href="../perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 				<p  class="mensajes_actv">
 					hellooo!! estoy muy contento de estar aqui
 				</p>
@@ -131,7 +123,7 @@
 			
 			</div>
 			<div class="m_actv">
-				<a href="perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+				<a href="../perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 				<input id="escribir" type="textarea">
 				<button id="comentar" class="btn">Comentar</button>
 			</div>

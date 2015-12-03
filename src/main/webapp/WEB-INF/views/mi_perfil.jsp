@@ -9,7 +9,7 @@
 
 		<!-- Header -->
 
-		<%@ include file="../fragments/header.jspf" %>
+		<%@ include file="../fragments/header_main.jspf" %>
 		
 		<!-- Main -->
 		<div id="main-wrapper">

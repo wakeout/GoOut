@@ -17,10 +17,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.fdi.iw.model.Actividad;
 import es.fdi.iw.model.Usuario;
 
 /**
@@ -175,7 +177,7 @@ public class HomeController {
 					.setParameter("loginParam", nick).getSingleResult();
 				
 				u.setProvincia(provincia);
-				u.setMail(email);
+				u.setEmail(email);
 				
 				entityManager.merge(u);
 				
@@ -194,20 +196,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		
 		return "home";
 	}
 	@RequestMapping(value = "home", method = RequestMethod.GET)
-	public String home(){
-		
+	public String home(Model model){
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		return "home";
 	}
 	
@@ -218,7 +213,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
-	public String mis_actividades(){
+	public String mis_actividades(Model model){
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		return "mis_actividades";
 	}
 	
@@ -229,12 +225,21 @@ public class HomeController {
 		return "buscar";
 	}
 	
-	@RequestMapping(value = "/actividad", method = RequestMethod.GET)
-	public String actividad(Model model){
-		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-		
+	@RequestMapping(value = "/actividad/{id}", method = RequestMethod.GET)
+	public String actividad(@PathVariable("id") long id,HttpServletResponse response,Model model){
+		Actividad a = entityManager.find(Actividad.class, id);
+		if (a == null) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			logger.error("No such book: {}", id);
+		} else {
+			model.addAttribute("actividad", a);
+		}
+		model.addAttribute("prefix", "../");
 		return "actividad";
 	}
+	
+	
+	
 	@RequestMapping(value = "/actividad_creador", method = RequestMethod.GET)
 	public String actividad_creador(){
 		return "actividad_creador";
@@ -245,10 +250,20 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
-	public String perfil(){
+	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
+	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model){
+		Usuario p=entityManager.find(Usuario.class, id);
+		if (p == null) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			logger.error("No such book: {}", id);
+		} else {
+			model.addAttribute("perfil", p);
+		}
+		model.addAttribute("prefix", "../");
+		
 		return "perfil";
 	}
+
 	
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.GET)
 	public String mi_perfil(){

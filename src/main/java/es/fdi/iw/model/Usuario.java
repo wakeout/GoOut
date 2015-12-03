@@ -148,10 +148,10 @@ public class Usuario {
 		return "" + id + " " + login + " " + pass_cifrado;
 	}
 	@Column(unique=true)
-	public String getMail() {
+	public String getEmail() {
 		return email;
 	}
-	public void setMail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
