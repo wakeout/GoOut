@@ -32,7 +32,7 @@
 												href="mensajes?metodo=salida">Bandeja de Salida</a>
 										</p>
 										
-										<form name="form_mensaje" action="mensajes" method="post">
+										<form action="crearMensaje" method="post">
 											<table class="mensajes" align="center">
 												<tbody>
 													<tr>

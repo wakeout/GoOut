@@ -25,6 +25,17 @@ public class Mensaje {
 	private String titulo;
 	private String contenido;
 	private String tipo;
+	
+	public static Mensaje crearMensaje(String titulo, String contenido, String tipo, Usuario u){
+		Mensaje m = new Mensaje();
+		
+		m.titulo = titulo;
+		m.contenido = contenido;
+		m.tipo = tipo;
+		m.origen= u;
+		
+		return m;
+	}
 
 	@Id
     @GeneratedValue

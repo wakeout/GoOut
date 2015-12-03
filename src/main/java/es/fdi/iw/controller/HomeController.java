@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.fdi.iw.model.Actividad;
+import es.fdi.iw.model.Mensaje;
 
 import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Usuario;
@@ -201,10 +202,37 @@ public class HomeController {
 			} catch (NoResultException nre) {
 	
 				//Error
-		}
+			}
 
 				return "redirect:mis_actividades";
+		}
+	
+	@RequestMapping(value = "/crearMensaje", method = RequestMethod.POST)
+	@Transactional
+	public String crearMensaje(
+			@RequestParam("asunto") String titulo,
+			//@RequestParam("destinatario") int destino,
+			@RequestParam("mensaje") String contenido,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session){
+			
+			Mensaje m = null;
+			Usuario u = null;//El usuario que manda el mensaje
+			Usuario d = null;//Destinatario
+			
+			try{
+				u=(Usuario)session.getAttribute("usuario");
+				
+				
+				m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u);
+				entityManager.persist(m);
 			}
+			catch(NoResultException nre){
+				//ERROR
+			}
+		
+			return "redirect:mensajes";
+		}
 
 
 	
