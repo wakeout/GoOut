@@ -25,7 +25,7 @@
 									
 									<div id="filtro_MisActividades">
 										<div id="cajaA">
-										<input type="radio" id="act_fin" name="activas_fin" value="activas"/>Activas
+										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
 										<input type="radio" id="act_fin" name="activas_fin" value="finalizadas"/>Finalizadas
 										
 										<input type="checkbox" id="tiempo" name="hoy" />Hoy

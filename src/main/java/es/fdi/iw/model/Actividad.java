@@ -17,7 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity
@@ -29,7 +29,7 @@ public class Actividad{
 
 	private long id;//key
 	private String nombre;
-	private Usuario creador;
+	private Usuario creador; //Seria mejor id de creador, y nunca puede ser nulo.
 	private Date fecha_ini;
 	private Date fecha_fin;
 	private double latitud;
@@ -44,6 +44,24 @@ public class Actividad{
 	private List<Tag> tags;
 	private List<Novedad> novedades;
 	private Pago pago;
+	//Hay que añadir un campo de privada.
+	
+	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador) {
+		Actividad a = new Actividad();
+		
+		
+		a.nombre=nombre_actv;
+		a.creador=creador;
+		a.maxPersonas=max_participantes;
+		//a.fecha_ini=
+		a.nPersonas=1;
+		a.estado="Abierta";
+		a.latitud=40.4478246;
+		a.longitud=-3.728587199999992;
+		
+		
+		return a;
+	}
 	
 	 @Id
      @GeneratedValue

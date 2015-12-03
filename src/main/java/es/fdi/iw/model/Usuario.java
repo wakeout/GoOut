@@ -41,8 +41,8 @@ public class Usuario {
 	private String idFoto;
 	
 	private List<Actividad> historial;
-	private List<Actividad> actuales;
-	private List<Usuario> amigos;
+	private List<Actividad> actuales; 
+	private List<Usuario> amigos; //Seria mejor tener una lista de ids de usuarios
 
 
 	public static Usuario createUser(String login, String pass, String rol, 

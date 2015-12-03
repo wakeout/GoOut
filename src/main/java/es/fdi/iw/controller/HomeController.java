@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.fdi.iw.model.Actividad;
+
+import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Usuario;
 
 /**
@@ -39,23 +41,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
-	@SuppressWarnings("unused")
-	public String login(HttpServletRequest request,
-	        HttpServletResponse response, 
-	        Model model, HttpSession session) {
-	         if (true ) {
-	            session.setAttribute("user", "usuario");
-	         } else {
-	             
-	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-	            model.addAttribute("loginError", 
-	                "Te lo estás inventando!");
-	         }
-	         return "home";
-	    }
-	
-	
+		
 	@RequestMapping(value = "/registro", method = RequestMethod.POST)
 	@Transactional
 	public String registro(
@@ -191,15 +177,45 @@ public class HomeController {
 		return "redirect:mi_perfil";
 	}
 
+	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
+	@Transactional
+	public String crearActividad(
+			@RequestParam("nombre_actv") String nombre_actv,
+			@RequestParam("max_participantes") int max_participantes,
+			//@RequestParam("fecha_ini") Date fecha_ini,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session) {
+
+			Actividad a = null;
+			Usuario u = null;
+			Novedad n = null;
+			
+			try {
+				
+				u=(Usuario)session.getAttribute("usuario");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
+				//n = Novedad.crearNovedad(a.getId(),u.getLogin()+" ha creado una actividad "+nombre_actv);
+				entityManager.persist(a);
+				
+				
+			} catch (NoResultException nre) {
+	
+				//Error
+		}
+
+				return "redirect:mis_actividades";
+			}
 
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-		
+	
 		return "home";
 	}
+	
+	
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
@@ -208,7 +224,8 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
-	public String crear(){
+	public String crear(Model model){
+		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		return "crear";
 	}
 	
@@ -230,7 +247,7 @@ public class HomeController {
 		Actividad a = entityManager.find(Actividad.class, id);
 		if (a == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			logger.error("No such book: {}", id);
+			logger.error("No such actividad: {}", id);
 		} else {
 			model.addAttribute("actividad", a);
 		}

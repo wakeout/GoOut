@@ -21,7 +21,7 @@ public class Pago {
 	private double precioIndividual;
 	private Date fechaLimitePago;
 	private String descripcionFormaPago;
-	private List<Pago> pagados;
+	private List<Pago> pagados; //No seria una lista de ids de usuarios que han pagado?
 	
 	@Id
     @GeneratedValue
