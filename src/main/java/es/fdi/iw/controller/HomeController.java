@@ -188,7 +188,7 @@ public class HomeController {
 
 			Actividad a = null;
 			Usuario u = null;
-			Novedad n = null;
+			//Novedad n = null;
 			
 			try {
 				
@@ -272,7 +272,7 @@ public class HomeController {
 		Usuario p=entityManager.find(Usuario.class, id);
 		if (p == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			logger.error("No such book: {}", id);
+			logger.error("No such perfil: {}", id);
 		} else {
 			model.addAttribute("perfil", p);
 		}

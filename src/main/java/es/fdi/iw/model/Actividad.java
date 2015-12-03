@@ -53,7 +53,7 @@ public class Actividad{
 		a.nombre=nombre_actv;
 		a.creador=creador;
 		a.maxPersonas=max_participantes;
-		//a.fecha_ini=
+		//a.fecha_ini=fecha_ini;
 		a.nPersonas=1;
 		a.estado="Abierta";
 		a.latitud=40.4478246;
