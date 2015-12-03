@@ -32,7 +32,8 @@
 													<p id="text">¿QUÉ QUIERES HACER?</p>
 													<table id="nombre_actv">
 															<div id="upload">
-																<input type="file" onchange="valor_img(this.value)" />
+																<input type="file" name="imagen"/>
+																
 															</div>
 															<span class="titulos">Nombre de la actividad</span>
 															<tr>
