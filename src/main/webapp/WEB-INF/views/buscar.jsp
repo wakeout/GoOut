@@ -40,7 +40,7 @@
 
 										<div id="actv_amigos">
 											<c:forEach  items="${actividades}" var="a" begin="0" end="6">
-												<a href="actividad"><img class="img_amigos"
+												<a href="actividad/${a.id}"><img class="img_amigos"
 													src="${prefix}resources/images/${a.idImagen}.jpg"></a>
 											</c:forEach>
 

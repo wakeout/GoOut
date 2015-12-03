@@ -63,7 +63,7 @@
 				<div id="gente_actv">
 					<div>Estado actividad: <a class="privacidad_actividad">${actividad.estado}</a></div>
 					<table>
-						<thead><tr><th rowspan="2"><th colspan="2"> Gente que se apunta  9/${actividad.maxPersonas}</thead>		
+						<thead><tr><th rowspan="2"><th colspan="2"> Gente que se apunta  ${actividad.npersonas}/${actividad.maxPersonas}</thead>		
 						<tbody>
 							<c:forEach items="${actividad.personas}" var="p">
 							<tr>	
@@ -72,13 +72,13 @@
 						</tbody>
 					</table>
 					
-					Aun faltan 4 por apuntarse!   <button class="btn">Invitar a un amigo</button> 
+					Aun faltan ${actividad.maxPersonas-actividad.npersonas} por apuntarse!   <button class="btn">Invitar a un amigo</button> 
 								
 								
 	<section class="cd-section">
 
 		<div class="cd-modal-action">
-			<a href="#0"  data-type="modal-trigger">Ver a todos los que se han apuntado  (9)</a>
+			<a href="#0"  data-type="modal-trigger">Ver a todos los que se han apuntado  (${actividad.npersonas})</a>
 			<span class="cd-modal-bg"></span>
 		</div> <!-- cd-modal-action -->
 

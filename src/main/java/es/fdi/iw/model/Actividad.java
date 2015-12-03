@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -39,22 +40,27 @@ public class Actividad{
 	private String estado;
 	private int maxPersonas;
 	private List<Usuario>  personas;//email de perfiles
-	private int nPersonas;
+	private int n_personas;
 	private Foro foro;
 	private List<Tag> tags;
 	private List<Novedad> novedades;
 	private Pago pago;
 	//Hay que añadir un campo de privada.
 	
-	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador) {
+	public static Actividad crearActividad(long imagen, String nombre_actv, int max_participantes, Usuario creador) {
 		Actividad a = new Actividad();
 		
-		
+		a.idImagen=imagen;
 		a.nombre=nombre_actv;
 		a.creador=creador;
 		a.maxPersonas=max_participantes;
+<<<<<<< HEAD
 		//a.fecha_ini=fecha_ini;
 		a.nPersonas=1;
+=======
+		//a.fecha_ini=
+		a.n_personas=1;
+>>>>>>> 655ad591cfaa2129f630f7b24dae92f4a479e463
 		a.estado="Abierta";
 		a.latitud=40.4478246;
 		a.longitud=-3.728587199999992;
@@ -107,14 +113,15 @@ public class Actividad{
 	 
 	 
 	 public int getNpersonas(){
-		 return nPersonas;
+		 return n_personas;
 	 }
 	 public void setNpersonas(int n){
-		 this.nPersonas=n;
+		 this.n_personas=n;
 	 }
 	 
 	 //-----
 	 @OneToMany(targetEntity=Hito.class)
+	 @JoinColumn(name="id_actividad")
 	 public List<Hito> getHitos() {
 		 return proximosHitos;
 	 }
@@ -160,7 +167,8 @@ public class Actividad{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	@OneToMany(targetEntity=Novedad.class)	
+	@OneToMany(targetEntity=Novedad.class)
+	@JoinColumn(name="id_actividad")
 	public List<Novedad> getNovedades() {
 		return novedades;
 	}
