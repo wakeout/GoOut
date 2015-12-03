@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,6 +34,7 @@ public class Foro {
 			this.id = id;
 	 }
 	 @OneToMany(targetEntity=Comentario.class)
+	 @JoinColumn(name="id_foro")
 	 public List<Comentario> getComentarios() {
 		return comentarios;
 	 }

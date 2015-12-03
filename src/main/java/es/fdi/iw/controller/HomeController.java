@@ -183,18 +183,19 @@ public class HomeController {
 	public String crearActividad(
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
+			@RequestParam("imagen") long imagen,
 			//@RequestParam("fecha_ini") Date fecha_ini,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 
 			Actividad a = null;
 			Usuario u = null;
-			Novedad n = null;
+			//Novedad n = null;
 			
 			try {
 				
 				u=(Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
+				a = Actividad.crearActividad(imagen, nombre_actv,max_participantes,u);
 				//n = Novedad.crearNovedad(a.getId(),u.getLogin()+" ha creado una actividad "+nombre_actv);
 				entityManager.persist(a);
 				
@@ -300,7 +301,7 @@ public class HomeController {
 		Usuario p=entityManager.find(Usuario.class, id);
 		if (p == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			logger.error("No such book: {}", id);
+			logger.error("No such perfil: {}", id);
 		} else {
 			model.addAttribute("perfil", p);
 		}

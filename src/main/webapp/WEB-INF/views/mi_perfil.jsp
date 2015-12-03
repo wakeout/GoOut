@@ -16,7 +16,7 @@
 			<div class="container">
 
 				<div class="s_perfil">
-					<a><img id="i_perfil" src="${prefix}resources/images/minion.jpg" alt="" /></a>
+					<a><img id="i_perfil" src="${prefix}resources/images/minion.jpg"/></a>
 					<br>
 					<center>
 						<button class="btn">Cambiar imagen de perfil</button>
@@ -78,7 +78,7 @@
 							<br>
 							<div class="campos_Perfil">
 								<label for="email_perfil">Email: </label> 
-								<label id="email_perfil">${usuario.mail}</label>
+								<label id="email_perfil">${usuario.email}</label>
 							</div>
 							<br>
 							<div class="campos_Perfil">

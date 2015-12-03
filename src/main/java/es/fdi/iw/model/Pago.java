@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -50,7 +51,7 @@ public class Pago {
 		this.descripcionFormaPago = descripcionFormaPago;
 	}
 	
-	@OneToMany(targetEntity=Usuario.class)	
+	@OneToMany(targetEntity=Usuario.class)
 	public List<Pago> getPagados() {
 		return pagados;
 	}
