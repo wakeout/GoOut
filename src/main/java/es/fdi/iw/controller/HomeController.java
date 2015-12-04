@@ -183,22 +183,28 @@ public class HomeController {
 	public String crearActividad(
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
-			@RequestParam("imagen") long imagen,
+			@RequestParam("imagen") String nombre_imagen,
 			//@RequestParam("fecha_ini") Date fecha_ini,
-			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 
 			Actividad a = null;
 			Usuario u = null;
 			//Novedad n = null;
+			String extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
+			String imagen="";
 			
 			try {
 				
 				u=(Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(imagen, nombre_actv,max_participantes,u);
-				//n = Novedad.crearNovedad(a.getId(),u.getLogin()+" ha creado una actividad "+nombre_actv);
+				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
+			
 				entityManager.persist(a);
 				
+				imagen=a.getId()+extension;
+				a.setIdImagen(imagen);
+				
+				entityManager.persist(a);
+		
 				
 			} catch (NoResultException nre) {
 	

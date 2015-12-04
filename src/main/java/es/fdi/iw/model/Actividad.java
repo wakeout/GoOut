@@ -36,7 +36,7 @@ public class Actividad{
 	private double latitud;
 	private double longitud;
 	private List<Hito>  proximosHitos;
-	private long idImagen;
+	private String idImagen;
 	private String estado;
 	private int maxPersonas;
 	private List<Usuario>  personas;//email de perfiles
@@ -47,10 +47,9 @@ public class Actividad{
 	private Pago pago;
 	//Hay que añadir un campo de privada.
 	
-	public static Actividad crearActividad(long imagen, String nombre_actv, int max_participantes, Usuario creador) {
+	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador) {
 		Actividad a = new Actividad();
 		
-		a.idImagen=imagen;
 		a.nombre=nombre_actv;
 		a.creador=creador;
 		a.maxPersonas=max_participantes;
@@ -92,10 +91,10 @@ public class Actividad{
 	 public void setLongitud(double longitud){
 		 this.longitud=longitud;
 	 }
-	 public long getIdImagen(){
+	 public String getIdImagen(){
 		 return idImagen;
 	 }
-	 public void setIdImagen(long idImagen){
+	 public void setIdImagen(String idImagen){
 		 this.idImagen=idImagen;
 	 }
 	 public int getMaxPersonas(){

@@ -32,7 +32,7 @@
 													<p id="text">¿QUÉ QUIERES HACER?</p>
 													<table id="nombre_actv">
 															<div id="upload">
-																<input type="file" name="imagen"/>
+																<input type="file" name="imagen" value=" "/>
 																
 															</div>
 															<span class="titulos">Nombre de la actividad</span>
