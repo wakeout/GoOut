@@ -151,7 +151,7 @@
 								</div>
 								<div class="campos_Perfil">
 									<label for="email_perfil">Email: </label> 
-									<input id="email_perfil" name="email_perfil" type="email" value="${usuario.mail}"/>
+									<input id="email_perfil" name="email_perfil" type="email" value="${usuario.email}"/>
 								</div>
 								<div class="actualizar">
 									<button id="actualizar_perfil" name="submit" type="submit">Actualizar Informacion</button>
