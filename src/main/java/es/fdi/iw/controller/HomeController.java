@@ -209,7 +209,7 @@ public class HomeController {
 						extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
 						
 			        	
-						imagen = a.getId()+"";
+						imagen = a.getId()+extension;
 						
 						byte[] bytes = imagen_actv.getBytes();
 		                BufferedOutputStream stream =
@@ -225,8 +225,7 @@ public class HomeController {
 				else{
 					
 				}
-				
-				imagen=a.getId()+extension;
+
 				a.setIdImagen(imagen);
 				
 				entityManager.persist(a);
@@ -250,8 +249,8 @@ public class HomeController {
 			Model model, HttpSession session){
 			
 			Mensaje m = null;
-			Usuario u = null;//El usuario que manda el mensaje
-			Usuario d = null;//Destinatario
+			Usuario u = null; // El usuario que manda el mensaje
+			Usuario d = null; // Destinatario
 			
 			try{
 				u=(Usuario)session.getAttribute("usuario");
