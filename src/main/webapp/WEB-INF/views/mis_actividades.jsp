@@ -48,7 +48,7 @@
 													</div>
 
 													<img class="i_actv"
-														src="${prefix}resources/images/${a.idImagen}.jpg" />
+														src="${prefix}resources/images/${a.idImagen}" />
 												</div>
 											</a>
 										</c:forEach>

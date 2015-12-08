@@ -17,7 +17,7 @@
 		<div class="container">
 		
 			<div class="s_actv">
-				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}.jpg" alt="" /></a> 
+				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}" alt="" /></a> 
 				<br>
 				<center><input type="button" class="add"> <span>Unirse a la actividad</span></center> <br>
 				<center><button class="btn">Mensaje a administradores de actividad</button></center>

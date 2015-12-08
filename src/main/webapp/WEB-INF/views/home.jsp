@@ -33,7 +33,7 @@
 													</div>
 
 													<img class="i_actv"
-														src="${prefix}resources/images/${a.idImagen}.jpg" alt="" />
+														src="${prefix}resources/images/${a.idImagen}" alt="" />
 												</div>
 											</a>
 										</c:forEach>
@@ -52,7 +52,7 @@
 													</div>
 
 													<img class="i_actv"
-														src="${prefix}resources/images/${a.idImagen}.jpg" alt="" />
+														src="${prefix}resources/images/${a.idImagen}" alt="" />
 												</div>
 											</a>
 										</c:forEach>

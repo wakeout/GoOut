@@ -1,7 +1,10 @@
 package es.fdi.iw.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
+
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -21,11 +24,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import es.fdi.iw.ContextInitializer;
 import es.fdi.iw.model.Actividad;
 import es.fdi.iw.model.Mensaje;
-
-import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Usuario;
 
 /**
@@ -183,15 +186,14 @@ public class HomeController {
 	public String crearActividad(
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
-			@RequestParam("imagen") String nombre_imagen,
+			@RequestParam("imagen") MultipartFile imagen_actv,
 			//@RequestParam("fecha_ini") Date fecha_ini,
-			Model model, HttpSession session) {
+			Model model, HttpSession session) throws IOException {
 
 			Actividad a = null;
 			Usuario u = null;
-			//Novedad n = null;
-			String extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
 			String imagen="";
+			String extension="";
 			
 			try {
 				
@@ -199,6 +201,30 @@ public class HomeController {
 				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
 			
 				entityManager.persist(a);
+
+				if (!imagen_actv.isEmpty()) {
+			        try {
+			        	
+			        	String nombre_imagen = imagen_actv.getOriginalFilename();
+						extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
+						
+			        	
+						imagen = a.getId()+"";
+						
+						byte[] bytes = imagen_actv.getBytes();
+		                BufferedOutputStream stream =
+		                        new BufferedOutputStream(
+		                        		new FileOutputStream(ContextInitializer.getFile("img_actv", imagen)));
+		                stream.write(bytes);
+		                stream.close();
+			        }
+			        catch(Exception e){
+			        	
+			        }
+				}
+				else{
+					
+				}
 				
 				imagen=a.getId()+extension;
 				a.setIdImagen(imagen);

@@ -58,8 +58,7 @@ public class Actividad{
 		a.estado="Abierta";
 		a.latitud=40.4478246;
 		a.longitud=-3.728587199999992;
-		
-		
+
 		return a;
 	}
 	

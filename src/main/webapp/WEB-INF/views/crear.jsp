@@ -27,12 +27,12 @@
 								<div id="crear" align="center">
 								<p id="text">CREACION DE ACTIVIDADES</p>
 									<div id="creacion">
-										<form action="crearActividad" method="POST">
+										<form action="crearActividad" enctype="multipart/form-data" method="POST">
 												<div id="crear_1">
 													<p id="text">¿QUÉ QUIERES HACER?</p>
 													<table id="nombre_actv">
 															<div id="upload">
-																<input type="file" name="imagen" value=" "/>
+																<input type="file" name="imagen"/>
 																
 															</div>
 															<span class="titulos">Nombre de la actividad</span>
