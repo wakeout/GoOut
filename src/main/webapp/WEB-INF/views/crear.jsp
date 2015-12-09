@@ -37,7 +37,7 @@
 															</div>
 															<span class="titulos">Nombre de la actividad</span>
 															<tr>
-																<td><input type="text" name="nombre_actv" class="caja" /></td>
+																<td><input type="text" name="nombre_actv" class="caja" placeholder="Nombre de la actividad" /></td>
 															</tr>		
 		
 															<table id="tipo_actividad">
@@ -109,6 +109,10 @@
 															id="num_participantes" class="caja"></td>
 													</tr>
 													<br>
+												<div id="boton_crear">
+													<input type="submit" name="submit" id="b_crear" value="CREAR ACTIVIDAD" />
+												</div>
+												
 												</div>
 												<div id="crear_3">
 													<p id="text">¿DÓNDE ES?</p>
@@ -125,9 +129,7 @@
 														<input type="text" name="ruta" disabled
 															style="width: 110px; height: 30px" class="caja">
 												</div>
-												<div id="boton_crear">
-													<input type="submit" name="submit" id="b_crear" value="CREAR ACTIVIDAD" />
-												</div>
+
 										</form>		
 									</div>
 								</div>

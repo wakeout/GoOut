@@ -69,44 +69,11 @@
 							<span id="campos_Perfil">ACTIVIDADES EN LAS QUE ESTÁ
 								APUNTADO</span>
 						
-
-						<!-- COPIADO DE MIS ACTIVIDADES, HAY QUE LINKARLO -->
-
-						<div id="fotos">
-							<a class="" href="actividad">
-								<div class="img_thumb">
-									<div class="img_desc">
-										<p id="actividad">Senderismo</p>
-										<p id="actividad">10/11/2015 8:00</p>
-										<p id="actividad">Sierra de Guadarrama</p>
-									</div>
-
-									<img class="i_actv" src="${prefix}resources/images/9.jpg" alt="" />
-								</div>
-							</a> <a class="" href="actividad">
-								<div class="img_thumb">
-
-									<div class="img_desc">
-										<p id="actividad">Fiesta</p>
-										<p id="actividad">7/11/2015 23:00</p>
-										<p id="actividad">Kapital</p>
-									</div>
-
-									<img class="i_actv" src="${prefix}resources/images/6.jpg" alt="" />
-
-								</div>
-							</a>
-						</div>
 						</div>
 						
 					</div>
 				</div>
 			</div>
-
-
-
-
-
 
 			<!-- Footer -->
 			<%@ include file="../fragments/footer.jspf" %>
