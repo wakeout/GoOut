@@ -16,6 +16,13 @@ import javax.validation.constraints.NotNull;
 public class Tag {
 	private long id;
 	private String nombre;
+
+	public static Tag crearTag(String nombre_tag) {
+		
+		Tag t = new Tag();
+		t.nombre=nombre_tag;
+		return t;
+	}
 	
 
 	@Id

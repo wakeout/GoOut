@@ -1,7 +1,7 @@
 
 $("#comentar").click(function() {
 	var com = document.getElementById("escribir").value;
-	var perfil = "<a href='perfil.html'><img class='i_people' src='resources/images/minion.jpg'/></a>"
+	var perfil = "<a href='perfil.html'><img class='i_people' src='../resources/images/minion.jpg'/></a>"
 	document.getElementById("comentario").innerHTML = perfil + com;
 });
 

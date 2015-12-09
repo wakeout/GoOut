@@ -45,34 +45,34 @@
 																	<span class="titulos">Tipo de actividad</span>
 																</tr>
 																<tr>
-																	<td><input name="cbipeliculas" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="cine" />Cine</td>
-																	<td><input name="cbilibros" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="gastronomia" />Gastronomia</td>
-																	<td><input name="cbiinternet" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="viajes" />Viajes</td>
 																</tr>
 		
 																<tr>
-																	<td><input name="cbipeliculas" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="baile" />Baile</td>
-																	<td><input name="cbilibros" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="fiesta" />Fiesta</td>
-																	<td><input name="cbiinternet" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="karaoke" />Karaoke</td>
 																</tr>
 		
 																<tr>
-																	<td><input name="cbipeliculas" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="deportes" />Deportes</td>
-																	<td><input name="cbilibros" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="aventura" />Aventura</td>
-																	<td><input name="cbiinternet" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="social" />Social</td>
 																</tr>
 		
 																<tr>
-																	<td><input name="cbotro" type="checkbox"
+																	<td><input name="tag" type="checkbox"
 																		value="cambio" onchange="habilitar()" />Otros</td>
 																	<td><input type="text" name="other" value=""
 																		disabled style="width: 110px; height: 30px" class="caja"></td>

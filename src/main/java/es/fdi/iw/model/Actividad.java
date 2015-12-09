@@ -33,8 +33,8 @@ public class Actividad{
 	private Usuario creador; //Seria mejor id de creador, y nunca puede ser nulo.
 	private Date fecha_ini;
 	private Date fecha_fin;
-	private double latitud;
-	private double longitud;
+	private double latitud; //Deberiamos quitarlas
+	private double longitud; //Deberiamos quitarlas
 	private List<Hito>  proximosHitos;
 	private String idImagen;
 	private String estado;
@@ -47,13 +47,14 @@ public class Actividad{
 	private Pago pago;
 	//Hay que añadir un campo de privada.
 	
-	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador) {
+	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador/*, Tag tag*/) {
+		
 		Actividad a = new Actividad();
 		
 		a.nombre=nombre_actv;
 		a.creador=creador;
 		a.maxPersonas=max_participantes;
-		//a.fecha_ini=fecha_ini;
+		//a.tags.add(tag);
 		a.n_personas=1;
 		a.estado="Abierta";
 		a.latitud=40.4478246;

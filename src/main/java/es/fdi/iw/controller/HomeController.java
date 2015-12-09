@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import es.fdi.iw.ContextInitializer;
 import es.fdi.iw.model.Actividad;
 import es.fdi.iw.model.Mensaje;
+import es.fdi.iw.model.Tag;
 import es.fdi.iw.model.Usuario;
 
 /**
@@ -169,7 +170,10 @@ public class HomeController {
 				u.setProvincia(provincia);
 				u.setEmail(email);
 				
-				entityManager.merge(u);
+				entityManager.persist(u);
+				
+				session.setAttribute("usuario", u);
+				getTokenForSession(session);
 				
 				
 			} catch (NoResultException nre) {
@@ -187,18 +191,21 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
+			//@RequestParam("tag") String tag,
 			//@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
 			Actividad a = null;
 			Usuario u = null;
+			Tag t = null;
 			String imagen="";
 			String extension="";
 			
 			try {
 				
-				u=(Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
+				//t = Tag.crearTag(tag);
+				u = (Usuario)session.getAttribute("usuario");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,u/*,t*/);
 			
 				entityManager.persist(a);
 
@@ -214,7 +221,7 @@ public class HomeController {
 						byte[] bytes = imagen_actv.getBytes();
 		                BufferedOutputStream stream =
 		                        new BufferedOutputStream(
-		                        		new FileOutputStream(ContextInitializer.getFile("img_actv", imagen)));
+		                        		new FileOutputStream(ContextInitializer.getFile("images", imagen)));
 		                stream.write(bytes);
 		                stream.close();
 			        }
