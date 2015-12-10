@@ -8,13 +8,8 @@
 </head>
 <body class="homepage">
 	<div id="page-wrapper">
-
-	<!-- Header -->
 	
 	<%@ include file="../fragments/header_main.jspf" %>
-	
-
-
 		<!-- Main -->
 		<div id="main-wrapper">
 			<div class="container">
@@ -44,32 +39,14 @@
 																<tr>
 																	<span class="titulos">Tipo de actividad</span>
 																</tr>
+																<c:forEach items="${tags}" var="t">
 																<tr>
-																	<td><input name="tag" type="checkbox"
-																		value="cine" />Cine</td>
-																	<td><input name="tag" type="checkbox"
-																		value="gastronomia" />Gastronomia</td>
-																	<td><input name="tag" type="checkbox"
-																		value="viajes" />Viajes</td>
+															
+																		<td><input name="tag" type="checkbox"
+																		value="${t.id}" />${t.nombre}</td>
+																
 																</tr>
-		
-																<tr>
-																	<td><input name="tag" type="checkbox"
-																		value="baile" />Baile</td>
-																	<td><input name="tag" type="checkbox"
-																		value="fiesta" />Fiesta</td>
-																	<td><input name="tag" type="checkbox"
-																		value="karaoke" />Karaoke</td>
-																</tr>
-		
-																<tr>
-																	<td><input name="tag" type="checkbox"
-																		value="deportes" />Deportes</td>
-																	<td><input name="tag" type="checkbox"
-																		value="aventura" />Aventura</td>
-																	<td><input name="tag" type="checkbox"
-																		value="social" />Social</td>
-																</tr>
+																</c:forEach>
 		
 																<tr>
 																	<td><input name="tag" type="checkbox"
@@ -129,7 +106,6 @@
 														<input type="text" name="ruta" disabled
 															style="width: 110px; height: 30px" class="caja">
 												</div>
-
 										</form>		
 									</div>
 								</div>
@@ -139,15 +115,9 @@
 				</div>
 			</div>
 		</div>
-
-
 		<!-- Footer -->
 		<%@ include file="../fragments/footer.jspf"%>
-
 	</div>
 	<%@ include file="../fragments/scripts.jspf"%>
-
-
-
 </body>
 </html>

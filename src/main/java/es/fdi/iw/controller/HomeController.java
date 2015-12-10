@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -191,10 +192,13 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
-			//@RequestParam("tag") String tag,
+			@RequestParam("tag") String tag,
 			//@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
+		
+
+		
 			Actividad a = null;
 			Usuario u = null;
 			Tag t = null;
@@ -203,9 +207,9 @@ public class HomeController {
 			
 			try {
 				
-				//t = Tag.crearTag(tag);
+				t = Tag.crearTag(tag);
 				u = (Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,u/*,t*/);
+				a = Actividad.crearActividad(nombre_actv,max_participantes,u,t);
 			
 				entityManager.persist(a);
 
@@ -292,6 +296,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public String crear(Model model){
+		model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
+
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		return "crear";
 	}
