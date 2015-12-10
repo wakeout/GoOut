@@ -1,18 +1,18 @@
 function habilitar() {
-	if(otros.cbotro.checked){
-		otros.other.disabled = false;
+	if(otro_tag.checked){
+		otro.disabled = false;
 	}
 	else{
-		otros.other.disabled = true;
+		otro.disabled = true;
 	}
 }
 
 function habilitarRuta() {
-	if(destino.cbOrigen.checked){
-		destino.ruta.disabled = false;
+	if(ruta.checked){
+		destino.disabled = false;
 	}
 	else{
-		destino.ruta.disabled = true;
+		destino.disabled = true;
 	}
 }
 

@@ -18,9 +18,7 @@
 				<div class="s_perfil">
 					<a><img id="i_perfil" src="${prefix}resources/images/minion.jpg"/></a>
 					<br>
-					<center>
-						<button class="btn">Cambiar imagen de perfil</button>
-					</center>
+					<center><button type="button">Cambiar imagen de perfil</button></center>
 				</div>
 
 				<div class="info_perfil">
@@ -28,21 +26,18 @@
 					<div id="datos_perfil">
 					
 					<div id="amigos">
+						<p>Amigos</p>
 							<table>
-								<thead>
-									Amigos
-								</thead>
-								<tbody>
 									<c:forEach var="i" begin="1" end="3">
 									<tr>
 										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+												src="${prefix}resources/images/minion.jpg" alt="" /></a></td>
 										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
+												src="${prefix}resources/images/minion.jpg" alt="" /></a></td>
 										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a>
-								</c:forEach>
-								</tbody>
+												src="${prefix}resources/images/minion.jpg" alt="" /></a></td>
+									</tr>			
+									</c:forEach>
 							</table>
 							<a href="">Ver todos mis amigos</a>
 						</div>

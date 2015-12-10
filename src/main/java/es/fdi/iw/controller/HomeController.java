@@ -283,7 +283,7 @@ public class HomeController {
 	@RequestMapping(value = "/addUsuario", method = RequestMethod.POST)
 	@Transactional
 	public String addUsuario(){
-			
+				
 		
 			return "redirect:";
 	}

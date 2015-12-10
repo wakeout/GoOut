@@ -49,9 +49,9 @@
 																</c:forEach>
 		
 																<tr>
-																	<td><input name="tag" type="checkbox"
+																	<td><input name="otro_tag" id="otro_tag" type="checkbox"
 																		value="cambio" onchange="habilitar()" />Otros</td>
-																	<td><input type="text" name="other" value=""
+																	<td><input type="text" name="otro" id="otro" value=""
 																		disabled style="width: 110px; height: 30px" class="caja"></td>
 																</tr>
 															</table>
@@ -101,9 +101,9 @@
 													</div>
 													<label>Lugar de Origen</label> <input type="text" size="10"
 														class="caja" /> <br>
-														<input name="cbOrigen" type="checkbox" value="cambio"
+														<input name="ruta" id="ruta" type="checkbox" value="cambio"
 															onchange="habilitarRuta()" />¿Habilitar ruta? <br> <label>Destino</label>
-														<input type="text" name="ruta" disabled
+														<input type="text" name="destino" id="destino" disabled
 															style="width: 110px; height: 30px" class="caja">
 												</div>
 										</form>		
