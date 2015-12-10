@@ -16,7 +16,7 @@
 			<div class="container">
 
 				<div class="s_perfil">
-					<a><img id="i_perfil" src="${prefix}resources/images/minion.jpg"/></a>
+					<a><img id="i_perfil" src="${prefix}resources/images/${usuario.idFoto}"/></a>
 					<br>
 					<center><button type="button">Cambiar imagen de perfil</button></center>
 				</div>
@@ -28,15 +28,14 @@
 					<div id="amigos">
 						<p>Amigos</p>
 							<table>
-									<c:forEach var="i" begin="1" end="3">
-									<tr>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a></td>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a></td>
-										<td><a href="perfil"><img class="i_people"
-												src="${prefix}resources/images/minion.jpg" alt="" /></a></td>
-									</tr>			
+									<c:forEach items="${usuario.amigos}" var="u_amigos">
+										<tr>
+											<td>
+											<a href="${prefix}perfil/${u_amigos.id}">
+											<img class="i_people" src="${prefix}resources/images/${u_amigos.idFoto}" alt="" />
+											</a>
+											</td> 
+								
 									</c:forEach>
 							</table>
 							<a href="">Ver todos mis amigos</a>

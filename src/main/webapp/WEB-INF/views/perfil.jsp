@@ -18,7 +18,7 @@
 
 				<div class="s_perfil">
 					<a class=""><img id="i_perfil"
-						src="${prefix}resources/images/${perfil.idFoto}.jpg" alt="" /></a> <br>
+						src="${prefix}resources/images/${perfil.idFoto}" alt="" /></a> <br>
 					<center>
 						<button class="btn">Enviar Mensaje a ${perfil.login}</button>
 						<br>

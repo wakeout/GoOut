@@ -313,17 +313,26 @@ public class HomeController {
 		@RequestParam("id_amigo") long amigo,
 		@RequestParam("id_propio") long propio){
 		
-		System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
 		Usuario usuario_amigo = null;
 		Usuario usuario_propio = null;
+		int i = 0;
 		
 		try
 		{
 			usuario_amigo = entityManager.find(Usuario.class,amigo);
 			usuario_propio = entityManager.find(Usuario.class,propio);
-			System.out.println(usuario_amigo.getLogin() + "!!!!!!!!!!!!!!!!!!!!!" + usuario_propio.getLogin());
-			usuario_propio.getAmigos().add(usuario_amigo);
-			//entityManager.persist(usuario_propio);
+			List<Usuario> aux = usuario_propio.getAmigos();
+			
+			while(aux.size()> i && aux.get(i).getId() != usuario_amigo.getId()){
+				
+				i++;
+			}
+			
+			if(aux.get(i).getId() != usuario_amigo.getId())
+			{
+				usuario_propio.getAmigos().add(usuario_amigo);
+				entityManager.persist(usuario_propio);
+			}
 			
 		}
 		catch(Exception e)
