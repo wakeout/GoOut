@@ -3,21 +3,17 @@ package es.fdi.iw.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-//import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
-
 import java.sql.Date;
 
 
@@ -33,33 +29,35 @@ public class Actividad{
 	private Usuario creador; //Seria mejor id de creador, y nunca puede ser nulo.
 	private Date fecha_ini;
 	private Date fecha_fin;
-	private double latitud; //Deberiamos quitarlas
-	private double longitud; //Deberiamos quitarlas
-	private List<Hito>  proximosHitos;
+	private String localizacion;
+	private List<Hito> proximosHitos;
 	private String idImagen;
 	private String estado;
 	private int maxPersonas;
-	private List<Usuario>  personas;//email de perfiles
+	private List<Usuario> personas; //email de perfiles
 	private int n_personas;
 	private Foro foro;
 	private List<Tag> tags;
 	private List<Novedad> novedades;
 	private Pago pago;
-	//Hay que añadir un campo de privada.
+	private String privacidad;
 	
-	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador, Tag tag) {
+	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
+			Usuario creador, Tag tag, Date fecha_ini, Date fecha_fin, String localizacion, 
+			String privacidad) {
 		
 		Actividad a = new Actividad();
 		
 		a.nombre=nombre_actv;
 		a.creador=creador;
-		a.maxPersonas=max_participantes;
-		System.out.println(tag.getNombre());
-		a.tags.add(tag);
-		a.n_personas=1;
+		a.fecha_ini=fecha_ini;
+		a.fecha_fin=fecha_fin;
+		a.localizacion=localizacion;
 		a.estado="Abierta";
-		a.latitud=40.4478246;
-		a.longitud=-3.728587199999992;
+		a.maxPersonas=max_participantes;
+		a.n_personas=1;
+		a.privacidad=privacidad;
+		
 
 		return a;
 	}
@@ -80,18 +78,6 @@ public class Actividad{
 		this.nombre = nombre;
 	 }
 	
-	 public double getLatitud(){
-		 return latitud;
-	 }
-	 public void setLatitud(double latitud){
-		 this.latitud=latitud;
-	 }
-	 public double getLongitud(){
-		 return longitud;
-	 }
-	 public void setLongitud(double longitud){
-		 this.longitud=longitud;
-	 }
 	 public String getIdImagen(){
 		 return idImagen;
 	 }
@@ -104,17 +90,14 @@ public class Actividad{
 	 public void setMaxPersonas(int max){
 		 this.maxPersonas=max;
 	 }
-	 
-	 
-	 
+
 	 public int getNpersonas(){
 		 return n_personas;
 	 }
 	 public void setNpersonas(int n){
 		 this.n_personas=n;
 	 }
-	 
-	 //-----
+
 	 @OneToMany(targetEntity=Hito.class)
 	 @JoinColumn(name="id_actividad")
 	 public List<Hito> getHitos() {
@@ -183,6 +166,22 @@ public class Actividad{
 	}
 	public void setPago(Pago pago) {
 		this.pago = pago;
+	}
+
+	public String getPrivacidad() {
+		return privacidad;
+	}
+
+	public void setPrivacidad(String privacidad) {
+		this.privacidad = privacidad;
+	}
+
+	public String getLocalizacion() {
+		return localizacion;
+	}
+
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
 	}
 
 }
