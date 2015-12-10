@@ -39,15 +39,16 @@
 																<tr>
 																	<span class="titulos">Tipo de actividad</span>
 																</tr>
+															
 																<c:forEach items="${tags}" var="t">
 																<tr>
 															
-																		<td><input name="tag" type="checkbox"
+																		<td><input name="tags" type="checkbox"
 																		value="${t.id}" />${t.nombre}</td>
 																
 																</tr>
 																</c:forEach>
-		
+																
 																<tr>
 																	<td><input name="tag" type="checkbox"
 																		value="cambio" onchange="habilitar()" />Otros</td>

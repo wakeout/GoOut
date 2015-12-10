@@ -192,7 +192,7 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
-			@RequestParam("tag") String tag,
+			@RequestParam("tags") long[] tagIds,
 			//@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
@@ -201,16 +201,21 @@ public class HomeController {
 		
 			Actividad a = null;
 			Usuario u = null;
-			Tag t = null;
 			String imagen="";
 			String extension="";
 			
 			try {
 				
-				t = Tag.crearTag(tag);
 				u = (Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,u,t);
+				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
 			
+				for (long aid : tagIds) {
+					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
+					Tag t = entityManager.find(Tag.class, aid);
+					t.getEtiquetados().add(a);
+					entityManager.persist(t);
+				}
+				
 				entityManager.persist(a);
 
 				if (!imagen_actv.isEmpty()) {

@@ -47,15 +47,13 @@ public class Actividad{
 	private Pago pago;
 	//Hay que añadir un campo de privada.
 	
-	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador, Tag tag) {
+	public static Actividad crearActividad(String nombre_actv, int max_participantes, Usuario creador) {
 		
 		Actividad a = new Actividad();
 		
 		a.nombre=nombre_actv;
 		a.creador=creador;
 		a.maxPersonas=max_participantes;
-		System.out.println(tag.getNombre());
-		a.tags.add(tag);
 		a.n_personas=1;
 		a.estado="Abierta";
 		a.latitud=40.4478246;
@@ -170,7 +168,7 @@ public class Actividad{
 	public void setNovedades(List<Novedad> novedades) {
 		this.novedades = novedades;
 	}
-	@ManyToMany(targetEntity=Tag.class)
+	@ManyToMany(targetEntity=Tag.class, mappedBy="etiquetados")
 	public List<Tag> getTags() {
 		return tags;
 	}
