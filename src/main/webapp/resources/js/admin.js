@@ -108,3 +108,17 @@ $("#b_foros").click(function() {
     $( ".admin_novedades" ).hide();
     
 });
+
+$("#b_redactar").click(function(){
+	$( ".mensaje_entrada" ).hide();
+	$( ".mensaje_redactar" ).show();
+});
+
+$("#b_entrada").click(function(){
+	$( ".mensaje_redactar" ).hide();
+	$( ".mensaje_entrada" ).show();
+});
+
+
+
+
