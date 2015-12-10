@@ -41,7 +41,7 @@
 										<div id="actv_amigos">
 											<c:forEach  items="${actividades}" var="a" begin="0" end="6">
 												<a href="actividad/${a.id}"><img class="img_amigos"
-													src="${prefix}resources/images/${a.idImagen}.jpg"></a>
+													src="${prefix}resources/images/${a.idImagen}"></a>
 											</c:forEach>
 
 										</div>
@@ -88,7 +88,7 @@
 													</div>
 
 													<img class="i_actv"
-														src="${prefix}resources/images/${a.idImagen}.jpg" alt="" />
+														src="${prefix}resources/images/${a.idImagen}" alt="" />
 												</div>
 											</a>
 										</c:forEach>
@@ -104,7 +104,7 @@
 														<tr><td><a href="actividad/${a.id}"> ${a.nombre} </a></td>
 														<td>1</td><td>${a.maxPersonas}</td>
 														<td>${a.fecha_ini}</td>
-														<td>C/Ni Idea Nº 9</td><td style="color:green">${a.estado}</td>
+														<td>${a.localizacion}</td><td style="color:green">${a.estado}</td>
 														</tr>
 													</c:forEach>
 													 

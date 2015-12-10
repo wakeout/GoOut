@@ -5,6 +5,8 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -140,7 +142,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
-		logger.info("User '{}' logged out", session.getAttribute("usuario"));
+		logger.info("Usuario '{}' logged out", session.getAttribute("usuario"));
 		session.invalidate();
 		return "redirect:login";
 	}
@@ -191,21 +193,22 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
-			//@RequestParam("tag") String tag,
-			//@RequestParam("fecha_ini") Date fecha_ini,
+			@RequestParam("tag") String tag,
+			@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
 			Actividad a = null;
-			Usuario u = null;
-			Tag t = null;
+			Usuario usuario_creador = null;
+			Tag tag_actv = null;
 			String imagen="";
 			String extension="";
 			
 			try {
 				
-				//t = Tag.crearTag(tag);
-				u = (Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,u/*,t*/);
+				tag_actv = Tag.crearTag(tag);
+				usuario_creador = (Usuario)session.getAttribute("usuario");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador,
+						tag_actv,fecha_ini, fecha_ini, "", "");
 			
 				entityManager.persist(a);
 
@@ -226,6 +229,8 @@ public class HomeController {
 		                stream.close();
 			        }
 			        catch(Exception e){
+			        	
+			        	//Error
 			        	
 			        }
 				}
@@ -278,7 +283,15 @@ public class HomeController {
 			return "redirect:mensajes";
 		}
 
+	
 
+	@RequestMapping(value = "/addUsuario", method = RequestMethod.POST)
+	@Transactional
+	public String addUsuario(){
+				
+		
+			return "redirect:";
+	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -297,6 +310,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public String crear(Model model){
+		model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
+
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		return "crear";
 	}

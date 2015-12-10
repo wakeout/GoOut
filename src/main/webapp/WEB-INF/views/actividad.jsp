@@ -19,10 +19,10 @@
 			<div class="s_actv">
 				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}" alt="" /></a> 
 				<br>
-				<center><input type="button" class="add"> <span>Unirse a la actividad</span></center> <br>
-				<center><button class="btn">Mensaje a administradores de actividad</button></center>
-				<center><button class="btn">Propon algo!</button></center>
-				<center><button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar actividad</button></center>
+				<center><button type="button">Unirse a la actividad</button></center>
+				<center><button type="button">Mensaje a creador</button></center>
+				<center><button type="button">Propon algo nuevo!</button></center>
+				<center><button name="submit" type="submit" id="boton_reportar">Denunciar actividad</button></center>
 
 			</div>
 
