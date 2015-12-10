@@ -25,12 +25,15 @@
 								<div id="mensajes">
 
 									<div id="cont_inicio">
-										<p>
+									<p>
 											<a class="cambiar2" href="mensajes">Redactar Mensaje</a>
-											<a class="cambiar" href="mensajes?metodo=entrada">Bandeja
-												de Entrada</a> <a class="cambiar"
-												href="mensajes?metodo=salida">Bandeja de Salida</a>
-										</p>
+											<a type="button" name="entrada" class="cambiar" href="">Bandeja
+												de Entrada</a>
+											 <a class="cambiar"
+												href="mensajes">Bandeja de Salida</a>
+									</p>
+									
+										
 										
 										<form action="crearMensaje" method="post">
 											<table class="mensajes" align="center">

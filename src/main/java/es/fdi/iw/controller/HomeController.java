@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -141,7 +142,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
-		logger.info("User '{}' logged out", session.getAttribute("usuario"));
+		logger.info("Usuario '{}' logged out", session.getAttribute("usuario"));
 		session.invalidate();
 		return "redirect:login";
 	}
@@ -193,21 +194,22 @@ public class HomeController {
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
 			@RequestParam("tags") long[] tagIds,
-			//@RequestParam("fecha_ini") Date fecha_ini,
+			@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
 		
 
 		
 			Actividad a = null;
-			Usuario u = null;
+			Usuario usuario_creador = null;
 			String imagen="";
 			String extension="";
 			
 			try {
 				
-				u = (Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,u);
+			
+				usuario_creador = (Usuario)session.getAttribute("usuario");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", "");
 			
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
@@ -235,6 +237,8 @@ public class HomeController {
 		                stream.close();
 			        }
 			        catch(Exception e){
+			        	
+			        	//Error
 			        	
 			        }
 				}
@@ -274,7 +278,7 @@ public class HomeController {
 	@Transactional
 	public String crearMensaje(
 			@RequestParam("asunto") String titulo,
-			//@RequestParam("destinatario") int destino,
+			@RequestParam("destinatario") String destino,
 			@RequestParam("mensaje") String contenido,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session){
@@ -286,8 +290,13 @@ public class HomeController {
 			try{
 				u=(Usuario)session.getAttribute("usuario");
 				
+				d = (Usuario)entityManager.createNamedQuery("userByLogin")
+						.setParameter("loginParam", destino).getSingleResult();
 				
-				m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u);
+				//d = entityManager.find(Usuario.class, destino);
+				
+				
+				m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d);
 				entityManager.persist(m);
 			}
 			catch(NoResultException nre){
@@ -298,6 +307,13 @@ public class HomeController {
 		}
 
 
+	@RequestMapping(value = "/addUsuario", method = RequestMethod.POST)
+	@Transactional
+	public String addUsuario(){
+				
+		
+			return "redirect:";
+	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -381,7 +397,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/mensajes", method = RequestMethod.GET)
-	public String mensajes(){
+	public String mensajes(Model model, HttpSession session){
+		Usuario u = null;
+		u=(Usuario)session.getAttribute("usuario");
+		//model.addAttribute("mensajes_entrada", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getSingleResult());
+		
 		return "mensajes";
 	}
 	
