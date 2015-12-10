@@ -250,7 +250,7 @@ public class HomeController {
 	@Transactional
 	public String crearMensaje(
 			@RequestParam("asunto") String titulo,
-			//@RequestParam("destinatario") int destino,
+			@RequestParam("destinatario") String destino,
 			@RequestParam("mensaje") String contenido,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session){
@@ -262,8 +262,13 @@ public class HomeController {
 			try{
 				u=(Usuario)session.getAttribute("usuario");
 				
+				d = (Usuario)entityManager.createNamedQuery("userByLogin")
+						.setParameter("loginParam", destino).getSingleResult();
 				
-				m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u);
+				//d = entityManager.find(Usuario.class, destino);
+				
+				
+				m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d);
 				entityManager.persist(m);
 			}
 			catch(NoResultException nre){
@@ -309,7 +314,7 @@ public class HomeController {
 		return "buscar";
 	}
 	
-	@RequestMapping(value = "/actividad/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "                             ", method = RequestMethod.GET)
 	public String actividad(@PathVariable("id") long id,HttpServletResponse response,Model model){
 		Actividad a = entityManager.find(Actividad.class, id);
 		if (a == null) {
@@ -355,7 +360,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/mensajes", method = RequestMethod.GET)
-	public String mensajes(){
+	public String mensajes(Model model, HttpSession session){
+		Usuario u = null;
+		u=(Usuario)session.getAttribute("usuario");
+		//model.addAttribute("mensajes_entrada", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getSingleResult());
+		
 		return "mensajes";
 	}
 	

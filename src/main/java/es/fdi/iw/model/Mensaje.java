@@ -15,24 +15,28 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allMensajes",
-            query="select m from Mensaje m")
+            query="select m from Mensaje m"),
+    @NamedQuery(name="mensajesEntrada",
+			query="select m from Mensaje m where m.destinos = :destinoParam")
 })
 public class Mensaje {
 	private long id;
 	private Usuario origen;
-	private List<Usuario> destinos;
+	private Usuario destinos;
 	private int nDestinos;
 	private String titulo;
 	private String contenido;
 	private String tipo;
 	
-	public static Mensaje crearMensaje(String titulo, String contenido, String tipo, Usuario u){
+	public static Mensaje crearMensaje(String titulo, String contenido, String tipo, 
+			Usuario u, Usuario destino){
 		Mensaje m = new Mensaje();
 		
 		m.titulo = titulo;
 		m.contenido = contenido;
 		m.tipo = tipo;
 		m.origen= u;
+		m.destinos = destino;
 		
 		return m;
 	}
@@ -66,11 +70,11 @@ public class Mensaje {
 		this.origen = origen;
 	}
 	
-	@ManyToMany(targetEntity=Usuario.class)
-	public List<Usuario> getDestinos() {
+	@OneToOne(targetEntity=Usuario.class)
+	public Usuario getDestinos() {
 		return destinos;
 	}
-	public void setDestinos(List<Usuario> destinos) {
+	public void setDestinos(Usuario destinos) {
 		this.destinos = destinos;
 	}
 	public String getContenido() {
