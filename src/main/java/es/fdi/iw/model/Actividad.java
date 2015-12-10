@@ -3,17 +3,21 @@ package es.fdi.iw.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+//import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
+
 import java.sql.Date;
 
 
@@ -34,7 +38,7 @@ public class Actividad{
 	private String idImagen;
 	private String estado;
 	private int maxPersonas;
-	private List<Usuario> personas; //email de perfiles
+	private List<Usuario>  personas;//email de perfiles
 	private int n_personas;
 	private Foro foro;
 	private List<Tag> tags;
@@ -43,7 +47,7 @@ public class Actividad{
 	private String privacidad;
 	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
-			Usuario creador, Tag tag, Date fecha_ini, Date fecha_fin, String localizacion, 
+			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
 			String privacidad) {
 		
 		Actividad a = new Actividad();
@@ -77,7 +81,7 @@ public class Actividad{
 	 public void setNombre(String nombre) {
 		this.nombre = nombre;
 	 }
-	
+
 	 public String getIdImagen(){
 		 return idImagen;
 	 }
@@ -153,7 +157,7 @@ public class Actividad{
 	public void setNovedades(List<Novedad> novedades) {
 		this.novedades = novedades;
 	}
-	@ManyToMany(targetEntity=Tag.class)
+	@ManyToMany(targetEntity=Tag.class, mappedBy="etiquetados")
 	public List<Tag> getTags() {
 		return tags;
 	}

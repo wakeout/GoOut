@@ -193,23 +193,31 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
-			@RequestParam("tag") String tag,
+			@RequestParam("tags") long[] tagIds,
 			@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
+		
+
+		
 			Actividad a = null;
 			Usuario usuario_creador = null;
-			Tag tag_actv = null;
 			String imagen="";
 			String extension="";
 			
 			try {
 				
-				tag_actv = Tag.crearTag(tag);
-				usuario_creador = (Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador,
-						tag_actv,fecha_ini, fecha_ini, "", "");
 			
+				usuario_creador = (Usuario)session.getAttribute("usuario");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", "");
+			
+				for (long aid : tagIds) {
+					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
+					Tag t = entityManager.find(Tag.class, aid);
+					t.getEtiquetados().add(a);
+					entityManager.persist(t);
+				}
+				
 				entityManager.persist(a);
 
 				if (!imagen_actv.isEmpty()) {
@@ -251,6 +259,21 @@ public class HomeController {
 				return "redirect:mis_actividades";
 		}
 	
+	
+	@RequestMapping(value = "/crearTag", method = RequestMethod.POST)
+	@Transactional
+	public String crearActividad(
+			@RequestParam("nombre_tag") String nombre_tag){
+		
+		Tag t = null;
+		
+		t = Tag.crearTag(nombre_tag);
+		
+		entityManager.persist(t);
+		
+		return "redirect:crear";
+	}
+	
 	@RequestMapping(value = "/crearMensaje", method = RequestMethod.POST)
 	@Transactional
 	public String crearMensaje(
@@ -283,7 +306,6 @@ public class HomeController {
 			return "redirect:mensajes";
 		}
 
-	
 
 	@RequestMapping(value = "/addUsuario", method = RequestMethod.POST)
 	@Transactional
@@ -329,7 +351,7 @@ public class HomeController {
 		return "buscar";
 	}
 	
-	@RequestMapping(value = "                             ", method = RequestMethod.GET)
+	@RequestMapping(value = "/actividad/{id}", method = RequestMethod.GET)
 	public String actividad(@PathVariable("id") long id,HttpServletResponse response,Model model){
 		Actividad a = entityManager.find(Actividad.class, id);
 		if (a == null) {

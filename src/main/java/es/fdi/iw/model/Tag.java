@@ -1,9 +1,13 @@
 package es.fdi.iw.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -15,7 +19,8 @@ import javax.persistence.NamedQuery;
 public class Tag {
 	private long id;
 	private String nombre;
-
+	private List<Actividad> actividades;
+	
 	public static Tag crearTag(String nombre_tag) {
 		
 		Tag t = new Tag();
@@ -39,5 +44,17 @@ public class Tag {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	@ManyToMany(targetEntity=Actividad.class, fetch=FetchType.EAGER)
+	public List<Actividad> getEtiquetados() {
+		return actividades;
+	}
+
+
+	public void setEtiquetados(List<Actividad> actividades) {
+		this.actividades = actividades;
+	}
+	
+	
 	
 }
