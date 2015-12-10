@@ -23,15 +23,17 @@
 								<div id="global" align="center">
 
 								<div id="mensajes">
-
+									
 									<div id="cont_inicio">
-									<p>
-											<a class="cambiar2" href="mensajes">Redactar Mensaje</a>
-											<a type="button" name="entrada" class="cambiar" href="">Bandeja
-												de Entrada</a>
-											 <a class="cambiar"
-												href="mensajes">Bandeja de Salida</a>
-									</p>
+									
+									
+									<ul id="barra_mensajes">
+							
+										<li><a id="b_redactar" class="cambiar2" href="mensajes">Redactar Mensaje</a></li>
+										<li><a id="b_entrada" type="button" name="entrada" class="cambiar" href="">Bandeja de Entrada</a></li>
+										<li><a id="b_salida" class="cambiar"	href="mensajes">Bandeja de Salida</a></li>
+									</ul>
+									
 									
 										
 										

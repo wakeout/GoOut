@@ -96,4 +96,8 @@ tr
 
 a:hover{text-decoration:none;}
 
+#barra_mensajes li{
+	display:inline;
+}
+
 a{text-decoration:none;}

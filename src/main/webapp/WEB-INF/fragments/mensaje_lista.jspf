@@ -1,0 +1,7 @@
+<div class="mensaje_entrada">
+	<table>
+		<c:forEach items="${actividades}" var="a">
+			<tr><td><input type="checkbox"><a> ${a.destinos}</a><td>${a.titulo}
+		</c:forEach>
+	</table>
+</div>
