@@ -20,7 +20,8 @@
 					<a class=""><img id="i_perfil" src="${prefix}resources/images/${perfil.idFoto}.jpg" alt="" /></a>
 					<br>
 					<center>
-						<button class="btn">Enviar Mensaje a ${usuario.login}</button>
+						<button class="btn">Enviar Mensaje a ${perfil.login}</button>
+						<br><button type="button">Enviar solicitud de amistad</button>
 					</center>
 				</div>
 
@@ -45,7 +46,7 @@
 								</c:forEach>
 								</tbody>
 							</table>
-							<a href="">Ver amigos de ${usuario.login}</a>
+							<a href="">Ver amigos de ${perfil.login}</a>
 						</div>					
 					
 
