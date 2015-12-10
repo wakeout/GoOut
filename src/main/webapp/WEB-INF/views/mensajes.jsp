@@ -29,15 +29,17 @@
 									
 									<ul id="barra_mensajes">
 							
-										<li><a id="b_redactar" class="cambiar2" href="mensajes">Redactar Mensaje</a></li>
-										<li><a id="b_entrada" type="button" name="entrada" class="cambiar" href="">Bandeja de Entrada</a></li>
-										<li><a id="b_salida" class="cambiar"	href="mensajes">Bandeja de Salida</a></li>
+										<li><button id="b_redactar" class="cambiar2" href="">Redactar Mensaje</button></li>
+										<li><button id="b_entrada" type="button" name="entrada" class="cambiar" href="">Bandeja de Entrada</button></li>
+										<li><button id="b_salida" class="cambiar"	href="">Bandeja de Salida</button></li>
 									</ul>
 									
-									
+									<div class="lista">
+										<%@ include file="../fragments/mensaje_lista.jspf" %>
+									</div>	
 										
 										
-										<form action="crearMensaje" method="post">
+										<!--<form action="crearMensaje" method="post">
 											<table class="mensajes" align="center">
 												<tbody>
 													<tr>
@@ -62,7 +64,7 @@
 													</tr>
 												</tbody>
 											</table>
-										</form>
+										</form>-->
 									</div>
 
 								</div>
