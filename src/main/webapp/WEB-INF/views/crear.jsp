@@ -50,10 +50,13 @@
 																</c:forEach>
 																
 																<tr>
+																<form action="crear tag" method="POST">
 																	<td><input name="tag" type="checkbox"
 																		value="cambio" onchange="habilitar()" />Otros</td>
-																	<td><input type="text" name="other" value=""
-																		disabled style="width: 110px; height: 30px" class="caja"></td>
+																	<td><input type="text" name="nombre_tag" value=""
+																		disabled style="width: 110px; height: 30px" class="caja">  </td>
+																		<input type="submit" name="submit" id="b_crear" value="CREAR TAG" />
+																</form>
 																</tr>
 															</table>
 															

@@ -255,6 +255,21 @@ public class HomeController {
 				return "redirect:mis_actividades";
 		}
 	
+	
+	@RequestMapping(value = "/crearTag", method = RequestMethod.POST)
+	@Transactional
+	public String crearActividad(
+			@RequestParam("nombre_tag") String nombre_tag){
+		
+		Tag t = null;
+		
+		t = Tag.crearTag(nombre_tag);
+		
+		entityManager.persist(t);
+		
+		return "redirect:crear";
+	}
+	
 	@RequestMapping(value = "/crearMensaje", method = RequestMethod.POST)
 	@Transactional
 	public String crearMensaje(
