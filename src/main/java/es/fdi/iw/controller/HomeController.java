@@ -316,6 +316,7 @@ public class HomeController {
 		Usuario usuario_amigo = null;
 		Usuario usuario_propio = null;
 		int i = 0;
+		boolean existe = false;
 		
 		try
 		{
@@ -323,15 +324,18 @@ public class HomeController {
 			usuario_propio = entityManager.find(Usuario.class,propio);
 			List<Usuario> aux = usuario_propio.getAmigos();
 			
-			while(aux.size()> i && aux.get(i).getId() != usuario_amigo.getId()){
-				
+			while(aux.size()> i){
+				if(aux.get(i).getId() == usuario_amigo.getId())
+					existe=true;
 				i++;
 			}
 			
-			if(aux.get(i).getId() != usuario_amigo.getId())
+			if(!existe)
 			{
 				usuario_propio.getAmigos().add(usuario_amigo);
+				usuario_amigo.getAmigos().add(usuario_propio);
 				entityManager.persist(usuario_propio);
+				entityManager.persist(usuario_amigo);
 			}
 			
 		}
