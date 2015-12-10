@@ -20,6 +20,12 @@ insert into Usuario_Amigos values(1,2)
 insert into Usuario_Amigos values(1,4)
 insert into Usuario_Amigos values(1,5)
 insert into Usuario_Amigos values(2,1)
+insert into Usuario_Amigos values(4,1)
+insert into Usuario_Amigos values(5,1)
+insert into Usuario_Amigos values(4,5)
+insert into Usuario_Amigos values(5,4)
+insert into Usuario_Amigos values(2,4)
+insert into Usuario_Amigos values(4,2)
 
 
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(1, 'victor me cae fatal',  2, 'pues eso', 'ordinario')

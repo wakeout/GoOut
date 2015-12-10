@@ -17,12 +17,12 @@
 
 					<ul class="nav">
 
-						<li><a href="mi_perfil"><img class="i_profile" src="${prefix}resources/images/minion.jpg"></a>
+						<li><a href="${prefix}mi_perfil"><img class="i_profile" src="${prefix}resources/images/${usuario.idFoto}"></a>
 							<ul>
 								<c:choose>
 
 									<c:when test="${not empty usuario}">
-										<li class="submenu"><a href="mi_perfil" style="text-transform: uppercase;" >${usuario.login}</a></li>
+										<li class="submenu"><a href="${prefix}mi_perfil" style="text-transform: uppercase;" >${usuario.login}</a></li>
 										<c:set var="rol" scope="session" value="admin"/>	
 	
 										<c:if test="${usuario.rol == rol}">
@@ -33,7 +33,7 @@
 									</c:when>
 
 									<c:otherwise>
-										<li class="submenu"><a href="login"> Login </a></li>
+										<li class="submenu"><a href="${prefix}login"> Login </a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -47,7 +47,7 @@
 			<div id="logo">
 				<!-- Logo -->
 				<h1>
-					<a href="home"><img id="logo"
+					<a href="${prefix}home"><img id="logo"
 						src="${prefix}resources/images/logo.png"></a>
 				</h1>
 			</div>
@@ -57,9 +57,9 @@
 		<nav id="nav">
 			<ul>
 			
-				<li><a id="b_crear" href="crear">CREAR</a></li>
-				<li><a id="b_actv" href="mis_actividades">MIS ACTIVIDADES</a></li>
-				<li><a id="b_buscar" href="buscar">BUSCAR</a></li>
+				<li><a id="b_crear" href="${prefix}crear">CREAR</a></li>
+				<li><a id="b_actv" href="${prefix}mis_actividades">MIS ACTIVIDADES</a></li>
+				<li><a id="b_buscar" href="${prefix}buscar">BUSCAR</a></li>
 			</ul>
 		</nav>
 	</div>

@@ -307,12 +307,31 @@ public class HomeController {
 		}
 
 
-	@RequestMapping(value = "/addUsuario", method = RequestMethod.POST)
+	@RequestMapping(value = "/agregarAmigo", method = RequestMethod.POST)
 	@Transactional
-	public String addUsuario(){
-				
+	public String agregarAmigo(
+		@RequestParam("id_amigo") long amigo,
+		@RequestParam("id_propio") long propio){
 		
-			return "redirect:";
+		System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
+		Usuario usuario_amigo = null;
+		Usuario usuario_propio = null;
+		
+		try
+		{
+			usuario_amigo = entityManager.find(Usuario.class,amigo);
+			usuario_propio = entityManager.find(Usuario.class,propio);
+			System.out.println(usuario_amigo.getLogin() + "!!!!!!!!!!!!!!!!!!!!!" + usuario_propio.getLogin());
+			usuario_propio.getAmigos().add(usuario_amigo);
+			//entityManager.persist(usuario_propio);
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+			return "redirect:mi_perfil";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -378,7 +397,9 @@ public class HomeController {
 	
 	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
 	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model){
+		
 		Usuario p=entityManager.find(Usuario.class, id);
+		
 		if (p == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			logger.error("No such perfil: {}", id);
