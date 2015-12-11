@@ -32,7 +32,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Usuario {	
 
 	private static BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
-
+	private String nombre;
 	private long id;
 	private String login;
 	private String pass_cifrado;
@@ -47,7 +47,7 @@ public class Usuario {
 	private List<Usuario> amigos; //Seria mejor tener una lista de ids de usuarios
 
 
-	public static Usuario createUser(String login, String pass, String rol, 
+	public static Usuario createUser(String login, String pass, String rol, String nombre, 
 									Date nacimiento, String prov, String email) {
 		Usuario u = new Usuario();
 		u.login = login;
@@ -56,6 +56,7 @@ public class Usuario {
 		u.nacimiento=nacimiento;
 		u.provincia=prov;
 		u.email=email;
+		u.nombre=nombre;
 		return u;
 	}
 	
@@ -199,6 +200,16 @@ public class Usuario {
 
 	public void setIdFoto(String idFoto) {
 		this.idFoto = idFoto;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 

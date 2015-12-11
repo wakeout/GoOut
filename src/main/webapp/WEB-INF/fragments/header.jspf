@@ -47,8 +47,7 @@
 			<div id="logo">
 				<!-- Logo -->
 				<h1>
-					<a href="${prefix}home"><img id="logo"
-						src="${prefix}resources/images/logo.png"></a>
+					<a href="${prefix}home"><img id="logo" src="${prefix}resources/images/logo.png"></a>
 				</h1>
 			</div>
 

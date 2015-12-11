@@ -79,7 +79,7 @@ public class HomeController {
 				{
 					// UGLY: register new users if they do not exist and pass is 4 chars long
 					logger.info("no-such-user; creating user {}", formLogin);				
-					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", null, "Sin especificar", formEmail);
+					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail);
 					entityManager.persist(user);				
 				} 
 				else {

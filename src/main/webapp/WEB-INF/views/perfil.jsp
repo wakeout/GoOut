@@ -57,13 +57,13 @@
 
 						<div class="n_perfil">
 
-							<span id="campos_Perfil">Nombre: </span> <span
+							 <span
 								id="relleno_Campos"> ${perfil.login} </span> </br>
-							</br> <span id="campos_Perfil">Fecha Nacimiento:</span> <span
+							 <span
 								id="relleno_Campos"> ${perfil.nacimiento} </span></br>
-							</br> <span id="campos_Perfil">Provincia:</span> <span
+							</br> <span
 								id="relleno_Campos"> ${perfil.provincia}</span></br>
-							</br> <span id="campos_Perfil">email: </span> <span
+							</br>  <span
 								id="relleno_Campos"> ${perfil.email} </span>
 
 								</br>
@@ -71,11 +71,6 @@
 						</div>
 
 
-						<div class="activ_Perfil">
-							<span id="campos_Perfil">ACTIVIDADES EN LAS QUE ESTÁ
-								APUNTADO</span>
-						
-						</div>
 						
 					</div>
 				</div>

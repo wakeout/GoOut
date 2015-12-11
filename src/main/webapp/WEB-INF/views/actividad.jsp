@@ -67,7 +67,7 @@
 						<tbody>
 							<c:forEach items="${actividad.personas}" var="p">
 							<tr>	
-								<td><a href="../perfil/${p.id}"><img class="i_people" src="${prefix}resources/images/${p.idFoto}.jpg" alt="" /></a> 
+								<td><a href="../perfil/${p.id}"><img class="i_people" src="${prefix}resources/images/${p.idFoto}" alt="" /></a> 
 							</c:forEach>	
 						</tbody>
 					</table>

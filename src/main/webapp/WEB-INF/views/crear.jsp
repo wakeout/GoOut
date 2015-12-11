@@ -13,9 +13,7 @@
 		<!-- Main -->
 		<div id="main-wrapper">
 			<div class="container">
-				<div class="row">
-					<div class="12u">
-
+	
 						<!-- Portfolio -->
 						<section>
 							<div id="global" align="center">
@@ -118,8 +116,7 @@
 								</div>
 							</div>
 						</section>
-					</div>
-				</div>
+
 			</div>
 		</div>
 		<!-- Footer -->

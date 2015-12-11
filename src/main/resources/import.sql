@@ -4,6 +4,13 @@ insert into Usuario (id, login, email, rol, password, id_Foto) values(4 ,'david'
 insert into Usuario (id, login, email, rol, password, id_Foto) values(5 ,'jorge','jorge@ucm.es', 'usuario', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '101.jpg')
 insert into Usuario (id, login, email, rol, password, id_Foto) values(6 ,'freire', 'manu@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '101.jpg')
 
+insert into actividad_personas values(1,1)
+insert into actividad_personas values(1,2)
+insert into actividad_personas values(1,4)
+insert into actividad_personas values(2,1)
+insert into actividad_personas values(3,2)
+insert into actividad_personas values(3,1)
+
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(1, 'cerves', 12, 'Madrid', '1.jpg', 15, 'publica')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(2, 'zombies',  4,'Madrid', '2.jpg', 4, 'publica')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(3, 'futbol',9,  'Madrid', '3.jpg', 20, 'publica')
@@ -26,7 +33,6 @@ insert into Usuario_Amigos values(4,5)
 insert into Usuario_Amigos values(5,4)
 insert into Usuario_Amigos values(2,4)
 insert into Usuario_Amigos values(4,2)
-
 
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(1, 'victor me cae fatal',  2, 'pues eso', 'ordinario')
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(2, 'david me cae fatal',  2, 'pues eso', 'ordinario')
