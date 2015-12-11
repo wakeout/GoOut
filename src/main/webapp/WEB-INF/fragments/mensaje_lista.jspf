@@ -1,11 +1,3 @@
-<div class="mensaje_entrada">
-	<table>
-		<c:forEach items="${mensajes}" var="a">
-			<tr><td><input type="checkbox"><a> ${a.destinos.login}</a><td>${a.titulo}
-		</c:forEach>
-	</table>
-</div>
-
 <div class="mensaje_redactar">
 <form action="crearMensaje" method="post">
 	<table class="mensajes" align="center">
@@ -33,3 +25,24 @@
 	</table>
 </form>
 </div>
+
+<div class="mensaje_entrada">
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">
+				<th scope="col">Usuario
+				<th scope="col">Asunto
+		</thead>
+		<tbody>
+			<c:forEach items="${mensajes}" var="a">
+			<tr>	
+				<td><input type="checkbox">
+				<td> ${a.destinos.login}
+				<td>${a.titulo}
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
+
+

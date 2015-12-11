@@ -434,7 +434,7 @@ public class HomeController {
 	public String mensajes(Model model, HttpSession session){
 		Usuario u = null;
 		u=(Usuario)session.getAttribute("usuario");
-		model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
+		model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
 		
 		return "mensajes";
 	}

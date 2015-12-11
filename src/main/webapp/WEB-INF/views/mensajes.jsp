@@ -38,33 +38,7 @@
 										<%@ include file="../fragments/mensaje_lista.jspf" %>
 									</div>	
 										
-										
-										<!--<form action="crearMensaje" method="post">
-											<table class="mensajes" align="center">
-												<tbody>
-													<tr>
-														<td colspan="2"><b>¡Envía mensajes a otros
-																usuarios de GoOut!</b></td>
-													</tr>
-													<tr>
-														<td>Asunto: <input class="barra_men" type="text"
-															name="asunto" size="20"> Destinatario: <input class="barra_men" type="text"
-															name="destinatario" size="20">
-														</td>
-													</tr>
-													<tr>
-														<td colspan="2"><textarea id="cuerpo_msj" rows="7" cols="80"
-																name="mensaje" maxlength="200"
-																tooltiptext="Máximo 200 caracteres"></textarea></td>
-													</tr>
-													<tr>
-														<td colspan="2"><input class="enviar" type="submit"
-															value="Enviar Mensaje" name="Enviar"> <input
-															type="reset" value="Borrar" name="Borrar"></td>
-													</tr>
-												</tbody>
-											</table>
-										</form>-->
+									
 									</div>
 
 								</div>
