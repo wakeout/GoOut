@@ -504,7 +504,11 @@ public class HomeController {
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	@Transactional
 	public String administrador(Model model){
-		if(logeado.getRol()=="admin"){
+		System.out.println("      "+logeado.getRol());
+		
+		if(logeado.getRol().equals("admin")){
+			System.out.println("----------------hello-------------------"+logeado.getRol()+"-"+logeado.getLogin());
+			
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
@@ -516,9 +520,14 @@ public class HomeController {
 		model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
 		
 		return "administrador";
-		}else
-			if(logeado!=null) return "home";
-			else return "sin_registro";
+		}else{
+			if(logeado!=null){
+				System.out.println("----------------no se porque estoy aqui-------------------"+logeado.getRol()+"-"+logeado.getLogin());
+				
+				return "redirect:home";
+			}
+			else return "redirect:sin_registro";
+		}
 	}
 	
 	
