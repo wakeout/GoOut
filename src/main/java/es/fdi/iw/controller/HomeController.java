@@ -41,7 +41,7 @@ import es.fdi.iw.model.Usuario;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	Usuario logeado;
 	@PersistenceContext
 	private EntityManager entityManager;
 	
@@ -80,7 +80,8 @@ public class HomeController {
 					// UGLY: register new users if they do not exist and pass is 4 chars long
 					logger.info("no-such-user; creating user {}", formLogin);				
 					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail);
-					entityManager.persist(user);				
+					entityManager.persist(user);
+					logeado=user;
 				} 
 				else {
 					logger.info("no such login: {}", formLogin);
@@ -132,8 +133,10 @@ public class HomeController {
 						
 						model.addAttribute("loginError", "error en usuario o contraseña");
 					}
+					logeado=u;
 				}
 
+			
 				return "redirect:" + destino;
 			}
 	
@@ -183,6 +186,7 @@ public class HomeController {
 					//Error
 			}
 		
+		logeado=u;
 		// redireccion a login cuando el registro ha sido correcto
 		return "redirect:mi_perfil";
 	}
@@ -372,7 +376,15 @@ public class HomeController {
 	
 	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
 	public String mis_actividades(Model model){
-		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+		
+		Usuario u= entityManager.find(Usuario.class, logeado.getId());
+		
+		List<Actividad> actuales=u.getActuales();
+		List<Actividad> historial=u.getHistorial();
+		
+		model.addAttribute("actuales",actuales);
+		model.addAttribute("historial",historial);
+		
 		return "mis_actividades";
 	}
 	
@@ -445,7 +457,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/sin_registro", method = RequestMethod.GET)
-	public String sin_registro(){
+	public String sin_registro(Model model){
+		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		return "sin_registro";
 	}
 	
@@ -461,7 +474,7 @@ public class HomeController {
 		model.addAttribute("hitos", entityManager.createNamedQuery("allHitos").getResultList());
 		model.addAttribute("comentarios", entityManager.createNamedQuery("allComentarios").getResultList());
 		model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
-
+		
 		return "administrador";
 	}
 	

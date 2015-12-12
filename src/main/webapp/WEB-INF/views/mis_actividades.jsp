@@ -39,7 +39,8 @@
 
 									<div id="fotos">
 									
-										<c:forEach items="${actividades}" var="a">
+										<c:forEach items="${actuales}" var="a">
+									
 											<a class="" href="actividad/${a.id}">
 												<div class="img_thumb">
 
@@ -51,6 +52,7 @@
 														src="${prefix}resources/images/${a.idImagen}" />
 												</div>
 											</a>
+									
 										</c:forEach>
 
 								</div>
