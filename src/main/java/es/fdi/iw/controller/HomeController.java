@@ -166,6 +166,9 @@ public class HomeController {
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 		
+			if(logeado!=null){
+		
+		
 			Usuario u = null;
 			try {
 								
@@ -189,6 +192,9 @@ public class HomeController {
 		logeado=u;
 		// redireccion a login cuando el registro ha sido correcto
 		return "redirect:mi_perfil";
+		}
+		else
+			return "sin_registro";
 	}
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
@@ -201,9 +207,7 @@ public class HomeController {
 			@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
-		
-
-		
+			if(logeado!=null){
 			Actividad a = null;
 			Usuario usuario_creador = null;
 			String imagen="";
@@ -261,12 +265,16 @@ public class HomeController {
 			}
 
 				return "redirect:mis_actividades";
+			}
+			else{
+				return "sin_registro";
+			}
 		}
 	
 	
 	@RequestMapping(value = "/crearTag", method = RequestMethod.POST)
 	@Transactional
-	public String crearActividad(
+	public String crearTag(
 			@RequestParam("nombre_tag") String nombre_tag){
 		
 		Tag t = null;
@@ -287,6 +295,7 @@ public class HomeController {
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session){
 			
+		
 			Mensaje m = null;
 			Usuario u = null; // El usuario que manda el mensaje
 			Usuario d = null; // Destinatario
@@ -353,29 +362,40 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		
+		if(logeado!=null){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 		return "home";
+		}else
+			return "redirect:sin_registro";
 	}
 	
 	
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model){
+		if(logeado!=null){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		return "home";
+		}else
+			return "redirect:sin_registro";
 	}
 	
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public String crear(Model model){
+		if(logeado!=null){
 		model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
 
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		return "crear";
+		}else
+			return "redirect:sin_registro";
 	}
 	
 	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
 	public String mis_actividades(Model model){
+		if(logeado!=null){
 		
 		Usuario u= entityManager.find(Usuario.class, logeado.getId());
 		
@@ -386,13 +406,20 @@ public class HomeController {
 		model.addAttribute("historial",historial);
 		
 		return "mis_actividades";
+		}
+		else
+			return "redirect:sin_registro";
 	}
 	
 	@RequestMapping(value = "/buscar", method = RequestMethod.GET)
 	public String buscar(Model model){
+		if(logeado!=null){
+		
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		
 		return "buscar";
+		}else
+			return "redirect:sin_registro";
 	}
 	
 	@RequestMapping(value = "/actividad/{id}", method = RequestMethod.GET)
@@ -423,6 +450,8 @@ public class HomeController {
 	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
 	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model){
 		
+		if(logeado!=null){
+		
 		Usuario p=entityManager.find(Usuario.class, id);
 		
 		if (p == null) {
@@ -434,21 +463,31 @@ public class HomeController {
 		model.addAttribute("prefix", "../");
 		
 		return "perfil";
+		}else{
+			return "redirect:sin_registro";
+		}
+		
 	}
 
 	
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.GET)
 	public String mi_perfil(){
+		if(logeado!=null){
 		return "mi_perfil";
+		}else 
+			return "redirect:sin_registro";
 	}
 	
 	@RequestMapping(value = "/mensajes", method = RequestMethod.GET)
 	public String mensajes(Model model, HttpSession session){
+		if(logeado!=null){
 		Usuario u = null;
 		u=(Usuario)session.getAttribute("usuario");
 		model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
 		
 		return "mensajes";
+		}
+		else return "redirect:sin_registro";
 	}
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.GET)
@@ -465,6 +504,7 @@ public class HomeController {
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	@Transactional
 	public String administrador(Model model){
+		if(logeado.getRol()!="admin"){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
@@ -476,6 +516,9 @@ public class HomeController {
 		model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
 		
 		return "administrador";
+		}else
+			if(logeado!=null) return "home";
+			else return "sin_registro";
 	}
 	
 	

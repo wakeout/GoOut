@@ -34,6 +34,11 @@ insert into Usuario_Amigos values(5,4)
 insert into Usuario_Amigos values(2,4)
 insert into Usuario_Amigos values(4,2)
 
+insert into usuario_actuales values(1,1)
+insert into usuario_actuales values(1,2)
+insert into usuario_actuales values(1,3)
+insert into usuario_actuales values(1,4)
+
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(1, 'victor me cae fatal',  2, 'pues eso', 'ordinario')
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(2, 'david me cae fatal',  2, 'pues eso', 'ordinario')
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(3, 'lis me cae fatal',  2, 'pues eso', 'ordinario')
