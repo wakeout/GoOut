@@ -504,7 +504,7 @@ public class HomeController {
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	@Transactional
 	public String administrador(Model model){
-		if(logeado.getRol()!="admin"){
+		if(logeado.getRol()=="admin"){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
