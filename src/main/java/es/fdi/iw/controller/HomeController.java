@@ -147,9 +147,9 @@ public class HomeController {
 	public String logout(HttpSession session) {
 		logger.info("Usuario '{}' logged out", session.getAttribute("usuario"));
 		session.invalidate();
+		logeado=null;
 		return "redirect:login";
 	}
-	
 	
 	/*
 	 *	Metodo donde se pueden modificar los datos del usuario una vez esta logueado.
@@ -464,7 +464,7 @@ public class HomeController {
 		
 			return "perfil";
 		}else{
-			return "redirect:sin_registro";
+			return "redirect:../sin_registro";
 		}
 		
 	}
