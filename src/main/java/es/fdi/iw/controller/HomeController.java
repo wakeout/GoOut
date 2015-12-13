@@ -106,9 +106,6 @@ public class HomeController {
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
 		destino="login";
 		
-		// La instruccion model.addAtribute creo que pone en el modelo (los jsp) el mensaje del seguindo parametro 
-			//en el nombre de la clase que es el primer parametro
-		
 				if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 3) {
 					model.addAttribute("loginError", "usuarios y contraseñas: 3 caracteres mínimo");
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -356,9 +353,53 @@ public class HomeController {
 		{
 			
 		}
-		
 			return "redirect:mi_perfil";
 	}
+	
+	
+	/** METODOS PARA ACTIVIDAD **/
+	
+	//Metodo para unirse a una actividad
+	
+	@RequestMapping(value = "/unirseActividad", method = RequestMethod.POST)
+	@Transactional
+	public String unirseActividad(
+			@RequestParam("id_actv") long id_actividad){
+		
+		Actividad actv = new Actividad();
+		
+		actv = entityManager.find(Actividad.class, id_actividad);
+		
+		// Comprobar que la actividad no este cerrada
+		
+		if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ 1==2)
+		{	
+			//Aviso al usuario de que no puede unirse a esta actividad. NO seria necesario?
+		}
+		else
+		{
+			if(actv.getNpersonas() < actv.getMaxPersonas())
+			{
+				//Unirse a la actividad
+				logeado.getActuales().add(actv);
+				entityManager.persist(logeado);
+				actv.getPersonas().add(logeado);
+				entityManager.persist(actv);
+				
+				//Incrementar el numero de personas y si es igual a max personas, cerrar (poner completa) la actividad.
+				actv.setNpersonas(actv.getNpersonas()+1);
+				
+			}
+			else
+			{
+				//Aviso al usuario de que no puede unirse a esta actividad por que esta llena
+			}
+		}
+		
+		return "redirect:actividad/"+id_actividad;
+		
+	}
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {

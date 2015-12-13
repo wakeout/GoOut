@@ -3,7 +3,7 @@
 <html>
 	<head>
 		
-		<link rel="stylesheet" href="${prefix}resources/css/style.css"> <!-- Resource style -->
+		<link rel="stylesheet" href="${prefix}resources/css/style.css">
 		<%@ include file="../fragments/head.jspf" %>
 		<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
 	</head>
@@ -16,13 +16,20 @@
 	<div id="main-wrapper">			
 		<div class="container">
 		
-			<div class="s_actv">
+			<div class="s_actv">				
 				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}" alt="" /></a> 
 				<br>
-				<center><button type="button">Unirse a la actividad</button></center>
-				<center><button type="button">Mensaje a creador</button></center>
-				<center><button type="button">Propon algo nuevo!</button></center>
-				<center><button name="submit" type="submit" id="boton_reportar">Denunciar actividad</button></center>
+				<c:if test="${actividad.privacidad.equals('publica')}">
+					
+					<form action="${prefix}unirseActividad" method="POST">
+						<input type="hidden" name="id_actv" value="${actividad.id}"/>
+						<center><button type="submit">Unirse a la actividad</button></center>
+					</form>
+					
+					<center><button type="button">Mensaje a creador</button></center>
+					<center><button type="button">Propon algo nuevo!</button></center>
+					<center><button name="submit" type="submit" id="boton_reportar">Denunciar actividad</button></center>
+				</c:if>
 
 			</div>
 
@@ -30,11 +37,12 @@
 
 				<div id="datos_actv">
 
-					<div class="t_actv">${actividad.nombre}</div>
-					<div class="privacidad_actividad">Publica</div>
-					<div class="fecha_actv">Miercoles 12/07/2016 entre las 13:00-19:50</div>
-					<div class="zona_actv">  
-							Despegue de Moncloa
+					<div id="nombre_actv">${actividad.nombre}</div>
+					<div id="creador_actv">${actividad.creador.login}</div>
+					<div id="estado_actv">Estado: ${actividad.estado}</div>
+					<div id="privacidad_actv">Privacidad: ${actividad.privacidad}</div>
+					<div id="fecha_actv">Miercoles 12/07/2016 entre las 13:00-19:50</div>
+					<div id="localizacion_actv"> Despegue de Moncloa</div>
 
 	<section class="cd-section">
 
@@ -75,7 +83,7 @@
 					Aun faltan ${actividad.maxPersonas-actividad.npersonas} por apuntarse!   <button class="btn">Invitar a un amigo</button> 
 								
 								
-	<section class="cd-section">
+		<section class="cd-section">
 
 		<div class="cd-modal-action">
 			<a href="#0"  data-type="modal-trigger">Ver a todos los que se han apuntado  (${actividad.npersonas})</a>
@@ -85,17 +93,17 @@
 		<div class="cd-modal">	
 			<div class="cd-modal-content">
 				<%@ include file="../fragments/participantes2.jspf" %>
-			</div> <!-- cd-modal-content -->
-		</div> <!-- cd-modal -->
+			</div>
+		</div> 
 
 		<a href="#0" class="cd-modal-close">Close</a>
-	</section> <!-- .cd-section -->	
+		
+		</section> 
 		
 				</div>
 			</div>
 		</div>
-
-				
+		
 
 		<div>
 			<p class="descripcion_actv">
@@ -104,7 +112,7 @@
 			</p>
 		</div>
 
-		<div class="foro_actv">
+		 <div class="foro_actv">
 			<div class="m_actv">
 				<a href="../perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
 				<p  class="mensajes_actv">
