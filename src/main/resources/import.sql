@@ -2,14 +2,9 @@ insert into Usuario (id, login, email, rol, password, id_Foto) values(1 ,'marqui
 insert into Usuario (id, login, email, rol, password, id_Foto) values(2 ,'victor', 'victga04@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '102.jpg')
 insert into Usuario (id, login, email, rol, password, id_Foto) values(4 ,'david','david@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '102.jpg')
 insert into Usuario (id, login, email, rol, password, id_Foto) values(5 ,'jorge','jorge@ucm.es', 'usuario', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '101.jpg')
-insert into Usuario (id, login, email, rol, password, id_Foto) values(6 ,'freire', 'manu@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '101.jpg')
+insert into Usuario (id, login, email, rol, password, id_Foto) values(6 ,'freire', 'manu@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '4.png')
 
-insert into actividad_personas values(1,1)
-insert into actividad_personas values(1,2)
-insert into actividad_personas values(1,4)
-insert into actividad_personas values(2,1)
-insert into actividad_personas values(3,2)
-insert into actividad_personas values(3,1)
+
 
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador) values(1, 'cerves', 12, 'Madrid', '1.jpg', 15, 'privada', 1)
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador) values(2, 'zombies',  4,'Madrid', '2.jpg', 4, 'publica', 1)
@@ -22,6 +17,14 @@ insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_perso
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(9, 'viaje a benidorm',9,  'Madrid', '7.jpg', 20, 'publica')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(10, 'cable esquí en el lago',9,  'Madrid', '8.jpg', 20, 'publica')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(8, 'paintball',9,  'Madrid', '9.jpg', 20, 'publica')
+
+insert into actividad_personas values(1,1)
+insert into actividad_personas values(1,2)
+insert into actividad_personas values(1,4)
+insert into actividad_personas values(2,1)
+insert into actividad_personas values(3,2)
+insert into actividad_personas values(3,1)
+
 
 insert into Usuario_Amigos values(1,2)
 insert into Usuario_Amigos values(1,4)

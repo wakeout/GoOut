@@ -47,7 +47,7 @@
 									<div id="fotos">
 
 										<c:forEach items="${actividades}" var="a">
-											<c:if test="${a.privacidad=='publica'}">
+											<c:if test="${a.privacidad.equals('publica')}">
 												<a href="actividad/${a.id}">
 												<div class="img_thumb">
 													<div class="img_desc">
