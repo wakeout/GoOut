@@ -79,7 +79,7 @@ public class HomeController {
 				{
 					// UGLY: register new users if they do not exist and pass is 4 chars long
 					logger.info("no-such-user; creating user {}", formLogin);				
-					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail);
+					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "unknown-user.jpg");
 					entityManager.persist(user);
 					logeado=user;
 				} 
@@ -228,31 +228,31 @@ public class HomeController {
 				
 				entityManager.persist(a);
 
-				if (!imagen_actv.isEmpty()) {
+
 			        try {
 			        	
-			        	String nombre_imagen = imagen_actv.getOriginalFilename();
-						extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
-						
 			        	
-						imagen = a.getId()+extension;
+			        	if(imagen_actv.isEmpty())
+			        		imagen="0.png";
+			        	else{
+			        		String nombre_imagen = imagen_actv.getOriginalFilename();
+							extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
+							
+			        		imagen = a.getId()+extension;
 						
 						byte[] bytes = imagen_actv.getBytes();
 		                BufferedOutputStream stream =
 		                        new BufferedOutputStream(
 		                        		new FileOutputStream(ContextInitializer.getFile("images", imagen)));
 		                stream.write(bytes);
-		                stream.close();
+		                stream.close();}
 			        }
 			        catch(Exception e){
 			        	
 			        	//Error
 			        	
 			        }
-				}
-				else{
-					
-				}
+
 
 				a.setIdImagen(imagen);
 				
@@ -364,9 +364,9 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		
 		if(logeado!=null){
-		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
-		return "home";
+			return "home";
 		}else
 			return "redirect:sin_registro";
 	}
@@ -375,8 +375,8 @@ public class HomeController {
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model){
 		if(logeado!=null){
-		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-		return "home";
+			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+			return "home";
 		}else
 			return "redirect:sin_registro";
 	}
@@ -385,10 +385,10 @@ public class HomeController {
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public String crear(Model model){
 		if(logeado!=null){
-		model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
+			model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
 
-		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
-		return "crear";
+			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+			return "crear";
 		}else
 			return "redirect:sin_registro";
 	}
@@ -397,15 +397,15 @@ public class HomeController {
 	public String mis_actividades(Model model){
 		if(logeado!=null){
 		
-		Usuario u= entityManager.find(Usuario.class, logeado.getId());
+			Usuario u= entityManager.find(Usuario.class, logeado.getId());
 		
-		List<Actividad> actuales=u.getActuales();
-		List<Actividad> historial=u.getHistorial();
+			List<Actividad> actuales=u.getActuales();
+			List<Actividad> historial=u.getHistorial();
 		
-		model.addAttribute("actuales",actuales);
-		model.addAttribute("historial",historial);
+			model.addAttribute("actuales",actuales);
+			model.addAttribute("historial",historial);
 		
-		return "mis_actividades";
+			return "mis_actividades";
 		}
 		else
 			return "redirect:sin_registro";
@@ -415,9 +415,9 @@ public class HomeController {
 	public String buscar(Model model){
 		if(logeado!=null){
 		
-		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-		
-		return "buscar";
+			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+			
+			return "buscar";
 		}else
 			return "redirect:sin_registro";
 	}
@@ -452,17 +452,17 @@ public class HomeController {
 		
 		if(logeado!=null){
 		
-		Usuario p=entityManager.find(Usuario.class, id);
+			Usuario p=entityManager.find(Usuario.class, id);
 		
-		if (p == null) {
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			logger.error("No such perfil: {}", id);
-		} else {
-			model.addAttribute("perfil", p);
-		}
-		model.addAttribute("prefix", "../");
+			if (p == null) {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+				logger.error("No such perfil: {}", id);
+			} else {
+				model.addAttribute("perfil", p);
+			}
+			model.addAttribute("prefix", "../");
 		
-		return "perfil";
+			return "perfil";
 		}else{
 			return "redirect:sin_registro";
 		}
@@ -473,7 +473,7 @@ public class HomeController {
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.GET)
 	public String mi_perfil(){
 		if(logeado!=null){
-		return "mi_perfil";
+			return "mi_perfil";
 		}else 
 			return "redirect:sin_registro";
 	}
@@ -481,11 +481,11 @@ public class HomeController {
 	@RequestMapping(value = "/mensajes", method = RequestMethod.GET)
 	public String mensajes(Model model, HttpSession session){
 		if(logeado!=null){
-		Usuario u = null;
-		u=(Usuario)session.getAttribute("usuario");
-		model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
+			Usuario u = null;
+			u=(Usuario)session.getAttribute("usuario");
+			model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
 		
-		return "mensajes";
+			return "mensajes";
 		}
 		else return "redirect:sin_registro";
 	}
@@ -504,26 +504,23 @@ public class HomeController {
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	@Transactional
 	public String administrador(Model model){
-		System.out.println("      "+logeado.getRol());
 		
 		if(logeado.getRol().equals("admin")){
-			System.out.println("----------------hello-------------------"+logeado.getRol()+"-"+logeado.getLogin());
 			
-		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-		model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
-		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
-		model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
-		model.addAttribute("novedades", entityManager.createNamedQuery("allNovedades").getResultList());
-		model.addAttribute("pagos", entityManager.createNamedQuery("allPagos").getResultList());
-		model.addAttribute("hitos", entityManager.createNamedQuery("allHitos").getResultList());
-		model.addAttribute("comentarios", entityManager.createNamedQuery("allComentarios").getResultList());
-		model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
+			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+			model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
+			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+			model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
+			model.addAttribute("novedades", entityManager.createNamedQuery("allNovedades").getResultList());
+			model.addAttribute("pagos", entityManager.createNamedQuery("allPagos").getResultList());
+			model.addAttribute("hitos", entityManager.createNamedQuery("allHitos").getResultList());
+			model.addAttribute("comentarios", entityManager.createNamedQuery("allComentarios").getResultList());
+			model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
+			
+			return "administrador";
 		
-		return "administrador";
 		}else{
 			if(logeado!=null){
-				System.out.println("----------------no se porque estoy aqui-------------------"+logeado.getRol()+"-"+logeado.getLogin());
-				
 				return "redirect:home";
 			}
 			else return "redirect:sin_registro";

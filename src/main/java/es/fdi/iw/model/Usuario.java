@@ -48,12 +48,13 @@ public class Usuario {
 
 
 	public static Usuario createUser(String login, String pass, String rol, String nombre, 
-									Date nacimiento, String prov, String email) {
+									Date nacimiento, String prov, String email, String idFoto) {
 		Usuario u = new Usuario();
 		u.login = login;
 		u.pass_cifrado = generateHashedAndSalted(pass);
 		u.rol = rol;
 		u.nacimiento=nacimiento;
+		u.idFoto=idFoto;
 		u.provincia=prov;
 		u.email=email;
 		u.nombre=nombre;
