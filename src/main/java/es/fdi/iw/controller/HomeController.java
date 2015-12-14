@@ -207,12 +207,13 @@ public class HomeController {
 			Usuario usuario_creador = null;
 			String imagen="";
 			String extension="";
+			String privacidad="publica";
 			
 			try {
 				
 			
 				usuario_creador = (Usuario)session.getAttribute("usuario");
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", "");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", privacidad);
 			
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
