@@ -522,7 +522,7 @@ public class HomeController {
 			Usuario u = null;
 			u=(Usuario)session.getAttribute("usuario");
 			model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
-		
+			model.addAttribute("mensajeS", entityManager.createNamedQuery("mensajesSalida").setParameter("origenParam", u).getResultList());
 			return "mensajes";
 		}
 		else return "redirect:sin_registro";
@@ -554,6 +554,7 @@ public class HomeController {
 			model.addAttribute("hitos", entityManager.createNamedQuery("allHitos").getResultList());
 			model.addAttribute("comentarios", entityManager.createNamedQuery("allComentarios").getResultList());
 			model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
+			model.addAttribute("denuncias", entityManager.createNamedQuery("allDenuncias").setParameter("denunciaParam", "denuncia").getResultList());
 			
 			return "administrador";
 		

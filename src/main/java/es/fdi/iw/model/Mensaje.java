@@ -17,7 +17,11 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="allMensajes",
             query="select m from Mensaje m"),
     @NamedQuery(name="mensajesEntrada",
-			query="select m from Mensaje m where m.destinos = :destinoParam")
+			query="select m from Mensaje m where m.destinos = :destinoParam"),
+    @NamedQuery(name="mensajesSalida",
+    		query="select m from Mensaje m where m.origen = :origenParam"),
+    @NamedQuery(name="allDenuncias", 
+    		query="select m from Mensaje m where m.tipo = :denunciaParam")
 })
 public class Mensaje {
 	private long id;
