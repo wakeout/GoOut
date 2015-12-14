@@ -45,9 +45,7 @@ public class HomeController {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	/** MÉTODO PARA EL REGISTRO */
 		
 	@RequestMapping(value = "/registro", method = RequestMethod.POST)
 	@Transactional
@@ -77,7 +75,6 @@ public class HomeController {
 			} catch (NoResultException nre) {
 				if (formPass.equals(formPass2)) 
 				{
-					// UGLY: register new users if they do not exist and pass is 4 chars long
 					logger.info("no-such-user; creating user {}", formLogin);				
 					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "unknown-user.jpg");
 					entityManager.persist(user);
@@ -93,6 +90,9 @@ public class HomeController {
 		// redireccion a login cuando el registro ha sido correcto
 		return "redirect:login";
 	}
+	
+	
+	/** MÉTODO PARA EL LOGIN **/
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@Transactional
@@ -112,7 +112,6 @@ public class HomeController {
 				} else {
 					Usuario u = null;
 					try {
-						//Hay que entender que hace esta instruccion
 						u = (Usuario)entityManager.createNamedQuery("userByLogin")
 							.setParameter("loginParam", formLogin).getSingleResult();
 						if (u.isPassValid(formPass)) {
@@ -138,8 +137,10 @@ public class HomeController {
 			}
 	
 	/**
-	 * Logout. Elimina la sesion actual y cierra sesion redirigiendo a la pantalla de login.
+	 *  MÉTODO Logout. 
+	 *  Elimina la sesion actual y cierra sesion redirigiendo a la pantalla de login.
 	 */
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		logger.info("Usuario '{}' logged out", session.getAttribute("usuario"));
@@ -148,12 +149,11 @@ public class HomeController {
 		return "redirect:login";
 	}
 	
-	/*
+	/**
 	 *	Metodo donde se pueden modificar los datos del usuario una vez esta logueado.
 	 *	Además se puede agregar informacion como provincia, fecha de nacimiento etc.
 	 */
 	
-	@SuppressWarnings("unused")
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.POST)
 	@Transactional
 	public String modPerfil(
@@ -163,33 +163,31 @@ public class HomeController {
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 		
-			if(logeado!=null){
-		
-		
-			Usuario u = null;
-			try {
-								
-				u = (Usuario)entityManager.createNamedQuery("userByLogin")
-					.setParameter("loginParam", nick).getSingleResult();
-				
-				u.setProvincia(provincia);
-				u.setEmail(email);
-				
-				entityManager.persist(u);
-				
-				session.setAttribute("usuario", u);
-				getTokenForSession(session);
-				
-				
+			if(logeado!=null)
+			{
+				Usuario u = null;
+				try {
+									
+					u = (Usuario)entityManager.createNamedQuery("userByLogin")
+						.setParameter("loginParam", nick).getSingleResult();
+					
+					u.setProvincia(provincia);
+					u.setEmail(email);
+					
+					entityManager.persist(u);
+					
+					session.setAttribute("usuario", u);
+					getTokenForSession(session);
+
 			} catch (NoResultException nre) {
 		
 					//Error
 			}
 		
-		logeado=u;
-		// redireccion a login cuando el registro ha sido correcto
-		return "redirect:mi_perfil";
-		}
+				logeado=u;
+				// redireccion a login cuando el registro ha sido correcto
+				return "redirect:mi_perfil";
+			}
 		else
 			return "sin_registro";
 	}
@@ -372,8 +370,7 @@ public class HomeController {
 		
 		// Comprobar que la actividad no este cerrada
 		
-		if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ 1==2)
-		{	
+		if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ false){	
 			//Aviso al usuario de que no puede unirse a esta actividad. NO seria necesario?
 		}
 		else
@@ -385,7 +382,6 @@ public class HomeController {
 				entityManager.persist(logeado);
 				actv.getPersonas().add(logeado);
 				entityManager.persist(actv);
-				
 				//Incrementar el numero de personas y si es igual a max personas, cerrar (poner completa) la actividad.
 				actv.setNpersonas(actv.getNpersonas()+1);
 				

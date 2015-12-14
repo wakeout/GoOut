@@ -1,99 +1,130 @@
-
-	#nombre_actv{
-		font-size: 3em;
-		clear: left;
-	}
-	
-	.privacidad_actividad{
-		clear: left;
-		margin:10px 10px;
-		color: silver;
-	}
-
-	.fecha_actv{
-		clear: left;
-		margin:10px 10px;
-
-	}
-
-	.zona_actv{
-		clear: left;
-		margin:10px 10px;
-
-	}
-
-	.descripcion_actv{
-		margin:30px 50px;
-		clear: left;
-		padding-top:50px;
-	}
-
-	.proxHito_actv{
-		width:400px;
-		height:400px;
-	}
-	.foro_actv{
-		margin: 10px 100px;
-		border-radius: 50px;
-		background: rgba(253,253,253,0.5);
-	}
-
-	.m_actv{
-		margin: 40px 250px;
-		background: #fafafa;
-		border-radius: 50px;
-
-	}
-	.mensajes_actv{
-		display: inline;
-	}
-	#i_actv
-	{
-		object-fit: cover;
-		width:250px;
-		height:250px;
-		border-radius:500px;
-		margin:30px;
-		vertical-align: middle;
-
-	}
-
-	.s_actv{
-		float: left;	
-	}
-
-	.info_actv{
-		width: 800px;
-		height: 300px;
-		float: right;
-	}
-
-	#datos_actv{
-		float: left;
-	}
-
-
-
-	#gente_actv{
-		width:400px;
-		height:400px;
-		float:right;
-	}
-	.add{
-    background-image: url(../images/add.png);
-    width: 30px;
-    height: 30px;
-    background-size: 100%;
-    object-fit: cover;
-    border-radius: 3px 3px 3px 3px;
-    border: 0;
-    outline: 0;
-    background-repeat: no-repeat;
-    position: relative;
-    background-color: white;
-    margin-right: 15px;
+#contenido {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	position: absolute;
+	background-image: url(../images/4.jpg);
 }
-.add:hover{
-	background-color:#dddddd;
+
+#opciones_actv {
+	float: left;
+	margin-left: 10%;
+	margin-top: 20px;
 }
+
+#btones_actv {
+	margin: 0 auto;
+	width: 100px;
+}
+
+#info_actv{
+    float:left;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 20px;  
+    width: 33%;
+}
+
+#nombre_actv {
+	text-align: center;
+	font-size: 3em;
+	margin-bottom:20px;
+}
+
+.dato_actv{
+	text-align: center;
 	
+}
+
+#i_actv {
+	object-fit: cover;
+	width: 250px;
+	height: 250px;
+	border-radius: 500px;
+	margin: 30px;
+	vertical-align: middle;
+}
+
+#gente_actv{
+	float: right;
+	margin-top: 50px;
+	margin-right:10%;
+
+}
+
+#gente_apuntada{
+	
+	overflow-y: scroll;
+    height: 300px;
+}
+
+#desc_actv{
+	
+	border:1px solid black;
+	padding:10px;
+}
+
+#descripcion{
+	margin-top:80px;
+}
+
+#descripcion p:first-child{
+	text-align:center;
+}
+
+
+
+/* .privacidad_actividad { */
+/* 	clear: left; */
+/* 	margin: 10px 10px; */
+/* 	color: silver; */
+/* } */
+
+/* .fecha_actv { */
+/* 	clear: left; */
+/* 	margin: 10px 10px; */
+/* } */
+
+/* .zona_actv { */
+/* 	clear: left; */
+/* 	margin: 10px 10px; */
+/* } */
+
+/* .descripcion_actv { */
+/* 	margin: 30px 50px; */
+/* 	clear: left; */
+/* 	padding-top: 50px; */
+/* } */
+
+/* .foro_actv { */
+/* 	margin: 10px 100px; */
+/* 	border-radius: 50px; */
+/* 	background: rgba(253, 253, 253, 0.5); */
+/* } */
+
+/* .m_actv { */
+/* 	margin: 40px 250px; */
+/* 	background: #fafafa; */
+/* 	border-radius: 50px; */
+/* } */
+
+/* .mensajes_actv { */
+/* 	display: inline; */
+/* } */
+
+
+
+/* .s_actv { */
+/* 	float: left; */
+/* } */
+
+
+/* #datos_actv { */
+/* 	float: left; */
+/* } */
+
+/* #gente_actv { */
+/* 	width: 400px; */
+/* 	height: 400px; */
+/* 	float: right; */
+/* } */
