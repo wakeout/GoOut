@@ -59,10 +59,7 @@ public class Usuario {
 		u.provincia=prov;
 		u.email=email;
 		u.nombre=nombre;
-		//Inicializacion de listas
-		u.historial = new ArrayList<Actividad>();
-		u.actuales = new ArrayList<Actividad>();
-		u.amigos = new ArrayList<Usuario>();
+
 		return u;
 	}
 	

@@ -137,7 +137,7 @@ public class HomeController {
 				}
 
 			
-				return "redirect:" + destino;
+				return destino;
 			}
 	
 	/**
