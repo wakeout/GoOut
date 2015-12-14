@@ -20,7 +20,7 @@
 								<div id="crear" align="center">
 									<p id="text">CREACION DE ACTIVIDADES</p>
 									<div id="creacion">
-										<form action="crearActividad" enctype="multipart/form-data"
+										<form action="${prefix}crearActividad" enctype="multipart/form-data"
 											method="POST">
 											<div id="crear_1">
 												<p id="text">¿QUÉ QUIERES HACER?</p>

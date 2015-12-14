@@ -45,6 +45,7 @@ public class Actividad{
 	private List<Novedad> novedades;
 	private Pago pago;
 	private String privacidad;
+	private String descripcion;
 	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
 			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
@@ -61,7 +62,6 @@ public class Actividad{
 		a.maxPersonas=max_participantes;
 		a.n_personas=1;
 		a.privacidad=privacidad;
-		
 
 		return a;
 	}
@@ -186,6 +186,14 @@ public class Actividad{
 
 	public void setLocalizacion(String localizacion) {
 		this.localizacion = localizacion;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 }
