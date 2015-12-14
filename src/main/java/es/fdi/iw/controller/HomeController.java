@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -59,6 +60,9 @@ public class HomeController {
 		
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
 		
+		List<Actividad> lista_actv = new ArrayList<Actividad>();
+		
+		
 		// validate request
 		if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 4) 
 		{
@@ -77,6 +81,7 @@ public class HomeController {
 				{
 					logger.info("no-such-user; creating user {}", formLogin);				
 					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "unknown-user.jpg");
+					user.setActuales(lista_actv);
 					entityManager.persist(user);
 					logeado=user;
 				} 
@@ -208,13 +213,20 @@ public class HomeController {
 			String imagen="";
 			String extension="";
 			String privacidad="publica";
+			List<Usuario> lista_usuarios = new ArrayList<Usuario>();
+			
 			
 			try {
-				
-			
+
 				usuario_creador = (Usuario)session.getAttribute("usuario");
 				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", privacidad);
-			
+				
+				
+				usuario_creador.getActuales().add(a);
+				
+				lista_usuarios.add(usuario_creador);
+				a.setPersonas(lista_usuarios);
+				
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
 					Tag t = entityManager.find(Tag.class, aid);
@@ -253,6 +265,7 @@ public class HomeController {
 				a.setIdImagen(imagen);
 				
 				entityManager.persist(a);
+				entityManager.persist(usuario_creador);
 		
 				
 			} catch (NoResultException nre) {
@@ -384,7 +397,7 @@ public class HomeController {
 				actv.getPersonas().add(logeado);
 				entityManager.persist(actv);
 				//Incrementar el numero de personas y si es igual a max personas, cerrar (poner completa) la actividad.
-				actv.setNpersonas(actv.getNpersonas()+1);
+				actv.setNpersonas(actv.getPersonas().size());
 				
 			}
 			else
