@@ -45,4 +45,22 @@
 	</table>
 </div>
 
+<div class="mensaje_salida">
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">
+				<th scope="col">Destino
+				<th scope="col">Asunto
+		</thead>
+		<tbody>
+			<c:forEach items="${mensajeS}" var="a">
+			<tr>	
+				<td><input type="checkbox">
+				<td> ${a.destinos.login}
+				<td>${a.titulo}
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
 

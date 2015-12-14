@@ -42,7 +42,10 @@
   		</li>
   		<li>
   		  <button id="b_foros">Foros</button>
-  		</li>  		
+  		</li> 
+  		<li>
+  			<button id="b_denuncias">Denuncias</button>
+  		</li> 		
 	</ul>
 
 	<div class="lista">

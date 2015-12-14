@@ -95,6 +95,15 @@
 		</table>
 	</div>
 		
+	<div class="admin_denuncias">
+		<h1>Denuncias</h1>
+		<table>
+			<c:forEach items="${denuncias}" var="d">
+			<tr><td><input type="checkbox"><a href="${prefix}mensaje/${d.id}"> ${d.id}</a><td>${d.titulo}
+			</c:forEach>
+		</table>
+	</div>
+	
 	</c:if>
 
 	</div>
