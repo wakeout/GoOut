@@ -59,6 +59,12 @@ div#actv table
 	opacity:0.5;
 }
 
+.errorLogin{
+	color:brown;
+	font-size:small;
+	text-align:center;	
+}
+
 
 .form3 {
     font-family:sans-serif;

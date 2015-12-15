@@ -37,7 +37,7 @@
 					<p id="reg"><a href='registro'>Si aún no tienes cuenta registrate aquí</a></p>
 					
 					<c:if test="${not empty loginError}">
-						<br><span class='errorLogin'></span>
+						<br><p class='errorLogin'>${loginError}</p>
 					</c:if>
 				</form>
 	<div id="actv">
