@@ -26,8 +26,11 @@
 						
 						<button type="button">Mensaje a creador</button>
 						<button type="button">Propon algo nuevo!</button>
+						
+						<form action="${prefix}denunciarActividad">
+						<input type="hidden" name="id_actividad" value="${actividad.id}" />
 						<button name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
-	
+						</form>
 					</c:if>
 				</div>
 

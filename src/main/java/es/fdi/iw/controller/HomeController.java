@@ -199,14 +199,32 @@ public class HomeController {
 	@RequestMapping(value = "/mensajeAmigo", method = RequestMethod.GET)
 	@Transactional
 	public String mensajeAmigo(@RequestParam("nombre_amigo") long amigo, Model model, HttpSession session){
-		System.out.println("----------------------------------"+amigo);
 		Usuario p=entityManager.find(Usuario.class, amigo);
 		
-		//model.addAttribute("nombre", p);
-		session.setAttribute("nombre", p);
-		getTokenForSession(session);
+		model.addAttribute("nombre", p);
+		//session.setAttribute("nombre", p);
+		//getTokenForSession(session);
 		
-		return "redirect:mensajes";
+		//return "redirect:mensajes";
+		return "mensajes";
+	}
+	
+	@RequestMapping(value= "/denunciarActividad")
+	@Transactional
+	public String denunciarActividad(@RequestParam("id_actividad") long actv, Model model, HttpSession session){
+		Mensaje m = null;
+		Usuario u = null;
+		
+		String asunto;
+		String contenido;
+		
+		u=(Usuario)session.getAttribute("usuario");
+		
+		asunto = "Denuncia actividad";
+		
+		
+		
+		return "actividad";
 	}
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
