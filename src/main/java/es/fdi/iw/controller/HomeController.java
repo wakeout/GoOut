@@ -65,7 +65,7 @@ public class HomeController {
 		// validate request
 		if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 4) 
 		{
-			model.addAttribute("loginError", "usuarios y contraseñas: 4 caracteres mínimo");
+			model.addAttribute("loginError", "Usuarios y contraseña: 4 caracteres mínimo");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		} 
 		else 
@@ -87,7 +87,7 @@ public class HomeController {
 				else {
 					logger.info("no such login: {}", formLogin);
 				}
-				model.addAttribute("loginError", "error en usuario o contraseña");
+				model.addAttribute("loginError", "Error en usuario o contraseña");
 			}
 		}
 		
@@ -111,7 +111,7 @@ public class HomeController {
 		destino="login";
 		
 				if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 3) {
-					model.addAttribute("loginError", "usuarios y contraseñas: 3 caracteres mínimo");
+					model.addAttribute("loginError", "Usuarios y contraseña: 3 caracteres mínimo");
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				} else {
 					Usuario u = null;
@@ -123,7 +123,7 @@ public class HomeController {
 							logger.info("pass valido");
 							session.setAttribute("usuario", u);
 							getTokenForSession(session);
-							destino="home";
+							destino = "redirect:home";
 						} else {
 							logger.info("pass no valido");
 							model.addAttribute("loginError", "error en usuario o contraseña");
@@ -131,13 +131,12 @@ public class HomeController {
 						}
 					} catch (NoResultException nre) {
 						
-						model.addAttribute("loginError", "error en usuario o contraseña");
+						model.addAttribute("loginError", "Error en usuario o contraseña");
+						destino = "login";
 					}
 					logeado=u;
 				}
-
-			
-				return "redirect:" + destino;
+				return destino;
 			}
 	
 	/**
