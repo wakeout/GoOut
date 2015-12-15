@@ -192,8 +192,8 @@ public class Actividad{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-/*
-	@OneToMany(targetEntity=Registro.class)
+
+/*	@OneToMany(targetEntity=Registro.class)
 	public List<Registro> getRegistros() {
 		return registros;
 	}

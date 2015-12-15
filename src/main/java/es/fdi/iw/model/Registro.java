@@ -11,6 +11,8 @@ public class Registro {
 	public Usuario getU() {
 		return u;
 	}
+	
+	
 	public void setU(Usuario u) {
 		this.u = u;
 	}
