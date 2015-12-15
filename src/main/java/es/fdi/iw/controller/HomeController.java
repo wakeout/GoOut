@@ -261,9 +261,9 @@ public class HomeController {
 				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", privacidad);
 				
 				
-				usuario_creador.getActuales().add(a);
+			//	usuario_creador.getActuales().add(a);
 				
-				a.getPersonas().add(usuario_creador);
+			//	a.getPersonas().add(usuario_creador);
 				
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
@@ -434,7 +434,7 @@ public class HomeController {
 			if(actv.getNpersonas() < actv.getMaxPersonas())
 			{
 				
-				if(!actv.getPersonas().contains(usuario)){
+			/*	if(!actv.getPersonas().contains(usuario)){
 					//Unirse a la actividad
 					usuario.getActuales().add(actv);
 					entityManager.persist(usuario);
@@ -445,7 +445,7 @@ public class HomeController {
 					//Incrementar el numero de personas y si es igual a max personas, cerrar (poner completa) la actividad.
 					actv.setNpersonas(actv.getPersonas().size());
 				}
-				
+				*/
 			}
 			else
 			{
@@ -497,12 +497,12 @@ public class HomeController {
 		
 			Usuario u= entityManager.find(Usuario.class, logeado.getId());
 		
-			List<Actividad> actuales=u.getActuales();
+		/*	List<Actividad> actuales=u.getActuales();
 			List<Actividad> historial=u.getHistorial();
 		
 			model.addAttribute("actuales",actuales);
 			model.addAttribute("historial",historial);
-		
+		*/
 			return "mis_actividades";
 		}
 		else

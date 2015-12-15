@@ -31,7 +31,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 			query="update Usuario u set u.login= :nick_perfil")*/
 })
 public class Usuario {	
-
 	private static BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
 	private String nombre;
 	private long id;
@@ -42,9 +41,8 @@ public class Usuario {
 	private String provincia;
 	private String email;
 	private String idFoto;
+	private List<Registro> registros;
 	
-	private List<Actividad> historial;
-	private List<Actividad> actuales; 
 	private List<Usuario> amigos; //Seria mejor tener una lista de ids de usuarios
 
 
@@ -174,21 +172,7 @@ public class Usuario {
 		this.provincia = provincia;
 	}
 
-	@ManyToMany(targetEntity=Actividad.class)
-	public List<Actividad> getHistorial() {
-		return historial;
-	}
-	public void setHistorial(List<Actividad> historial) {
-		this.historial = historial;
-	}
-	@ManyToMany(targetEntity=Actividad.class)
-	public List<Actividad> getActuales() {
-		return actuales;
-	}
-	public void setActuales(List<Actividad> actuales) {
-		this.actuales = actuales;
-	}
-
+	
 	@ManyToMany(targetEntity=Usuario.class,fetch=FetchType.EAGER)
 	public List<Usuario> getAmigos() {
 		return amigos;
@@ -214,6 +198,16 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+/*
+	@OneToMany(targetEntity=Registro.class)
+	@JoinColumn(name="reg_id") 
+	public List<Registro> getRegistros() {
+		return registros;
+	}
 
+	public void setRegistros(List<Registro> registros) {
+		this.registros = registros;
+	}
 
+*/
 }

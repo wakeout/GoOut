@@ -41,7 +41,6 @@ public class Actividad{
 	private String idImagen;
 	private String estado;
 	private int maxPersonas;
-	private List<Usuario>  personas;//email de perfiles
 	private int n_personas;
 	private Foro foro;
 	private List<Tag> tags;
@@ -49,6 +48,7 @@ public class Actividad{
 	private Pago pago;
 	private String privacidad;
 	private String descripcion;
+	private List<Registro> registros;
 	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
 			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
@@ -113,13 +113,7 @@ public class Actividad{
 	 public void setHitos(List<Hito> hitos) {
 		 this.proximosHitos = hitos;
 	 }
-	 @ManyToMany(targetEntity=Usuario.class, fetch=FetchType.EAGER)
-	 public List<Usuario> getPersonas() {
-		 return personas;
-	 }
-	 public void setPersonas(List<Usuario> perfiles) {
-		 this.personas = perfiles;
-	 }
+
 	@OneToOne(targetEntity=Foro.class)
 	public Foro getForo() {
 		return foro;
@@ -198,5 +192,16 @@ public class Actividad{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+/*
+	@OneToMany(targetEntity=Registro.class)
+	public List<Registro> getRegistros() {
+		return registros;
+	}
+
+	public void setRegistros(List<Registro> registros) {
+		this.registros = registros;
+	}
+
+*/
 
 }
