@@ -60,7 +60,6 @@ public class HomeController {
 		
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
 		
-		List<Actividad> lista_actv = new ArrayList<Actividad>();
 		
 		
 		// validate request
@@ -81,7 +80,7 @@ public class HomeController {
 				{
 					logger.info("no-such-user; creating user {}", formLogin);				
 					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "unknown-user.jpg");
-					user.setActuales(lista_actv);
+
 					entityManager.persist(user);
 					logeado=user;
 				} 
@@ -226,7 +225,6 @@ public class HomeController {
 			String imagen="";
 			String extension="";
 			String privacidad="publica";
-			List<Usuario> lista_usuarios = new ArrayList<Usuario>();
 			
 			
 			try {
@@ -237,8 +235,7 @@ public class HomeController {
 				
 				usuario_creador.getActuales().add(a);
 				
-				lista_usuarios.add(usuario_creador);
-				a.setPersonas(lista_usuarios);
+				a.getPersonas().add(usuario_creador);
 				
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
@@ -369,6 +366,7 @@ public class HomeController {
 			{
 				usuario_propio.getAmigos().add(usuario_amigo);
 				usuario_amigo.getAmigos().add(usuario_propio);
+				
 				entityManager.persist(usuario_propio);
 				entityManager.persist(usuario_amigo);
 			}
@@ -389,11 +387,14 @@ public class HomeController {
 	@RequestMapping(value = "/unirseActividad", method = RequestMethod.POST)
 	@Transactional
 	public String unirseActividad(
-			@RequestParam("id_actv") long id_actividad){
+			@RequestParam("id_actv") long id_actividad,
+			@RequestParam("id_propio") long id_propio){
 		
 		Actividad actv = new Actividad();
+		Usuario usuario = new Usuario();
 		
 		actv = entityManager.find(Actividad.class, id_actividad);
+		usuario = entityManager.find(Usuario.class, id_propio);
 		
 		// Comprobar que la actividad no este cerrada
 		
@@ -404,13 +405,18 @@ public class HomeController {
 		{
 			if(actv.getNpersonas() < actv.getMaxPersonas())
 			{
-				//Unirse a la actividad
-				logeado.getActuales().add(actv);
-				entityManager.persist(logeado);
-				actv.getPersonas().add(logeado);
-				entityManager.persist(actv);
-				//Incrementar el numero de personas y si es igual a max personas, cerrar (poner completa) la actividad.
-				actv.setNpersonas(actv.getPersonas().size());
+				
+				if(!actv.getPersonas().contains(usuario)){
+					//Unirse a la actividad
+					usuario.getActuales().add(actv);
+					entityManager.persist(usuario);
+				
+					actv.getPersonas().add(usuario);
+					entityManager.persist(actv);
+				
+					//Incrementar el numero de personas y si es igual a max personas, cerrar (poner completa) la actividad.
+					actv.setNpersonas(actv.getPersonas().size());
+				}
 				
 			}
 			else

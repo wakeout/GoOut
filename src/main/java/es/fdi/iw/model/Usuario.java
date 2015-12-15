@@ -1,6 +1,7 @@
 package es.fdi.iw.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -58,6 +59,10 @@ public class Usuario {
 		u.provincia=prov;
 		u.email=email;
 		u.nombre=nombre;
+		//Inicializacion de listas
+		u.historial = new ArrayList<Actividad>();
+		u.actuales = new ArrayList<Actividad>();
+		u.amigos = new ArrayList<Usuario>();
 		return u;
 	}
 	

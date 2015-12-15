@@ -20,6 +20,7 @@
 						
 						<form action="${prefix}unirseActividad" method="POST">
 							<input type="hidden" name="id_actv" value="${actividad.id}"/>
+							<input type="hidden" name="id_propio" value="${usuario.id}"/>
 							<button type="submit">Unirse a la actividad</button>
 						</form>
 						

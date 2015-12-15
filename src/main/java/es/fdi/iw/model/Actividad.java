@@ -1,6 +1,7 @@
 
 package es.fdi.iw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -62,6 +63,11 @@ public class Actividad{
 		a.maxPersonas=max_participantes;
 		a.n_personas=1;
 		a.privacidad=privacidad;
+		//Inicializacion de listas
+		a.novedades = new ArrayList<Novedad>();
+		a.personas = new ArrayList<Usuario>();
+		a.tags = new ArrayList<Tag>();
+		a.proximosHitos = new ArrayList<Hito>();
 		return a;
 	}
 	
