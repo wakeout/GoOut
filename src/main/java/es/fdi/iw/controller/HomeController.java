@@ -136,11 +136,7 @@ public class HomeController {
 					}
 					logeado=u;
 				}
-<<<<<<< HEAD
-=======
 
-			
->>>>>>> 84769f7bd02cbf6fdaa94bcb62862fc4738eb85a
 				return destino;
 			}
 	
