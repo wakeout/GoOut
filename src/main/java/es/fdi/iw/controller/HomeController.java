@@ -232,6 +232,22 @@ public class HomeController {
 		return "redirect:actividad/"+actv;
 		//return "actividad";
 	}
+	
+	
+	@RequestMapping(value = "/borrarElemento", method = RequestMethod.POST)
+	@Transactional
+	public String borrarElemento(@RequestParam("actividades") long[] actividadesId, Model model, HttpSession session){
+		
+		for(int i=0; i<actividadesId.length; i++){
+			entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", actividadesId[i]);
+		}
+		
+		
+		
+		return "redirect:administrador";
+	}
+	
+	
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
 	@Transactional
@@ -275,7 +291,6 @@ public class HomeController {
 
 
 			        try {
-			        	
 			        	
 			        	if(imagen_actv.isEmpty())
 			        		imagen="0.png";
@@ -569,6 +584,8 @@ public class HomeController {
 		model.addAttribute("prefix", "../");
 		return "actividad";
 	}
+	
+	
 	
 	
 	

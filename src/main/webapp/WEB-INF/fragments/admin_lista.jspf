@@ -11,7 +11,10 @@
 		
 <hr></hr>	
 <div class="op">
-	<input type="button" class="papelera">	
+	<form action="${prefix}borrarElemento" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	
 	<input type="button" class="add">
 </div>	
 	
@@ -25,8 +28,9 @@
 	<h1>Actividades</h1>
 		<table>
 			<c:forEach items="${actividades}" var="a">
-			<tr><td><input type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
+			<tr><td><input name="actividades" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
 			</c:forEach>
+		</form>
 		</table>
 	</div>
 	

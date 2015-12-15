@@ -27,7 +27,9 @@ import java.sql.Date;
     @NamedQuery(name="allActividades",
             query="select a from Actividad a"),
     @NamedQuery(name="unaActividad",
-    		query="select a from Actividad a where a.id = :actividadParam")
+    		query="select a from Actividad a where a.id = :actividadParam"),
+    @NamedQuery(name="eliminarActividad", 
+    		query="delete  from Actividad a where a.id= :idActividad")
 })
 public class Actividad{
 
