@@ -192,8 +192,9 @@ public class Actividad{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-/*
+
 	@OneToMany(targetEntity=Registro.class)
+	@JoinColumn(name="reg_actv")
 	public List<Registro> getRegistros() {
 		return registros;
 	}
@@ -202,6 +203,6 @@ public class Actividad{
 		this.registros = registros;
 	}
 
-*/
+
 
 }
