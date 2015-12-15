@@ -25,7 +25,9 @@ import java.sql.Date;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allActividades",
-            query="select a from Actividad a")
+            query="select a from Actividad a"),
+    @NamedQuery(name="unaActividad",
+    		query="select a from Actividad a where a.id = :actividadParam")
 })
 public class Actividad{
 

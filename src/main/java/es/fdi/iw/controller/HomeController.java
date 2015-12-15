@@ -214,17 +214,27 @@ public class HomeController {
 	public String denunciarActividad(@RequestParam("id_actividad") long actv, Model model, HttpSession session){
 		Mensaje m = null;
 		Usuario u = null;
+		Usuario d = null;
+		Actividad a = null;
 		
 		String asunto;
 		String contenido;
 		
 		u=(Usuario)session.getAttribute("usuario");
+		a = (Actividad) entityManager.createNamedQuery("unaActividad")
+				.setParameter("actividadParam", actv).getSingleResult();
 		
 		asunto = "Denuncia actividad";
+		//contenido = "La actividad ha sido denunciada";
+		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
+		" ha denunciado la actividad " + a.getDescripcion() + "(" + a.getId()
+		+ ")." + "Entre paréntesis el id de cada elemento respectivamente";
 		
+		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d);
+		entityManager.persist(m);
 		
-		
-		return "actividad";
+		return "redirect:actividad/"+actv;
+		//return "actividad";
 	}
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)

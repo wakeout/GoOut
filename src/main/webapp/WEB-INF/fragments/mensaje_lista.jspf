@@ -31,16 +31,22 @@
 	<table>
 		<thead>
 			<tr>
-				<th scope="col">
-				<th scope="col">Usuario
-				<th scope="col">Asunto
+				<!-- <th scope="col">-->
+				<td><th scope="col">Usuario
+				<!-- <td><th scope="col">-->
+				<td><th scope="col">Asunto
+				<td><th scope="col">
+				<td><th scope="col">
 		</thead>
 		<tbody>
 			<c:forEach items="${mensajes}" var="a">
 			<tr>	
-				<td><input type="checkbox">
+				<!-- <td><input type="checkbox">-->
 				<td> ${a.destinos.login}
+				<td>
 				<td>${a.titulo}
+				<td><button type="submit" name="submit">Leer</button>
+				<td><button type="submit" name="submit">Borrar</button>
 			</c:forEach>
 		</tbody>
 	</table>
@@ -53,6 +59,8 @@
 				<th scope="col">
 				<th scope="col">Destino
 				<th scope="col">Asunto
+				<th scope="col">
+				<th scope="col">
 		</thead>
 		<tbody>
 			<c:forEach items="${mensajeS}" var="a">
@@ -60,6 +68,8 @@
 				<td><input type="checkbox">
 				<td> ${a.destinos.login}
 				<td>${a.titulo}
+				<td><button type="submit" name="submit">Leer</button>
+				<td><button type="submit" name="submit">Borrar</button>
 			</c:forEach>
 		</tbody>
 	</table>
