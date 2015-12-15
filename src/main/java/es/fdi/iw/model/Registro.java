@@ -13,7 +13,9 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allRegistros",
-            query="select n from Registro n")
+            query="select r from Registro r"),
+    @NamedQuery(name="unRegistro",
+    		query="select r from Registro r where r.id = :registroParam")
 })
 
 public class Registro {

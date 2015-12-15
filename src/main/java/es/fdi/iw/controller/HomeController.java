@@ -511,19 +511,23 @@ public class HomeController {
 			return "redirect:sin_registro";
 	}
 	
+
 	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
 	public String mis_actividades(Model model, HttpSession session){
-		Usuario u = (Usuario)session.getAttribute("usuario");
-		if(u!=null){
 		
-			u= entityManager.find(Usuario.class, u.getId());
+		if(((Usuario)session.getAttribute("usuario"))!=null){
+			Usuario u = (Usuario)session.getAttribute("usuario");
+			List<Actividad> actividades = new ArrayList();
+			u = entityManager.find(Usuario.class, u.getId());
+			List <Registro> r=u.getRegistros();
+			
+			for(int i=0; i<r.size();i++){
+				actividades.add(r.get(i).getActividad());
+			}
 		
-		/*	List<Actividad> actuales=u.getActuales();
-			List<Actividad> historial=u.getHistorial();
-		
-			model.addAttribute("actuales",actuales);
-			model.addAttribute("historial",historial);
-		*/
+
+			model.addAttribute("actividades",actividades);
+			
 			return "mis_actividades";
 		}
 		else
