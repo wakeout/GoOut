@@ -17,13 +17,15 @@
 				 
 				 <div id="btones_actv">
 					<c:if test="${actividad.privacidad.equals('publica')}">
-						
+						<c:if test="${!empty usuario}">
+				
 						<form action="${prefix}unirseActividad" method="POST">
 							<input type="hidden" name="id_actv" value="${actividad.id}"/>
 							<input type="hidden" name="id_propio" value="${usuario.id}"/>
 							<button type="submit">Unirse a la actividad</button>
 						</form>
 						
+						</c:if>
 						<button type="button">Mensaje a creador</button>
 						<button type="button">Propon algo nuevo!</button>
 						
@@ -91,23 +93,18 @@
 				</div>
 		
 		<div id="gente_actv">
-		<p> Usuarios apuntados  ${registro.actividad.npersonas}/${registro.actividad.maxPersonas}</p>
+		<p> Usuarios apuntados  ${actividad.npersonas}/${actividad.maxPersonas}</p>
 			<div id="gente_apuntada">
 					<table>		
 						<tbody>
-							<%int fila=1; %>
-							<c:forEach items="${registro.actividad.personas}" var="p">
-							<%if ((fila % 3) == 1){%> 
+							<c:forEach items="${participantes}" var="p">
 								<tr>
-							<%}%>
 								<td>
 								<a href="../perfil/${p.id}">
 									<img class="i_people" src="${prefix}resources/images/${p.idFoto}" alt="" />
 								</a>
-								</td> 
-							<%if ((fila % 3) == 0){%> 
+								</td>
 								</tr>
-							<%} fila++;%>
 							</c:forEach>
 						</tbody>
 					</table>

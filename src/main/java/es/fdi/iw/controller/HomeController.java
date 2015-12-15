@@ -417,6 +417,7 @@ public class HomeController {
 			@RequestParam("id_actv") long id_actividad,
 			@RequestParam("id_propio") long id_propio,
 			HttpSession session){
+		if(session.getAttribute("usuario")!=null){
 		
 		Actividad actv = new Actividad();
 		Usuario usuario = new Usuario();
@@ -473,6 +474,9 @@ public class HomeController {
 			}
 		//}
 		
+		}
+		
+		
 		return "redirect:actividad/"+id_actividad;
 		
 	}
@@ -516,6 +520,7 @@ public class HomeController {
 	public String mis_actividades(Model model, HttpSession session){
 		
 		if(((Usuario)session.getAttribute("usuario"))!=null){
+		
 			Usuario u = (Usuario)session.getAttribute("usuario");
 			List<Actividad> actividades = new ArrayList();
 			u = entityManager.find(Usuario.class, u.getId());
@@ -552,6 +557,13 @@ public class HomeController {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			logger.error("No such actividad: {}", id);
 		} else {
+			List <Usuario> participantes=new ArrayList();
+			
+			for(int i=0; i<a.getRegistros().size(); i++){
+				participantes.add(a.getRegistros().get(i).getUsuario());
+			
+			}
+			model.addAttribute("participantes", participantes);
 			model.addAttribute("actividad", a);
 		}
 		model.addAttribute("prefix", "../");
