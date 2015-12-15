@@ -198,9 +198,9 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-/*
+
 	@OneToMany(targetEntity=Registro.class)
-	@JoinColumn(name="reg_id") 
+	@JoinColumn(name="id_usuario") 
 	public List<Registro> getRegistros() {
 		return registros;
 	}
@@ -209,5 +209,5 @@ public class Usuario {
 		this.registros = registros;
 	}
 
-*/
+
 }

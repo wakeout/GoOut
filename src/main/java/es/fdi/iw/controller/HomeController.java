@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import es.fdi.iw.ContextInitializer;
 import es.fdi.iw.model.Actividad;
 import es.fdi.iw.model.Mensaje;
+import es.fdi.iw.model.Registro;
 import es.fdi.iw.model.Tag;
 import es.fdi.iw.model.Usuario;
 
@@ -42,7 +43,6 @@ import es.fdi.iw.model.Usuario;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	Usuario logeado;
 	@PersistenceContext
 	private EntityManager entityManager;
 	
@@ -82,7 +82,6 @@ public class HomeController {
 					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "unknown-user.jpg");
 
 					entityManager.persist(user);
-					logeado=user;
 				} 
 				else {
 					logger.info("no such login: {}", formLogin);
@@ -134,7 +133,6 @@ public class HomeController {
 						model.addAttribute("loginError", "Error en usuario o contraseña");
 						destino = "login";
 					}
-					logeado=u;
 				}
 
 				return destino;
@@ -149,7 +147,6 @@ public class HomeController {
 	public String logout(HttpSession session) {
 		logger.info("Usuario '{}' logged out", session.getAttribute("usuario"));
 		session.invalidate();
-		logeado=null;
 		return "redirect:login";
 	}
 	
@@ -167,7 +164,7 @@ public class HomeController {
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 		
-			if(logeado!=null)
+			if(session.getAttribute("usuario")!=null)
 			{
 				Usuario u = null;
 				try {
@@ -188,7 +185,6 @@ public class HomeController {
 					//Error
 			}
 		
-				logeado=u;
 				// redireccion a login cuando el registro ha sido correcto
 				return "redirect:mi_perfil";
 			}
@@ -247,8 +243,9 @@ public class HomeController {
 			@RequestParam("fecha_ini") Date fecha_ini,
 			Model model, HttpSession session) throws IOException {
 
-			if(logeado!=null){
+			if(session.getAttribute("usuario")!=null){
 			Actividad a = null;
+			Registro r = null;
 			Usuario usuario_creador = null;
 			String imagen="";
 			String extension="";
@@ -257,13 +254,13 @@ public class HomeController {
 			
 			try {
 
-				usuario_creador = (Usuario)session.getAttribute("usuario");
+				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", privacidad);
+				r = Registro.crearRegistro(a, usuario_creador);
+
+				usuario_creador.getRegistros().add(r);
 				
-				
-			//	usuario_creador.getActuales().add(a);
-				
-			//	a.getPersonas().add(usuario_creador);
+				a.getRegistros().add(r);
 				
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
@@ -273,6 +270,8 @@ public class HomeController {
 				}
 				
 				entityManager.persist(a);
+				entityManager.persist(usuario_creador);
+				entityManager.persist(r);
 
 
 			        try {
@@ -416,24 +415,45 @@ public class HomeController {
 	@Transactional
 	public String unirseActividad(
 			@RequestParam("id_actv") long id_actividad,
-			@RequestParam("id_propio") long id_propio){
+			@RequestParam("id_propio") long id_propio,
+			HttpSession session){
 		
 		Actividad actv = new Actividad();
 		Usuario usuario = new Usuario();
+		Registro r = null;
+		int i = 0;
+		boolean existe = false;
 		
 		actv = entityManager.find(Actividad.class, id_actividad);
 		usuario = entityManager.find(Usuario.class, id_propio);
 		
 		// Comprobar que la actividad no este cerrada
 		
-		if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ false){	
+		//if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ false){	
 			//Aviso al usuario de que no puede unirse a esta actividad. NO seria necesario?
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			if(actv.getNpersonas() < actv.getMaxPersonas())
 			{
+				while(i < actv.getRegistros().size() && !existe){
+					if(actv.getRegistros().get(i).getUsuario() == usuario)
+						existe = true;
+					i++;
+				}
 				
+				if(!existe){
+					r = Registro.crearRegistro(actv, usuario);
+					
+					usuario.getRegistros().add(r);
+					entityManager.persist(usuario);
+					
+					actv.getRegistros().add(r);
+					actv.setNpersonas(actv.getNpersonas()+1);
+					entityManager.persist(actv);
+					
+					entityManager.persist(r);
+				}
 			/*	if(!actv.getPersonas().contains(usuario)){
 					//Unirse a la actividad
 					usuario.getActuales().add(actv);
@@ -451,7 +471,7 @@ public class HomeController {
 			{
 				//Aviso al usuario de que no puede unirse a esta actividad por que esta llena
 			}
-		}
+		//}
 		
 		return "redirect:actividad/"+id_actividad;
 		
@@ -459,9 +479,9 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpSession session) {
 		
-		if(logeado!=null){
+		if(session.getAttribute("usuario")!=null){
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 			return "home";
@@ -471,8 +491,8 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "home", method = RequestMethod.GET)
-	public String home(Model model){
-		if(logeado!=null){
+	public String home(Model model, HttpSession session){
+		if(session.getAttribute("usuario")!=null){
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			return "home";
 		}else
@@ -481,8 +501,8 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
-	public String crear(Model model){
-		if(logeado!=null){
+	public String crear(Model model, HttpSession session){
+		if(session.getAttribute("usuario")!=null){
 			model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
 
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
@@ -492,10 +512,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
-	public String mis_actividades(Model model){
-		if(logeado!=null){
+	public String mis_actividades(Model model, HttpSession session){
+		Usuario u = (Usuario)session.getAttribute("usuario");
+		if(u!=null){
 		
-			Usuario u= entityManager.find(Usuario.class, logeado.getId());
+			u= entityManager.find(Usuario.class, u.getId());
 		
 		/*	List<Actividad> actuales=u.getActuales();
 			List<Actividad> historial=u.getHistorial();
@@ -510,8 +531,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/buscar", method = RequestMethod.GET)
-	public String buscar(Model model){
-		if(logeado!=null){
+	public String buscar(Model model,HttpSession session){
+		if(session.getAttribute("usuario")!=null){
 		
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			
@@ -546,9 +567,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
-	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model){
+	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model, HttpSession session){
 		
-		if(logeado!=null){
+		if(session.getAttribute("usuario")!=null){
 		
 			Usuario p=entityManager.find(Usuario.class, id);
 		
@@ -569,8 +590,8 @@ public class HomeController {
 
 	
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.GET)
-	public String mi_perfil(){
-		if(logeado!=null){
+	public String mi_perfil(HttpSession session){
+		if(session.getAttribute("usuario")!=null){
 			return "mi_perfil";
 		}else 
 			return "redirect:sin_registro";
@@ -578,7 +599,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/mensajes", method = RequestMethod.GET)
 	public String mensajes(Model model, HttpSession session){
-		if(logeado!=null){
+		if(session.getAttribute("usuario")!=null){
 			Usuario u = null;
 			u=(Usuario)session.getAttribute("usuario");
 			model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
@@ -601,9 +622,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	@Transactional
-	public String administrador(Model model){
+	public String administrador(Model model, HttpSession session){
 		
-		if(logeado.getRol().equals("admin")){
+		Usuario u = (Usuario)session.getAttribute("usuario");
+		
+		if(u.getRol().equals("admin")){
 			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
@@ -619,7 +642,7 @@ public class HomeController {
 			return "administrador";
 		
 		}else{
-			if(logeado!=null){
+			if(session.getAttribute("usuario")!=null){
 				return "redirect:home";
 			}
 			else return "redirect:sin_registro";

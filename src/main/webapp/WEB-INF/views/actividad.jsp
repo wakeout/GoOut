@@ -91,12 +91,12 @@
 				</div>
 		
 		<div id="gente_actv">
-		<p> Usuarios apuntados  ${actividad.npersonas}/${actividad.maxPersonas}</p>
+		<p> Usuarios apuntados  ${registro.actividad.npersonas}/${registro.actividad.maxPersonas}</p>
 			<div id="gente_apuntada">
 					<table>		
 						<tbody>
 							<%int fila=1; %>
-							<c:forEach items="${actividad.personas}" var="p">
+							<c:forEach items="${registro.actividad.personas}" var="p">
 							<%if ((fila % 3) == 1){%> 
 								<tr>
 							<%}%>

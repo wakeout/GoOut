@@ -193,7 +193,8 @@ public class Actividad{
 		this.descripcion = descripcion;
 	}
 
-/*	@OneToMany(targetEntity=Registro.class)
+	@OneToMany(targetEntity=Registro.class)
+	@JoinColumn(name="id_actividad")
 	public List<Registro> getRegistros() {
 		return registros;
 	}
@@ -202,6 +203,6 @@ public class Actividad{
 		this.registros = registros;
 	}
 
-*/
+
 
 }
