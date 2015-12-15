@@ -65,7 +65,7 @@ public class Actividad{
 		a.maxPersonas=max_participantes;
 		a.n_personas=1;
 		a.privacidad=privacidad;
-
+		a.registros = new ArrayList<Registro>();
 		return a;
 	}
 	
@@ -194,7 +194,7 @@ public class Actividad{
 	}
 
 	@OneToMany(targetEntity=Registro.class)
-	@JoinColumn(name="reg_actv")
+	@JoinColumn(name="id_actividad")
 	public List<Registro> getRegistros() {
 		return registros;
 	}

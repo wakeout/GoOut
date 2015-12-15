@@ -18,33 +18,40 @@ insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_perso
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(10, 'cable esquí en el lago',9,  'Madrid', '8.jpg', 20, 'publica')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(8, 'paintball',9,  'Madrid', '9.jpg', 20, 'publica')
 
-insert into actividad_personas values(1,1)
-insert into actividad_personas values(1,2)
-insert into actividad_personas values(1,4)
-insert into actividad_personas values(2,1)
-insert into actividad_personas values(3,2)
-insert into actividad_personas values(3,1)
 
+insert into Registro values(1,1,1,1,1);
+insert into Registro values(2,2,1,2,1);
+insert into Registro values(3,1,3,1,3);
+insert into Registro values(4,4,1,4,1);
+insert into Registro values(5,5,2,5,2);
 
-insert into Usuario_Amigos values(1,2)
-insert into Usuario_Amigos values(1,4)
-insert into Usuario_Amigos values(1,5)
-insert into Usuario_Amigos values(2,1)
-insert into Usuario_Amigos values(4,1)
-insert into Usuario_Amigos values(5,1)
-insert into Usuario_Amigos values(4,5)
-insert into Usuario_Amigos values(5,4)
-insert into Usuario_Amigos values(2,4)
-insert into Usuario_Amigos values(4,2)
-
-insert into usuario_actuales values(1,1)
-insert into usuario_actuales values(1,2)
-insert into usuario_actuales values(1,3)
-insert into usuario_actuales values(1,4)
-insert into usuario_actuales values(4,3)
-insert into usuario_actuales values(4,4)
-insert into usuario_actuales values(4,6)
-insert into usuario_actuales values(4,8)
+--insert into actividad_personas values(1,1)
+--insert into actividad_personas values(1,2)
+--insert into actividad_personas values(1,4)
+--insert into actividad_personas values(2,1)
+--insert into actividad_personas values(3,2)
+--insert into actividad_personas values(3,1)
+--
+--
+--insert into Usuario_Amigos values(1,2)
+--insert into Usuario_Amigos values(1,4)
+--insert into Usuario_Amigos values(1,5)
+--insert into Usuario_Amigos values(2,1)
+--insert into Usuario_Amigos values(4,1)
+--insert into Usuario_Amigos values(5,1)
+--insert into Usuario_Amigos values(4,5)
+--insert into Usuario_Amigos values(5,4)
+--insert into Usuario_Amigos values(2,4)
+--insert into Usuario_Amigos values(4,2)
+--
+--insert into usuario_actuales values(1,1)
+--insert into usuario_actuales values(1,2)
+--insert into usuario_actuales values(1,3)
+--insert into usuario_actuales values(1,4)
+--insert into usuario_actuales values(4,3)
+--insert into usuario_actuales values(4,4)
+--insert into usuario_actuales values(4,6)
+--insert into usuario_actuales values(4,8)
 
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(1, 'victor me cae fatal',  2, 'pues eso', 'ordinario')
 insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(2, 'david me cae fatal',  2, 'pues eso', 'ordinario')

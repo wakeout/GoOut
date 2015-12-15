@@ -200,7 +200,7 @@ public class Usuario {
 	}
 
 	@OneToMany(targetEntity=Registro.class)
-	@JoinColumn(name="reg_id") 
+	@JoinColumn(name="id_usuario") 
 	public List<Registro> getRegistros() {
 		return registros;
 	}

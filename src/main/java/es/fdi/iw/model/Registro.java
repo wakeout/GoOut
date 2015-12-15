@@ -1,6 +1,8 @@
 package es.fdi.iw.model;
 
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,8 +19,16 @@ import javax.persistence.NamedQuery;
 public class Registro {
 	
 	long id;
-	Usuario u;
+	Usuario usuario;
 	Actividad actividad;
+
+	public static Registro crearRegistro(Actividad  actv, Usuario user) {
+		
+		Registro r = new Registro();
+		r.actividad=actv;
+		r.usuario=user;
+		return r;
+	}
 
 	@Id
 	@GeneratedValue
@@ -32,11 +42,11 @@ public class Registro {
 	
 	@ManyToOne(targetEntity=Usuario.class)
 	public Usuario getUsuario() {
-		return u;
+		return usuario;
 	}
 	
 	public void setUsuario(Usuario u) {
-		this.u = u;
+		this.usuario = u;
 	}
 	
 	@ManyToOne(targetEntity=Actividad.class)	
