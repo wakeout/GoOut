@@ -223,7 +223,7 @@ public class HomeController {
 		asunto = "Denuncia actividad";
 		//contenido = "La actividad ha sido denunciada";
 		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
-		" ha denunciado la actividad " + a.getDescripcion() + "(" + a.getId()
+		" ha denunciado la actividad " + a.getNombre() + "(" + a.getId()
 		+ ")." + "Entre paréntesis el id de cada elemento respectivamente";
 		
 		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d);
@@ -606,8 +606,14 @@ public class HomeController {
 
 	
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.GET)
-	public String mi_perfil(HttpSession session){
+	public String mi_perfil(HttpSession session, Model model){
 		if(session.getAttribute("usuario")!=null){
+			Usuario u=(Usuario)session.getAttribute("usuario");
+			
+			u = entityManager.find(Usuario.class,u.getId());
+			
+			model.addAttribute("amigos", u.getAmigos());
+			
 			return "mi_perfil";
 		}else 
 			return "redirect:sin_registro";

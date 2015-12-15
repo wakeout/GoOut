@@ -28,11 +28,11 @@
 					<div id="amigos">
 						<p>Amigos</p>
 							<table>
-									<c:forEach items="${usuario.amigos}" var="u_amigos">
+									<c:forEach items="${amigos}" var="amigos">
 										<tr>
 											<td>
-											<a href="${prefix}perfil/${u_amigos.id}">
-											<img class="i_people" src="${prefix}resources/images/${u_amigos.idFoto}" alt="" />
+											<a href="${prefix}perfil/${amigos.id}">
+											<img class="i_people" src="${prefix}resources/images/${amigos.idFoto}" alt="" />
 											</a>
 											</td> 
 								
