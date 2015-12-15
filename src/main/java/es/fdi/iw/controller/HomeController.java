@@ -196,6 +196,19 @@ public class HomeController {
 		else
 			return "sin_registro";
 	}
+	
+	@RequestMapping(value = "/mensajeAmigo", method = RequestMethod.GET)
+	@Transactional
+	public String mensajeAmigo(@RequestParam("nombre_amigo") long amigo, Model model, HttpSession session){
+		System.out.println("----------------------------------"+amigo);
+		Usuario p=entityManager.find(Usuario.class, amigo);
+		
+		//model.addAttribute("nombre", p);
+		session.setAttribute("nombre", p);
+		getTokenForSession(session);
+		
+		return "redirect:mensajes";
+	}
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
 	@Transactional

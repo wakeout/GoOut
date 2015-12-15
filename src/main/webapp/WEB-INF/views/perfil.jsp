@@ -20,7 +20,10 @@
 					<a class=""><img id="i_perfil"
 						src="${prefix}resources/images/${perfil.idFoto}" alt="" /></a> <br>
 					<center>
-						<button class="btn">Enviar Mensaje a ${perfil.login}</button>
+						<form action="${prefix}mensajeAmigo" method="GET">
+						<input type="hidden" name="nombre_amigo" value="${perfil.id}">
+						<button type="submit" name="submit" class="btn">Enviar Mensaje a ${perfil.login}</button>
+						</form>
 						<br>
 						<form action="${prefix}agregarAmigo" method="POST">
 							<input type="hidden" name="id_amigo" value="${perfil.id}">

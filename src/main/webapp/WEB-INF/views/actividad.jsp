@@ -26,6 +26,7 @@
 						<button type="button">Mensaje a creador</button>
 						<button type="button">Propon algo nuevo!</button>
 						<button name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
+	
 					</c:if>
 				</div>
 
