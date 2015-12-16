@@ -420,20 +420,40 @@ public class HomeController {
 		
 		Actividad actv = new Actividad();
 		Usuario usuario = new Usuario();
+		Registro r = null;
+		int i = 0;
+		boolean existe = false;
 		
 		actv = entityManager.find(Actividad.class, id_actividad);
 		usuario = entityManager.find(Usuario.class, id_propio);
 		
 		// Comprobar que la actividad no este cerrada
 		
-		if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ false){	
+		//if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ false){	
 			//Aviso al usuario de que no puede unirse a esta actividad. NO seria necesario?
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			if(actv.getNpersonas() < actv.getMaxPersonas())
 			{
+				while(i < actv.getRegistros().size() && !existe){
+					if(actv.getRegistros().get(i).getUsuario() == usuario)
+						existe = true;
+					i++;
+				}
 				
+				if(!existe){
+					r = Registro.crearRegistro(actv, usuario);
+					
+					usuario.getRegistros().add(r);
+					entityManager.persist(usuario);
+					
+					actv.getRegistros().add(r);
+					actv.setNpersonas(actv.getNpersonas()+1);
+					entityManager.persist(actv);
+					
+					entityManager.persist(r);
+				}
 			/*	if(!actv.getPersonas().contains(usuario)){
 					//Unirse a la actividad
 					usuario.getActuales().add(actv);
@@ -451,7 +471,7 @@ public class HomeController {
 			{
 				//Aviso al usuario de que no puede unirse a esta actividad por que esta llena
 			}
-		}
+		//}
 		
 		return "redirect:actividad/"+id_actividad;
 		
