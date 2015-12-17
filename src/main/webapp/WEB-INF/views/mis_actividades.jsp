@@ -24,17 +24,22 @@
 
 									
 									<div id="filtro_MisActividades">
+										<form action="${prefix}filtrarActividades">
 										<div id="cajaA">
 										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
 										<input type="radio" id="act_fin" name="activas_fin" value="finalizadas"/>Finalizadas
 										
-										<input type="checkbox" id="tiempo" name="hoy" />Hoy
-										<input type="checkbox" id="tiempo" name="semana" />Esta semana
-										<input type="checkbox" id="tiempo" name="mes" />Este mes
-										<input type="checkbox" id="tiempo" name="mes_siguiente" />Proximos meses
-										<input type="checkbox" id="mis_creaciones" name="mis_creaciones" />Mis Creaciones
+										
+										<input type="checkbox" id="tiempo" value="1" name="filtro" />Hoy
+										<input type="checkbox" id="tiempo" value="2" name="filtro" />Esta semana
+										<input type="checkbox" id="tiempo" value="3" name="filtro" />Este mes
+										<input type="checkbox" id="tiempo" value="4"name="filtro" />Proximos meses
+										<input type="checkbox" id="mis_creaciones" value="5" name="filtro" />Mis Creaciones
+										
 										<button class="boton" id="filtrarMis" name="submit" type="submit">Filtrar</button>
+										
 										</div>
+										</form>
 									</div>
 
 									<div id="fotos">

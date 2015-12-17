@@ -530,9 +530,49 @@ public class HomeController {
 			return "redirect:sin_registro";
 	}
 	
+	@RequestMapping(value="/filtrarActividades", method = RequestMethod.GET)
+	@Transactional
+	public String filtrarActividades(@RequestParam("filtro") int filtro, Model model, HttpSession session){
+		
+		if(((Usuario)session.getAttribute("usuario"))!=null){
+			
+			Usuario u = (Usuario)session.getAttribute("usuario");
+			List<Actividad> actividades = new ArrayList();
+			u = entityManager.find(Usuario.class, u.getId());
+			List <Registro> r=u.getRegistros();
+			
+			
+			if(filtro == 5)
+				model.addAttribute("actividades", entityManager.createNamedQuery("actividadesCreadas").setParameter("creadorParam", u).getResultList());
+			else{
+				for(int i=0; i<r.size();i++){
+					actividades.add(r.get(i).getActividad());
+				}
+				
+				model.addAttribute("actividades",actividades);
+			}
+					
+			return "mis_actividades";
+		}
+		else
+			return "redirect:sin_registro";
+		
+		/*if(filtro == 5)
+			System.out.println("-------------------------" + filtro);
+		if(filtro == 4)
+			System.out.println("-------------------------" + filtro);
+		if(filtro == 3)
+			System.out.println("-------------------------" + filtro);
+		if(filtro==2)
+			System.out.println("-------------------------" + filtro);
+		if(filtro==1)
+			System.out.println("-------------------------" + filtro);*/
+		
+	}
 
 	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
 	public String mis_actividades(Model model, HttpSession session){
+		
 		
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 		
