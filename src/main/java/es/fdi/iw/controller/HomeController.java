@@ -237,11 +237,19 @@ public class HomeController {
 	@RequestMapping(value = "/borrarElemento", method = RequestMethod.POST)
 	@Transactional
 	public String borrarElemento(@RequestParam("actividades") long[] actividadesId, Model model, HttpSession session){
+		//List<Actividad> l;
 		
 		for(int i=0; i<actividadesId.length; i++){
-			entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", actividadesId[i]);
+			//entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", actividadesId[i]);
+			Actividad a = entityManager.find(Actividad.class, actividadesId[i]);
+			entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
 		}
+		/*entityManager.createNamedQuery("delUser")
+		.setParameter("idParam", id)
 		
+		Tag t = entityManager.find(Tag.class, aid);
+					t.getEtiquetados().add(a);
+					entityManager.persist(t);*/
 		
 		
 		return "redirect:administrador";

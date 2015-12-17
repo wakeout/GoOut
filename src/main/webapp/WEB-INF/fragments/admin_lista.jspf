@@ -5,15 +5,16 @@
 	<div class="search">
    		<input>
    		<input type="submit"  value="Buscar en las Actividades">
+   		
 	</div>
 	
 </header>
 		
 <hr></hr>	
 <div class="op">
-	<form action="${prefix}borrarElemento" method="POST">
+		<form action="${prefix}borrarElemento" method="POST">
 		<input type="submit" name="submit" class="papelera">	
-	
+		
 	
 	<input type="button" class="add">
 </div>	
@@ -30,7 +31,6 @@
 			<c:forEach items="${actividades}" var="a">
 			<tr><td><input name="actividades" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
 			</c:forEach>
-		</form>
 		</table>
 	</div>
 	
@@ -111,3 +111,4 @@
 	</c:if>
 
 	</div>
+	</form>
