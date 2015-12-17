@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 			query="select m from Mensaje m where m.destinos = :destinoParam"),
     @NamedQuery(name="mensajesSalida",
     		query="select m from Mensaje m where m.origen = :origenParam"),
+    @NamedQuery(name="allOrdinario",
+    		query="select m from Mensaje m where m.tipo= :ordinarioParam"),
     @NamedQuery(name="allDenuncias", 
     		query="select m from Mensaje m where m.tipo = :denunciaParam")
 })

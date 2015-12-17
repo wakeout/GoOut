@@ -267,16 +267,22 @@ public class HomeController {
 			String extension="";
 			String privacidad="publica";
 			
+
 			
 			try {
 
 				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", privacidad);
 				r = Registro.crearRegistro(a, usuario_creador);
-
+				//a.setRegistros(new ArrayList<Registro>());
+				//usuario_creador.getRegistros().add(r);
+				entityManager.persist(a);
+				a.getRegistros().add(r);
+				
+				entityManager.persist(usuario_creador);
 				usuario_creador.getRegistros().add(r);
 				
-				a.getRegistros().add(r);
+				entityManager.persist(r);	
 				
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
@@ -285,13 +291,8 @@ public class HomeController {
 					entityManager.persist(t);
 				}
 				
-				entityManager.persist(a);
-				entityManager.persist(usuario_creador);
-				entityManager.persist(r);
-
 
 			        try {
-			        	
 			        	if(imagen_actv.isEmpty())
 			        		imagen="0.png";
 			        	else{
@@ -316,9 +317,8 @@ public class HomeController {
 
 				a.setIdImagen(imagen);
 				
-				entityManager.persist(a);
-				entityManager.persist(usuario_creador);
-		
+			
+				
 				
 			} catch (NoResultException nre) {
 	
@@ -668,7 +668,7 @@ public class HomeController {
 		if(u.getRol().equals("admin")){
 			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-			model.addAttribute("mensajes", entityManager.createNamedQuery("allMensajes").getResultList());
+			model.addAttribute("mensajes", entityManager.createNamedQuery("allOrdinario").setParameter("ordinarioParam", "ordinario").getResultList());
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
 			model.addAttribute("novedades", entityManager.createNamedQuery("allNovedades").getResultList());

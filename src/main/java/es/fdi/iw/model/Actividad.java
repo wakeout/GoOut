@@ -67,6 +67,7 @@ public class Actividad{
 		a.maxPersonas=max_participantes;
 		a.n_personas=1;
 		a.privacidad=privacidad;
+		a.registros = new ArrayList<Registro>();
 
 		return a;
 	}
