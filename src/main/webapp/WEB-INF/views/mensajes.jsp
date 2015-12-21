@@ -17,7 +17,6 @@
 					<div class="row">
 						<div class="12u">
 
-							<!-- Portfolio -->
 							<section>
 
 								<div id="global" align="center">
@@ -29,9 +28,9 @@
 									
 									<ul id="barra_mensajes">
 							
-										<li><button id="b_redactar" class="cambiar2" href="">Redactar Mensaje</button></li>
-										<li><button id="b_entrada" type="button" name="entrada" class="cambiar" href="">Bandeja de Entrada</button></li>
-										<li><button id="b_salida" class="cambiar"	href="">Bandeja de Salida</button></li>
+										<li><button id="b_redactar" class="cambiar2" href="mensajes.jsp?metodo=escribir">Redactar Mensaje</button></li>
+										<li><button id="b_entrada" type="button" name="entrada" class="cambiar" href="mensajes.jsp?metodo=entrada">Bandeja de Entrada</button></li>
+										<li><button id="b_salida" class="cambiar"	href="mensajes.jsp?metodo=salida">Bandeja de Salida</button></li>
 									</ul>
 									
 									<div class="lista">
@@ -55,8 +54,6 @@
 	</div>
 		<!-- Footer -->
 		<%@ include file="../fragments/footer.jspf" %>
-
-
 
 		<!-- Scripts -->
 		<%@ include file="../fragments/scripts.jspf" %>

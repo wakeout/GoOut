@@ -1,3 +1,7 @@
+<f:metadata>
+  <f:viewParam name="metodo" value="#{mensaje.metodo}" />
+</f:metadata>
+
 <div class="mensaje_redactar">
 <form action="crearMensaje" method="post">
 	<table class="mensajes" align="center">
