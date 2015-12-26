@@ -15,7 +15,9 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name="allRegistros",
             query="select r from Registro r"),
     @NamedQuery(name="unRegistro",
-    		query="select r from Registro r where r.id = :registroParam")
+    		query="select r from Registro r where r.id = :registroParam"),
+    @NamedQuery(name="eliminarRegistro", 
+     		query="delete  from Registro r where r.id= :idRegistro")
 })
 
 public class Registro {

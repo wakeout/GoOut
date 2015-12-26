@@ -238,18 +238,29 @@ public class HomeController {
 	@Transactional
 	public String borrarElemento(@RequestParam("actividades") long[] actividadesId, Model model, HttpSession session){
 		//List<Actividad> l;
-		
-		for(int i=0; i<actividadesId.length; i++){
-			//entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", actividadesId[i]);
+		for(int i = 0; i < actividadesId.length; i++){
 			Actividad a = entityManager.find(Actividad.class, actividadesId[i]);
+			for(int j = 0; j < a.getRegistros().size(); j++){
+				Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
+				entityManager.createNamedQuery("eliminarRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
+				System.out.println("----------------------------" + r.getId());
+			}
 			entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
 		}
-		/*entityManager.createNamedQuery("delUser")
-		.setParameter("idParam", id)
 		
-		Tag t = entityManager.find(Tag.class, aid);
-					t.getEtiquetados().add(a);
-					entityManager.persist(t);*/
+		
+		/*for(int i=0; i<actividadesId.length; i++){
+			//entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", actividadesId[i]);
+			Actividad a = entityManager.find(Actividad.class, actividadesId[i]);
+			for(int j = 0; j < a.getRegistros().size(); j++){
+				Registro r = entityManager.find(Registro.class, a.getRegistros().get(j));
+				//Usuario u = r.getUsuario();
+				entityManager.createNamedQuery("eliminarRegistroActividad").setParameter("idRegistro", r.getId()).executeUpdate();
+			}
+			entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
+		}*/
+		
+
 		
 		
 		return "redirect:administrador";
