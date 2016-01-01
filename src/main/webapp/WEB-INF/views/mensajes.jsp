@@ -28,9 +28,9 @@
 									
 									<ul id="barra_mensajes">
 							
-										<li><button id="b_redactar" class="cambiar2" href="mensajes.jsp?metodo=escribir">Redactar Mensaje</button></li>
-										<li><button id="b_entrada" type="button" name="entrada" class="cambiar" href="mensajes.jsp?metodo=entrada">Bandeja de Entrada</button></li>
-										<li><button id="b_salida" class="cambiar"	href="mensajes.jsp?metodo=salida">Bandeja de Salida</button></li>
+										<li><a href="mensajes?metodo=escribir"><button id="b_redactar" class="cambiar2" >Redactar Mensaje</button></a></li>
+										<li><a href="mensajes?metodo=entrada"><button id="b_entrada" type="button" name="entrada" class="cambiar" >Bandeja de Entrada</button></a></li>
+										<li><a href="mensajes?metodo=salida"><button id="b_salida" class="cambiar">Bandeja de Salida</button></a></li>
 									</ul>
 									
 									<div class="lista">
