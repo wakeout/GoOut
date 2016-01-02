@@ -25,23 +25,11 @@ insert into Registro values(3,1,3,1,3);
 insert into Registro values(4,4,1,4,1);
 insert into Registro values(5,5,2,5,2);
 
-/*
-insert into Usuario_Amigos values(1,2)
-insert into Usuario_Amigos values(1,4)
-insert into Usuario_Amigos values(1,5)
-insert into Usuario_Amigos values(2,1)
-insert into Usuario_Amigos values(4,1)
-insert into Usuario_Amigos values(5,1)
-insert into Usuario_Amigos values(4,5)
-insert into Usuario_Amigos values(5,4)
-insert into Usuario_Amigos values(2,4)
-insert into Usuario_Amigos values(4,2)*/
-
-insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(1, 'victor me cae fatal',  2, 'pues eso', 'ordinario')
-insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(2, 'david me cae fatal',  2, 'pues eso', 'ordinario')
-insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(3, 'lis me cae fatal',  2, 'pues eso', 'ordinario')
-insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(4, 'marcos es un crak',  8, 'pues eso', 'ordinario')
-insert into Mensaje (id, titulo, nDestinos, contenido, tipo) values(5, 'amo a marcos',  8, 'pues eso', 'denuncia')
+insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(1, 'victor me cae fatal',1, 'pues eso','ordinario',2,2)
+insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(2, 'david me cae fatal',1, 'pues eso','ordinario',2,1)
+insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(3, 'lis me cae fatal',1, 'pues eso','ordinario',4,1)
+insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(4, 'marcos es un crak',1, 'pues eso','ordinario',1,2)
+insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(5, 'amo a marcos',1, 'pues eso','denuncia',2,4)
 
 insert into hito (id, anuncio) values (1, 'pagar alquiler del cohete espacial')
 insert into hito (id, anuncio) values (2, 'estudiar las restricciones bd ')

@@ -33,11 +33,11 @@
 <c:if test="${param.metodo == 'entrada'}">
 
 <div class="mensaje_entrada">
-<form action="entradaMensaje" method="post">
+<form action="borrarMensaje" method="post">
 	<table class="mensajes">
 		<thead>
 			<tr>
-				<td>Usuario
+				<td>Usuario Origen
 				<td>Asunto
 				<td>
 				<td>Acciones
@@ -45,11 +45,13 @@
 		<tbody>
 			<c:forEach items="${mensajes}" var="a">
 		<tr>	
-			<td>${a.destinos.login}
+			<td>${a.origen.login}
 			<td>${a.titulo}
 			<td>
-			<td><button type="submit" name="submit">Leer</button> <button type="submit" name="submit">Borrar</button>
-		</c:forEach>
+			<td>
+				<button type="button">Leer</button>
+				<button type="submit" name="submit">Borrar</button>
+			</c:forEach>
 		</tbody>
 	</table>
 </form>
@@ -58,11 +60,11 @@
 
 <c:if test="${param.metodo == 'salida'}">
 <div class="mensaje_salida">
-<form action="salidaMensaje" method="post">
+<form action="borrarMensaje" method="post">
 	<table class="mensajes">
 		<thead>
 			<tr>
-				<td>Destino
+				<td>Usuario Destino
 				<td>Asunto
 				<td>
 				<td>Acciones
@@ -70,10 +72,12 @@
 		<tbody>
 			<c:forEach items="${mensajeS}" var="a">
 		<tr>	
-			<td> ${a.destinos.login}
+			<td>${a.destinos.login}
 			<td>${a.titulo}
 			<td>
-			<td><button type="submit" name="submit">Leer</button> <button type="submit" name="submit">Borrar</button>
+			<td>
+				<button type="button">Leer</button>
+				<button type="submit" name="submit">Borrar</button>
 		</c:forEach>
 		</tbody>
 	</table>

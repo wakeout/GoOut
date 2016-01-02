@@ -28,9 +28,9 @@
 									
 									<ul id="barra_mensajes">
 							
-										<li><a href="mensajes"><button id="b_redactar" >Redactar Mensaje</button></a></li>
-										<li><a href="mensajes?metodo=entrada"><button id="b_entrada" class="cambiar" >Bandeja de Entrada</button></a></li>
-										<li><a href="mensajes?metodo=salida"><button id="b_salida" class="cambiar" >Bandeja de Salida</button></a></li>
+										<li><a href="mensajes"><button id="b_redacta" <c:if test="${param.metodo == null}"> class="cambiar2" </c:if> class="cambiar" >Redactar Mensaje</button></a></li>
+										<li><a href="mensajes?metodo=entrada"><button id="b_entrada" <c:if test="${param.metodo == 'entrada'}"> class="cambiar2" </c:if> class="cambiar" >Bandeja de Entrada</button></a></li>
+										<li><a href="mensajes?metodo=salida"><button id="b_salida" <c:if test="${param.metodo == 'salida'}"> class="cambiar2" </c:if> class="cambiar"  >Bandeja de Salida</button></a></li>
 									</ul>
 									
 									<div class="lista">
