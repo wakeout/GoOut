@@ -42,8 +42,7 @@ public class Usuario {
 	private String email;
 	private String idFoto;
 	private List<Registro> registros;
-	
-	private List<Usuario> amigos; //Seria mejor tener una lista de ids de usuarios
+	private List<Usuario> amigos;
 
 
 	public static Usuario createUser(String login, String pass, String rol, String nombre, 
@@ -199,7 +198,7 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	@OneToMany(targetEntity=Registro.class)
+	@OneToMany(targetEntity=Registro.class, orphanRemoval=true)
 	@JoinColumn(name="id_usuario") 
 	public List<Registro> getRegistros() {
 		return registros;

@@ -2,23 +2,12 @@
 <header>
 	<div class="titulo"><h2>Administración</h2></div>
 	
-	<div class="search">
-   		<input>
-   		<input type="submit"  value="Buscar en las Actividades">
-   		
-	</div>
+
 	
 </header>
 		
 <hr></hr>	
-<div class="op">
-		<form action="${prefix}borrarElemento" method="POST">
-		<input type="submit" name="submit" class="papelera">	
-		
-	
-	<input type="button" class="add">
-</div>	
-	
+
 <div class="list">
 
 	<c:set var="rol" scope="session" value="admin"/>	
@@ -26,84 +15,281 @@
 	
 	<div class="admin_actv">
 	
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en las Actividades">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addActividad" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarActividades" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 	<h1>Actividades</h1>
 		<table>
 			<c:forEach items="${actividades}" var="a">
 			<tr><td><input name="actividades" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
 			</c:forEach>
 		</table>
+	
+	
+	</form>
+	
 	</div>
 	
 	<div class="admin_usuario">
 	
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Usuarios">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addUsuario" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarUsuarios" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 	<h1>Usuarios</h1>
 		<table>
 			<c:forEach items="${usuarios}" var="u">
-			<tr><td><input type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td>${u.login}
+			<tr><td><input name="usuarios" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td>${u.login}
 			</c:forEach>
 		</table>
+	</form>
 	</div>	
 	
-	<div class="admin_mensaje">
+	<div class="admin_registros">
 	
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Registros">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addRegistro" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarRegistros" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
+	<h1>Registros</h1>
+		<table>
+			<c:forEach items="${registros}" var="r">
+			<tr><td><input name="registros" value="${r.id}" type="checkbox"><a> ${r.id}</a>    ${r.usuario.id}  ${r.actividad.id}<td>
+			</c:forEach>
+		</table>
+	
+	
+	</form>
+	
+	</div>
+	
+	<div class="admin_mensaje">
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Mensajes">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addMensaje" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarMensajes" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 	<h1>Mensajes</h1>
 		<table>
 			<c:forEach items="${mensajes}" var="m">
-			<tr><td><input type="checkbox"><a href="${prefix}mensaje/${m.id}"> ${m.id}</a><td>${m.titulo}
+			<tr><td><input name="mensajes" value="${m.id}" type="checkbox"><a href="${prefix}mensaje/${m.id}"> ${m.id}</a><td>${m.titulo}
 			</c:forEach>
 		</table>
+	</form>
 	</div>
 	
 	<div class="admin_tags">
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Tags">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addTag" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarTags" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 		<h1>Tags</h1>
 		<table>
 			<c:forEach items="${tags}" var="t">
-			<tr><td><input type="checkbox"><a href="${prefix}tag/${t.id}"> ${t.id}</a><td>${t.nombre}
+			<tr><td><input name="tags" value="${t.id}" type="checkbox"><a href="${prefix}tag/${t.id}"> ${t.id}</a><td>${t.nombre}
 			</c:forEach>
 		</table>
+	</form>
 	</div>
 	
 	<div class="admin_comentarios">
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Comentarios">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addComentario" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarComentarios" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 		<h1>Comentarios</h1>
 		<table>
 			<c:forEach items="${comentarios}" var="c">
-			<tr><td><input type="checkbox"><a href="${prefix}comentario/${c.id}"> ${c.id}</a><td>${c.asunto}
+			<tr><td><input  name="comentarios" value="${c.id}" type="checkbox"><a href="${prefix}comentario/${c.id}"> ${c.id}</a><td>${c.asunto}
 			</c:forEach>
 		</table>
+	</form>
 	</div>
 	
 	<div class="admin_novedades">
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en las Novedades">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addNovedad" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarNovedades" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 		<h1>Novedades</h1>
 		<table>
 			<c:forEach items="${novedades}" var="n">
-			<tr><td><input type="checkbox"><a href="${prefix}novedad/${n.id}"> ${n.id}</a><td>${n.mensaje}
+			<tr><td><input  name="novedades" value="${n.id}"  type="checkbox"><a href="${prefix}novedad/${n.id}"> ${n.id}</a><td>${n.mensaje}
 			</c:forEach>
 		</table>
+	</form>
 	</div>
 	
 	<div class="admin_hitos">
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Hitos">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addHito" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarHitos" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 		<h1>Hitos</h1>
 		<table>
 			<c:forEach items="${hitos}" var="h">
-			<tr><td><input type="checkbox"><a href="${prefix}hito/${h.id}"> ${h.id}</a><td>${h.anuncio}
+			<tr><td><input  name="hitos" value="${h.id}" type="checkbox"><a href="${prefix}hito/${h.id}"> ${h.id}</a><td>${h.anuncio}
+			</c:forEach>
+		</table>
+	</form>
+	</div>
+		<div class="admin_pagos">
+		<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Pagos">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addPago" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarPagos" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
+		<h1>Pagos</h1>
+		<table>
+			<c:forEach items="${pagos}" var="p">
+			<tr><td><input  name="pagos" value="${p.id}" type="checkbox"><a> ${p.id}</a><td>
 			</c:forEach>
 		</table>
 	</div>
 	
 	<div class="admin_foros">
+	<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en los Foros">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addForo" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarForos" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>	
 		<h1>Foros</h1>
 		<table>
 			<c:forEach items="${foros}" var="f">
-			<tr><td><input type="checkbox"><a href="${prefix}foro/${f.id}"> ${f.id}</a>
+			<tr><td><input  name="foros" value="${f.id}" type="checkbox"><a href="${prefix}foro/${f.id}"> ${f.id}</a>
 			</c:forEach>
 		</table>
 	</div>
-		
+	
+
 	<div class="admin_denuncias">
+		<div class="search">
+   		<input>
+   		<input type="submit"  value="Buscar en las Denuncias">
+   		
+	</div>
+	
+	
+	<form action="${prefix}addDenuncia" method="POST">
+		<input type="button" class="add">
+	</form>	
+	
+	<form action="${prefix}borrarDenuncias" method="POST">
+		<input type="submit" name="submit" class="papelera">	
+	
+	<br>
 		<h1>Denuncias</h1>
 		<table>
 			<c:forEach items="${denuncias}" var="d">
-			<tr><td><input type="checkbox"><a href="${prefix}mensaje/${d.id}"> ${d.id}</a><td>${d.titulo}
+			<tr><td><input  name="denuncias" value="${d.id}" type="checkbox"><a href="${prefix}mensaje/${d.id}"> ${d.id}</a><td>${d.titulo}
 			</c:forEach>
 		</table>
 	</div>

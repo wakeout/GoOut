@@ -19,6 +19,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.sql.Date;
 
 
@@ -151,6 +154,7 @@ public class Actividad{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
 	@OneToMany(targetEntity=Novedad.class)
 	@JoinColumn(name="id_actividad")
 	public List<Novedad> getNovedades() {
@@ -198,7 +202,7 @@ public class Actividad{
 		this.descripcion = descripcion;
 	}
 
-	@OneToMany(targetEntity=Registro.class)
+	@OneToMany(targetEntity=Registro.class, orphanRemoval=true)
 	@JoinColumn(name="id_actividad")
 	public List<Registro> getRegistros() {
 		return registros;

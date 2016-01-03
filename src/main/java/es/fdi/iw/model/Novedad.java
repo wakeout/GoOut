@@ -10,7 +10,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allNovedades",
-            query="select n from Novedad n")
+            query="select n from Novedad n"),
+    @NamedQuery(name="delNovedad", 
+    		query="delete from Novedad n where n.id = :idParam")
 })
 public class Novedad {
 	private long id;

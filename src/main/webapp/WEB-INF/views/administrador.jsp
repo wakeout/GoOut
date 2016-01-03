@@ -26,6 +26,9 @@
  		  <button id="b_usuarios" >Usuarios</button>
   		</li>
   		<li>
+ 		  <button id="b_registros" >Registros</button>
+  		</li>
+  		<li>
   		  <button id="b_mensajes">Mensajes</button>
   		</li>
   		<li>
@@ -39,6 +42,9 @@
   		</li>
   		<li>
   		  <button id="b_hitos">Hitos</button>
+  		</li>
+  		<li>
+  		  <button id="b_pagos">Pagos</button>
   		</li>
   		<li>
   		  <button id="b_foros">Foros</button>

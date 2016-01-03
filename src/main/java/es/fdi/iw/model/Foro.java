@@ -18,7 +18,9 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allForos",
-            query="select f from Foro f")
+            query="select f from Foro f"),
+    @NamedQuery(name="delForo", 
+    		query="delete from Foro f where f.id = :idParam")
 })
 public class Foro {
 	private long id;

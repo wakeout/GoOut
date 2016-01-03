@@ -14,7 +14,9 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allTags",
-            query="select t from Tag t")
+            query="select t from Tag t"),
+    @NamedQuery(name="delTag", 
+    		query="delete from Tag t where t.id = :idParam")    
 })
 public class Tag {
 	private long id;

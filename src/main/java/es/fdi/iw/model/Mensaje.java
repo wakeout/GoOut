@@ -23,7 +23,13 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="allOrdinario",
     		query="select m from Mensaje m where m.tipo= :ordinarioParam"),
     @NamedQuery(name="allDenuncias", 
-    		query="select m from Mensaje m where m.tipo = :denunciaParam")
+    		query="select m from Mensaje m where m.tipo = :denunciaParam"),
+    @NamedQuery(name="delUsuarios", 
+    		query="delete from Mensaje m where m.origen = :userParam OR m.destinos = :userParam"),
+    @NamedQuery(name="delMensaje", 
+    		query="delete from Mensaje m where m.id = :idParam"),
+    @NamedQuery(name="delDenuncia", 
+    		query="delete from Mensaje m where m.id = :idParam")		
 })
 public class Mensaje {
 	private long id;
@@ -68,7 +74,7 @@ public class Mensaje {
 	  this.titulo = titulo;
 	}
 	
-	@OneToOne(targetEntity=Usuario.class)//----------?
+	@OneToOne(targetEntity=Usuario.class, orphanRemoval=true)//----------?
 	public Usuario getOrigen() {
 		return origen;
 	}
@@ -76,7 +82,7 @@ public class Mensaje {
 		this.origen = origen;
 	}
 	
-	@OneToOne(targetEntity=Usuario.class)
+	@OneToOne(targetEntity=Usuario.class , orphanRemoval=true)
 	public Usuario getDestinos() {
 		return destinos;
 	}

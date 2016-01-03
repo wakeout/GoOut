@@ -53,7 +53,7 @@ public class Registro {
 		this.usuario = u;
 	}
 	
-	@ManyToOne(targetEntity=Actividad.class)	
+	@ManyToOne(targetEntity=Actividad.class)
 	public Actividad getActividad() {
 		return actividad;
 	}
