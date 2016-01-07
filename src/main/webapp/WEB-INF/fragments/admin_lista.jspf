@@ -26,11 +26,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarActividades" method="POST">
+	<form name="lista_actividades" action="${prefix}borrarActividades" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 	<h1>Actividades</h1>
+	<a class="marcar" onclick="seleccionar(lista_actividades)">Marcar todos</a>
+	<a class="desmarcar" onclick="deseleccionar(lista_actividades)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${actividades}" var="a">
 			<tr><td><input name="actividades" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
@@ -55,11 +57,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarUsuarios" method="POST">
+	<form name="lista_usuarios" action="${prefix}borrarUsuarios" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 	<h1>Usuarios</h1>
+	<a class="marcar" onclick="seleccionar(lista_usuarios)">Marcar todos</a>
+	<a class="desmarcar" onclick="deseleccionar(lista_usuarios)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${usuarios}" var="u">
 			<tr><td><input name="usuarios" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td>${u.login}
@@ -81,11 +85,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarRegistros" method="POST">
+	<form name="lista_registros" action="${prefix}borrarRegistros" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 	<h1>Registros</h1>
+	<a class="marcar" onclick="seleccionar(lista_registros)">Marcar todos</a>
+	<a class="desmarcar" onclick="deseleccionar(lista_registros)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${registros}" var="r">
 			<tr><td><input name="registros" value="${r.id}" type="checkbox"><a> ${r.id}</a>    ${r.usuario.id}  ${r.actividad.id}<td>
@@ -109,11 +115,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarMensajes" method="POST">
+	<form name="lista_mensajes" action="${prefix}borrarMensajes" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 	<h1>Mensajes</h1>
+	<a class="marcar" onclick="seleccionar(lista_mensajes)">Marcar todos</a>
+	<a class="desmarcar" onclick="deseleccionar(lista_mensajes)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${mensajes}" var="m">
 			<tr><td><input name="mensajes" value="${m.id}" type="checkbox"><a href="${prefix}mensaje/${m.id}"> ${m.id}</a><td>${m.titulo}
@@ -134,11 +142,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarTags" method="POST">
+	<form name="lista_tags" action="${prefix}borrarTags" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 		<h1>Tags</h1>
+		<a class="marcar" onclick="seleccionar(lista_tags)">Marcar todos</a>
+		<a class="desmarcar" onclick="deseleccionar(lista_tags)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${tags}" var="t">
 			<tr><td><input name="tags" value="${t.id}" type="checkbox"><a href="${prefix}tag/${t.id}"> ${t.id}</a><td>${t.nombre}
@@ -159,11 +169,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarComentarios" method="POST">
+	<form name="lista_comentarios" action="${prefix}borrarComentarios" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 		<h1>Comentarios</h1>
+		<a class="marcar" onclick="seleccionar(lista_comentarios)">Marcar todos</a>
+		<a class="desmarcar" onclick="deseleccionar(lista_comentarios)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${comentarios}" var="c">
 			<tr><td><input  name="comentarios" value="${c.id}" type="checkbox"><a href="${prefix}comentario/${c.id}"> ${c.id}</a><td>${c.asunto}
@@ -184,11 +196,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarNovedades" method="POST">
+	<form name="lista_novedades" action="${prefix}borrarNovedades" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 		<h1>Novedades</h1>
+		<a class="marcar" onclick="seleccionar(lista_novedades)">Marcar todos</a>
+		<a class="desmarcar" onclick="deseleccionar(lista_novedades)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${novedades}" var="n">
 			<tr><td><input  name="novedades" value="${n.id}"  type="checkbox"><a href="${prefix}novedad/${n.id}"> ${n.id}</a><td>${n.mensaje}
@@ -209,11 +223,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarHitos" method="POST">
+	<form name="lista_hitos" action="${prefix}borrarHitos" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 		<h1>Hitos</h1>
+		<a class="marcar" onclick="seleccionar(lista_hitos)">Marcar todos</a>
+		<a class="desmarcar" onclick="deseleccionar(lista_hitos)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${hitos}" var="h">
 			<tr><td><input  name="hitos" value="${h.id}" type="checkbox"><a href="${prefix}hito/${h.id}"> ${h.id}</a><td>${h.anuncio}
@@ -233,11 +249,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarPagos" method="POST">
+	<form name="lista_pagos" action="${prefix}borrarPagos" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 		<h1>Pagos</h1>
+		<a class="marcar" onclick="seleccionar(lista_pagos)">Marcar todos</a>
+		<a class="desmarcar" onclick="deseleccionar(lista_pagos)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${pagos}" var="p">
 			<tr><td><input  name="pagos" value="${p.id}" type="checkbox"><a> ${p.id}</a><td>
@@ -257,7 +275,7 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarForos" method="POST">
+	<form name="lista_foros" action="${prefix}borrarForos" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>	
@@ -282,11 +300,13 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form action="${prefix}borrarDenuncias" method="POST">
+	<form name="lista_denuncias" action="${prefix}borrarDenuncias" method="POST">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 		<h1>Denuncias</h1>
+		<a class="marcar" onclick="seleccionar(lista_denuncias)">Marcar todos</a>
+		<a class="desmarcar" onclick="deseleccionar(lista_denuncias)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${denuncias}" var="d">
 			<tr><td><input  name="denuncias" value="${d.id}" type="checkbox"><a href="${prefix}mensaje/${d.id}"> ${d.id}</a><td>${d.titulo}

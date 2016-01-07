@@ -157,3 +157,10 @@ hr {
 .admin_actv, .admin_usuario, .admin_registros, .admin_mensaje, .admin_tags, .admin_comentarios, .admin_pagos, .admin_denuncias, .admin_hitos, .admin_foros, .admin_novedades{
 	margin-top:30px;
 }
+
+.marcar{
+	cursor: pointer;
+}
+.desmarcar{
+	cursor: pointer;
+}

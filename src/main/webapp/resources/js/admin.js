@@ -8,6 +8,8 @@ $(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
 })
 
 
@@ -22,6 +24,8 @@ $("#b_actividad").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
     
 });
 
@@ -36,6 +40,8 @@ $("#b_usuarios").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
 });
 
 $("#b_mensajes").click(function() {
@@ -49,6 +55,8 @@ $("#b_mensajes").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
 });
 
 $("#b_tags").click(function() {
@@ -62,6 +70,8 @@ $("#b_tags").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
 });
 
 $("#b_comentarios").click(function() {
@@ -75,7 +85,10 @@ $("#b_comentarios").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
 });
+
 
 $("#b_hitos").click(function() {
 	
@@ -88,6 +101,8 @@ $("#b_hitos").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
     
 });
 
@@ -102,6 +117,8 @@ $("#b_novedades").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).show();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
 });
 
 $("#b_foros").click(function() {
@@ -115,6 +132,8 @@ $("#b_foros").click(function() {
     $( ".admin_foros" ).show();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
     
 });
 
@@ -129,27 +148,66 @@ $("#b_denuncias").click(function() {
     $( ".admin_foros" ).hide();
     $( ".admin_novedades" ).hide();
     $( ".admin_denuncias" ).show();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).hide();
     
 });
 
-$("#b_redactar").click(function(){
-	$( ".mensaje_entrada" ).hide();
-	$( ".mensaje_salida" ).hide();
-	$( ".mensaje_redactar" ).show();
+$("#b_pagos").click(function() {
+	
+	$( ".admin_actv" ).hide();
+    $( ".admin_usuario" ).hide();
+    $( ".admin_mensaje" ).hide();
+    $( ".admin_tags" ).hide();
+    $( ".admin_comentarios" ).hide();
+    $( ".admin_hitos" ).hide();
+    $( ".admin_foros" ).hide();
+    $( ".admin_novedades" ).hide();
+    $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).show();
+    $( ".admin_registros" ).hide();
+    
 });
 
-$("#b_entrada").click(function(){
-	$( ".mensaje_redactar" ).hide();
-	$( ".mensaje_salida" ).hide();
-	$( ".mensaje_entrada" ).show();
+$("#b_registros").click(function() {
+	
+	$( ".admin_actv" ).hide();
+    $( ".admin_usuario" ).hide();
+    $( ".admin_mensaje" ).hide();
+    $( ".admin_tags" ).hide();
+    $( ".admin_comentarios" ).hide();
+    $( ".admin_hitos" ).hide();
+    $( ".admin_foros" ).hide();
+    $( ".admin_novedades" ).hide();
+    $( ".admin_denuncias" ).hide();
+    $( ".admin_pagos" ).hide();
+    $( ".admin_registros" ).show();
+    
 });
 
-$("#b_salida").click(function(){
-	$( ".mensaje_redactar" ).hide();
-	$( ".mensaje_entrada" ).hide();
-	$( ".mensaje_salida" ).show();
-});
 
+//Marcar y desmarcar
+
+function seleccionar(form){
+    
+var formulario = eval(form)  
+for(var i=0, len=formulario.elements.length; i<len ; i++)  
+ {  
+   if ( formulario.elements[i].type == "checkbox" )  
+     formulario.elements[i].checked = 1;
+ } 
+    
+}
+function deseleccionar(form){
+    
+	var formulario = eval(form)  
+	for(var i=0, len=formulario.elements.length; i<len ; i++)  
+	 {  
+	   if ( formulario.elements[i].type == "checkbox" )  
+	     formulario.elements[i].checked = 0;
+	 } 
+	    
+}
 
 
 

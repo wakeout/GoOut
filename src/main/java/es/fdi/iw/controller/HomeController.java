@@ -1,6 +1,7 @@
 package es.fdi.iw.controller;
 
 
+import java.awt.HeadlessException;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,6 +18,7 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -241,14 +243,14 @@ public class HomeController {
 	@Transactional
 	public String borrarActividades(@RequestParam("actividades") long[] actividadesId, Model model, HttpSession session){
 
-		for(int i = 0; i < actividadesId.length; i++){
-			Actividad a = entityManager.find(Actividad.class, actividadesId[i]);
-			for(int j = 0; j < a.getRegistros().size(); j++){
-				Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
-				entityManager.createNamedQuery("eliminarRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
+			for(int i = 0; i < actividadesId.length; i++){
+				Actividad a = entityManager.find(Actividad.class, actividadesId[i]);
+				for(int j = 0; j < a.getRegistros().size(); j++){
+					Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
+					entityManager.createNamedQuery("eliminarRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
+				}
+				entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
 			}
-			entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
-		}
 		
 		
 		return "redirect:administrador";
