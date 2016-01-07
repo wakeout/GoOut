@@ -57,8 +57,8 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form name="lista_usuarios" action="${prefix}borrarUsuarios" method="POST">
-		<input type="submit" name="submit" class="papelera">	
+	<form name="lista_usuarios" action="${prefix}borrarUsuarios" method="POST" >
+		<input type="button" class="papelera" onclick ="confirmar(lista_usuarios)">	
 	
 	<br>
 	<h1>Usuarios</h1>
