@@ -26,7 +26,7 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form name="lista_actividades" action="${prefix}borrarActividades" method="POST">
+	<form name="lista_actividades" action="${prefix}borrarActividades" method="POST" onsubmit="return confirmar(lista_actividades)">
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -57,8 +57,8 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form name="lista_usuarios" action="${prefix}borrarUsuarios" method="POST" >
-		<input type="button" class="papelera" onclick ="confirmar(lista_usuarios)">	
+	<form name="lista_usuarios" action="${prefix}borrarUsuarios" method="POST" onsubmit="return confirmar(lista_usuarios)">
+		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
 	<h1>Usuarios</h1>

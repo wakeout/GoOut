@@ -212,6 +212,8 @@ function deseleccionar(form){
 function confirmar(form){
 	
 	if (confirm('¿Estas seguro de borrar este elemento?')){ 
-	       document.form.submit() 
-	    } 
+	     return true;
+	}
+	else
+		return false;
 }
