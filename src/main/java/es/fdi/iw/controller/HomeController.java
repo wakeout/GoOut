@@ -510,13 +510,46 @@ public class HomeController {
 		
 			return "redirect:mensajes";
 		}
+	
+	@RequestMapping(value = "/solicitudAmigo", method = RequestMethod.POST)
+	@Transactional
+	public String solicitudAmigo(
+		@RequestParam("id_amigo") long amigo,
+		HttpSession session){
+		
+		Usuario usuario_amigo = null;
+		Usuario usuario_propio = null;
+		Usuario d = null; // Destinatario
+		
+		Mensaje m = null;
+		String titulo="Solicitud de amistad";
+
+		try{
+			usuario_propio=(Usuario)session.getAttribute("usuario");
+			usuario_amigo = entityManager.find(Usuario.class,amigo);
+			
+			d = (Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam", usuario_amigo.getLogin()).getSingleResult();
+			
+			String contenido = usuario_propio.getLogin()+" quiere ser tu amigo";
+			
+			m = Mensaje.crearMensaje(titulo, contenido, "solicitud",usuario_propio, d);
+			entityManager.persist(m);
+		}
+		catch(NoResultException nre){
+			//ERROR
+		}
+				
+		
+			return "redirect:perfil/"+d.getId();
+	}
 
 
 	@RequestMapping(value = "/agregarAmigo", method = RequestMethod.POST)
 	@Transactional
 	public String agregarAmigo(
 		@RequestParam("id_amigo") long amigo,
-		@RequestParam("id_propio") long propio){
+		@RequestParam("id_propio") long propio,
+		HttpSession session){
 		
 		Usuario usuario_amigo = null;
 		Usuario usuario_propio = null;
@@ -549,6 +582,8 @@ public class HomeController {
 		{
 			
 		}
+		
+		
 			return "redirect:mi_perfil";
 	}
 	
@@ -772,6 +807,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
 	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model, HttpSession session){
+		
+		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		
 		if(session.getAttribute("usuario")!=null){
 		

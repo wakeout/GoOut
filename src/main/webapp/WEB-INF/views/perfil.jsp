@@ -25,12 +25,22 @@
 						<button type="submit" name="submit" class="btn">Enviar Mensaje a ${perfil.login}</button>
 						</form>
 						<br>
-						<form action="${prefix}agregarAmigo" method="POST">
+
+						<c:forEach items="${usuario_amigos}" var="p">
+							<c:if test="${(p.usuario.id == usuario.id)}">
+								<c:set var="amigos" value="${true}"/>
+							</c:if>
+						</c:forEach>
+						<c:if test="${amigos != true}">
+						<form action="${prefix}solicitudAmigo" method="POST">
 							<input type="hidden" name="id_amigo" value="${perfil.id}">
 							<input type="hidden" name="id_propio" value="${usuario.id}">
 							<button type="submit" name="submit">Enviar solicitud de
 								amistad</button>
 						</form>
+						</c:if>
+						
+						
 					</center>
 				</div>
 
