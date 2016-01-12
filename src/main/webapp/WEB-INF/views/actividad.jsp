@@ -16,9 +16,9 @@
 				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}" alt="" /></a>
 				 
 				 <div id="btones_actv">
-					<c:if test="${actividad.privacidad.equals('publica')}">
-						<c:if test="${!empty usuario}">
-				
+					<c:if test="${actividad.privacidad.equals('publica') && pertenece==false}">
+						<c:if test="${!empty usuario  && actividad.npersonas < actividad.maxPersonas}">
+				 
 						<form action="${prefix}unirseActividad" method="POST">
 							<input type="hidden" name="id_actv" value="${actividad.id}"/>
 							<input type="hidden" name="id_propio" value="${usuario.id}"/>
@@ -26,14 +26,24 @@
 						</form>
 						
 						</c:if>
+					</c:if>	
+						<c:if test="${pertenece==true}">
+				
 						<button type="button">Mensaje a creador</button>
 						<button type="button">Propon algo nuevo!</button>
 						
-						<form action="${prefix}denunciarActividad">
+						<form action="${prefix}salirActividad" method="POST">
+						<input type="hidden" name="actividad" value="${actividad.id}" />
+						<button name="submit" type="submit">Salir de la actividad</button>
+						</from>
+						
+						<form action="${prefix}denunciarActividad" method="POST">
 						<input type="hidden" name="id_actividad" value="${actividad.id}" />
 						<button name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
 						</form>
-					</c:if>
+						
+						</c:if>
+					
 				</div>
 
 			</div>

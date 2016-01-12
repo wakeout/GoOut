@@ -243,6 +243,9 @@ public class HomeController {
 	@Transactional
 	public String borrarActividades(@RequestParam("actividades") long[] actividadesId, Model model, HttpSession session){
 
+		if(actividadesId!=null){
+			
+			
 			for(int i = 0; i < actividadesId.length; i++){
 				Actividad a = entityManager.find(Actividad.class, actividadesId[i]);
 				for(int j = 0; j < a.getRegistros().size(); j++){
@@ -251,7 +254,7 @@ public class HomeController {
 				}
 				entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
 			}
-		
+	}
 		
 		return "redirect:administrador";
 	}
@@ -771,19 +774,54 @@ public class HomeController {
 			return "redirect:sin_registro";
 	}
 	
+	@RequestMapping(value = "/salirActividad", method = RequestMethod.POST)
+	@Transactional
+	public String salirActividad(@RequestParam("actividad") long actividad, Model model,HttpSession session){
+		
+		Actividad a = entityManager.find(Actividad.class, actividad);
+		
+		a.setNpersonas(a.getNpersonas()-1);
+		
+		entityManager.persist(a);
+		entityManager.createNamedQuery("delRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", ((Usuario) session.getAttribute("usuario")).getId()).executeUpdate();
+		
+		
+		
+		return "redirect:home";
+	}
+	
 	@RequestMapping(value = "/actividad/{id}", method = RequestMethod.GET)
-	public String actividad(@PathVariable("id") long id,HttpServletResponse response,Model model){
+	public String actividad(@PathVariable("id") long id,HttpServletResponse response,Model model,HttpSession session){
 		Actividad a = entityManager.find(Actividad.class, id);
+		boolean pertenece=true;
+		
+		
 		if (a == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			logger.error("No such actividad: {}", id);
 		} else {
 			List <Usuario> participantes=new ArrayList();
 			
+			Usuario u=(Usuario)session.getAttribute("usuario");
+			
+			try{
+				if(u==null)throw new NoResultException();
+				
+				List<Registro> lr=entityManager.createNamedQuery("pertenece").setParameter("actividadParam",id).setParameter("usuarioParam", u.getId()).getResultList();
+			
+				if(lr.isEmpty())throw new NoResultException();
+				
+			}catch(NoResultException nre){
+				pertenece=false;
+			}
+			
+			
+			
 			for(int i=0; i<a.getRegistros().size(); i++){
 				participantes.add(a.getRegistros().get(i).getUsuario());
 			
 			}
+			model.addAttribute("pertenece", pertenece);
 			model.addAttribute("participantes", participantes);
 			model.addAttribute("actividad", a);
 		}
