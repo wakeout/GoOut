@@ -16,6 +16,30 @@ function habilitarRuta() {
 	}
 }
 
+function comprobarDatosActividad(){
+	var t = document.getElementsByName('tags');
+	if(actv_privada.checked){
+		document.cre.actv_privada.checked=1
+		document.getElementById('actv_privada').value = 1;
+	}
+	else{
+		document.cre.actv_privada.checked = 1;
+		document.getElementById('actv_privada').value = 0;
+	}
+	
+	if(ruta.checked){
+		//comprobar que ha escrito algo en el destino
+	}
+	else{
+		destino.disabled = false;
+		document.getElementById('destino').value = "";
+	}
+	
+	for (var i=0; i<t.length; i++){
+		
+	}
+}
+
 function valor_img(fic) {
 fic = fic.split('\\');
 document.getElementById('upload').style.background = "url(resources/images/"+fic[fic.length-1]+")";
