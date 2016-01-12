@@ -1,5 +1,4 @@
 /* -------------------------------- 
-/* -------------------------------- 
 
 Primary style
 
@@ -10,16 +9,6 @@ Primary style
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.6rem;
-  font-family: "Source Sans Pro", sans-serif;
-  color: #34383c;
-  background-color: #ffffff;
-}
 body.overflow-hidden {
   /* used when modal is visible */
   overflow: hidden;
@@ -56,9 +45,7 @@ header h1 {
 }
 
 .cd-section {
-
   text-align: center;
-    
 }
 .cd-section p {
   margin: 2em 0;
@@ -69,7 +56,7 @@ header h1 {
 }
 @media only screen and (min-width: 768px) {
   .cd-section {
-
+    padding: 4em 10%;
   }
   .cd-section p {
     font-size: 1.8rem;
@@ -78,7 +65,7 @@ header h1 {
 }
 @media only screen and (min-width: 1170px) {
   .cd-section {
-
+    padding: 4em 20%;
   }
 }
 
@@ -122,6 +109,12 @@ header h1 {
   line-height: 1.6;
   margin: 2em 0;
 }
+
+#v{
+  visibility: visible;
+  opacity: 1;
+}
+
 .modal-is-visible .cd-modal {
   z-index: 1;
   visibility: visible;
@@ -152,13 +145,13 @@ header h1 {
 .cd-modal-action {
   position: relative;
 }
-.cd-modal-action .btn, .cd-modal-action .cd-modal-bg {
+.cd-modal-action .btne, .cd-modal-action .cd-modal-bg {
   display: inline-block;
   height: 4em;
-  /*background-color: #34383c;*/
-  background-color: rgba(153,153,204,1);
+  background-color: #34383c;
 }
-.cd-modal-action .btn {
+.cd-modal-action .btne {
+  text-align: center;
   width: 12.5em;
   border-radius: 5em;
   color: #ffffff;
@@ -171,7 +164,7 @@ header h1 {
   -moz-transition: color 0.2s 0.3s, width 0.3s 0s;
   transition: color 0.2s 0.3s, width 0.3s 0s;
 }
-.cd-modal-action .btn.to-circle {
+.cd-modal-action .btne.to-circle {
   width: 4em;
   color: transparent;
   -webkit-transition: color 0.2s 0s, width 0.3s 0.2s;
@@ -237,7 +230,6 @@ header h1 {
 }
 .no-touch .cd-modal-close:hover {
   background-color: rgba(0, 0, 0, 0.5);
-  
 }
 .modal-is-visible .cd-modal-close {
   visibility: visible;

@@ -1,8 +1,9 @@
+
 <!DOCTYPE HTML>
 
-<html>
+<html class="no-js">
 	<head>
-		<link rel="stylesheet" href="${prefix}resources/css/style.css">
+		<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css">
 		<%@ include file="../fragments/head.jspf" %>
 		<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
 	</head>
@@ -122,7 +123,24 @@
 					<c:choose> 
 						  <c:when test="${(actividad.maxPersonas-actividad.npersonas) > 0 }">
 						    <span>Aun faltan ${actividad.maxPersonas-actividad.npersonas} por apuntarse!</span> 
-						    <button type="button">Invitar a un amigo</button>
+						   
+						   
+	
+		<div class="cd-modal-action">
+			<a href="#0" class="btne" data-type="modal-trigger"> Invitar a un amigo
+						  </a>
+			<span class="cd-modal-bg"></span>
+		</div> <!-- cd-modal-action -->
+
+		<div class="cd-modal">
+			<div class="cd-modal-content">
+				</div> <!-- cd-modal-content -->
+		</div> <!-- cd-modal -->
+
+		<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+						  
+						  
 						  </c:when>
 						  <c:otherwise>
 						    <span>Actividad completa!</span>
@@ -131,23 +149,14 @@
 					
 					
 					
-			<!--<div class="cd-modal-action">
-			<a href="#0"  data-type="modal-trigger">Ver a todos los que se han apuntado  (${actividad.npersonas})</a>
-			<span class="cd-modal-bg"></span>
-			</div>
-			<div class="cd-modal">	
-			<div class="cd-modal-content">
-			<%@ include file="../fragments/participantes2.jspf" %>
-			</div>
-			</div> 
-			<a href="#0" class="cd-modal-close">Close</a>
-			</div>
-			</div>
-			</div>-->
+		<!-- 	<%@ include file="../fragments/participantes2.jspf" %>
+		 -->
 			
 		</div>
 
 	</div>
 	</div>
+	
+	<%@ include file="../fragments/scripts.jspf"%>
 </body>
 </html>
