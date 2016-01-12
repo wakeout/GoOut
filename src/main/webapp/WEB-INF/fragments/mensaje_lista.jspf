@@ -49,7 +49,7 @@
 			<td>${a.titulo}
 			<td>
 			<td>
-				<button type="button">Leer</button>
+				<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button">Leer</button></a>
 				<button type="submit" name="submit">Borrar</button>
 			</c:forEach>
 		</tbody>
@@ -57,7 +57,6 @@
 </form>
 </div>
 </c:if>
-
 <c:if test="${param.metodo == 'salida'}">
 <div class="mensaje_salida">
 <form action="borrarMensaje" method="post">
@@ -76,11 +75,39 @@
 			<td>${a.titulo}
 			<td>
 			<td>
-				<button type="button">Leer</button>
+				<a href="mensajes?metodo=leer&origen=salida&id=${a.id}"><button type="button">Leer</button></a>
 				<button type="submit" name="submit">Borrar</button>
 		</c:forEach>
 		</tbody>
 	</table>
+</form>
+</div>
+</c:if>
+
+<c:if test="${param.metodo == 'leer'}">
+<div class="leer_mensaje">
+<form action="leerMensaje" method="post">
+	<table class="mensajes">
+		<tbody>
+		<tr>
+		<c:if test="${param.origen == 'entrada'}">
+			<c:forEach items="${mensajes}" var="a">
+				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destino.id == usuario.id)}">
+					<c:set var="contenido" value="${a.contenido}"/>
+				</c:if>
+			</c:forEach>
+		</c:if>	
+		<c:if test="${param.origen == 'salida'}">
+			<c:forEach items="${mensajeS}" var="a">
+				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destino.id == usuario.id)}">
+					<c:set var="contenido" value="${a.contenido}"/>
+				</c:if>
+			</c:forEach>
+		</c:if>	
+			<td><textarea rows="5" cols="70" id="texto_mensaje"><c:out value="${contenido}"/></textarea>
+		</tbody>
+	</table>
+	<a href="mensajes?metodo=entrada"><button type="button">Volver a bandeja de entrada</button></a>
 </form>
 </div>
 </c:if>
