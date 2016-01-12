@@ -4,8 +4,12 @@
 <html class="no-js">
 	<head>
 		<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css">
+		
+		<script src="${prefix}resources/js/modernizr.js"></script>
+		
 		<%@ include file="../fragments/head.jspf" %>
 		<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
+	
 	</head>
 <body>
 	<div id="pagina">
@@ -125,21 +129,21 @@
 						    <span>Aun faltan ${actividad.maxPersonas-actividad.npersonas} por apuntarse!</span> 
 						   
 						   
-	
-		<div class="cd-modal-action">
-			<a href="#0" class="btne" data-type="modal-trigger"> Invitar a un amigo
-						  </a>
-			<span class="cd-modal-bg"></span>
-		</div> <!-- cd-modal-action -->
+							<section class="cd-section">
+								<div class="cd-modal-action">
+									<a href="#0" class="btne" data-type="modal-trigger"> Invitar a un amigo
+						  			</a>
+									<span class="cd-modal-bg"></span>
+								</div> <!-- cd-modal-action -->
 
-		<div class="cd-modal">
-			<div class="cd-modal-content">
-				</div> <!-- cd-modal-content -->
-		</div> <!-- cd-modal -->
+								<div class="cd-modal">
+									<div class="cd-modal-content">
+									</div> <!-- cd-modal-content -->
+								</div> <!-- cd-modal -->
 
-		<a href="#0" id="v" class="cd-modal-close">Close</a>
+								<a href="#0" id="v" class="cd-modal-close">Close</a>
 
-						  
+							</section>					  
 						  
 						  </c:when>
 						  <c:otherwise>
@@ -156,7 +160,8 @@
 
 	</div>
 	</div>
-	
-	<%@ include file="../fragments/scripts.jspf"%>
+		<script src="${prefix}resources/js/jquery-2.1.1.js"></script>		
+		<script src="${prefix}resources/js/efecto.js"></script>
+		<script src="${prefix}resources/js/velocity.min.js"></script>
 </body>
 </html>

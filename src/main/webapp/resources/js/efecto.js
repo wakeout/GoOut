@@ -1,16 +1,16 @@
 jQuery(document).ready(function($){
 	//trigger the animation - open modal window
 	$('[data-type="modal-trigger"]').on('click', function(){
-		var actionBtn = $(this),
-			scaleValue = retrieveScale(actionBtn.next('.cd-modal-bg'));
+		var actionbtne = $(this),
+			scaleValue = retrieveScale(actionbtne.next('.cd-modal-bg'));
 		
-		actionBtn.addClass('to-circle');
-		actionBtn.next('.cd-modal-bg').addClass('is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-			animateLayer(actionBtn.next('.cd-modal-bg'), scaleValue, true);
+		actionbtne.addClass('to-circle');
+		actionbtne.next('.cd-modal-bg').addClass('is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			animateLayer(actionbtne.next('.cd-modal-bg'), scaleValue, true);
 		});
 
 		//if browser doesn't support transitions...
-		if(actionBtn.parents('.no-csstransitions').length > 0 ) animateLayer(actionBtn.next('.cd-modal-bg'), scaleValue, true);
+		if(actionbtne.parents('.no-csstransitions').length > 0 ) animateLayer(actionbtne.next('.cd-modal-bg'), scaleValue, true);
 	});
 
 	//trigger the animation - close modal window
@@ -26,15 +26,15 @@ jQuery(document).ready(function($){
 		if($('.cd-section.modal-is-visible').length > 0) window.requestAnimationFrame(updateLayer);
 	});
 
-	function retrieveScale(btn) {
-		var btnRadius = btn.width()/2,
-			left = btn.offset().left + btnRadius,
-			top = btn.offset().top + btnRadius - $(window).scrollTop(),
-			scale = scaleValue(top, left, btnRadius, $(window).height(), $(window).width());
+	function retrieveScale(btne) {
+		var btneRadius = btne.width()/2,
+			left = btne.offset().left + btneRadius,
+			top = btne.offset().top + btneRadius - $(window).scrollTop(),
+			scale = scaleValue(top, left, btneRadius, $(window).height(), $(window).width());
 
-		btn.css('position', 'fixed').velocity({
-			top: top - btnRadius,
-			left: left - btnRadius,
+		btne.css('position', 'fixed').velocity({
+			top: top - btneRadius,
+			left: left - btneRadius,
 			translateX: 0,
 		}, 0);
 

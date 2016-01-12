@@ -109,12 +109,6 @@ header h1 {
   line-height: 1.6;
   margin: 2em 0;
 }
-
-#v{
-  visibility: visible;
-  opacity: 1;
-}
-
 .modal-is-visible .cd-modal {
   z-index: 1;
   visibility: visible;
@@ -151,7 +145,6 @@ header h1 {
   background-color: #34383c;
 }
 .cd-modal-action .btne {
-  text-align: center;
   width: 12.5em;
   border-radius: 5em;
   color: #ffffff;
