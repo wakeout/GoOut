@@ -92,22 +92,24 @@
 		<tr>
 		<c:if test="${param.origen == 'entrada'}">
 			<c:forEach items="${mensajes}" var="a">
-				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destino.id == usuario.id)}">
+				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destinos.id == usuario.id)}">
 					<c:set var="contenido" value="${a.contenido}"/>
+					<c:set var="bandeja" value="entrada"/>
 				</c:if>
 			</c:forEach>
 		</c:if>	
 		<c:if test="${param.origen == 'salida'}">
 			<c:forEach items="${mensajeS}" var="a">
-				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destino.id == usuario.id)}">
+				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destinos.id == usuario.id)}">
 					<c:set var="contenido" value="${a.contenido}"/>
+					<c:set var="bandeja" value="salida"/>
 				</c:if>
 			</c:forEach>
 		</c:if>	
 			<td><textarea rows="5" cols="70" id="texto_mensaje"><c:out value="${contenido}"/></textarea>
 		</tbody>
 	</table>
-	<a href="mensajes?metodo=entrada"><button type="button">Volver a bandeja de entrada</button></a>
+	<a href="mensajes?metodo=${bandeja}"><button type="button">Volver a bandeja de ${bandeja}</button></a>
 </form>
 </div>
 </c:if>
