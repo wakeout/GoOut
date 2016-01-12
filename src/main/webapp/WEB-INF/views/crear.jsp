@@ -21,7 +21,7 @@
 									<p id="text">CREACION DE ACTIVIDADES</p>
 									<div id="creacion">
 										<form action="${prefix}crearActividad" enctype="multipart/form-data"
-											method="POST">
+											method="POST" name="cre">
 											<div id="crear_1">
 												<p id="text">¿QUÉ QUIERES HACER?</p>
 												<table id="nombre_actv">
@@ -66,7 +66,7 @@
 													<br>
 													<tr>
 														<span class="titulos">¿Actividad privada? <input
-															type="checkbox" name="actv_privada" /></span>
+															type="checkbox" value="" name="actv_privada" id="actv_privada" /></span>
 													</tr>
 												</table>
 											</div>
@@ -92,7 +92,7 @@
 												<br>
 												<div id="boton_crear">
 													<input type="submit" name="submit" id="b_crear"
-														value="CREAR ACTIVIDAD" />
+														value="CREAR ACTIVIDAD" onclick="comprobarDatosActividad()" />
 												</div>
 
 											</div>
@@ -105,7 +105,7 @@
 														allowfullscreen></iframe>
 												</div>
 												<label>Lugar de Origen</label> <input type="text" size="10"
-													class="caja" /> <br> <input name="ruta" id="ruta"
+													class="caja" name="origen" /> <br> <input name="ruta" id="ruta"
 													type="checkbox" value="cambio" onchange="habilitarRuta()" />¿Habilitar
 												ruta? <br> <label>Destino</label> <input type="text"
 													name="destino" id="destino" disabled

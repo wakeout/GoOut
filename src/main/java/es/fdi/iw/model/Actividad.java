@@ -44,6 +44,7 @@ public class Actividad{
 	private Date fecha_ini;
 	private Date fecha_fin;
 	private String localizacion;
+	private String destino;
 	private List<Hito> proximosHitos;
 	private String idImagen;
 	private String estado;
@@ -59,7 +60,7 @@ public class Actividad{
 	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
 			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
-			String privacidad) {
+			String destino, String privacidad) {
 		
 		Actividad a = new Actividad();
 		
@@ -68,6 +69,7 @@ public class Actividad{
 		a.fecha_ini=fecha_ini;
 		a.fecha_fin=fecha_fin;
 		a.localizacion=localizacion;
+		a.destino = destino;
 		a.estado="Abierta";
 		a.maxPersonas=max_participantes;
 		a.n_personas=1;
@@ -192,6 +194,14 @@ public class Actividad{
 
 	public void setLocalizacion(String localizacion) {
 		this.localizacion = localizacion;
+	}
+	
+	public String getDestino() {
+		return destino;
+	}
+	
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
 
 	public String getDescripcion() {

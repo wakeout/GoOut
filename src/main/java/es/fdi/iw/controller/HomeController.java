@@ -388,6 +388,9 @@ public class HomeController {
 			@RequestParam("imagen") MultipartFile imagen_actv,
 			@RequestParam("tags") long[] tagIds,
 			@RequestParam("fecha_ini") Date fecha_ini,
+			@RequestParam("origen") String origen,
+			@RequestParam("destino") String destino,
+			@RequestParam("actv_privada") int privado,
 			Model model, HttpSession session) throws IOException {
 
 			if(session.getAttribute("usuario")!=null){
@@ -398,12 +401,13 @@ public class HomeController {
 			String extension="";
 			String privacidad="publica";
 			
-
+			if(privado == 1)
+				privacidad = "privada";
 			
 			try {
 
 				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, "", privacidad);
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, origen, destino, privacidad);
 				r = Registro.crearRegistro(a, usuario_creador);
 				//a.setRegistros(new ArrayList<Registro>());
 				//usuario_creador.getRegistros().add(r);
