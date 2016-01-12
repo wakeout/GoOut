@@ -16,7 +16,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea id="cuerpo_msj" rows="7" cols="80"
+				<td colspan="2"><textarea id="cuerpo_msj" rows="7" cols="60"
 						name="mensaje" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea></td>
 			</tr>
 			<tr>
@@ -105,8 +105,15 @@
 					<c:set var="bandeja" value="salida"/>
 				</c:if>
 			</c:forEach>
-		</c:if>	
-			<td><textarea rows="5" cols="70" id="texto_mensaje"><c:out value="${contenido}"/></textarea>
+		</c:if>
+		<tr>
+				<td>Usuario <c:if test="${param.origen == 'entrada'}">Origen</c:if><c:if test="${param.origen == 'salida'}">Destino</c:if>
+				</td>
+		</tr>
+		<tr>	
+			<td colspan="2"><textarea id="cuerpo_msj" rows="7" cols="60"
+						name="mensaje"><c:out value="${contenido}"/></textarea></td>
+		</tr>
 		</tbody>
 	</table>
 	<a href="mensajes?metodo=${bandeja}"><button type="button">Volver a bandeja de ${bandeja}</button></a>
