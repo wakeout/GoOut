@@ -855,6 +855,7 @@ public class HomeController {
 			u=(Usuario)session.getAttribute("usuario");
 			model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
 			model.addAttribute("mensajeS", entityManager.createNamedQuery("mensajesSalida").setParameter("origenParam", u).getResultList());
+			model.addAttribute("usuario", u);
 			return "mensajes";
 		}
 		else return "redirect:sin_registro";
