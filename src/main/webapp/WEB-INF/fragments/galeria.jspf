@@ -1,13 +1,20 @@
-<link rel="stylesheet" href="css/style_galeria.css"> <!-- Resource style -->
+<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css">
+<link rel="stylesheet" href="${prefix}resources/css/style_galeria.css"> <!-- Resource style -->
+		
 
-<div id="ventana_body">
-	<div id="ventana_header">
-		<div id="ventana_h1">Animated SVG Image Slider</div>
+<section class="cd-section">
+	<div class="cd-modal-action">
+		<a href="#0" class="btne" data-type="modal-trigger">
+		Galeria
+		</a>
+		<span class="cd-modal-bg"></span>
+	</div> 
 
-	
-	</div>
+	<div class="cd-modal">
+		<div class="cd-modal-content">
+		
 
-	<div class="cd-slider-wrapper">
+		<div class="cd-slider-wrapper">
 		<ul class="cd-slider" data-step1="M1402,800h-2c0,0,0-213,0-423s0-377,0-377h1c0.6,0,1,0.4,1,1V800z" data-step2="M1400,800H724c0,0-297-155-297-423C427,139,728,0,728,0h671c0.6,0,1,0.4,1,1V800z" data-step3="M1400,800H0c0,0,1-213,1-423S1,0,1,0h1398c0.6,0,1,0.4,1,1V800z" data-step4="M-2,800h2c0,0,0-213,0-423S0,0,0,0h-1c-0.6,0-1,0.4-1,1V800z" data-step5="M0,800h676c0,0,297-155,297-423C973,139,672,0,672,0L1,0C0.4,0,0,0.4,0,1L0,800z" data-step6="M0,800h1400c0,0-1-213-1-423s0-377,0-377L1,0C0.4,0,0,0.4,0,1L0,800z">
 			<li class="visible">
 				<div class="cd-svg-wrapper">
@@ -19,7 +26,7 @@
 							</clipPath>
 						</defs>
 						
-						<image height='800px' width="1400px" clip-path="url(#cd-image-1)" xlink:href="${prefix}resources/images/4.jpg"></image>
+						<image height='800px' width="1400px" clip-path="url(#cd-image-1)" xlink:href="${prefix}resources/images/6.jpg"></image>
 					</svg>
 				</div> <!-- .cd-svg-wrapper -->
 			</li>
@@ -49,7 +56,7 @@
 							</clipPath>
 						</defs>
 						
-						<image height='800px' width="1400px" clip-path="url(#cd-image-3)" xlink:href="${prefix}resources/images/7.jpg"></image>
+						<image height='800px' width="1400px" clip-path="url(#cd-image-3)" xlink:href="${prefix}resources/images/2.jpg"></image>
 					</svg>
 				</div> <!-- .cd-svg-wrapper -->
 			</li>
@@ -64,7 +71,7 @@
 							</clipPath>
 						</defs>
 						
-						<image height='800px' width="1400px" clip-path="url(#cd-image-4)" xlink:href="${prefix}resources/images/9.jpg"></image>
+						<image height='800px' width="1400px" clip-path="url(#cd-image-4)" xlink:href="${prefix}resources/images/1.jpg"></image>
 					</svg>
 				</div> <!-- .cd-svg-wrapper -->
 			</li>
@@ -83,10 +90,15 @@
 			<li><a href="#0"><em>Item 4</em></a></li>
 		</ol> <!-- .cd-slider-controls -->
 	</div> <!-- .cd-slider-wrapper -->
+
+		</div> <!-- cd-modal-content -->
+	</div> <!-- cd-modal -->
+
+	<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+</section>	
+				
 <script src="js/jquery-2.1.4.js"></script>
 <script src="js/jquery.mobile.custom.min.js"></script>
 <script src="js/snap.svg-min.js"></script>
 <script src="js/galeria.js"></script> <!-- Resource jQuery -->
-<script src="js/modernizr.js"></script> <!-- Modernizr -->
-  </div>
-</div>

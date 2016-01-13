@@ -131,15 +131,15 @@
 								<%@ include file="../fragments/invitar.jspf" %>				  
 						   	</c:if>
 						   
-							<%@ include file="../fragments/participantes.jspf" %>				  
-						  
-						  </c:when>
+							 </c:when>
 						  <c:otherwise>
 						    <span>Actividad completa!</span>
 						  </c:otherwise>
 					</c:choose>
 					
-					
+					<%@ include file="../fragments/participantes.jspf" %>				  
+						  
+						 
 			
 		</div>
 

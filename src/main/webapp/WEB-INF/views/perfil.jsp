@@ -19,7 +19,7 @@
 				<div class="s_perfil">
 					<a class=""><img id="i_perfil"
 						src="${prefix}resources/images/${perfil.idFoto}" alt="" /></a> <br>
-					<center>
+					
 						<form action="${prefix}mensajeAmigo" method="GET">
 						<input type="hidden" name="nombre_amigo" value="${perfil.id}">
 						<button type="submit" name="submit" class="btn">Enviar Mensaje a ${perfil.login}</button>
@@ -36,7 +36,6 @@
 						</c:if>
 						
 						
-					</center>
 				</div>
 
 				<div class="info_perfil">
@@ -66,17 +65,15 @@
 						<div class="n_perfil">
 
 							 <span
-								id="relleno_Campos"> ${perfil.login} </span> </br>
+								id="relleno_Campos"> ${perfil.login} </span> 
 							 <span
-								id="relleno_Campos"> ${perfil.nacimiento} </span></br>
-							</br> <span
-								id="relleno_Campos"> ${perfil.provincia}</span></br>
-							</br>  <span
+								id="relleno_Campos"> ${perfil.nacimiento} </span>
+						 <span
+								id="relleno_Campos"> ${perfil.provincia}</span>
+							  <span
 								id="relleno_Campos"> ${perfil.email} </span>
 
-								</br>
-							</br>
-							
+						
 							
 						<%@ include file="../fragments/galeria.jspf" %>				  
 						
@@ -90,9 +87,8 @@
 			</div>
 
 			<!-- Footer -->
-		<%@ include
-													file="../fragments/footer.jspf"%></d
-											iv>
+		<%@ include file="../fragments/footer.jspf"%>
+		</div>
 
 		<!-- Scripts -->
 		<%@ include file="../fragments/scripts.jspf"%>
