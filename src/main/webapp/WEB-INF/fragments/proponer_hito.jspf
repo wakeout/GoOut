@@ -1,0 +1,59 @@
+
+<section class="cd-section">
+	<div class="cd-modal-action">
+		<a href="#0" class="btne" data-type="modal-trigger">
+		Proponer nuevo hito
+		</a>
+		<span class="cd-modal-bg"></span>
+	</div> <!-- cd-modal-action -->
+
+	<div class="cd-modal">
+		<div class="cd-modal-content">
+									
+			<span id="titulo">Nuevo Hito</span>
+	 		<hr></hr>
+			
+					
+		<form action="${prefix}crearHito" method="post">
+		
+			<input type="hidden" name="actividad" value=" ${actividad.id}">
+		
+			<span style="margin-left: 350px; ">Asunto</span>
+			
+			
+			<textarea id="cuerpo_msj" rows="4" cols="75"
+						name="asunto" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea>
+			
+			
+			<br>
+			Fecha
+			<br>
+			
+			 <input type="date" size="12" name="fecha" id="inputField" style="margin-top: 20px;" />
+			
+			
+			<br>
+			
+			<div style="margin-top: 30px;">
+				Hora
+				<br>
+	    	    <input type="number" min=01 value=00 max="24"
+					id="num_participantes" class="caja" style="margin-top: 30px;">
+				:
+				<input type="number" min="1" value="0" max="59"
+					id="num_participantes" class="caja">	
+			</div>	
+
+			<input class="enviar" type="submit"
+					value="Crear hito" name="Enviar" style="float: right; padding-left: 20px;"> 		
+			
+		</form>
+
+
+		</div> <!-- cd-modal-content -->
+	</div> <!-- cd-modal -->
+
+	<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+</section>	
+							

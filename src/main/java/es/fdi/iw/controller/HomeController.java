@@ -491,7 +491,7 @@ public class HomeController {
 	public String crearHito(@RequestParam("actividad") long actividad,	@RequestParam("fecha") Date fecha,  @RequestParam("asunto") String asunto){
 		
 		Actividad a=entityManager.find(Actividad.class, actividad);
-
+		
 		Hito h= Hito.crearHito(asunto, fecha);
 		
 		if(a.getHitos()==null){
@@ -539,8 +539,8 @@ public class HomeController {
 			catch(NoResultException nre){
 				//ERROR
 			}
-		if(tipo!="ordinario")	
-			return "redirect:mensajes";
+		if(tipo.equals("ordinario"))	
+			return "redirect:mensajes?metodo=salida";
 		else	
 			return "redirect:actividad/"+contenido;
 	}

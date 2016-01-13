@@ -1,0 +1,37 @@
+
+<section class="cd-section">
+	<div class="cd-modal-action">
+		<a href="#0" class="btne" data-type="modal-trigger">
+		Mensaje a creador
+		</a>
+		<span class="cd-modal-bg"></span>
+	</div> <!-- cd-modal-action -->
+
+	<div class="cd-modal">
+		<div class="cd-modal-content">
+									
+			<span id="titulo">Mensaje a ${actividad.creador.login}</span>
+	 		<hr></hr>
+
+		
+		<form action="${prefix}crearMensaje" method="post">
+		
+			<input type="hidden" name="destinatario" value=" ${actividad.creador.login}" size="20">
+			<input type="hidden" name="asunto" value="De  desde ${actividad.nombre}">
+			<textarea id="cuerpo_msj" rows="7" cols="76"
+						name="mensaje" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea>
+			
+			<input type="hidden" name="tipo" value="ordinario">
+			<br>
+			<input class="enviar" type="submit"
+					value="Enviar Mensaje" name="Enviar"> 
+
+		</form>
+		
+		</div> <!-- cd-modal-content -->
+	</div> <!-- cd-modal -->
+
+	<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+</section>	
+							

@@ -76,6 +76,11 @@
 
 								</br>
 							</br>
+							
+							
+						<%@ include file="../fragments/galeria.jspf" %>				  
+						
+							
 						</div>
 
 
