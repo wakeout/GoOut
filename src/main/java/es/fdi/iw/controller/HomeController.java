@@ -128,7 +128,7 @@ public class HomeController {
 							destino = "redirect:home";
 						} else {
 							logger.info("pass no valido");
-							model.addAttribute("loginError", "error en usuario o contraseña");
+							model.addAttribute("loginError", "Error en usuario o contraseña");
 							response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 						}
 					} catch (NoResultException nre) {
@@ -872,17 +872,15 @@ public class HomeController {
 	@RequestMapping(value = "/buscarAmigos", method = RequestMethod.POST)
 	public String buscarAmigos(@RequestParam("amigo_b") String amigo,HttpServletResponse response,Model model,HttpSession session){
 		
-		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		Usuario usuario_buscado = null;
 		
 		try {
-		usuario_buscado = (Usuario)entityManager.createNamedQuery("userByLogin")
-				.setParameter("loginParam", amigo).getSingleResult();
-		
-		model.addAttribute("buscado", usuario_buscado);
+			usuario_buscado = (Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam", amigo).getSingleResult();
+			model.addAttribute("buscado", usuario_buscado);
 		}
 		catch(NoResultException e){
 			model.addAttribute("noEncontrado", "No hay resultados");
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 		return "redirect:buscar?id=amigos";
 	

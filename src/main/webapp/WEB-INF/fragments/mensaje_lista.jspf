@@ -127,10 +127,9 @@
 				<input type="hidden" name="id_propio" value="${usuario.id}">
 				<input type="submit" name="submit" value="Aceptar solicitud"/>
 				</form></c:if>
-				
-				<td><c:if test="${tipo == 'invitacion' && bandeja == 'entrada'}">
+				<c:if test="${tipo == 'invitacion' && bandeja == 'entrada'}">
 				<form action="unirseActividad" method="POST">
-				<input type="hidden" name="id_actv" value=""/>
+				<input type="hidden" name="id_actv" value="${contenido}"/>
 				<input type="hidden" name="id_propio" value="${usuario.id}">
 				<input type="submit" name="submit" value="Unirse a Actividad"/>
 				</form></c:if>
