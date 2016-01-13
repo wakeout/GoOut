@@ -20,6 +20,8 @@
 						name="mensaje" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea></td>
 			</tr>
 			<tr>
+				<input type="hidden" name="tipo" value="Ordinario">
+			
 				<td colspan="2"><input class="enviar" type="submit"
 					value="Enviar Mensaje" name="Enviar"> <input type="reset"
 					value="Borrar" name="Borrar"></td>

@@ -34,17 +34,18 @@
 					</c:if>	
 						<c:if test="${pertenece==true}">
 				
-						<button type="button">Mensaje a creador</button>
-						<button type="button">Propon algo nuevo!</button>
+						<%@ include file="../fragments/mensaje_a_creador.jspf" %>				  
+						
+						<%@ include file="../fragments/proponer_hito.jspf" %>				  
 						
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />
-						<button name="submit" type="submit">Salir de la actividad</button>
+						<button class="btne" name="submit" type="submit">Salir de la actividad</button>
 						</from>
 						
 						<form action="${prefix}denunciarActividad" method="POST">
 						<input type="hidden" name="id_actividad" value="${actividad.id}" />
-						<button name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
+						<button class="btne" name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
 						</form>
 						
 						</c:if>
@@ -72,7 +73,6 @@
 						</select>
 					</div>
 				</div>
-				
 			<div id="descripcion">
 			<p>Descripción de la actividad</p>
 				<div id="desc_actv">
