@@ -75,7 +75,8 @@ public class Actividad{
 		a.n_personas=1;
 		a.privacidad=privacidad;
 		a.registros = new ArrayList<Registro>();
-
+		a.proximosHitos = new ArrayList<Hito>();
+		
 		return a;
 	}
 	

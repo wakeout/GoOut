@@ -18,7 +18,8 @@
 		
 			<input class="barra_men" type="text" name="destinatario" value="${nombre.login}" size="20">
 			<input type="hidden" name="asunto" value="Apuntate a ${actividad.nombre}">
-			<input type="hidden" name="mensaje" value="Apuntate a ${actividad.nombre}">
+			<input type="hidden" name="mensaje" value="${actividad.id}">
+			<input type="hidden" name="tipo" value="invitacion">
 			
 			<input class="enviar" type="submit"
 					value="Enviar Invitacion" name="Enviar"> 

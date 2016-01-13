@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.fdi.iw.ContextInitializer;
 import es.fdi.iw.model.Actividad;
+import es.fdi.iw.model.Hito;
 import es.fdi.iw.model.Mensaje;
 import es.fdi.iw.model.Registro;
 import es.fdi.iw.model.Tag;
@@ -485,12 +486,36 @@ public class HomeController {
 		return "redirect:crear";
 	}
 	
+	@RequestMapping(value = "/crearHito", method = RequestMethod.POST)
+	@Transactional
+	public String crearHito(@RequestParam("actividad") long actividad,	@RequestParam("fecha") Date fecha,  @RequestParam("asunto") String asunto){
+		
+		Actividad a=entityManager.find(Actividad.class, actividad);
+
+		Hito h= Hito.crearHito(asunto, fecha);
+		
+		if(a.getHitos()==null){
+			List<Hito> lHitos=new ArrayList<Hito>();
+			a.setHitos(lHitos);
+		}
+		a.getHitos().add(h);
+		
+		entityManager.persist(h);
+		entityManager.persist(a);
+
+		
+		return "redirect:actividad/"+actividad;
+	}
+	
+	
+	
 	@RequestMapping(value = "/crearMensaje", method = RequestMethod.POST)
 	@Transactional
 	public String crearMensaje(
 			@RequestParam("asunto") String titulo,
 			@RequestParam("destinatario") String destino,
 			@RequestParam("mensaje") String contenido,
+			@RequestParam("tipo") String tipo,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session){
 			
@@ -508,15 +533,17 @@ public class HomeController {
 				//d = entityManager.find(Usuario.class, destino);
 				
 				
-				m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d);
+				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d);
 				entityManager.persist(m);
 			}
 			catch(NoResultException nre){
 				//ERROR
 			}
-		
+		if(tipo!="ordinario")	
 			return "redirect:mensajes";
-		}
+		else	
+			return "redirect:actividad/"+contenido;
+	}
 	
 	@RequestMapping(value = "/solicitudAmigo", method = RequestMethod.POST)
 	@Transactional
@@ -825,6 +852,7 @@ public class HomeController {
 				participantes.add(a.getRegistros().get(i).getUsuario());
 			
 			}
+			
 			model.addAttribute("pertenece", pertenece);
 			model.addAttribute("participantes", participantes);
 			model.addAttribute("actividad", a);

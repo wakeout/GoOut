@@ -24,6 +24,15 @@ public class Hito {
 	private String anuncio;
 	private Date fecha;
 	
+	public static Hito crearHito(String anuncio, Date fecha){
+		Hito h = new Hito();
+	
+		h.anuncio=anuncio;
+		h.fecha=fecha;
+		
+		return h;
+		
+	}
 
 	@Id
      @GeneratedValue
