@@ -42,8 +42,8 @@
 														<c:forEach items="${tags}" var="t">
 															<tr>
 
-																<td><input name="tags" type="checkbox"
-																	value="${t.id}" />${t.nombre}</td>
+																<td><input name="tags" id="tags" type="checkbox"
+																	value="${t.id}"  />${t.nombre}</td>
 
 															</tr>
 														</c:forEach>

@@ -17,7 +17,19 @@ function habilitarRuta() {
 }
 
 function comprobarDatosActividad(){
-	var t = document.getElementsByName('tags');
+	//var ta = document.getElementByName('tags').checkbox;
+	//var casa = 0;
+	
+	/*for(var i = 0; i < tags.lenght; i++){
+		
+		if(tags[i].checked){
+			alert("seleccionado");
+		}
+		else{
+			alert("no seleccionado");
+		}
+	}*/
+	
 	if(actv_privada.checked){
 		document.cre.actv_privada.checked=1
 		document.getElementById('actv_privada').value = 1;
@@ -35,9 +47,9 @@ function comprobarDatosActividad(){
 		document.getElementById('destino').value = "";
 	}
 	
-	for (var i=0; i<t.length; i++){
-		
-	}
+	
+	
+	//alert(select);
 }
 
 function valor_img(fic) {
@@ -81,5 +93,11 @@ $("#menu3").click(function() {
 	$( ".mi_perfil" ).hide();
 	
 });
+
+$("#tags:checked").each(
+	function(){
+		alert("El checkbox con valor " + $(this).val + " esta seleccionado");
+	}
+)
 
 
