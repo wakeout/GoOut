@@ -25,6 +25,15 @@ insert into Registro values(3,1,3,1,3);
 insert into Registro values(4,4,1,4,1);
 insert into Registro values(5,5,2,5,2);
 
+insert into Registro values(6,8,1,8,1);
+insert into Registro values(7,8,2,8,2);
+insert into Registro values(8,8,4,8,4);
+insert into Registro values(9,8,5,8,5);
+insert into Registro values(10,8,6,8,6);
+
+
+
+
 insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(1, 'victor me cae fatal',1, 'pues eso','ordinario',2,2)
 insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(2, 'david me cae fatal',1, 'pues eso','ordinario',2,1)
 insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(3, 'lis me cae fatal',1, 'pues eso','ordinario',4,1)

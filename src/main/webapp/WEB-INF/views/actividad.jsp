@@ -125,25 +125,13 @@
 					</table>
 			</div>		
 					<c:choose> 
-						  <c:when test="${(actividad.maxPersonas-actividad.npersonas) > 0 }">
+						  <c:when test="${(actividad.maxPersonas-actividad.npersonas) > 0}">
 						    <span>Aun faltan ${actividad.maxPersonas-actividad.npersonas} por apuntarse!</span> 
+						   	<c:if test="${pertenece}">
+								<%@ include file="../fragments/invitar.jspf" %>				  
+						   	</c:if>
 						   
-						   
-							<section class="cd-section">
-								<div class="cd-modal-action">
-									<a href="#0" class="btne" data-type="modal-trigger"> Invitar a un amigo
-						  			</a>
-									<span class="cd-modal-bg"></span>
-								</div> <!-- cd-modal-action -->
-
-								<div class="cd-modal">
-									<div class="cd-modal-content">
-									</div> <!-- cd-modal-content -->
-								</div> <!-- cd-modal -->
-
-								<a href="#0" id="v" class="cd-modal-close">Close</a>
-
-							</section>					  
+							<%@ include file="../fragments/participantes.jspf" %>				  
 						  
 						  </c:when>
 						  <c:otherwise>
@@ -152,9 +140,6 @@
 					</c:choose>
 					
 					
-					
-		<!-- 	<%@ include file="../fragments/participantes2.jspf" %>
-		 -->
 			
 		</div>
 

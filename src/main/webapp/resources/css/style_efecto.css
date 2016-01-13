@@ -14,8 +14,24 @@ body.overflow-hidden {
   overflow: hidden;
 }
 
-a {
-  color: #03bb91;
+#list{
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+
+hr {
+	padding-bottom: 3%;
+    position: relative;
+    height: 0;
+    width: 800px;
+    border: 0;
+    border-top: 1px solid #eee;
+    top: 15px;
+}
+
+#enlace {
+  color: white;
   text-decoration: none;
 }
 
@@ -46,6 +62,12 @@ header h1 {
 
 .cd-section {
   text-align: center;
+  
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+  
 }
 .cd-section p {
   margin: 2em 0;
@@ -56,7 +78,7 @@ header h1 {
 }
 @media only screen and (min-width: 768px) {
   .cd-section {
-    padding: 4em 10%;
+    padding: 0.5em 1.25%;
   }
   .cd-section p {
     font-size: 1.8rem;
@@ -65,9 +87,14 @@ header h1 {
 }
 @media only screen and (min-width: 1170px) {
   .cd-section {
-    padding: 4em 20%;
+    padding: 0.5em 2.5%;
   }
 }
+
+#titulo{
+	font-size:200%;
+}
+
 
 .cd-modal {
   position: fixed;
@@ -119,15 +146,22 @@ header h1 {
   transition: visibility 0s 0s, opacity 0.3s 0s, z-index 0s 0s;
 }
 .modal-is-visible .cd-modal .cd-modal-content {
+  font-size: x-large;
+  padding-top: 80px;
+  color: white;
   -webkit-overflow-scrolling: touch;
 }
 @media only screen and (min-width: 768px) {
   .cd-modal .cd-modal-content {
+    font-size: x-large;
+    color: white;
     padding: 4em 10%;
   }
 }
 @media only screen and (min-width: 1170px) {
   .cd-modal .cd-modal-content {
+    font-size: x-large;
+    color: white;
     padding: 6em 20%;
   }
   .cd-modal p {
