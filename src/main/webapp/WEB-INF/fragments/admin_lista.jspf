@@ -27,6 +27,7 @@
 	</form>	
 	
 	<form name="lista_actividades" action="${prefix}borrarActividades" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -58,6 +59,7 @@
 	</form>	
 	
 	<form name="lista_usuarios" action="${prefix}borrarUsuarios" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -86,6 +88,7 @@
 	</form>	
 	
 	<form name="lista_registros" action="${prefix}borrarRegistros" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -116,6 +119,7 @@
 	</form>	
 	
 	<form name="lista_mensajes" action="${prefix}borrarMensajes" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -143,6 +147,7 @@
 	</form>	
 	
 	<form name="lista_tags" action="${prefix}borrarTags" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -170,6 +175,7 @@
 	</form>	
 	
 	<form name="lista_comentarios" action="${prefix}borrarComentarios" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -197,6 +203,7 @@
 	</form>	
 	
 	<form name="lista_novedades" action="${prefix}borrarNovedades" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -224,6 +231,7 @@
 	</form>	
 	
 	<form name="lista_hitos" action="${prefix}borrarHitos" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>
@@ -250,6 +258,7 @@
 	</form>	
 	
 	<form name="lista_pagos" action="${prefix}borrarPagos" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br> 
@@ -278,6 +287,7 @@
 	</form>	
 	
 	<form name="lista_foros" action="${prefix}borrarForos" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>	
@@ -304,6 +314,7 @@
 	</form>	
 	
 	<form name="lista_denuncias" action="${prefix}borrarDenuncias" method="POST" onsubmit="return confirmar()">
+	<input type="hidden" name="tipo" value="admin"/>
 		<input type="submit" name="submit" class="papelera">	
 	
 	<br>

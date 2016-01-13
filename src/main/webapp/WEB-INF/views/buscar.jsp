@@ -23,8 +23,12 @@
 						<section>
 
 							<div id="global" align="center">
-
+								
+								
 								<div id="contenido" align="center">
+								<a href="buscar"><button type="button">Buscar actividades</button></a>
+								<a href="buscar?id=amigos"><button type="button">Buscar amigos</button></a>
+								<c:if test="${param.id == null}">
 									<p id="text">BUSCA NUEVAS COSAS QUE HACER!</p>
 									<button id="boton_buscar" type="button"></button>
 									<input type="checkbox" name="check_amigos" id="check_amigos" />
@@ -104,7 +108,7 @@
 														<tr><td><a href="actividad/${a.id}"> ${a.nombre} </a></td>
 														<td>1</td><td>${a.maxPersonas}</td>
 														<td>${a.fecha_ini}</td>
-														<td>${a.localizacion}</td><td style="color:green">${a.estado}</td>
+														<td>${a.localizacion}</td><td>${a.estado}</td>
 														</tr>
 													</c:forEach>
 													 
@@ -117,6 +121,24 @@
 									</div>
 
 								</div>
+								</c:if>
+								
+								<c:if test="${param.id == 'amigos'}">
+								<form action="buscarAmigos" id="bus_amigos" method="POST">
+									<input type="text" id="buscar_amigos" name="amigo_b"/>
+									<button type="submit" name="submit" id="boton_busca_amigos">Buscar</button>
+								</form>
+								<div id="resultado_buscar">
+								<c:choose>
+								    <c:when test="${not empty buscado}">
+								        <p>${buscado.login}</p>
+								    </c:when>    
+								    <c:otherwise>
+								        <p>${noEncontrado}</p>
+								    </c:otherwise>
+								</c:choose>
+								</div>
+								</c:if>
 							</div>
 						</section>
 					</div>

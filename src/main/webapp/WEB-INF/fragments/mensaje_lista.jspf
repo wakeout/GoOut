@@ -33,7 +33,7 @@
 <c:if test="${param.metodo == 'entrada'}">
 
 <div class="mensaje_entrada">
-<form action="borrarMensaje" method="post">
+<form action="borrarMensajes" method="post">
 	<table class="mensajes">
 		<thead>
 			<tr>
@@ -50,6 +50,8 @@
 			<td>
 			<td>
 				<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button">Leer</button></a>
+				<input type="hidden" name="tipo" value="entrada"/>
+				<input type="hidden" name="mensajes" value="${a.id}"/>
 				<button type="submit" name="submit">Borrar</button>
 			</c:forEach>
 		</tbody>
@@ -59,7 +61,7 @@
 </c:if>
 <c:if test="${param.metodo == 'salida'}">
 <div class="mensaje_salida">
-<form action="borrarMensaje" method="post">
+<form action="borrarMensajes" method="post">
 	<table class="mensajes">
 		<thead>
 			<tr>
@@ -76,6 +78,8 @@
 			<td>
 			<td>
 				<a href="mensajes?metodo=leer&origen=salida&id=${a.id}"><button type="button">Leer</button></a>
+				<input type="hidden" name="tipo" value="salida"/>
+				<input type="hidden" name="mensajes" value="${a.id}"/>
 				<button type="submit" name="submit">Borrar</button>
 		</c:forEach>
 		</tbody>
@@ -120,6 +124,13 @@
 				<input type="hidden" name="id_amigo" value="${id_amigo}">
 				<input type="hidden" name="id_propio" value="${usuario.id}">
 				<input type="submit" name="submit" value="Aceptar solicitud"/>
+				</form></c:if>
+				
+				<td><c:if test="${tipo == 'invitacion' && bandeja == 'entrada'}">
+				<form action="unirseActividad" method="POST">
+				<input type="hidden" name="id_actv" value=""/>
+				<input type="hidden" name="id_propio" value="${usuario.id}">
+				<input type="submit" name="submit" value="Unirse a Actividad"/>
 				</form></c:if>
 				</td>
 		</tr>

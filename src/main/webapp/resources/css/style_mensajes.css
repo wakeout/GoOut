@@ -25,7 +25,8 @@
 
 #cuerpo_msj
 {
-	margin-top:20px;	
+	margin-top:20px;
+	overflow-y: scroll;	
 }
 
 .enviados, .recibidos

@@ -45,7 +45,7 @@
 		margin-bottom: 8%;		
 	}
 	
-	#resultados1{
+	#resultados1, #resultado_buscar{
 		margin-top:5px;
 		height: 575px;	
 	}
@@ -141,4 +141,36 @@
 	{
 		padding-right: 50px;
 	}
+	
+	/*CSS para busqueda de amigos*/
+	
+	#contenido{
+		width: 1024px;
+	}
+	
+	#cuadro_amigos{
+		width:1024px;
+	}
+	
+	#buscar_amigos{
+	width:200px;
+	height: 40px;
+	}
+	
+	#boton_busca_amigos{
+	height: 40px;
+	margin:10px;
+	}
+	
+	#bus_amigos{
+		margin-top:20px;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	

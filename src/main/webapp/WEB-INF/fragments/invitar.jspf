@@ -16,7 +16,7 @@
 		
 		<form action="${prefix}crearMensaje" method="post">
 		
-			<input class="barra_men" type="text" name="destinatario" value="${nombre.login}" size="20">
+			<input class="barra_men" type="text" name="destinatario" size="20">
 			<input type="hidden" name="asunto" value="Apuntate a ${actividad.nombre}">
 			<input type="hidden" name="mensaje" value="Apuntate a ${actividad.nombre}">
 			

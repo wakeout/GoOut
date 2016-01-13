@@ -202,7 +202,6 @@ public class HomeController {
 		model.addAttribute("nombre", p);
 		//session.setAttribute("nombre", p);
 		//getTokenForSession(session);
-		
 		//return "redirect:mensajes";
 		return "mensajes";
 	}
@@ -291,13 +290,21 @@ public class HomeController {
 	
 	@RequestMapping(value = "/borrarMensajes", method = RequestMethod.POST)
 	@Transactional
-	public String borrarMensajes(@RequestParam("mensajes") long[] mensajesId, Model model, HttpSession session){
+	public String borrarMensajes(@RequestParam("mensajes") long[] mensajesId,
+			@RequestParam("tipo") String tipo,Model model, HttpSession session){
 		
 		for(int i = 0; i < mensajesId.length; i++){
 			entityManager.createNamedQuery("delMensaje").setParameter("idParam", mensajesId[i]).executeUpdate();
 		}
+		if(tipo.equals("admin"))
+		{
+			return "redirect:administrador";
+			
+		}
+		else{
+			return "redirect:mensajes?metodo="+tipo;
+		}
 		
-		return "redirect:administrador";
 	}
 	
 	@RequestMapping(value = "/borrarTags", method = RequestMethod.POST)
@@ -767,16 +774,6 @@ public class HomeController {
 			return "redirect:sin_registro";
 	}
 	
-	@RequestMapping(value = "/buscar", method = RequestMethod.GET)
-	public String buscar(Model model,HttpSession session){
-		if(session.getAttribute("usuario")!=null){
-		
-			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-			
-			return "buscar";
-		}else
-			return "redirect:sin_registro";
-	}
 	
 	@RequestMapping(value = "/salirActividad", method = RequestMethod.POST)
 	@Transactional
@@ -833,6 +830,35 @@ public class HomeController {
 		return "actividad";
 	}
 	
+	@RequestMapping(value = "/buscar", method = RequestMethod.GET)
+	public String buscar(Model model,HttpSession session){
+		if(session.getAttribute("usuario")!=null){
+		
+			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+			
+			return "buscar";
+		}else
+			return "redirect:sin_registro";
+	}
+	
+	@RequestMapping(value = "/buscarAmigos", method = RequestMethod.POST)
+	public String buscarAmigos(@RequestParam("amigo_b") String amigo,HttpServletResponse response,Model model,HttpSession session){
+		
+		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+		Usuario usuario_buscado = null;
+		
+		try {
+		usuario_buscado = (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", amigo).getSingleResult();
+		
+		model.addAttribute("buscado", usuario_buscado);
+		}
+		catch(NoResultException e){
+			model.addAttribute("noEncontrado", "No hay resultados");
+		}
+		return "redirect:buscar?id=amigos";
+	
+	}
 	
 	
 	

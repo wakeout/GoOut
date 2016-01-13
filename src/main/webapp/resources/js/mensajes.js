@@ -1,0 +1,1 @@
+document.getElementById("cuerpo_msj").readOnly = true;
