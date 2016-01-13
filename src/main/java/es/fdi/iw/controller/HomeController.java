@@ -850,11 +850,22 @@ public class HomeController {
 	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
 	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model, HttpSession session){
 		
+		boolean amigos = false;
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+		model.addAttribute("prefix", "../");
 		
 		if(session.getAttribute("usuario")!=null){
 		
 			Usuario p=entityManager.find(Usuario.class, id);
+			Usuario u=(Usuario)session.getAttribute("usuario");
+			
+			for (Usuario buscado : u.getAmigos()) {
+				if(buscado.getId()==id)
+						amigos=true;
+			}
+			
+			
+			model.addAttribute("amigos", amigos);
 		
 			if (p == null) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -862,10 +873,10 @@ public class HomeController {
 			} else {
 				model.addAttribute("perfil", p);
 			}
-			model.addAttribute("prefix", "../");
-		
 			return "perfil";
-		}else{
+		}
+		else
+		{
 			return "redirect:../sin_registro";
 		}
 		

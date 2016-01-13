@@ -55,3 +55,9 @@ insert into comentario (id, asunto, sugiero) values (1, 'necesito que alguien me
 insert into comentario (id, asunto, sugiero) values (2, 'yo paso', false)
 
 insert into pago (id, descripcion_forma_pago, precio_individual) values (1, 'contactar con David para pagar las entradas del concierto', 30)
+
+
+insert into usuario_amigos(usuario, amigos)values(1,2)
+insert into usuario_amigos(usuario, amigos)values(2,1)
+insert into usuario_amigos(usuario, amigos)values(1,4)
+insert into usuario_amigos(usuario, amigos)values(4,1)

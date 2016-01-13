@@ -94,6 +94,9 @@
 			<c:forEach items="${mensajes}" var="a">
 				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destinos.id == usuario.id)}">
 					<c:set var="contenido" value="${a.contenido}"/>
+					<c:set var="persona" value="${a.origen.login}"/>
+					<c:set var="tipo" value="${a.tipo}"/>
+					<c:set var="id_amigo" value="${a.origen.id}"/>
 					<c:set var="bandeja" value="entrada"/>
 				</c:if>
 			</c:forEach>
@@ -102,12 +105,22 @@
 			<c:forEach items="${mensajeS}" var="a">
 				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destinos.id == usuario.id)}">
 					<c:set var="contenido" value="${a.contenido}"/>
+					<c:set var="persona" value="${a.destinos.login}"/>
 					<c:set var="bandeja" value="salida"/>
 				</c:if>
 			</c:forEach>
 		</c:if>
+		</form>
 		<tr>
-				<td>Usuario <c:if test="${param.origen == 'entrada'}">Origen</c:if><c:if test="${param.origen == 'salida'}">Destino</c:if>
+				<td>Usuario <c:if test="${param.origen == 'entrada'}">Origen: </c:if><c:if test="${param.origen == 'salida'}">Destino: </c:if>
+				${persona}
+				</td>
+				<td><c:if test="${tipo == 'solicitud' && bandeja == 'entrada'}">
+				<form action="agregarAmigo" method="POST">
+				<input type="hidden" name="id_amigo" value="${id_amigo}">
+				<input type="hidden" name="id_propio" value="${usuario.id}">
+				<input type="submit" name="submit" value="Aceptar solicitud"/>
+				</form></c:if>
 				</td>
 		</tr>
 		<tr>	
@@ -117,6 +130,5 @@
 		</tbody>
 	</table>
 	<a href="mensajes?metodo=${bandeja}"><button type="button">Volver a bandeja de ${bandeja}</button></a>
-</form>
 </div>
 </c:if>
