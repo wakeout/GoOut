@@ -82,7 +82,7 @@ $("#menu3").click(function() {
 	
 });
 
-/*$('#bcrear').click(function(){
+$('#bcrear').click(function(){
 	if ($("#tags:checked").length == 0){
 		//alert("error");
 		alert(Date.now());

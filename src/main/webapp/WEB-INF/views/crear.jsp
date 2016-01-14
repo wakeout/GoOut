@@ -61,8 +61,9 @@
 													<span class="titulos">Numero de participantes</span>
 													<br>
 													<tr>
-														<input type="number" min="3" value="3" id="max_parti"
+														<input type="time" min="3" value="3" id="max_parti"
 															name="max_participantes" class="caja">
+														
 													</tr>
 													<br>
 													<tr>
@@ -84,11 +85,13 @@
 												</div>
 												<br> <span class="titulos">Hora de salida</span>
 												<tr>
+													<td><input type="time" name="hora_salida" id="hora_salida"/>
+													<!-- 
 													<td><input type="number" min=01 value=00 max="24"
 														id="num_participantes" class="caja"></td>
 													<td>:</td>
 													<td><input type="number" min="1" value="0" max="59"
-														id="num_participantes" class="caja"></td>
+														id="num_participantes" class="caja"></td>-->
 												</tr>
 												<br>
 												<div id="boton_crear">
