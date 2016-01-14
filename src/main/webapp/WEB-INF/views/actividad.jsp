@@ -36,7 +36,9 @@
 				
 						<%@ include file="../fragments/mensaje_a_creador.jspf" %>				  
 						
-						<%@ include file="../fragments/proponer_hito.jspf" %>				  
+						<%@ include file="../fragments/proponer_hito.jspf" %>	
+						
+						<%@ include file="../fragments/ajustes_actividad.jspf" %>			  
 						
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />
@@ -49,6 +51,10 @@
 						</form>
 						
 						</c:if>
+						
+						<c:forEach items="${tags}" var="a">
+							<label>${a.nombre}</label>
+						</c:forEach>
 					
 				</div>
 
@@ -72,6 +78,7 @@
 						  <option value="hito3">Ir al punto de reunión</option>
 						</select>
 					</div>
+					
 				</div>
 			<div id="descripcion">
 			<p>Descripción de la actividad</p>

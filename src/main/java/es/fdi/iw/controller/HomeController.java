@@ -160,6 +160,30 @@ public class HomeController {
 	 *	Además se puede agregar informacion como provincia, fecha de nacimiento etc.
 	 */
 	
+	@RequestMapping(value = "/modificarActividad", method = RequestMethod.POST)
+	@Transactional
+	public String modificarActividad(
+			@RequestParam("nombre_actividad") String nombre,
+			@RequestParam("lugar") String lugar,
+			@RequestParam("num_participantes") int nparticipantes,
+			@RequestParam("idactividad") long idactividad,
+			@RequestParam("fecha_inicio") Date fecha_ini,
+			@RequestParam("fecha_fin") Date fecha_fin){
+		
+		Actividad a = null;
+		a = (Actividad) entityManager.createNamedQuery("unaActividad")
+				.setParameter("actividadParam", idactividad).getSingleResult();
+		
+		a.setNombre(nombre);
+		a.setLocalizacion(lugar);
+		a.setMaxPersonas(nparticipantes);
+		a.setFecha_ini(fecha_ini);
+		a.setFecha_fin(fecha_fin);
+		entityManager.persist(a);
+		
+		return "redirect:actividad/"+idactividad;
+	}
+	
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.POST)
 	@Transactional
 	public String modPerfil(
@@ -436,12 +460,18 @@ public class HomeController {
 				
 				entityManager.persist(r);	
 				
+				
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
 					Tag t = entityManager.find(Tag.class, aid);
 					t.getEtiquetados().add(a);
 					entityManager.persist(t);
+					
+					a.getTags().add(t);
+					entityManager.persist(a);
 				}
+				
+					
 				
 
 			        try {
@@ -461,7 +491,6 @@ public class HomeController {
 		                stream.close();}
 			        }
 			        catch(Exception e){
-			        	
 			        	//Error
 			        	
 			        }
@@ -876,6 +905,7 @@ public class HomeController {
 			model.addAttribute("pertenece", pertenece);
 			model.addAttribute("participantes", participantes);
 			model.addAttribute("actividad", a);
+			model.addAttribute("tags", a.getTags());
 		}
 		model.addAttribute("prefix", "../");
 		return "actividad";

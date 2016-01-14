@@ -5,6 +5,7 @@
 
 <%@ include file="../fragments/head.jspf"%>
 <link rel="stylesheet" href="${prefix}resources/css/style_crear.css">
+
 </head>
 <body class="homepage">
 	<div id="page-wrapper">
@@ -21,7 +22,7 @@
 									<p id="text">CREACION DE ACTIVIDADES</p>
 									<div id="creacion">
 										<form action="${prefix}crearActividad" enctype="multipart/form-data"
-											method="POST" name="cre">
+											method="POST" name="cre" id="formularioGordo">
 											<div id="crear_1">
 												<p id="text">¿QUÉ QUIERES HACER?</p>
 												<table id="nombre_actv">
@@ -73,10 +74,10 @@
 											<div id="crear_2">
 												<p id="text">¿CUÁNDO QUIERES HACERLO?</p>
 												<label> Inicio:</label> <input type="date" size="12"
-													name="fecha_ini" id="inputField" /> <br> <input
+													name="fecha_ini" id="fecha_ini" /> <br> <input
 													type="checkbox" name="check" id="check" /> <label
 													for="check">¿Más de un día?</label>
-
+												<!--  inputField-->
 												<div id="fecha_regreso">
 													<label> Fin:</label> <input type="date" size="12"
 														id="inputField2" name="fecha_fin" />
@@ -91,8 +92,12 @@
 												</tr>
 												<br>
 												<div id="boton_crear">
-													<input type="submit" name="submit" id="b_crear"
-														value="CREAR ACTIVIDAD" onclick="comprobarDatosActividad()" />
+													
+													<button name="submit" id="bcrear"
+														value="CREAR ACTIVIDAD" onclick="comprobarDatosActividad()">
+														Enviar
+													</button>
+													
 												</div>
 
 											</div>
