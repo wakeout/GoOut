@@ -33,7 +33,7 @@
 													<span class="titulos">Nombre de la actividad</span>
 													<tr>
 														<td><input type="text" name="nombre_actv"
-															class="caja" placeholder="Nombre de la actividad" /></td>
+															class="caja" placeholder="Nombre de la actividad" required/></td>
 													</tr>
 
 													<table id="tipo_actividad">
@@ -44,7 +44,7 @@
 															<tr>
 
 																<td><input name="tags" id="tags" type="checkbox"
-																	value="${t.id}"  />${t.nombre}</td>
+																	value="${t.id}"/>${t.nombre}</td>
 
 															</tr>
 														</c:forEach>
@@ -74,7 +74,7 @@
 											<div id="crear_2">
 												<p id="text">¿CUÁNDO QUIERES HACERLO?</p>
 												<label> Inicio:</label> <input type="date" size="12"
-													name="fecha_ini" id="fecha_ini" /> <br> <input
+													name="fecha_ini" id="fecha_ini" required/> <br> <input
 													type="checkbox" name="check" id="check" /> <label
 													for="check">¿Más de un día?</label>
 												<!--  inputField-->
@@ -110,7 +110,7 @@
 														allowfullscreen></iframe>
 												</div>
 												<label>Lugar de Origen</label> <input type="text" size="10"
-													class="caja" name="origen" /> <br> <input name="ruta" id="ruta"
+													class="caja" name="origen" required/> <br> <input name="ruta" id="ruta"
 													type="checkbox" value="cambio" onchange="habilitarRuta()" />¿Habilitar
 												ruta? <br> <label>Destino</label> <input type="text"
 													name="destino" id="destino" disabled

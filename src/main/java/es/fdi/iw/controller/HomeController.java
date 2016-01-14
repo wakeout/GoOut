@@ -810,7 +810,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList();
+			List<Actividad> actividades = new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
@@ -850,7 +850,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 		
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList();
+			List<Actividad> actividades = new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
