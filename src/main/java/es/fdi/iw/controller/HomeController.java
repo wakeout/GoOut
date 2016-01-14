@@ -33,6 +33,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.fdi.iw.ContextInitializer;
 import es.fdi.iw.model.Actividad;
+import es.fdi.iw.model.Comentario;
+import es.fdi.iw.model.Foro;
 import es.fdi.iw.model.Hito;
 import es.fdi.iw.model.Mensaje;
 import es.fdi.iw.model.Registro;
@@ -411,7 +413,7 @@ public class HomeController {
 			String imagen="";
 			String extension="";
 			String privacidad="publica";
-			
+				
 			if(privado == 1)
 				privacidad = "privada";
 			
@@ -422,6 +424,10 @@ public class HomeController {
 				r = Registro.crearRegistro(a, usuario_creador);
 				//a.setRegistros(new ArrayList<Registro>());
 				//usuario_creador.getRegistros().add(r);
+				Foro f=Foro.crearForo();
+				a.setForo(f);
+				
+				entityManager.persist(f);
 				entityManager.persist(a);
 				a.getRegistros().add(r);
 				
@@ -491,6 +497,22 @@ public class HomeController {
 		entityManager.persist(t);
 		
 		return "redirect:crear";
+	}
+
+	@RequestMapping(value = "/hacerComentario", method = RequestMethod.POST)
+	@Transactional
+	public String hacerComentario(@RequestParam("asunto") String asunto, @RequestParam("actividad") long actividad, HttpSession session){
+		
+		Actividad a = entityManager.find(Actividad.class,actividad);
+		
+		Comentario c=Comentario.crearComentario(asunto, ((Usuario)session.getAttribute("usuario")));
+		
+		a.getForo().getComentarios().add(c);
+		
+		entityManager.persist(c);
+		entityManager.persist(a);
+		
+		return "redirect:actividad/"+actividad;
 	}
 	
 	@RequestMapping(value = "/crearHito", method = RequestMethod.POST)
@@ -850,6 +872,7 @@ public class HomeController {
 			
 			}
 			
+			model.addAttribute("comentarios", a.getForo().getComentarios());
 			model.addAttribute("pertenece", pertenece);
 			model.addAttribute("participantes", participantes);
 			model.addAttribute("actividad", a);

@@ -82,28 +82,30 @@
 				</div>
 			</div>
 
-				<!--<div class="foro_actv">
-					<div class="m_actv">
-						<a href="../perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
-						<p  class="mensajes_actv">
-							hellooo!! estoy muy contento de estar aqui
-						</p>
-						<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
-					</div>
-					<div class="m_actv">
-						<a href="../perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
-						<p  class="mensajes_actv">
-							hellooo!! estoy muy contento de estar aqui
-						</p>
-						<button class="boton" name="submit" type="submit" id="boton_reportar">Denunciar</button>
+				<div class="foro_actv">
+					<c:forEach items="${comentarios}" var="c"> 
+						<div class="m_actv">
+							<a href="../perfil/${c.usuario.id}"><img class="i_people" src="${prefix}resources/images/${c.usuario.idFoto}" alt="" /></a>
+							<p  class="mensajes_actv">
+								${c.asunto}
+							</p>
+							 <form action="${prefix}denunciarActividad" method="POST">
+								<input type="hidden" name="id_actividad" value="${actividad.id}" />
+								<button class="btne" name="submit" type="submit" id="boton_reportar">Denunciar</button>
+							</form>
 						</div>
-					<div class="m_actv" id="comentario"></div>
+					</c:forEach>
+					
 					<div class="m_actv">
-						<a href="../perfil"><img class="i_people" src="${prefix}resources/images/minion.jpg" alt="" /></a>
-						<input id="escribir" type="textarea">
-						<button id="comentar" class="btn">Comentar</button>
+						<a href="../perfil/${usuario.id}"><img class="i_people" src="${prefix}resources/images/${usuario.idFoto}" alt="" /></a>
+						
+						<form action="${prefix}hacerComentario" method="POST">
+						<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
+						<input id="escribir" type="textarea" name="asunto">
+						<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
+						</form>
 					</div>
-				</div>-->
+				</div>
 		
 				</div>
 		

@@ -1,6 +1,7 @@
 package es.fdi.iw.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,6 +27,16 @@ public class Foro {
 	private long id;
 	private List<Comentario>  comentarios;
 
+	
+	public static Foro crearForo(){
+		Foro f=new Foro();
+		List<Comentario> lc=new ArrayList<Comentario>();
+		
+		f.comentarios=lc;
+		
+		return f;
+	}
+	
 	
 	 @Id
      @GeneratedValue

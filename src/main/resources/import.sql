@@ -4,11 +4,21 @@ insert into Usuario (id, login, email, rol, password, id_Foto) values(4 ,'david'
 insert into Usuario (id, login, email, rol, password, id_Foto) values(5 ,'jorge','jorge@ucm.es', 'usuario', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '101.jpg')
 insert into Usuario (id, login, email, rol, password, id_Foto) values(6 ,'freire', 'manu@ucm.es', 'admin', '$2a$10$tBT2yNGyOp0bqMCN7kaYO.D0uXUJF7EmdrXaTb26vPId7KcQOBUIe', '4.png')
 
+insert into foro values(1)
+insert into foro values(2)
+insert into foro values(3)
+insert into foro values(4)
+
+insert into comentario values(3, 'hola',  false, '1', '1')
+insert into comentario values(4, 'eeey',  false, '2', '1')
+insert into comentario values(5, 'que hay',  false, '3', '1')
+insert into comentario values(6, 'hola',  false, '1', '2')
 
 
-insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador) values(1, 'cerves', 12, 'Madrid', '1.jpg', 15, 'privada', 1)
-insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador) values(2, 'zombies',  4,'Madrid', '2.jpg', 4, 'publica', 1)
-insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador) values(3, 'futbol',9,  'Madrid', '3.jpg', 20, 'privada', 1)
+
+insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(1, 'cerves', 12, 'Madrid', '1.jpg', 15, 'privada', 1, '1')
+insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(2, 'zombies',  4,'Madrid', '2.jpg', 4, 'publica', 1, '2')
+insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(3, 'futbol',9,  'Madrid', '3.jpg', 20, 'privada', 1, '3')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(4, 'xbox',9,  'Madrid', '33.jpg', 20, 'publica')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(5, 'concierto', 12, 'Madrid', '5.jpg', 15, 'publica')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(6, 'senderismo',  4,'Madrid', '6.jpg', 4, 'publica')

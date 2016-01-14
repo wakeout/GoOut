@@ -24,7 +24,14 @@ public class Comentario {
 	private boolean sugiero;
 	
 	
-
+	public static Comentario crearComentario(String asunto, Usuario u){
+		Comentario c=new Comentario();
+		
+		c.usuario=u;
+		c.asunto=asunto;
+		
+		return c;
+	}
 	
 	 @Id
      @GeneratedValue
