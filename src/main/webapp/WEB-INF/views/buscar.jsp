@@ -124,21 +124,22 @@
 								</c:if>
 								
 								<c:if test="${param.id == 'amigos'}">
-								<form action="buscarAmigos" id="bus_amigos" method="POST">
-									<input type="text" id="buscar_amigos" name="amigo_b"/>
-									<button type="submit" name="submit" id="boton_busca_amigos">Buscar</button>
-								</form>
-								<div id="resultado_buscar">
-								<c:choose>
-								    <c:when test="${not empty buscado}">
-								        <p>${buscado.login}</p>
-								    </c:when>    
-								    <c:otherwise>
-								        <p>${noEncontrado}</p>
-								    </c:otherwise>
-								</c:choose>
-								</div>
+									<form action="${prefix}buscarAmigos" id="bus_amigos" method="POST">
+										<input type="text" id="buscar_amigos" name="amigo_b">
+										<input type="submit" name="submit" id="boton_busca_amigos" value="Buscar">
+									</form>
+									<div id="resultado_buscar">
+									<c:choose>
+									    <c:when test="${not empty buscado}">
+									        <p>${buscado.login}</p>
+									    </c:when>    
+									    <c:otherwise>
+									        <p>${noEncontrado}</p>
+									    </c:otherwise>
+									</c:choose>
+									</div>
 								</c:if>
+								
 							</div>
 						</section>
 					</div>

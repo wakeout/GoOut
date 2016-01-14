@@ -50,6 +50,10 @@
 		height: 575px;	
 	}
 	
+	#resultado_buscar{
+	border:2px solid black;
+	}
+	
 	#resultados2{
 		display:none;
 		margin-top:5px;
