@@ -52,6 +52,8 @@
 	
 	#resultado_buscar{
 	border:2px solid black;
+	overflow-y: scroll;
+	text-align: left;
 	}
 	
 	#resultados2{
@@ -156,20 +158,25 @@
 		width:1024px;
 	}
 	
-	#buscar_amigos{
+	#buscar_amigos, #mis_amigos{
 	width:200px;
 	height: 40px;
+	
 	}
 	
 	#boton_busca_amigos{
 	height: 40px;
 	margin:10px;
+	font-size:13pt;
 	}
 	
 	#bus_amigos{
 		margin-top:20px;
 	}
 	
+	#usuarios_buscados{
+		text-align: left;
+	}
 	
 	
 	

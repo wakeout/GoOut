@@ -162,6 +162,30 @@ public class HomeController {
 	 *	Además se puede agregar informacion como provincia, fecha de nacimiento etc.
 	 */
 	
+	@RequestMapping(value = "/modificarActividad", method = RequestMethod.POST)
+	@Transactional
+	public String modificarActividad(
+			@RequestParam("nombre_actividad") String nombre,
+			@RequestParam("lugar") String lugar,
+			@RequestParam("num_participantes") int nparticipantes,
+			@RequestParam("idactividad") long idactividad,
+			@RequestParam("fecha_inicio") Date fecha_ini,
+			@RequestParam("fecha_fin") Date fecha_fin){
+		
+		Actividad a = null;
+		a = (Actividad) entityManager.createNamedQuery("unaActividad")
+				.setParameter("actividadParam", idactividad).getSingleResult();
+		
+		a.setNombre(nombre);
+		a.setLocalizacion(lugar);
+		a.setMaxPersonas(nparticipantes);
+		a.setFecha_ini(fecha_ini);
+		a.setFecha_fin(fecha_fin);
+		entityManager.persist(a);
+		
+		return "redirect:actividad/"+idactividad;
+	}
+	
 	@RequestMapping(value = "/mi_perfil", method = RequestMethod.POST)
 	@Transactional
 	public String modPerfil(
@@ -408,7 +432,6 @@ public class HomeController {
 			@RequestParam("actv_privada") int privado,
 			Model model, HttpSession session) throws IOException {
 
-			 		
 			if(session.getAttribute("usuario")!=null){
 			Actividad a = null;
 			Registro r = null;
@@ -416,7 +439,6 @@ public class HomeController {
 			String imagen="";
 			String extension="";
 			String privacidad="publica";
-			
 				
 			if(privado == 1)
 				privacidad = "privada";
@@ -788,7 +810,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList<Actividad>();
+			List<Actividad> actividades = new ArrayList();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
@@ -828,7 +850,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 		
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList<Actividad>();
+			List<Actividad> actividades = new ArrayList();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
@@ -872,7 +894,7 @@ public class HomeController {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			logger.error("No such actividad: {}", id);
 		} else {
-			List <Usuario> participantes=new ArrayList<Usuario>();
+			List <Usuario> participantes=new ArrayList();
 			
 			Usuario u=(Usuario)session.getAttribute("usuario");
 			
@@ -899,6 +921,7 @@ public class HomeController {
 			model.addAttribute("pertenece", pertenece);
 			model.addAttribute("participantes", participantes);
 			model.addAttribute("actividad", a);
+			model.addAttribute("tags", a.getTags());
 		}
 		model.addAttribute("prefix", "../");
 		return "actividad";
@@ -917,18 +940,28 @@ public class HomeController {
 	
 	@RequestMapping(value = "/buscarAmigos", method = RequestMethod.POST)
 	public String buscarAmigos(@RequestParam("amigo_b") String amigo,HttpServletResponse response,Model model,HttpSession session){
+				
+		List<Usuario> usuario_buscado = null;
+		List<Usuario> usuario_amigos = null;
 		
-		Usuario usuario_buscado = null;
+		Usuario u=(Usuario)session.getAttribute("usuario");
 		
+		usuario_amigos = u.getAmigos();
+		model.addAttribute("usuario_amigos", usuario_amigos);	
+		model.addAttribute("usuario", u);	
+		amigo="%"+amigo+"%";
+		
+
 		try {
-			usuario_buscado = (Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam", amigo).getSingleResult();
+			usuario_buscado = (List<Usuario>)entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", amigo).getResultList();
 			model.addAttribute("buscado", usuario_buscado);
+			model.addAttribute("noEncontrado", "No hay resultados");
 		}
 		catch(NoResultException e){
 			model.addAttribute("noEncontrado", "No hay resultados");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
-		return "redirect:buscar?id=amigos";
+		return "amigos";
 	
 	}
 	
@@ -1017,6 +1050,19 @@ public class HomeController {
 	public String sin_registro(Model model){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		return "sin_registro";
+	}
+	
+	@RequestMapping(value = "/amigos", method = RequestMethod.GET)
+	public String amigos(Model model,HttpSession session){
+		if(session.getAttribute("usuario")!=null){
+		
+			Usuario u=(Usuario)session.getAttribute("usuario");
+			model.addAttribute("usuario", u);			
+			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+			
+			return "amigos";
+		}else
+			return "redirect:sin_registro";
 	}
 	
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
