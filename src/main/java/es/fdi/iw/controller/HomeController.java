@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -894,18 +895,28 @@ public class HomeController {
 	
 	@RequestMapping(value = "/buscarAmigos", method = RequestMethod.POST)
 	public String buscarAmigos(@RequestParam("amigo_b") String amigo,HttpServletResponse response,Model model,HttpSession session){
+				
+		List<Usuario> usuario_buscado = null;
+		List<Usuario> usuario_amigos = null;
 		
-		Usuario usuario_buscado = null;
+		Usuario u=(Usuario)session.getAttribute("usuario");
 		
+		usuario_amigos = u.getAmigos();
+		model.addAttribute("usuario_amigos", usuario_amigos);	
+		model.addAttribute("usuario", u);	
+		amigo="%"+amigo+"%";
+		
+
 		try {
-			usuario_buscado = (Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam", amigo).getSingleResult();
+			usuario_buscado = (List<Usuario>)entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", amigo).getResultList();
 			model.addAttribute("buscado", usuario_buscado);
+			model.addAttribute("noEncontrado", "No hay resultados");
 		}
 		catch(NoResultException e){
 			model.addAttribute("noEncontrado", "No hay resultados");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
-		return "redirect:buscar?id=amigos";
+		return "amigos";
 	
 	}
 	
@@ -994,6 +1005,19 @@ public class HomeController {
 	public String sin_registro(Model model){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 		return "sin_registro";
+	}
+	
+	@RequestMapping(value = "/amigos", method = RequestMethod.GET)
+	public String amigos(Model model,HttpSession session){
+		if(session.getAttribute("usuario")!=null){
+		
+			Usuario u=(Usuario)session.getAttribute("usuario");
+			model.addAttribute("usuario", u);			
+			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+			
+			return "amigos";
+		}else
+			return "redirect:sin_registro";
 	}
 	
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)

@@ -44,8 +44,7 @@
 
 						<div id="amigos">
 							<table>
-								<thead>Amigos
-								</thead>
+								<thead>Amigos</thead>
 								<tbody>
 									<c:forEach items="${perfil.amigos}" var="p_amigos">
 										<tr>
