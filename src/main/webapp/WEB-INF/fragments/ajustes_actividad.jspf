@@ -1,3 +1,76 @@
+<section class="cd-section">
+	<div class="cd-modal-action">
+		<a href="#0" class="btne" data-type="modal-trigger">
+		Ajustes Actividad
+		</a>
+		<span class="cd-modal-bg"></span>
+	</div> <!-- cd-modal-action -->
+
+	<div class="cd-modal">
+		<div class="cd-modal-content">
+									
+			<span id="titulo">Ajustes Actividad</span>
+	 		<hr></hr>
+		<!-- <form action="${prefix}crearMensaje" method="post">-->
+		<form action="${prefix}modificarActividad" method="post">
+		<table>
+			<input type="hidden" name="idactividad" value="${actividad.id}" />
+			<tbody>
+				<tr>
+				<td>Nombre de la actividad</td>
+				<td><input type="text" size="19" class="caja" name="nombre_actividad" id="nombre_actividad" value="${actividad.nombre}"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Fecha inicio</td>
+				<td><input type="date" size="12" id="inputField" class="caja" value="${actividad.fecha_ini}" id="fecha_inicio" name="fecha_inicio"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Fecha fin</td>
+				<td><input type="date" size="12" id="inputField" class="caja" value="${actividad.fecha_fin}" id="fecha_fin" name="fecha_fin"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Lugar</td>
+				<td><input type="text" size="19" class="caja" value="${actividad.localizacion}" id="lugar" name="lugar"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Hora de inicio</td>
+				<td><input type="text" size="19" class="caja" /></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Numero de participantes</td>
+				<td><input type="number" min="${actividad.maxPersonas}" value="${actividad.maxPersonas}" id="num_participantes" name="num_participantes" class="caja"></td>
+			</tbody>
+		</table>
+		<hr>
+		<br>
+		<a>Descripcion</a>
+		<br>
+		<textarea rows="5" cols="105"></textarea>
+		<br>
+		<button class="boton" name="submit" type="submit">Modificar</button>
+	</form>
+		
+		
+		</div> <!-- cd-modal-content -->
+	</div> <!-- cd-modal -->
+
+	<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+</section>	
+
+
+
+<!-- 
 <div id="ajustes_actividad">
 	<form>
 		<table>
@@ -47,3 +120,4 @@
 	</form>
 	
 </div>
+-->

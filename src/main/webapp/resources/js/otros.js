@@ -17,18 +17,6 @@ function habilitarRuta() {
 }
 
 function comprobarDatosActividad(){
-	//var ta = document.getElementByName('tags').checkbox;
-	//var casa = 0;
-	
-	/*for(var i = 0; i < tags.lenght; i++){
-		
-		if(tags[i].checked){
-			alert("seleccionado");
-		}
-		else{
-			alert("no seleccionado");
-		}
-	}*/
 	
 	if(actv_privada.checked){
 		document.cre.actv_privada.checked=1
@@ -47,7 +35,7 @@ function comprobarDatosActividad(){
 		document.getElementById('destino').value = "";
 	}
 	
-	
+	//return true;
 	
 	//alert(select);
 }
@@ -94,10 +82,21 @@ $("#menu3").click(function() {
 	
 });
 
-$("#tags:checked").each(
-	function(){
-		alert("El checkbox con valor " + $(this).val + " esta seleccionado");
+$('#bcrear').click(function(){
+	if ($("#tags:checked").length == 0){
+		//alert("error");
+		alert(Date.now());
+		return false;
+		//document.getElementById('b_crear').disabled = true;
+		//console.log("error");
 	}
-)
+	return true;
+});
+
+/*$("#tags:checked").each(
+	function(){
+		$(this).val(0);
+	}
+)*/
 
 
