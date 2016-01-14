@@ -57,6 +57,7 @@ public class Actividad{
 	private String privacidad;
 	private String descripcion;
 	private List<Registro> registros;
+	private List<Encuesta> encuestas;
 	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
 			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
@@ -76,6 +77,7 @@ public class Actividad{
 		a.privacidad=privacidad;
 		a.registros = new ArrayList<Registro>();
 		a.proximosHitos = new ArrayList<Hito>();
+		
 		
 		return a;
 	}
@@ -221,6 +223,16 @@ public class Actividad{
 
 	public void setRegistros(List<Registro> registros) {
 		this.registros = registros;
+	}
+
+
+	@OneToMany(targetEntity=Encuesta.class, orphanRemoval=true)
+	@JoinColumn(name="id_actividad")
+	public List<Encuesta> getEncuestas() {
+		return encuestas;
+	}
+	public void setEncuestas(List<Encuesta> encuestas) {
+		this.encuestas = encuestas;
 	}
 
 

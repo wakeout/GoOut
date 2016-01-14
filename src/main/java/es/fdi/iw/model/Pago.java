@@ -22,9 +22,9 @@ import javax.persistence.OneToMany;
 public class Pago {
 	private long id;
 	private double precioIndividual;
-	private Date fechaLimitePago;
-	private String descripcionFormaPago;
-	private List<Pago> pagados; //No seria una lista de ids de usuarios que han pagado?
+	private Date fechaLimite;
+	private String descripcion;
+	private boolean pagado;
 	
 	@Id
     @GeneratedValue
@@ -40,24 +40,22 @@ public class Pago {
 	public void setPrecioIndividual(double precioIndividual) {
 		this.precioIndividual = precioIndividual;
 	}
-	public Date getFechaLimitePago() {
-		return fechaLimitePago;
+	public Date getFechaLimite() {
+		return fechaLimite;
 	}
-	public void setFechaLimitePago(Date fechaLimitePago) {
-		this.fechaLimitePago = fechaLimitePago;
+	public void setFechaLimite(Date fechaLimitePago) {
+		this.fechaLimite = fechaLimitePago;
 	}
-	public String getDescripcionFormaPago() {
-		return descripcionFormaPago;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setDescripcionFormaPago(String descripcionFormaPago) {
-		this.descripcionFormaPago = descripcionFormaPago;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
-	
-	@OneToMany(targetEntity=Usuario.class)
-	public List<Pago> getPagados() {
-		return pagados;
+	public boolean isPagado() {
+		return pagado;
 	}
-	public void setPagados(List<Pago> pagados) {
-		this.pagados = pagados;
+	public void setPagado(boolean pagado) {
+		this.pagado = pagado;
 	}
 }

@@ -23,6 +23,7 @@ public class Hito {
 	private long id;
 	private String anuncio;
 	private Date fecha;
+	private boolean completado;
 	
 	public static Hito crearHito(String anuncio, Date fecha){
 		Hito h = new Hito();
@@ -54,5 +55,13 @@ public class Hito {
 	 public void setFecha(Date fecha) {
 			this.fecha = fecha;
 	 }
+
+	public boolean isCompletado() {
+		return completado;
+	}
+
+	public void setCompletado(boolean completado) {
+		this.completado = completado;
+	}
 
 }

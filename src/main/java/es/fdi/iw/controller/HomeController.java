@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -406,6 +408,7 @@ public class HomeController {
 			@RequestParam("actv_privada") int privado,
 			Model model, HttpSession session) throws IOException {
 
+			 		
 			if(session.getAttribute("usuario")!=null){
 			Actividad a = null;
 			Registro r = null;
@@ -413,6 +416,7 @@ public class HomeController {
 			String imagen="";
 			String extension="";
 			String privacidad="publica";
+			
 				
 			if(privado == 1)
 				privacidad = "privada";
@@ -751,8 +755,26 @@ public class HomeController {
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public String crear(Model model, HttpSession session){
 		if(session.getAttribute("usuario")!=null){
-			model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
+			
+			HashMap<Integer, Tag> tagMap = new HashMap<Integer, Tag>();
+		
+			List<Tag> lT=entityManager.createNamedQuery("allTags").getResultList();
+			
+			 for (Tag t: lT) {
+				 tagMap.put(t.getEtiquetados().size(), t);
+			 }		
+			 
+			 Iterator<Tag> iter = (Iterator) tagMap.values().iterator();
 
+			 
+			 int i=0;
+			 while (iter.hasNext() && i<10) {
+			        lT.set(i, (Tag)iter.next());
+			        i++;
+			 } 
+			 
+			 
+			 model.addAttribute("tags", lT);
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			return "crear";
 		}else
@@ -766,7 +788,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList();
+			List<Actividad> actividades = new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
@@ -806,7 +828,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 		
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList();
+			List<Actividad> actividades = new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
@@ -850,7 +872,7 @@ public class HomeController {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			logger.error("No such actividad: {}", id);
 		} else {
-			List <Usuario> participantes=new ArrayList();
+			List <Usuario> participantes=new ArrayList<Usuario>();
 			
 			Usuario u=(Usuario)session.getAttribute("usuario");
 			
@@ -872,6 +894,7 @@ public class HomeController {
 			
 			}
 			
+			model.addAttribute("hitos", a.getHitos());
 			model.addAttribute("comentarios", a.getForo().getComentarios());
 			model.addAttribute("pertenece", pertenece);
 			model.addAttribute("participantes", participantes);

@@ -29,6 +29,8 @@ insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_perso
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad) values(8, 'paintball',9,  'Madrid', '9.jpg', 20, 'publica')
 
 
+
+
 insert into Registro values(1,1,1,1,1);
 insert into Registro values(2,2,1,2,1);
 insert into Registro values(3,1,3,1,3);
@@ -50,10 +52,11 @@ insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) value
 insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(4, 'marcos es un crak',1, 'pues eso','ordinario',1,2)
 insert into Mensaje (id, titulo,ndestinos,contenido, tipo,destinos,origen) values(5, 'amo a marcos',1, 'pues eso','denuncia',2,4)
 
-insert into hito (id, anuncio) values (1, 'pagar alquiler del cohete espacial')
-insert into hito (id, anuncio) values (2, 'estudiar las restricciones bd ')
-insert into hito (id, anuncio) values (3, 'comprar material de mineria')
-insert into hito (id, anuncio) values (4, 'mañana reunion de planificacion de viaje')
+insert into hito (id, anuncio, id_actividad) values (1, 'pagar alquiler del cohete espacial', '1')
+insert into hito (id, anuncio, id_actividad) values (2, 'estudiar las restricciones bd ', '1')
+insert into hito (id, anuncio, id_actividad) values (3, 'comprar material de mineria', '1')
+insert into hito (id, anuncio, id_actividad) values (4, 'mañana reunion de planificacion de viaje', '1')
+insert into hito(id, anuncio, id_actividad) values (6, 'uuuuu', '1')
 
 insert into tag (id, nombre) values (1, 'bares')
 insert into tag (id, nombre) values (2, 'deportes')

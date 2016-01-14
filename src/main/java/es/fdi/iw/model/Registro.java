@@ -2,13 +2,16 @@ package es.fdi.iw.model;
 
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
@@ -30,6 +33,7 @@ public class Registro {
 	long id;
 	Usuario usuario;
 	Actividad actividad;
+	List<Pago> pagos;
 
 	public static Registro crearRegistro(Actividad  actv, Usuario user) {
 		
@@ -65,6 +69,16 @@ public class Registro {
 	
 	public void setActividad(Actividad a) {
 		this.actividad = a;
+	}
+	
+	@OneToMany(targetEntity=Pago.class)
+	@JoinColumn(name="id_registro")
+	public List<Pago> getPagos() {
+		return pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
 	}
 	
 	

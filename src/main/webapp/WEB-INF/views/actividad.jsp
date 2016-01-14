@@ -65,11 +65,11 @@
 					<div class="dato_actv">Localización: ${actividad.localizacion}</div>
 					<!--<a><img class="i_people" src="${prefix}resources/images/localizacion.png"></a>-->
 					<!--<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6286564.690415084!2d-5.4376118!3d39.7034345!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1445771146399" width="900" height="700" frameborder="0" style="border:0" allowfullscreen></iframe>-->
-					<div class="dato_actv">Hitos: 
+				  	<div class="dato_actv">Hitos: 
 						<select id="hito" name="hito">
-						  <option value="hito1" selected="selected">Reservar actividad</option>
-						  <option value="hito2">Pagar actividad</option>
-						  <option value="hito3">Ir al punto de reunión</option>
+							 <c:forEach items="${hitos}" var="h">
+						  		<option value="hitos" selected="selected">${h.anuncio}</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -95,7 +95,8 @@
 							</form>
 						</div>
 					</c:forEach>
-					
+				<c:if test="${pertenece==true}">
+				
 					<div class="m_actv">
 						<a href="../perfil/${usuario.id}"><img class="i_people" src="${prefix}resources/images/${usuario.idFoto}" alt="" /></a>
 						
@@ -105,6 +106,10 @@
 						<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
 						</form>
 					</div>
+					
+				</c:if>
+				
+				
 				</div>
 		
 				</div>
