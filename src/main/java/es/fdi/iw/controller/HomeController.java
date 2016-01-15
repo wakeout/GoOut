@@ -313,7 +313,7 @@ public class HomeController {
 			entityManager.createNamedQuery("eliminarRegistro").setParameter("idRegistro", registrosId[i]).executeUpdate();
 		}
 		
-		return "redirect:administrador";
+		return "administrador";
 	}
 	
 	
@@ -810,7 +810,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList();
+			List<Actividad> actividades = new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
@@ -850,7 +850,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 		
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList();
+			List<Actividad> actividades = new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
@@ -940,32 +940,84 @@ public class HomeController {
 	
 	@RequestMapping(value = "/buscarAmigos", method = RequestMethod.POST)
 	public String buscarAmigos(@RequestParam("amigo_b") String amigo,HttpServletResponse response,Model model,HttpSession session){
-				
 		List<Usuario> usuario_buscado = null;
-		List<Usuario> usuario_amigos = null;
+		List<Usuario> usuario_amigos =null;
 		
+		amigo="%"+amigo+"%";
+
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		
 		usuario_amigos = u.getAmigos();
-		model.addAttribute("usuario_amigos", usuario_amigos);	
-		model.addAttribute("usuario", u);	
-		amigo="%"+amigo+"%";
 		
-
 		try {
-			usuario_buscado = (List<Usuario>)entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", amigo).getResultList();
-			model.addAttribute("buscado", usuario_buscado);
-			model.addAttribute("noEncontrado", "No hay resultados");
-		}
-		catch(NoResultException e){
+			usuario_buscado = entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", amigo).getResultList();		
+		}catch(NoResultException e){
 			model.addAttribute("noEncontrado", "No hay resultados");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
+		
+		List<Usuario> no_amigos=new ArrayList<Usuario>();
+		
+		boolean amigos=false;
+		for(Usuario us: usuario_buscado){
+			for(int i=0; i<usuario_amigos.size() && !amigos; i++){
+				amigos=(us.getId()==usuario_amigos.get(i).getId() || us.getId()==u.getId());
+			}
+			if(!amigos) no_amigos.add(us);
+			amigos=false;
+		}
+					
+		model.addAttribute("no_amigos", no_amigos);
+		model.addAttribute("usuario_amigos", usuario_amigos);		
+		model.addAttribute("buscado", usuario_buscado);
+		model.addAttribute("noEncontrado", "No hay resultados");
+
 		return "amigos";
-	
 	}
 	
-	
+	@RequestMapping(value = "/buscarActividades", method = RequestMethod.POST)
+	public String buscarActividades(@RequestParam("actividad_b") String actividad,HttpServletResponse response,Model model,HttpSession session){
+		List<Actividad> actividad_buscada = null;
+		List<Actividad> mis_actividades =new ArrayList<Actividad>();
+		
+		actividad="%"+actividad+"%";
+
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		
+		for(Registro r: u.getRegistros())
+			mis_actividades.add(r.getActividad());
+		
+		try {
+			actividad_buscada = entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", actividad).getResultList();		
+		}catch(NoResultException e){
+			model.addAttribute("noEncontrado", "No hay resultados");
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
+		
+		List<Actividad> no_mias=new ArrayList<Actividad>();
+		
+		boolean mia=false;
+		for(Actividad a: actividad_buscada){
+			for(int i=0; i<mis_actividades.size() && !mia; i++){
+				mia=(a.getId()==mis_actividades.get(i).getId());
+			}
+			if(!mia) no_mias.add(a);
+			mia=false;
+		}
+					
+		model.addAttribute("no_mias", no_mias);
+		model.addAttribute("mis_actividades", mis_actividades);		
+		model.addAttribute("buscada", actividad_buscada);
+		model.addAttribute("noEncontrado", "No hay resultados");
+
+		return "mis_actividades";
+	}
+	/*
+	private boolean existe(List<Usuario> lista, Usuario u){
+		
+		
+		return ;
+	}*/
 	
 	
 	@RequestMapping(value = "/actividad_creador", method = RequestMethod.GET)

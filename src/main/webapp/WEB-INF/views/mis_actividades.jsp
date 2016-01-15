@@ -22,6 +22,12 @@
 
 								<div id="global" align="center">
 
+									<form action="${prefix}buscarActividades" id="bus_amigos" method="POST">
+										<span>
+										<input type="text" id="buscar_amigos" name="actividad_b">
+										<button type="submit" name="submit" id="boton_busca_amigos">Buscar</button>
+										</span>
+									</form>
 									
 									<div id="filtro_MisActividades">
 										<form action="${prefix}filtrarActividades">
@@ -43,7 +49,7 @@
 									</div>
 
 									<div id="fotos">
-									
+										<c:if test="${no_mias==null}">
 										<c:forEach items="${actividades}" var="a">
 									
 											<a class="" href="actividad/${a.id}">
@@ -59,7 +65,25 @@
 											</a>
 									
 										</c:forEach>
+										</c:if>
+										<c:if test="${no_mias!=null}">
+										<c:forEach items="${no_mias}" var="a">
+									
+											<a class="" href="actividad/${a.id}">
+												<div class="img_thumb">
 
+													<div class="img_desc">
+														<p id="actividad">${a.nombre}</p>
+													</div>
+
+													<img class="i_actv"
+														src="${prefix}resources/images/${a.idImagen}" />
+												</div>
+											</a>
+									
+										</c:forEach>
+										</c:if>
+										
 								</div>
 
 						</div>

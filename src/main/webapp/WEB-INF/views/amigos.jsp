@@ -45,7 +45,7 @@
 									<c:choose>
 									    <c:when test="${not empty buscado}">
 									    <table id="usuarios_buscados">
-									    <c:forEach items="${buscado}" var="resultados">
+									    <c:forEach items="${no_amigos}" var="resultados">
 									        
 									        <tr>
 									        <td><a href="perfil/${resultados.id}"><img class="i_people" src="${prefix}resources/images/${resultados.idFoto}"></a></td>
