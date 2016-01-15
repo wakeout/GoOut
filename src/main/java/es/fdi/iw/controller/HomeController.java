@@ -430,6 +430,7 @@ public class HomeController {
 			@RequestParam("origen") String origen,
 			@RequestParam("destino") String destino,
 			@RequestParam("actv_privada") int privado,
+			@RequestParam("hora_salida") int hora_salida,
 			Model model, HttpSession session) throws IOException {
 
 			if(session.getAttribute("usuario")!=null){
@@ -439,6 +440,7 @@ public class HomeController {
 			String imagen="";
 			String extension="";
 			String privacidad="publica";
+			
 				
 			if(privado == 1)
 				privacidad = "privada";

@@ -33,7 +33,7 @@
 													<span class="titulos">Nombre de la actividad</span>
 													<tr>
 														<td><input type="text" name="nombre_actv"
-															class="caja" placeholder="Nombre de la actividad" /></td>
+															class="caja" placeholder="Nombre de la actividad" required/></td>
 													</tr>
 
 													<table id="tipo_actividad">
@@ -44,7 +44,7 @@
 															<tr>
 
 																<td><input name="tags" id="tags" type="checkbox"
-																	value="${t.id}"  />${t.nombre}</td>
+																	value="${t.id}"/>${t.nombre}</td>
 
 															</tr>
 														</c:forEach>
@@ -61,8 +61,9 @@
 													<span class="titulos">Numero de participantes</span>
 													<br>
 													<tr>
-														<input type="number" min="3" value="3" id="max_parti"
+														<input type="time" min="3" value="3" id="max_parti"
 															name="max_participantes" class="caja">
+														
 													</tr>
 													<br>
 													<tr>
@@ -74,7 +75,7 @@
 											<div id="crear_2">
 												<p id="text">¿CUÁNDO QUIERES HACERLO?</p>
 												<label> Inicio:</label> <input type="date" size="12"
-													name="fecha_ini" id="fecha_ini" /> <br> <input
+													name="fecha_ini" id="fecha_ini" required/> <br> <input
 													type="checkbox" name="check" id="check" /> <label
 													for="check">¿Más de un día?</label>
 												<!--  inputField-->
@@ -84,11 +85,13 @@
 												</div>
 												<br> <span class="titulos">Hora de salida</span>
 												<tr>
+													<td><input type="time" name="hora_salida" id="hora_salida"/>
+													<!-- 
 													<td><input type="number" min=01 value=00 max="24"
 														id="num_participantes" class="caja"></td>
 													<td>:</td>
 													<td><input type="number" min="1" value="0" max="59"
-														id="num_participantes" class="caja"></td>
+														id="num_participantes" class="caja"></td>-->
 												</tr>
 												<br>
 												<div id="boton_crear">
@@ -110,7 +113,7 @@
 														allowfullscreen></iframe>
 												</div>
 												<label>Lugar de Origen</label> <input type="text" size="10"
-													class="caja" name="origen" /> <br> <input name="ruta" id="ruta"
+													class="caja" name="origen" required/> <br> <input name="ruta" id="ruta"
 													type="checkbox" value="cambio" onchange="habilitarRuta()" />¿Habilitar
 												ruta? <br> <label>Destino</label> <input type="text"
 													name="destino" id="destino" disabled
