@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.fdi.iw.ContextInitializer;
@@ -282,9 +284,9 @@ public class HomeController {
 				}
 				entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
 			}
-	}
+		}
 		
-		return "redirect:administrador";
+		return "redirect:admin_actividades";
 	}
 	
 	@RequestMapping(value = "/borrarUsuarios", method = RequestMethod.POST)
@@ -1020,7 +1022,7 @@ public class HomeController {
 		
 		return ;
 	}*/
-	
+
 	
 	@RequestMapping(value = "/actividad_creador", method = RequestMethod.GET)
 	public String actividad_creador(){
@@ -1127,7 +1129,7 @@ public class HomeController {
 		
 		if(u.getRol().equals("admin")){
 			
-			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+		//	model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			model.addAttribute("mensajes", entityManager.createNamedQuery("allOrdinario").setParameter("ordinarioParam", "ordinario").getResultList());
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());
@@ -1148,6 +1150,8 @@ public class HomeController {
 			else return "redirect:sin_registro";
 		}
 	}
+	
+
 	
 	
 	static String getTokenForSession (HttpSession session) {

@@ -20,7 +20,8 @@
 
 	<ul>
  		<li>
- 		  <button id="b_actividad">Actividades </button>
+ 		
+ 		  <button id="b_actividad" type="submit" name="upload"><a href="admin_actividades"> Actividades </a></button>
  		</li>
  		<li>
  		  <button id="b_usuarios" >Usuarios</button>
