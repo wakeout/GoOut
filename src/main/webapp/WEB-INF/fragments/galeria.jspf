@@ -19,7 +19,7 @@
 			<li class="visible">
 				<div class="cd-svg-wrapper">
 					<svg viewBox="0 0 1400 800">
-						<title>Aimated SVG</title>
+						<title>Galeria</title>
 						<defs>
 							<clipPath id="cd-image-1">
 								<path id="cd-changing-path-1" d="M1400,800H0c0,0,1-213,1-423S1,0,1,0h1398c0.6,0,1,0.4,1,1V800z"/>
@@ -34,7 +34,7 @@
 			<li>
 				<div class="cd-svg-wrapper">
 					<svg viewBox="0 0 1400 800">
-						<title>Aimated SVG</title>
+						<title>Galeria</title>
 						<defs>
 							<clipPath id="cd-image-2">
 								<path id="cd-changing-path-2" d="M1400,800H0c0,0,1-213,1-423S1,0,1,0h1398c0.6,0,1,0.4,1,1V800z"/>
@@ -49,7 +49,7 @@
 			<li>
 				<div class="cd-svg-wrapper">
 					<svg viewBox="0 0 1400 800">
-						<title>Aimated SVG</title>
+						<title>Galeria</title>
 						<defs>
 							<clipPath id="cd-image-3">
 								<path id="cd-changing-path-3" d="M1400,800H0c0,0,1-213,1-423S1,0,1,0h1398c0.6,0,1,0.4,1,1V800z"/>
@@ -64,7 +64,7 @@
 			<li>
 				<div class="cd-svg-wrapper">
 					<svg viewBox="0 0 1400 800">
-						<title>Aimated SVG</title>
+						<title>Galeria</title>
 						<defs>
 							<clipPath id="cd-image-4">
 								<path id="cd-changing-path-4" d="M1400,800H0c0,0,1-213,1-423S1,0,1,0h1398c0.6,0,1,0.4,1,1V800z"/>

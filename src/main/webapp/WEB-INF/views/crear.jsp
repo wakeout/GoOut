@@ -61,7 +61,7 @@
 													<span class="titulos">Numero de participantes</span>
 													<br>
 													<tr>
-														<input type="time" min="3" value="3" id="max_parti"
+														<input type="number" min="3" value="3" id="max_parti"
 															name="max_participantes" class="caja">
 														
 													</tr>
@@ -74,7 +74,7 @@
 											</div>
 											<div id="crear_2">
 												<p id="text">¿CUÁNDO QUIERES HACERLO?</p>
-												<label> Inicio:</label> <input type="date" size="12"
+												<label> Inicio:</label> <input type="datetime-local" size="12"
 													name="fecha_ini" id="fecha_ini" required/> <br> <input
 													type="checkbox" name="check" id="check" /> <label
 													for="check">¿Más de un día?</label>
@@ -83,9 +83,10 @@
 													<label> Fin:</label> <input type="date" size="12"
 														id="inputField2" name="fecha_fin" />
 												</div>
-												<br> <span class="titulos">Hora de salida</span>
+												<!-- <br> <span class="titulos">Hora de salida</span>-->
 												<tr>
-													<td><input type="time" name="hora_salida" id="hora_salida"/>
+													<!-- <td><input type="time" name="hora_salida" id="inputField2"/>-->
+													
 													<!-- 
 													<td><input type="number" min=01 value=00 max="24"
 														id="num_participantes" class="caja"></td>

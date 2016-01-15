@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -428,11 +429,10 @@ public class HomeController {
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
 			@RequestParam("tags") long[] tagIds,
-			@RequestParam("fecha_ini") Date fecha_ini,
+			@RequestParam("fecha_ini") String fecha_ini,
 			@RequestParam("origen") String origen,
 			@RequestParam("destino") String destino,
 			@RequestParam("actv_privada") int privado,
-			@RequestParam("hora_salida") int hora_salida,
 			Model model, HttpSession session) throws IOException {
 
 			if(session.getAttribute("usuario")!=null){
@@ -443,6 +443,11 @@ public class HomeController {
 			String extension="";
 			String privacidad="publica";
 			
+			Date inicio = null;
+			
+			inicio.parse(fecha_ini);
+			
+			
 				
 			if(privado == 1)
 				privacidad = "privada";
@@ -450,7 +455,7 @@ public class HomeController {
 			try {
 
 				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_ini, origen, destino, privacidad);
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, inicio, inicio, origen, destino, privacidad);
 				r = Registro.crearRegistro(a, usuario_creador);
 				//a.setRegistros(new ArrayList<Registro>());
 				//usuario_creador.getRegistros().add(r);
