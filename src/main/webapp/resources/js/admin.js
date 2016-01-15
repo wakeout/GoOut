@@ -217,3 +217,9 @@ function confirmar(form){
 	else
 		return false;
 }
+
+//Volver a donde borramos
+
+function volver(){
+	
+}

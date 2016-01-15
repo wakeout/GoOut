@@ -139,6 +139,7 @@ header h1 {
   z-index: 1;
   visibility: visible;
   opacity: 1;
+  background-color:black; /*Color del fondo al pulsar el boton*/
   pointer-events: auto;
   -webkit-transition: visibility 0s 0s, opacity 0.3s 0s, z-index 0s 0s;
   -moz-transition: visibility 0s 0s, opacity 0.3s 0s, z-index 0s 0s;
@@ -172,16 +173,21 @@ header h1 {
 .cd-modal-action {
   position: relative;
 }
-.cd-modal-action .btne, .cd-modal-action .cd-modal-bg {
+.cd-modal-action .btne, .cd-modal-action .cd-modal-bg{
   display: inline-block;
   height: 4em;
-  background-color: #34383c;
+  background-color: #b4cdd5;
+  -moz-box-shadow: 0px 0px 30px #1a5ed9; 
+  -webkit-box-shadow: 0px 0px 30px #100dac; 
+  box-shadow: 0px 0px 30px #0f5eff;
 }
+
 .cd-modal-action .btne {
-  width: 12.5em;
+  width: 100px;
+  height: 40px;
   border-radius: 5em;
-  color: #ffffff;
-  line-height: 4em;
+  color: black;
+  line-height: 2.3em;
   white-space: nowrap;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;

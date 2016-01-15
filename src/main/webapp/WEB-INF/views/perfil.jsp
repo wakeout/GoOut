@@ -15,22 +15,23 @@
 		<!-- Main -->
 		<div id="main-wrapper">
 			<div class="container">
-
+		<div id="contenido_perfil">
 				<div class="s_perfil">
 					<a class=""><img id="i_perfil"
 						src="${prefix}resources/images/${perfil.idFoto}" alt="" /></a> <br>
 					
-						<form action="${prefix}mensajeAmigo" method="GET">
+						<form action="${prefix}mensajeAmigo" class="cuadro_acciones" method="GET">
 						<input type="hidden" name="nombre_amigo" value="${perfil.id}">
-						<button type="submit" name="submit" class="btn">Enviar Mensaje a ${perfil.login}</button>
+						<a><button type="submit" name="submit" class="btne">Enviar Mensaje a ${perfil.login}</button></a>
 						</form>
-						<br>
+						
+						<%@ include file="../fragments/galeria.jspf" %>
 
 						<c:if test="${amigos == false}">
-						<form action="${prefix}solicitudAmigo" method="POST">
+						<form action="${prefix}solicitudAmigo" class="cuadro_acciones" method="POST">
 							<input type="hidden" name="id_amigo" value="${perfil.id}">
 							<input type="hidden" name="id_propio" value="${usuario.id}">
-							<button type="submit" name="submit">Enviar solicitud de
+							<button class="" type="submit" name="submit">Enviar solicitud de
 								amistad</button>
 						</form>
 						</c:if>
@@ -63,25 +64,27 @@
 
 						<div class="n_perfil">
 
-							 <span
-								id="relleno_Campos"> ${perfil.login} </span> 
-							 <span
-								id="relleno_Campos"> ${perfil.nacimiento} </span>
-						 <span
-								id="relleno_Campos"> ${perfil.provincia}</span>
-							  <span
-								id="relleno_Campos"> ${perfil.email} </span>
-
-						
-							
-						<%@ include file="../fragments/galeria.jspf" %>				  
-						
+							 <table>
+							 <tr>
+								<td id="login_perfil">${perfil.login}</td>
+							 </tr>
+							 <tr>
+								 <td id="nacimiento_perfil"> ${perfil.nacimiento} </td>
+							 </tr>
+							 <tr>
+						 		<td id="provincia_perfil"> ${perfil.provincia}</td>
+							 </tr>
+							 <tr>
+								<td id="email_perfil"> ${perfil.provincia}</td>
+							 </tr>
+							</table>
 							
 						</div>
 
 
 						
 					</div>
+				</div>
 				</div>
 			</div>
 
@@ -91,6 +94,5 @@
 
 		<!-- Scripts -->
 		<%@ include file="../fragments/scripts.jspf"%>
-
 </body>
 </html>

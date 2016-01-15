@@ -1,91 +1,123 @@
-	.s_perfil{
-		float: left;	
-	}
+.s_perfil {
+	float: left;
+}
 
-	.mod_perfil{
-		display:none;
-		width:400px;
-		margin:0 auto;
+.mod_perfil {
+	display: none;
+	width: 400px;
+	margin: 0 auto;
+}
 
-	}
-	.mi_perfil
-	{
-		width:400px;
-		margin:0 auto;
-	}
-	
-	#opciones_perfil{
-		
-		width:400px;
-		margin:0 auto 15 auto;
-	}
-	
-	
-	#i_perfil
-	{
-		object-fit: cover;
-		width:250px;
-		height:250px;
-		border-radius:500px;
-		margin:30px;
-		vertical-align: middle;
+.mi_perfil {
+	width: 400px;
+	margin: 0 auto;
+}
 
-	}
+#opciones_perfil {
+	width: 400px;
+	margin: 0 auto 15 auto;
+}
 
-	#amigos{
-		float: right;
-		text-align: center;
+#i_perfil {
+	object-fit: cover;
+	width: 250px;
+	height: 250px;
+	border-radius: 500px;
+	margin: 30px;
+	vertical-align: middle;
+}
 
-	}
+#amigos {
+	float: right;
+	text-align: center;
+	width: 300;
+	border: 2px solid black;
+	margin: 10px;
+	background-color: #ffffff;
+	overflow-y: scroll;
+}
 
-	.historial_actv{
-		background-color: white;
-		width:1200px;
-		height:400px;
+.historial_actv {
+	background-color: white;
+	width: 1200px;
+	height: 400px;
+}
 
-	}
-	.campos_Perfil{
-		margin: .4em 0;	
-	}
-	.campos_Perfil label {
-		width:35%;
-  		float: left;
-	}
-	
-	.campos_Perfil input {
-		width:180px;
-		border-radius:10px;
-	}
-	
-	.actualizar
-	{
-		padding-top:10px;
-		width: 200px;
- 		margin: 0 auto;
-	}
-	.activ_Perfil{
-		margin-top:20px;
-	}
+.campos_Perfil {
+	margin: .4em 0;
+}
 
-	
-	#datos_perfil{
-		position:relative;
-		top: 20px;
-	}
-	
-	#menu{
-		padding: 0;
-	}
-	
-	#menu li{
-		display:inline;
-	}
-	
-	#menu li a {
+.campos_Perfil label {
+	width: 35%;
+	float: left;
+}
+
+.campos_Perfil input {
+	width: 180px;
+	border-radius: 10px;
+}
+
+.actualizar {
+	padding-top: 10px;
+	width: 200px;
+	margin: 0 auto;
+}
+
+.activ_Perfil {
+	margin-top: 20px;
+}
+
+#datos_perfil {
+	position: relative;
+	top: 20px;
+	text-align: center;
+}
+
+#menu {
+	padding: 0;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu li a {
 	font-family: Arial;
-	font-size:11px;
+	font-size: 11px;
 	text-decoration: none;
 	padding: 10px;
 	background-color: #2175bc;
 	color: #fff;
-	}
+}
+
+.cuadro_acciones {
+	text-align: center;
+}
+
+#contenido_perfil {
+	border: 2px solid black; height : 700px;
+	background-image: url("../images/fondo_c_perfil2.jpg");
+	-webkit-border-radius: 10px 10px;
+	-moz-border-radius: 10px 10px;
+	height: 700px;
+}
+
+div.n_perfil {
+	text-align: center;
+}
+
+div.n_perfil table {
+	margin: 0 auto;
+	text-align: left;
+}
+
+#login_perfil {
+	font-size: 60px;
+	boder:3px solid;
+	background-image: url("../images/fondo_perfil_texto.png");
+	background-repeat: no-repeat;
+	background-size:230px 200px;
+}
+#fondo_texto{
+	width: 100px;
+}
