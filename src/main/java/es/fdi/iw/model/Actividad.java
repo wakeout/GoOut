@@ -59,6 +59,27 @@ public class Actividad{
 	private List<Registro> registros;
 	private List<Encuesta> encuestas;
 	
+	
+	
+	public static StringBuilder getJSONString(List<Actividad> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Actividad a : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(a));
+		}
+		
+		return sb;
+	}
+	
+	
+	public static String getSingleString(Actividad a){
+		return "{ "
+				+ "\"id\": \"" + a.getId() + "\", "
+				+ "\"familyName\": \""+a.getNombre()+"\"}";
+	}
+	
+	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
 			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
 			String destino, String privacidad) {

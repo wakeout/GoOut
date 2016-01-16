@@ -25,7 +25,9 @@ import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -270,153 +272,7 @@ public class HomeController {
 	
 	//borrados--------------------------------
 	
-	@RequestMapping(value = "/borrarActividades", method = RequestMethod.POST)
-	@Transactional
-	public String borrarActividades(@RequestParam("actividades") long[] actividadesId, Model model, HttpSession session){
 
-		if(actividadesId!=null){
-			
-			
-			for(int i = 0; i < actividadesId.length; i++){
-				Actividad a = entityManager.find(Actividad.class, actividadesId[i]);
-				for(int j = 0; j < a.getRegistros().size(); j++){
-					Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
-					entityManager.createNamedQuery("eliminarRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
-				}
-				entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
-			}
-		}
-		
-		return "redirect:admin_actividades";
-	}
-	
-	@RequestMapping(value = "/borrarUsuarios", method = RequestMethod.POST)
-	@Transactional
-	public String borrarUsuarios(@RequestParam("usuarios") long[] usuariosId, Model model, HttpSession session){
-		
-		for(int i = 0; i < usuariosId.length; i++){
-			Usuario u = entityManager.find(Usuario.class, usuariosId[i]);
-			for(int j = 0; j < u.getRegistros().size(); j++){
-				Registro r = entityManager.find(Registro.class, u.getRegistros().get(j).getId());
-				entityManager.createNamedQuery("eliminarRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
-			}
-			entityManager.createNamedQuery("delUsuarios").setParameter("userParam", u.getId()).executeUpdate();
-			entityManager.createNamedQuery("delUser").setParameter("idParam", u.getId()).executeUpdate();
-		}
-
-		
-		return "redirect:administrador";
-	}
-	
-	@RequestMapping(value = "/borrarRegistros", method = RequestMethod.POST)
-	@Transactional
-	public String borrarRegistros(@RequestParam("registros") long[] registrosId, Model model, HttpSession session){
-		
-		for(int i = 0; i < registrosId.length; i++){
-			entityManager.createNamedQuery("eliminarRegistro").setParameter("idRegistro", registrosId[i]).executeUpdate();
-		}
-		
-		return "administrador";
-	}
-	
-	
-	@RequestMapping(value = "/borrarMensajes", method = RequestMethod.POST)
-	@Transactional
-	public String borrarMensajes(@RequestParam("mensajes") long[] mensajesId,
-			@RequestParam("tipo") String tipo,Model model, HttpSession session){
-		
-		for(int i = 0; i < mensajesId.length; i++){
-			entityManager.createNamedQuery("delMensaje").setParameter("idParam", mensajesId[i]).executeUpdate();
-		}
-		if(tipo.equals("admin"))
-		{
-			return "redirect:administrador";
-			
-		}
-		else{
-			return "redirect:mensajes?metodo="+tipo;
-		}
-		
-	}
-	
-	@RequestMapping(value = "/borrarTags", method = RequestMethod.POST)
-	@Transactional
-	public String borrarTags(@RequestParam("tags") long[] tagsId, Model model, HttpSession session){
-		
-		for(int i = 0; i < tagsId.length; i++){
-			entityManager.createNamedQuery("delTag").setParameter("idParam", tagsId[i]).executeUpdate();
-		}
-		
-		return "redirect:administrador";
-	}
-	
-	@RequestMapping(value = "/borrarComentarios", method = RequestMethod.POST)
-	@Transactional
-	public String borrarComentarios(@RequestParam("comentarios") long[] comentariosId, Model model, HttpSession session){
-		
-		for(int i = 0; i < comentariosId.length; i++){
-			entityManager.createNamedQuery("delComentario").setParameter("idParam", comentariosId[i]).executeUpdate();
-		}
-		
-		return "redirect:administrador";
-	}
-	
-	@RequestMapping(value = "/borrarNovedades", method = RequestMethod.POST)
-	@Transactional
-	public String borrarNovedades(@RequestParam("novedades") long[] novedadesId, Model model, HttpSession session){
-		
-		for(int i = 0; i < novedadesId.length; i++){
-			entityManager.createNamedQuery("delNovedad").setParameter("idParam", novedadesId[i]).executeUpdate();
-		}
-		
-		return "redirect:administrador";
-	}
-	
-	@RequestMapping(value = "/borrarHitos", method = RequestMethod.POST)
-	@Transactional
-	public String borrarHitos(@RequestParam("hitos") long[] hitosId, Model model, HttpSession session){
-		
-		for(int i = 0; i < hitosId.length; i++){
-			entityManager.createNamedQuery("delHito").setParameter("idParam", hitosId[i]).executeUpdate();
-		}
-		
-		return "redirect:administrador";
-	}
-	
-	@RequestMapping(value = "/borrarForos", method = RequestMethod.POST)
-	@Transactional
-	public String borrarForos(@RequestParam("foros") long[] forosId, Model model, HttpSession session){
-		
-		for(int i = 0; i < forosId.length; i++){
-			entityManager.createNamedQuery("delForo").setParameter("idParam", forosId[i]).executeUpdate();
-		}
-		
-		return "redirect:administrador";
-	}
-	
-	@RequestMapping(value = "/borrarDenuncias", method = RequestMethod.POST)
-	@Transactional
-	public String borrarDenuncias(@RequestParam("denuncias") long[] denunciasId, Model model, HttpSession session){
-		
-		for(int i = 0; i < denunciasId.length; i++){
-			entityManager.createNamedQuery("delDenuncia").setParameter("idParam", denunciasId[i]).executeUpdate();
-		}
-		
-		return "redirect:administrador";
-	}
-	
-	@RequestMapping(value = "/borrarPagos", method = RequestMethod.POST)
-	@Transactional
-	public String borrarPagos(@RequestParam("pagos") long[] pagosId, Model model, HttpSession session){
-		
-		for(int i = 0; i < pagosId.length; i++){
-			entityManager.createNamedQuery("delPago").setParameter("idParam", pagosId[i]).executeUpdate();
-		}
-		
-		return "redirect:administrador";
-	}
-	
-	
 	//adds-------------------------------------
 	
 	
@@ -990,13 +846,16 @@ public class HomeController {
 		List<Actividad> mis_actividades =new ArrayList<Actividad>();
 		
 		actividad="%"+actividad+"%";
-
+		try {
+			
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		
-		for(Registro r: u.getRegistros())
-			mis_actividades.add(r.getActividad());
 		
-		try {
+		if(!u.getRegistros().isEmpty())
+			for(Registro r: u.getRegistros())
+				mis_actividades.add(r.getActividad());
+		
+		
 			actividad_buscada = entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", actividad).getResultList();		
 		}catch(NoResultException e){
 			model.addAttribute("noEncontrado", "No hay resultados");
@@ -1126,6 +985,23 @@ public class HomeController {
 			return "redirect:sin_registro";
 	}
 	
+	
+	@RequestMapping(value = "/borrarElemento", method = RequestMethod.POST)
+	@ResponseBody
+	@Transactional
+	public void borrarElemento(@RequestParam("id") long [] id, @RequestParam("tipo") String tipo, HttpServletRequest request){
+		try {
+			
+			for(int i=0; i<id.length; i++)
+				entityManager.createNamedQuery("eliminar"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
+					
+		} catch (NoResultException nre) {
+			logger.error("No such"+ tipo + ": {}", id);
+		}
+	
+	}
+	
+	
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	@Transactional
 	public String administrador(Model model, HttpSession session){
@@ -1134,7 +1010,7 @@ public class HomeController {
 		
 		if(u.getRol().equals("admin")){
 			
-		//	model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			model.addAttribute("mensajes", entityManager.createNamedQuery("allOrdinario").setParameter("ordinarioParam", "ordinario").getResultList());
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			model.addAttribute("tags", entityManager.createNamedQuery("allTags").getResultList());

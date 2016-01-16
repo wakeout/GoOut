@@ -1,4 +1,32 @@
 $(function() {
+	$(".papelera").click(function() {
+		var target = $(this); 
+
+		var tipo = $(this).attr("id"); 
+		
+		var selected = new Array();
+
+		$(document).ready(function() {
+
+		  $("input:checkbox[name=type]:checked").each(function() {
+		       selected.push($(this).val());
+		  });
+
+		});
+		
+		var id[];
+
+		console.log(selected[0]);
+		
+		$.post("borrarElemento", {id: id, tipo:tipo});	
+	})	
+})
+
+
+
+
+
+$(function() {
 	$( ".admin_actv" ).show();
     $( ".admin_usuario" ).hide();
     $( ".admin_mensaje" ).hide();

@@ -26,9 +26,9 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form name="lista_actividades" action="${prefix}borrarActividades" method="POST" onsubmit="return confirmar()">
+	<!-- <form name="lista_actividades" action="${prefix}borrarActividades" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
-		<input type="submit" name="submit" class="papelera">	
+	 --> <button id="Actividades" class="papelera"></button>	
 	
 	<br>
 	<h1>Actividades</h1>
@@ -36,13 +36,13 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_actividades)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${actividades}" var="a">
-			<tr><td><input name="actividades" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
+			<tr><td><input id="Actividades" name="actividades" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
 			</c:forEach>
 		</table>
 	
-	
+	<!--
 	</form>
-	
+	-->
 	</div>
 	
 	<div class="admin_usuario">
