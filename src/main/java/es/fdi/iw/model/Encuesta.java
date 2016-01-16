@@ -17,7 +17,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allEncuestas",
-            query="select e from Encuesta e")
+            query="select e from Encuesta e"),
+            @NamedQuery(name="delEncuesta", 
+    		query="delete from Encuesta e where e.id = :idEncuesta")
 })
 public class Encuesta {
 	private long id;

@@ -50,8 +50,11 @@
   		  <button id="b_foros">Foros</button>
   		</li> 
   		<li>
-  			<button id="b_denuncias">Denuncias</button>
-  		</li> 		
+  			<button id="b_encuestas">Encuestas</button>
+  		</li>
+  		<li>
+  			<button id="b_respuestas">Respuestas</button>
+  		</li>  		
 	</ul>
 
 	<div class="lista">

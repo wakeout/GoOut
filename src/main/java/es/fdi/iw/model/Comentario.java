@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="allComentarios",
             query="select c from Comentario c"),
     @NamedQuery(name="delComentario", 
-    		query="delete from Comentario c where c.id = :idParam")
+    		query="delete from Comentario c where c.id = :idComentario")
 })
 public class Comentario {
 	private long id;

@@ -114,7 +114,7 @@ div.n_perfil table {
 #login_perfil {
 	font-size: 60px;
 	boder:3px solid;
-	background-image: url("../images/fondo_perfil_texto.png");
+	//background-image: url("../images/fondo_perfil_texto.png");
 	background-repeat: no-repeat;
 	background-size:230px 200px;
 }

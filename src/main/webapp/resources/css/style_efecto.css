@@ -176,10 +176,7 @@ header h1 {
 .cd-modal-action .btne, .cd-modal-action .cd-modal-bg{
   display: inline-block;
   height: 4em;
-  background-color: #b4cdd5;
-  -moz-box-shadow: 0px 0px 30px #1a5ed9; 
-  -webkit-box-shadow: 0px 0px 30px #100dac; 
-  box-shadow: 0px 0px 30px #0f5eff;
+  background-color: grey; /* Color del boton */
 }
 
 .cd-modal-action .btne {

@@ -25,8 +25,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 			query="select u from Usuario u"),
 			@NamedQuery(name="userByLogin",
 			query="select u from Usuario u where u.login = :loginParam"),
-			@NamedQuery(name="delUser",
-			query="delete from Usuario u where u.id= :idParam"),
+			@NamedQuery(name="delUsuario",
+			query="delete from Usuario u where u.id= :idUsuario"),
 			@NamedQuery(name="buscaUsuario",
 			query="select u from Usuario u where u.login like :loginParam")
 			/*@NamedQuery(name="modUser",

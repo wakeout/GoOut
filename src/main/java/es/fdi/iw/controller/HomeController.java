@@ -993,7 +993,7 @@ public class HomeController {
 		try {
 			
 			for(int i=0; i<id.length; i++)
-				entityManager.createNamedQuery("eliminar"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
+				entityManager.createNamedQuery("del"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
 					
 		} catch (NoResultException nre) {
 			logger.error("No such"+ tipo + ": {}", id);

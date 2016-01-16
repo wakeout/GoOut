@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="allNovedades",
             query="select n from Novedad n"),
     @NamedQuery(name="delNovedad", 
-    		query="delete from Novedad n where n.id = :idParam")
+    		query="delete from Novedad n where n.id = :idNovedad")
 })
 public class Novedad {
 	private long id;

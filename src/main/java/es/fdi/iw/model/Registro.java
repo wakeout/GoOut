@@ -19,11 +19,11 @@ import javax.persistence.OneToMany;
             query="select r from Registro r"),
     @NamedQuery(name="unRegistro",
     		query="select r from Registro r where r.id = :registroParam"),
-    @NamedQuery(name="eliminarRegistro", 
+    @NamedQuery(name="delRegistro", 
      		query="delete  from Registro r where r.id= :idRegistro"),
      @NamedQuery(name="pertenece", 
      		query="select r from Registro r where r.usuario.id= :usuarioParam and r.actividad.id= :actividadParam"),
-     		@NamedQuery(name="delRegistro", 
+     		@NamedQuery(name="delRegistro2", 
      		query="delete  from Registro r where r.usuario.id= :usuarioParam and r.actividad.id= :actividadParam"),		
     
 })

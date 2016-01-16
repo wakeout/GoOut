@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="delUsuarios", 
     		query="delete from Mensaje m where m.origen = :userParam OR m.destinos = :userParam"),
     @NamedQuery(name="delMensaje", 
-    		query="delete from Mensaje m where m.id = :idParam"),
+    		query="delete from Mensaje m where m.id = :idMensaje"),
     @NamedQuery(name="delDenuncia", 
     		query="delete from Mensaje m where m.id = :idParam")		
 })
