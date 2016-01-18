@@ -80,8 +80,6 @@
 .foro_actv {
 	overflow-y:scroll;
 	height: 700px;
-	width: 530px;
-	float:left;
  }
 
 .encuestas_actv { 
@@ -92,9 +90,21 @@
  	
  }
  
+ .comentar_actv{
+ margin-top: 20px;
+ 	
+ }
+ 
+ .foro_container{
+ position: relative;
+float: left;
+height: 700px;
+width: 530px;
+ }
+ 
  #bloque_foro{
  
- 
+ position: absolute;
  }
 
 /* .privacidad_actividad { */
