@@ -41,7 +41,7 @@ public class Actividad{
 
 	private long id;//key
 	private String nombre;
-	private Usuario creador; //Seria mejor id de creador, y nunca puede ser nulo.
+	private Usuario creador;
 	private Date fecha_ini;
 	private Date fecha_fin;
 	private String localizacion;
@@ -96,7 +96,8 @@ public class Actividad{
 		a.registros = new ArrayList<Registro>();
 		a.proximosHitos = new ArrayList<Hito>();
 		a.tags = new ArrayList<Tag>();
-		
+		a.encuestas =new ArrayList<Encuesta>();
+		a.foro=new Foro();
 		
 		return a;
 	}
@@ -239,6 +240,10 @@ public class Actividad{
 		this.encuestas = encuestas;
 	}
 
+	public void setEncuesta(Encuesta e){
+		encuestas.add(e);
+	}
+	
 
 
 }

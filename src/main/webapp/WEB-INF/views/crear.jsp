@@ -74,21 +74,22 @@
 											</div>
 											<div id="crear_2">
 												<p id="text">¿CUÁNDO QUIERES HACERLO?</p>
-												<label> Inicio:</label> <input type="datetime-local" size="12"
-													name="fecha_ini" id="fecha_ini" required/> <br> <input
+												<label> Inicio:</label> <input type="date" size="12"
+													name="fecha_ini" id="fecha_ini" required/> <!--<br> <input
 													type="checkbox" name="check" id="check" /> <label
-													for="check">¿Más de un día?</label>
+													for="check">¿Más de un día?</label>-->
 												<!--  inputField-->
-												<div id="fecha_regreso">
-													<label> Fin:</label> <input type="date" size="12"
-														id="inputField2" name="fecha_fin" />
-												</div>
-												<!-- <br> <span class="titulos">Hora de salida</span>-->
+												<!--<div id="fecha_regreso">-->
+												<br>
+												<br>
+												<label> Fin:</label> <input type="date" size="12"
+													id="inputField2" name="fecha_fin" required/>
+												<!--</div>-->
 												<tr>
-													<!-- <td><input type="time" name="hora_salida" id="inputField2"/>-->
 													
-													<!-- 
-													<td><input type="number" min=01 value=00 max="24"
+													
+													 
+													<!--<td><input type="number" min=01 value=00 max="24"
 														id="num_participantes" class="caja"></td>
 													<td>:</td>
 													<td><input type="number" min="1" value="0" max="59"
@@ -118,7 +119,7 @@
 													type="checkbox" value="cambio" onchange="habilitarRuta()" />¿Habilitar
 												ruta? <br> <label>Destino</label> <input type="text"
 													name="destino" id="destino" disabled
-													style="width: 110px; height: 30px" class="caja">
+													style="width: 110px; height: 30px" class="caja"/>
 											</div>
 										</form>
 									</div>

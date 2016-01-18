@@ -1,8 +1,7 @@
-
 <section class="cd-section">
 	<div class="cd-modal-action">
 		<a href="#0" class="btne" data-type="modal-trigger">
-		Invitar a un amigo
+		Añadir actividad
 		</a>
 		<span class="cd-modal-bg"></span>
 	</div> <!-- cd-modal-action -->
@@ -10,26 +9,60 @@
 	<div class="cd-modal">
 		<div class="cd-modal-content">
 									
-			<span id="titulo">Invitación</span>
+			<span id="titulo">Añadir Actividad</span>
 	 		<hr></hr>
-
+		<!-- <form action="${prefix}crearMensaje" method="post">-->
+		<form action="${prefix}addActividad" method="post">
+		<table>
+			<tbody>
+				<tr>
+				<td>Nombre de la actividad</td>
+				<td><input type="text" size="19" class="caja" name="nombre_actividad" id="nombre_actividad" required/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Fecha inicio</td>
+				<td><input type="date" size="12" id="inputField" class="caja" id="fecha_inicio" name="fecha_inicio" required/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Fecha fin</td>
+				<td><input type="date" size="12" id="inputField" class="caja" id="fecha_fin" name="fecha_fin" required/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Origen</td>
+				<td><input type="text" size="19" class="caja" id="lugar" name="lugar" required/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Destino</td>
+				<td><input type="text" size="19" class="caja" id="destino" name="destino" required/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Numero de participantes</td>
+				<td><input type="number" min="3" id="num_participantes" name="num_participantes" class="caja" required></td>
+			</tbody>
+		</table>
+		<hr>
+		<br>
+		<a>Descripcion</a>
+		<br>
+		<textarea rows="5" cols="105" name="descripcion" id="descripcion"></textarea>
+		<br>
+		<button class="boton" name="submit" type="submit">Añadir actividad</button>
+	</form>
 		
-		<form action="${prefix}crearMensaje" method="post">
-		
-			<input class="barra_men" type="text" name="destinatario" size="20">
-			<input type="hidden" name="asunto" value="Apuntate a ${actividad.nombre}">
-			<input type="hidden" name="mensaje" value="${actividad.id}">
-			<input type="hidden" name="tipo" value="invitacion">
-			
-			<input class="enviar" type="submit"
-					value="Enviar Invitacion" name="Enviar"> 
-
-		</form>
 		
 		</div> <!-- cd-modal-content -->
 	</div> <!-- cd-modal -->
 
 	<a href="#0" id="v" class="cd-modal-close">Close</a>
 
-</section>	
-							
+</section>			

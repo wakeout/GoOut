@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -198,7 +197,7 @@ public class Usuario {
 	}
 
 	
-	@ManyToMany(targetEntity=Usuario.class,fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity=Usuario.class,fetch=FetchType.EAGER)
 	public List<Usuario> getAmigos() {
 		return amigos;
 	}
@@ -224,7 +223,7 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	@OneToMany(targetEntity=Registro.class, orphanRemoval=true, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity=Registro.class, orphanRemoval=true)
 	@JoinColumn(name="id_usuario") 
 	public List<Registro> getRegistros() {
 		return registros;
@@ -234,7 +233,7 @@ public class Usuario {
 		this.registros = registros;
 	}
 
-	@ManyToMany(targetEntity=Novedad.class, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity=Novedad.class)
 	public List<Novedad> getNovedades() {
 		return novedades;
 	}

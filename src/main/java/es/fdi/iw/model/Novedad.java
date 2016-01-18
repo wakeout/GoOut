@@ -2,7 +2,6 @@ package es.fdi.iw.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -45,7 +44,7 @@ public class Novedad {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	@OneToMany(targetEntity=Registro.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity=Registro.class)
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
