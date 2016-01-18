@@ -1107,7 +1107,9 @@ public class HomeController {
 			model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
 			model.addAttribute("denuncias", entityManager.createNamedQuery("allDenuncias").setParameter("denunciaParam", "denuncia").getResultList());
 			model.addAttribute("registros", entityManager.createNamedQuery("allRegistros").getResultList());
-
+			model.addAttribute("encuestas", entityManager.createNamedQuery("allEncuestas").getResultList());
+			model.addAttribute("respuestas", entityManager.createNamedQuery("allRespuestas").getResultList());
+			
 			return "administrador";
 		
 		}else{

@@ -21,6 +21,9 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addActividad.jspf" %>			  
+					
+	
 	 <form action="${prefix}addActividad" method="POST">
 		<a href="#0" class="btne" data-type="modal-trigger">
 			<input type="button" class="add">
@@ -269,32 +272,6 @@
 	</div>
 	
 	
-	<div class="admin_foros">
-	<div class="search">
-   		<input>
-   		<input type="submit"  value="Buscar en los Foros">
-   		
-	</div>
-	
-	
-	<form action="${prefix}addForo" method="POST">
-		<input type="button" class="add">
-	</form>	
-	
-	<form name="lista_foros" action="${prefix}borrarForos" method="POST" onsubmit="return confirmar()">
-	<input type="hidden" name="tipo" value="admin"/>
-		<input type="button" id="Foro" class="papelera">	
-	
-	<br>	
-		<h1>Foros</h1>
-		<table>
-			<c:forEach items="${foros}" var="f">
-			<tr id="Foro_${r.id}"><td ><input  name="Foro" value="${f.id}" type="checkbox"><a href="${prefix}foro/${f.id}"> ${f.id}</a>
-			</c:forEach>
-		</table>
-		</form>
-	</div>
-	
 
 	<div class="admin_encuestas">
 		<div class="search">
@@ -318,7 +295,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_encuestas)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${encuestas}" var="e">
-			<tr id="Encuesta_${e.id}"><td><input  name="Encuesta" value="${e.id}" type="checkbox"><a href="${prefix}mensaje/${e.id}"> ${e.id}</a><td>${e.pregunta}
+			<tr id="Encuesta_${e.id}"><td><input  name="Encuesta" value="${e.id}" type="checkbox"> ${e.id}<td>${e.pregunta.asunto}
 			</c:forEach>
 		</table>
 		</form>
@@ -347,7 +324,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_respuestas)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${respuestas}" var="r">
-			<tr id="Respuesta_${r.id}"><td><input  name="Respuesta" value="${r.id}" type="checkbox"><a href="${prefix}mensaje/${r.id}"> ${r.id}</a><td>${r.mensaje}
+			<tr id="Respuesta_${r.id}"><td><input  name="Respuesta" value="${r.id}" type="checkbox">${r.id}<td>
 			</c:forEach>
 		</table>
 		</form>
