@@ -137,6 +137,7 @@
 	  -webkit-transition: color 0.2s 0.3s, width 0.3s 0s;
 	  -moz-transition: color 0.2s 0.3s, width 0.3s 0s;
 	  transition: color 0.2s 0.3s, width 0.3s 0s;
+	  border:none;
 	  
 	}
 	
