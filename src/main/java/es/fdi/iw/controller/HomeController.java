@@ -441,6 +441,7 @@ public class HomeController {
 		Comentario c=Comentario.crearComentario(asunto, ((Usuario)session.getAttribute("usuario")));
 		
 		a.getForo().getComentarios().add(c);
+
 		
 		entityManager.persist(c);
 		entityManager.persist(a);

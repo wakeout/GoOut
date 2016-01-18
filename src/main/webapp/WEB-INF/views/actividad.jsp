@@ -71,13 +71,7 @@
 					<div class="dato_actv">Localización: ${actividad.localizacion}</div>
 					<!--<a><img class="i_people" src="${prefix}resources/images/localizacion.png"></a>-->
 					<!--<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6286564.690415084!2d-5.4376118!3d39.7034345!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1445771146399" width="900" height="700" frameborder="0" style="border:0" allowfullscreen></iframe>-->
-				  	<div class="dato_actv">Hitos: 
-						<select id="hito" name="hito">
-							 <c:forEach items="${hitos}" var="h">
-						  		<option value="hitos" selected="selected">${h.anuncio}</option>
-							</c:forEach>
-						</select>
-					</div>
+				  
 					
 				</div>
 			<div id="descripcion">
@@ -89,35 +83,7 @@
 				</div>
 			</div>
 
-				<div class="foro_actv">
-					<c:forEach items="${comentarios}" var="c"> 
-						<div class="m_actv">
-							<a href="../perfil/${c.usuario.id}"><img class="i_people" src="../usuario/imagen?id=${c.usuario.id}" alt="" /></a>
-							<p  class="mensajes_actv">
-								${c.asunto}
-							</p>
-							 <form action="${prefix}denunciarActividad" method="POST">
-								<input type="hidden" name="id_actividad" value="${actividad.id}" />
-								<button class="btne" name="submit" type="submit" id="boton_reportar">Denunciar</button>
-							</form>
-						</div>
-					</c:forEach>
-				<c:if test="${pertenece==true}">
-				
-					<div class="m_actv">
-						<a href="../perfil/${usuario.id}"><img class="i_people" src="../usuario/imagen?id=${usuario.id}" alt="" /></a>
-						
-						<form action="${prefix}hacerComentario" method="POST">
-						<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
-						<input id="escribir" type="textarea" name="asunto">
-						<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
-						</form>
-					</div>
-					
-				</c:if>
-				
-				
-				</div>
+		
 		
 				</div>
 		
@@ -154,6 +120,61 @@
 						  
 						 
 			
+		</div>
+		
+		<div class="movimiento">
+			<div class="foro_actv">
+				<h1>Foro</h1>
+			
+					<c:forEach items="${comentarios}" var="c"> 
+						<div class="m_actv">
+							<a href="../perfil/${c.usuario.id}"><img class="i_people" src="../usuario/imagen?id=${c.usuario.id}" alt="" /></a>
+							<p  class="mensajes_actv">
+								${c.asunto}
+							</p>
+							 <form action="${prefix}denunciarActividad" method="POST">
+								<input type="hidden" name="id_actividad" value="${actividad.id}" />
+								<button class="btne" name="submit" type="submit" id="boton_reportar">Denunciar</button>
+							</form>
+						</div>
+					</c:forEach>
+					
+					
+				<c:if test="${pertenece==true}">
+				
+					<div class="m_actv">
+						<a href="../perfil/${usuario.id}"><img class="i_people" src="../usuario/imagen?id=${usuario.id}" alt="" /></a>
+						
+						<form action="${prefix}hacerComentario" method="POST">
+						<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
+						<input id="escribir" type="textarea" name="asunto">
+						<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
+						</form>
+					</div>
+					
+				</c:if>
+				
+				
+			</div>
+			<div class="encuestas_actv">
+			<h1>Hitos</h1>
+			<br>
+				<c:forEach items="${hitos}" var="h">
+			  		<span>${h.anuncio}</span>
+					<br>
+				</c:forEach>
+			<br>
+			<h1>Encuestas</h1>
+			<br>
+				<c:forEach items="${encuestas}" var="e"> 
+					<span> ${e.pregunta.asunto}</span>
+					<c:forEach items="${e.respuestas}" var="r">
+						<span> ${r.mensaje.asunto}</span>	
+					</c:forEach>
+					<br>
+				</c:forEach>
+
+			</div>	
 		</div>
 
 	</div>

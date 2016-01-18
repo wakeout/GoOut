@@ -97,6 +97,7 @@ public class Actividad{
 		a.proximosHitos = new ArrayList<Hito>();
 		a.tags = new ArrayList<Tag>();
 		a.encuestas =new ArrayList<Encuesta>();
+		a.foro=new Foro();
 		
 		return a;
 	}
