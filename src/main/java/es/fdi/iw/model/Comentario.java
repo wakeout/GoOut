@@ -1,5 +1,6 @@
 package es.fdi.iw.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,7 +55,7 @@ public class Comentario {
 		this.sugiero = sugiero;
 	 }
 	
-	 @OneToOne(targetEntity=Usuario.class)
+	 @OneToOne(targetEntity=Usuario.class, cascade = CascadeType.ALL)
 	 public Usuario getUsuario() {
 		return usuario;
 	 }

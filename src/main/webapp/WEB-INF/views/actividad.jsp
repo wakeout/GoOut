@@ -42,12 +42,12 @@
 						
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />
-						<button class="btne" name="submit" type="submit">Salir de la actividad</button>
+						<button class="op_varias" name="submit" type="submit">Salir de la actividad</button>
 						</from>
 						
 						<form action="${prefix}denunciarActividad" method="POST">
 						<input type="hidden" name="id_actividad" value="${actividad.id}" />
-						<button class="btne" name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
+						<button class="op_varias" name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
 						</form>
 						
 						</c:if>

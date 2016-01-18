@@ -22,13 +22,8 @@
 	</div>
 	
 	
-	<form action="${prefix}addActividad" method="POST">
-		<input type="button" class="add">
-	</form>	
-	
-	<!-- <form name="lista_actividades" action="${prefix}borrarActividades" method="POST" onsubmit="return confirmar()">
-	<input type="hidden" name="tipo" value="admin"/>
-	 --> <button id="Actividades" class="papelera"></button>	
+			
+	<button id="Actividad" class="papelera"></button>	
 	
 	<br>
 	<h1>Actividades</h1>
@@ -36,7 +31,7 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_actividades)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${actividades}" var="a">
-			<tr><td><input id="Actividades" name="actividades" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
+			<tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
 			</c:forEach>
 		</table>
 	
@@ -58,9 +53,7 @@
 		<input type="button" class="add">
 	</form>	
 	
-	<form name="lista_usuarios" action="${prefix}borrarUsuarios" method="POST" onsubmit="return confirmar()">
-	<input type="hidden" name="tipo" value="admin"/>
-		<input type="submit" name="submit" class="papelera">	
+	<button id="Usuario" class="papelera"></button>	
 	
 	<br>
 	<h1>Usuarios</h1>
@@ -68,7 +61,7 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_usuarios)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${usuarios}" var="u">
-			<tr><td><input name="usuarios" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td>${u.login}
+			<tr id="Usuario_${u.id}"><td><input name="Usuario" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td>${u.login}
 			</c:forEach>
 		</table>
 	</form>

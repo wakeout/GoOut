@@ -22,12 +22,17 @@
 
 								<div id="global" align="center">
 
-									<form action="${prefix}buscarActividades" id="bus_amigos" method="POST">
 										<span>
-										<input type="text" id="buscar_amigos" name="actividad_b">
-										<button type="submit" name="submit" id="boton_busca_amigos">Buscar</button>
+										<input onkeyup="buscar()" type="text" id="buscar_actividades" name="actividad_b">
 										</span>
-									</form>
+									
+										<br>
+									
+										<input type="radio" id="misactividades" name="tipo_busqueda" checked/>Mis actividades
+										<input type="radio" id="nomias" name="tipo_busqueda"/>Actividades nuevas
+										<input type="radio" id="todo" name="tipo_busqueda"/>Todas las actividades
+								
+									
 									
 									<div id="filtro_MisActividades">
 										<form action="${prefix}filtrarActividades">
@@ -35,6 +40,7 @@
 										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
 										<input type="radio" id="act_fin" name="activas_fin" value="finalizadas"/>Finalizadas
 										
+									
 										
 										<input type="checkbox" id="tiempo" value="1" name="filtro" />Hoy
 										<input type="checkbox" id="tiempo" value="2" name="filtro" />Esta semana
@@ -49,42 +55,8 @@
 									</div>
 
 									<div id="fotos">
-										<c:if test="${no_mias==null}">
-										<c:forEach items="${actividades}" var="a">
 									
-											<a class="" href="actividad/${a.id}">
-												<div class="img_thumb">
-
-													<div class="img_desc">
-														<p id="actividad">${a.nombre}</p>
-													</div>
-
-													<img class="i_actv"
-														src="${prefix}resources/images/${a.idImagen}" />
-												</div>
-											</a>
-									
-										</c:forEach>
-										</c:if>
-										<c:if test="${no_mias!=null}">
-										<c:forEach items="${no_mias}" var="a">
-									
-											<a class="" href="actividad/${a.id}">
-												<div class="img_thumb">
-
-													<div class="img_desc">
-														<p id="actividad">${a.nombre}</p>
-													</div>
-
-													<img class="i_actv"
-														src="${prefix}resources/images/${a.idImagen}" />
-												</div>
-											</a>
-									
-										</c:forEach>
-										</c:if>
-										
-								</div>
+									</div>
 
 						</div>
 
@@ -102,6 +74,7 @@
 
 		<!-- Scripts -->
 		<%@ include file="../fragments/scripts.jspf" %>
+		<script src="${prefix}resources/js/misActividades.js"></script>
 		<!--FIN DEL AÑADIDO -->
 
 	</body>

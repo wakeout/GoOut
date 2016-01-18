@@ -2,6 +2,7 @@ package es.fdi.iw.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="allRespuestas",
             query="select e from Encuesta e"),
             @NamedQuery(name="delRespuesta", 
-    		query="delete from Comentario r where r.id = :idRespuesta")
+    		query="delete from Respuesta r where r.id = :idRespuesta")
 })
 public class Respuesta{
 	private long id;
@@ -44,7 +45,7 @@ public class Respuesta{
 		this.mensaje = mensaje;
 	}
 	
-	@ManyToMany(targetEntity=Respuesta.class)
+	@ManyToMany(targetEntity=Respuesta.class, cascade = CascadeType.ALL)
 	public List<Usuario> getUsuario() {
 		return usuario;
 	}

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,8 +46,31 @@ public class Usuario {
 	private String idFoto;
 	private List<Registro> registros;
 	private List<Usuario> amigos;
+	private List<Novedad> novedades;
 
 
+	
+	public static StringBuilder getJSONString(List<Usuario> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Usuario u : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(u));
+		}
+		
+		return sb;
+	}
+	
+	
+	public static String getSingleString(Usuario u){
+		return "{ "
+				+ "\"id\": \"" + u.getId() + "\", "
+				+ "\"login\": \""+u.getLogin()+"\", "
+				+ "\"id_foto\": \""+u.getIdFoto()+"\"}";
+	}
+	
+	
+	
 	public static Usuario createUser(String login, String pass, String rol, String nombre, 
 									Date nacimiento, String prov, String email, String idFoto) {
 		Usuario u = new Usuario();
@@ -174,7 +198,7 @@ public class Usuario {
 	}
 
 	
-	@ManyToMany(targetEntity=Usuario.class,fetch=FetchType.EAGER)
+	@ManyToMany(targetEntity=Usuario.class,fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<Usuario> getAmigos() {
 		return amigos;
 	}
@@ -200,7 +224,7 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	@OneToMany(targetEntity=Registro.class, orphanRemoval=true)
+	@OneToMany(targetEntity=Registro.class, orphanRemoval=true, cascade = CascadeType.ALL)
 	@JoinColumn(name="id_usuario") 
 	public List<Registro> getRegistros() {
 		return registros;
@@ -208,6 +232,16 @@ public class Usuario {
 
 	public void setRegistros(List<Registro> registros) {
 		this.registros = registros;
+	}
+
+	@ManyToMany(targetEntity=Novedad.class, cascade = CascadeType.ALL)
+	public List<Novedad> getNovedades() {
+		return novedades;
+	}
+
+
+	public void setNovedades(List<Novedad> novedades) {
+		this.novedades = novedades;
 	}
 
 

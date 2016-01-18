@@ -4,6 +4,45 @@ var temp2 = null;
 var temp3 = null;
 var temp4 = null;
 
+
+function buscar(){
+	var buscado=document.getElementById("buscar_actividades").value;
+	var tipo;
+	
+	tipo=$("input[name= tipo_busqueda ]:checked").attr("id");
+	
+	$.post("buscarActividades", {buscado:buscado, tipo:tipo},function(data) {
+			refrescar(data);
+	  });
+	
+}
+
+function refrescar(data){	
+	var div=$("<div id='fotos'>");
+	
+    console.log(data);
+    
+	$.each(data, function(i, o) {
+		div.append(elemento(o)); 	
+	})	
+		
+	div.append("</div>")
+	
+	var target=document.getElementById("fotos");
+	
+	target.replaceWith(div);
+
+}
+
+function elemento(elem){
+	
+	return $(" <a href='actividad/"+elem.id+
+			"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
+			+elem.nombre+ "</p></div><img class='i_actv' src='${prefix}resources/images/"
+			+ elem.id_foto+"' /></div></a>");
+	
+}
+
 $('.img_thumb' ).hover(function(e){
     target = $(this);
     $(target[0].firstElementChild).fadeIn(200);

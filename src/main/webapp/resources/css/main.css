@@ -117,6 +117,28 @@
 		margin:0px;
 	}
 	
+	.op_varias{
+	  cursor: pointer;
+	  font-size: medium;
+      margin-bottom: 15px;
+      margin-top: 10px;
+	  display: inline-block;
+  	  height: 4em;
+      background-color: #4c4747; /* Color del boton */
+	  width: 170px;
+	  height: 40px;
+	  border-radius: 5em;
+	  color: white;
+	  line-height: 2.3em;
+	  white-space: nowrap;
+	  font-weight: 700;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  -webkit-transition: color 0.2s 0.3s, width 0.3s 0s;
+	  -moz-transition: color 0.2s 0.3s, width 0.3s 0s;
+	  transition: color 0.2s 0.3s, width 0.3s 0s;
+	  
+	}
 	
 	#actividad{
 	 font-size: 10px;

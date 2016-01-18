@@ -1,10 +1,14 @@
 package es.fdi.iw.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -18,6 +22,7 @@ public class Novedad {
 	private long id;
 	private String mensaje;
 	private String tipo;
+	private List<Usuario> usuarios;
 	
 	@Id
     @GeneratedValue
@@ -39,6 +44,13 @@ public class Novedad {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	@OneToMany(targetEntity=Registro.class, cascade = CascadeType.ALL)
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 	
 	
