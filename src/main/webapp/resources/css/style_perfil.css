@@ -6,11 +6,13 @@
 	display: none;
 	width: 400px;
 	margin: 0 auto;
+	text-align: left;
 }
 
 .mi_perfil {
 	width: 400px;
 	margin: 0 auto;
+	text-align: left;
 }
 
 #opciones_perfil {
@@ -68,7 +70,6 @@
 }
 
 #datos_perfil {
-	position: relative;
 	top: 20px;
 	text-align: center;
 }
@@ -95,7 +96,8 @@
 }
 
 #contenido_perfil {
-	border: 2px solid black; height : 700px;
+	border: 2px solid black;
+	height: 700px;
 	background-image: url("../images/fondo_c_perfil2.jpg");
 	-webkit-border-radius: 10px 10px;
 	-moz-border-radius: 10px 10px;
@@ -113,11 +115,14 @@ div.n_perfil table {
 
 #login_perfil {
 	font-size: 60px;
-	boder:3px solid;
-	//background-image: url("../images/fondo_perfil_texto.png");
-	background-repeat: no-repeat;
-	background-size:230px 200px;
+	padding:20px;
+	
 }
-#fondo_texto{
+
+#fondo_texto {
 	width: 100px;
+}
+
+#upload {
+text-align: center;
 }

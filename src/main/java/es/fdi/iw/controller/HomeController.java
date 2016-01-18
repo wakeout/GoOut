@@ -1,13 +1,14 @@
 package es.fdi.iw.controller;
 
 
-import java.awt.HeadlessException;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -73,7 +75,6 @@ public class HomeController {
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
 		
 		
-		
 		// validate request
 		if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 4) 
 		{
@@ -91,7 +92,7 @@ public class HomeController {
 				if (formPass.equals(formPass2)) 
 				{
 					logger.info("no-such-user; creating user {}", formLogin);				
-					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "unknown-user.jpg");
+					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "");
 
 					entityManager.persist(user);
 				} 
@@ -197,8 +198,32 @@ public class HomeController {
 			@RequestParam("nick_perfil") String nick,
 			@RequestParam("prov_perfil") String provincia,
 			@RequestParam("email_perfil") String email,
+			@RequestParam("photo") MultipartFile foto,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
+		
+			Usuario usuario = (Usuario)session.getAttribute("usuario");
+			String imagen ="";
+			try {
+	        	if(!foto.isEmpty()){
+	        		//String nombre_imagen = foto.getOriginalFilename();
+					//extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
+					
+	        		imagen = usuario.getId()+"";
+				
+				byte[] bytes = foto.getBytes();
+	            BufferedOutputStream stream =
+	                    new BufferedOutputStream(
+	                    		new FileOutputStream(ContextInitializer.getFile("usuario", imagen)));
+	            stream.write(bytes);
+	            stream.close();
+	        }
+			}
+	        catch(Exception e){
+	        	
+	        	//Error
+	        	
+	        }
 		
 			if(session.getAttribute("usuario")!=null)
 			{
@@ -215,6 +240,8 @@ public class HomeController {
 					
 					session.setAttribute("usuario", u);
 					getTokenForSession(session);
+					
+
 
 			} catch (NoResultException nre) {
 		
@@ -226,6 +253,21 @@ public class HomeController {
 			}
 		else
 			return "sin_registro";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/usuario/imagen", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public byte[] usuarioImagen(@RequestParam("id") String id) throws IOException {
+	    File f = ContextInitializer.getFile("usuario", id);
+	    InputStream in = null;
+	    if (f.exists()) {
+	    	in = new BufferedInputStream(new FileInputStream(f));
+	    } else {
+	    	in = new BufferedInputStream(
+	    			this.getClass().getClassLoader().getResourceAsStream("no_imagen.jpg"));
+	    }
+	    
+	    return IOUtils.toByteArray(in);
 	}
 	
 	@RequestMapping(value = "/mensajeAmigo", method = RequestMethod.GET)
@@ -301,7 +343,7 @@ public class HomeController {
 			
 			Date inicio = null;
 			
-			inicio.parse(fecha_ini);
+			//inicio.parse(fecha_ini);
 			
 			
 				
@@ -347,7 +389,7 @@ public class HomeController {
 						byte[] bytes = imagen_actv.getBytes();
 		                BufferedOutputStream stream =
 		                        new BufferedOutputStream(
-		                        		new FileOutputStream(ContextInitializer.getFile("images", imagen)));
+		                        		new FileOutputStream(ContextInitializer.getFile("actv", imagen)));
 		                stream.write(bytes);
 		                stream.close();}
 			        }
@@ -899,7 +941,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
-	public String perfil(@PathVariable("id") long id,HttpServletResponse response,Model model, HttpSession session){
+	public String perfil(@PathVariable("id") long id,HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session){
 		
 		boolean amigos = false;
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
@@ -1002,6 +1045,7 @@ public class HomeController {
 	}
 	
 	
+	
 	@RequestMapping(value = "/administrador", method = RequestMethod.GET)
 	@Transactional
 	public String administrador(Model model, HttpSession session){
@@ -1033,8 +1077,6 @@ public class HomeController {
 	}
 	
 
-	
-	
 	static String getTokenForSession (HttpSession session) {
 	    String token=UUID.randomUUID().toString();
 	    session.setAttribute("csrf_token", token);

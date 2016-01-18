@@ -25,11 +25,6 @@
 				        <label for="password">Contraseña</label>
 				        <input type="password" name="pass" id="pass" placeholder="Contraseña"> 
 				    </p>
-				    <p class="a">
-				        <input type="checkbox" name="remember" id="remember">
-				        <label for="remember">Recordar</label>
-						<span id="datos_log"></span>
-				    </p>
 
 				    <p class="a">
 				       <button class="boton" name="submit" type="submit">Entrar</button>

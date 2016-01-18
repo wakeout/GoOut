@@ -16,9 +16,9 @@
 			<div class="container">
 
 				<div class="s_perfil">
-					<a><img id="i_perfil" src="${prefix}resources/images/${usuario.idFoto}"/></a>
+					<a><!--<img id="i_perfil" src="${prefix}resources/images/${usuario.idFoto}"/>-->
+					<img id="i_perfil" src="usuario/imagen?id=${usuario.id}"/></a>
 					<br>
-					<center><button type="button">Cambiar imagen de perfil</button></center>
 				</div>
 
 				<div class="info_perfil">
@@ -32,7 +32,7 @@
 										<tr>
 											<td>
 											<a href="${prefix}perfil/${amigos.id}">
-											<img class="i_people" src="${prefix}resources/images/${amigos.idFoto}" alt="" />
+											<img class="i_people" src="usuario/imagen?id=${amigos.id}" alt="" />
 											</a>
 											</td> 
 								
@@ -77,7 +77,7 @@
 							<br>
 							<div class="campos_Perfil">
 								<label for="tipo_usuario">Tipo de usuario: </label> 
-								<label id=""tipo_usuario"">${usuario.rol}</label>
+								<label id="tipo_usuario">${usuario.rol}</label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
@@ -95,7 +95,7 @@
 
 						<div class="mod_perfil">
 						
-							<form action="${prefix}mi_perfil" method="POST">
+							<form action="${prefix}mi_perfil" method="POST" enctype="multipart/form-data">
 								<fieldset>
 	  							<legend>Datos usuario</legend>
 	  							<div class="campos_Perfil">
@@ -116,6 +116,10 @@
 									<label for="email_perfil">Email: </label> 
 									<input id="email_perfil" name="email_perfil" type="email" value="${usuario.email}"/>
 								</div>
+								<div id="upload">
+		        					<span id="upfile1" style="cursor:pointer">Cambiar imagen</span>
+									<input type="file" id="file1"  name="photo" style="display:none" />
+					    		</div>
 								<div class="actualizar">
 									<button id="actualizar_perfil" name="submit" type="submit">Actualizar Informacion</button>
 								</div>

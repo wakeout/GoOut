@@ -17,8 +17,8 @@
 			<div class="container">
 		<div id="contenido_perfil">
 				<div class="s_perfil">
-					<a class=""><img id="i_perfil"
-						src="${prefix}resources/images/${perfil.idFoto}" alt="" /></a> <br>
+					<a class="">
+					<img id="i_perfil" src="../usuario/imagen?id=${perfil.id}"/></a> <br>
 					
 						<form action="${prefix}mensajeAmigo" class="cuadro_acciones" method="GET">
 						<input type="hidden" name="nombre_amigo" value="${perfil.id}">
@@ -51,7 +51,7 @@
 										<tr>
 											<td>
 											<a href="../perfil/${p_amigos.id}">
-											<img class="i_people" src="${prefix}resources/images/${p_amigos.idFoto}" alt="" />
+											<img class="i_people" src="../usuario/imagen?id=${p_amigos.id}" alt="" />
 											</a>
 											</td> 
 								

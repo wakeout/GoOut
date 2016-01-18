@@ -51,7 +51,7 @@ function crear_actividad(){
 }
 
 
-/*JQuery*/
+/*JQuery FUNCIONES DE MI_PERFIL*/
 
 $("#check").click(function() {
 	  if ( $( "#fecha_regreso" ).is( ":hidden" ) ) {
@@ -81,6 +81,12 @@ $("#menu3").click(function() {
 	$( ".mi_perfil" ).hide();
 	
 });
+
+$("#upfile1").click(function () {
+    $("#file1").trigger('click');
+});
+
+/**/
 
 $('#bcrear').click(function(){
 	if ($("#tags:checked").length == 0){
