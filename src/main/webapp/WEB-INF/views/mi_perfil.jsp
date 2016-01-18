@@ -121,7 +121,7 @@
 									<input type="file" id="file1"  name="photo" style="display:none" />
 					    		</div>
 								<div class="actualizar">
-									<button id="actualizar_perfil" name="submit" type="submit">Actualizar Informacion</button>
+									<button id="actualizar_perfil" namarginme="submit" type="submit">Actualizar Informacion</button>
 								</div>
 								</fieldset>
 							</form>

@@ -92,7 +92,7 @@
 				<div class="foro_actv">
 					<c:forEach items="${comentarios}" var="c"> 
 						<div class="m_actv">
-							<a href="../perfil/${c.usuario.id}"><img class="i_people" src="${prefix}resources/images/${c.usuario.idFoto}" alt="" /></a>
+							<a href="../perfil/${c.usuario.id}"><img class="i_people" src="../usuario/imagen?id=${c.usuario.id}" alt="" /></a>
 							<p  class="mensajes_actv">
 								${c.asunto}
 							</p>
@@ -105,7 +105,7 @@
 				<c:if test="${pertenece==true}">
 				
 					<div class="m_actv">
-						<a href="../perfil/${usuario.id}"><img class="i_people" src="${prefix}resources/images/${usuario.idFoto}" alt="" /></a>
+						<a href="../perfil/${usuario.id}"><img class="i_people" src="../usuario/imagen?id=${usuario.id}" alt="" /></a>
 						
 						<form action="${prefix}hacerComentario" method="POST">
 						<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
@@ -130,7 +130,7 @@
 								<tr>
 								<td>
 								<a href="../perfil/${p.id}">
-									<img class="i_people" src="${prefix}resources/images/${p.idFoto}" alt="" />
+									<img class="i_people" src="../usuario/imagen?id=${p.id}" alt="" />
 								</a>
 								</td>
 								</tr>
@@ -144,7 +144,6 @@
 						   	<c:if test="${pertenece}">
 								<%@ include file="../fragments/invitar.jspf" %>				  
 						   	</c:if>
-						   
 							 </c:when>
 						  <c:otherwise>
 						    <span>Actividad completa!</span>

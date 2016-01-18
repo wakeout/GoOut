@@ -17,7 +17,7 @@
 
 				<span id="list">
 					<a id="enlace" href="../perfil/${p.id}">
-					<img class="i_people" src="${prefix}resources/images/${p.idFoto}" alt="" />
+					<img class="i_people" src="../usuario/imagen?id=${p.id}" alt="" />
 									
 						${p.login}
 					</a>
