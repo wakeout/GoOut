@@ -295,6 +295,21 @@ public class HomeController {
 	    return IOUtils.toByteArray(in);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/actividad/imagen", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public byte[] actividadImagen(@RequestParam("id") String id) throws IOException {
+	    File f = ContextInitializer.getFile("actv", id);
+	    InputStream in = null;
+	    if (f.exists()) {
+	    	in = new BufferedInputStream(new FileInputStream(f));
+	    } else {
+	    	in = new BufferedInputStream(
+	    			this.getClass().getClassLoader().getResourceAsStream("no_imagen_actv.jpg"));
+	    }
+	    
+	    return IOUtils.toByteArray(in);
+	}
+	
 	@RequestMapping(value = "/mensajeAmigo", method = RequestMethod.GET)
 	@Transactional
 	public String mensajeAmigo(@RequestParam("nombre_amigo") long amigo, Model model, HttpSession session){
@@ -429,13 +444,9 @@ public class HomeController {
 				
 
 			        try {
-			        	if(imagen_actv.isEmpty())
-			        		imagen="0.png";
-			        	else{
-			        		String nombre_imagen = imagen_actv.getOriginalFilename();
-							extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
+			        	if(!imagen_actv.isEmpty()){
 							
-			        		imagen = a.getId()+extension;
+			        		imagen = a.getId()+"";
 						
 						byte[] bytes = imagen_actv.getBytes();
 		                BufferedOutputStream stream =
@@ -449,11 +460,6 @@ public class HomeController {
 			        	//Error
 			        	
 			        }
-
-
-				a.setIdImagen(imagen);
-				
-			
 				
 				
 			} catch (NoResultException nre) {
@@ -1140,7 +1146,9 @@ public class HomeController {
 			model.addAttribute("foros", entityManager.createNamedQuery("allForos").getResultList());
 			model.addAttribute("denuncias", entityManager.createNamedQuery("allDenuncias").setParameter("denunciaParam", "denuncia").getResultList());
 			model.addAttribute("registros", entityManager.createNamedQuery("allRegistros").getResultList());
-
+			model.addAttribute("encuestas", entityManager.createNamedQuery("allEncuestas").getResultList());
+			model.addAttribute("respuestas", entityManager.createNamedQuery("allRespuestas").getResultList());
+			
 			return "administrador";
 		
 		}else{

@@ -17,7 +17,7 @@
 
 					<ul class="nav">
 
-						<li><a href="${prefix}mi_perfil"><img class="i_profile" src="usuario/imagen?id=${usuario.id}"></a>
+						<li><a href="${prefix}mi_perfil"><img class="i_profile" src="${prefix}usuario/imagen?id=${usuario.id}"></a>
 							<ul>
 								<c:choose>
 

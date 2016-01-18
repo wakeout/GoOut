@@ -1,0 +1,50 @@
+<section class="cd-section">
+	<div class="cd-modal-action">
+		<a href="#0" class="btne" data-type="modal-trigger">
+		Añadir usuario
+		</a>
+		<span class="cd-modal-bg"></span>
+	</div> <!-- cd-modal-action -->
+
+	<div class="cd-modal">
+		<div class="cd-modal-content">
+									
+			<span id="titulo">Añadir Usuario</span>
+	 		<hr></hr>
+		<form action="${prefix}addUsuario" method="post">
+			
+			<label for="login">Usuario</label>
+			<input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Usuario">
+			
+			<br>
+			<br>
+			
+			<label for="password">Contraseña</label>
+			<input type="password" name="contraseña_usuario" id="contraseña_usuario" placeholder="Contraseña"> 
+			
+			<br>
+			<br>
+			
+			<label for="email">Email</label>
+			<input type="email" name="corre_usuario" id="corre_usuario" placeholder="Email"> 
+			
+			<br>
+			<br>
+			
+			<label for="email">Rol</label>
+			<input type="text" name="rol_usuario" id="rol_usuario"/> 
+			
+			<br>
+			<br>
+			
+			<button class="boton" name="submit" type="submit">Añadir usuario</button>
+			   
+		</form>		
+		
+		
+		</div> <!-- cd-modal-content -->
+	</div> <!-- cd-modal -->
+
+	<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+</section>	

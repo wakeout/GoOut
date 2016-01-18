@@ -21,8 +21,12 @@
    		
 	</div>
 	
+<<<<<<< HEAD
+	<%@ include file="../fragments/addActividad.jspf" %>
+=======
 	<%@ include file="../fragments/addActividad.jspf" %>			  
 					
+>>>>>>> 306d98d0dd0dc3e745619d427fd0efde731d7e28
 	
 	 <form action="${prefix}addActividad" method="POST">
 		<a href="#0" class="btne" data-type="modal-trigger">
@@ -140,7 +144,6 @@
 	<div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Tags">
-   		
 	</div>
 	
 	<%@ include file="../fragments/addTag.jspf" %>
@@ -279,7 +282,7 @@
 	</div>
 	
 	
-	
+
 	<div class="admin_encuestas">
 		<div class="search">
    		<input>

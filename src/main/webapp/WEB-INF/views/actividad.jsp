@@ -18,7 +18,7 @@
 		<div id="contenido">		
 			
 			<div id="opciones_actv">
-				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}" alt="" /></a>
+				<a class=""><img id="i_actv" src="../actividad/imagen?id=${actividad.id}" alt="" /></a>
 				 
 				 <div id="btones_actv">
 					<c:if test="${actividad.privacidad.equals('publica') && pertenece==false}">
@@ -146,12 +146,13 @@
 				
 					<div class="m_actv">
 						<a href="../perfil/${usuario.id}"><img class="i_people" src="../usuario/imagen?id=${usuario.id}" alt="" /></a>
-						
-						<form action="${prefix}hacerComentario" method="POST">
+					
+					<div><form action="${prefix}hacerComentario" method="POST" id="bloque_foro">
 						<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
 						<input id="escribir" type="textarea" name="asunto">
 						<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
 						</form>
+					</div>
 					</div>
 					
 				</c:if>
