@@ -12,7 +12,7 @@
 			<span id="titulo">Ajustes Actividad</span>
 	 		<hr></hr>
 		<!-- <form action="${prefix}crearMensaje" method="post">-->
-		<form action="${prefix}modificarActividad" method="post">
+		<form action="${prefix}modificarActividad" method="post" enctype="multipart/form-data">
 		<table>
 			<input type="hidden" name="idactividad" value="${actividad.id}" />
 			<tbody>
@@ -49,11 +49,18 @@
 				<tr>
 				<td>Numero de participantes</td>
 				<td><input type="number" min="${actividad.maxPersonas}" value="${actividad.maxPersonas}" id="num_participantes" name="num_participantes" class="caja"></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Cambiar imagen</td>
+				<td><input type="file" name="imagen" class="cambio_img"></td>
+			
 			</tbody>
 		</table>
 		<hr>
+		<span>Descripción</span>
 		<br>
-		<a>Descripcion</a>
 		<br>
 		<textarea rows="5" cols="105"></textarea>
 		<br>

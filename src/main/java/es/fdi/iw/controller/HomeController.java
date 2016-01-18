@@ -207,11 +207,35 @@ public class HomeController {
 			@RequestParam("num_participantes") int nparticipantes,
 			@RequestParam("idactividad") long idactividad,
 			@RequestParam("fecha_inicio") Date fecha_ini,
-			@RequestParam("fecha_fin") Date fecha_fin){
+			@RequestParam("fecha_fin") Date fecha_fin,
+			@RequestParam("imagen") MultipartFile foto){
 		
 		Actividad a = null;
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
 				.setParameter("actividadParam", idactividad).getSingleResult();
+		
+		String imagen ="";
+		try {
+        	if(!foto.isEmpty()){
+        		//String nombre_imagen = foto.getOriginalFilename();
+				//extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
+				
+        		imagen = a.getId()+"";
+			
+			byte[] bytes = foto.getBytes();
+            BufferedOutputStream stream =
+                    new BufferedOutputStream(
+                    		new FileOutputStream(ContextInitializer.getFile("actv", imagen)));
+            stream.write(bytes);
+            stream.close();
+        }
+		}
+        catch(Exception e){
+        	
+        	//Error
+        	
+        }
+		
 		
 		a.setNombre(nombre);
 		a.setLocalizacion(lugar);
@@ -518,7 +542,7 @@ public class HomeController {
 		
 		Actividad a = entityManager.find(Actividad.class,actividad);
 		
-		Comentario c=Comentario.crearComentario(asunto, ((Usuario)session.getAttribute("usuario")));
+		Comentario c= Comentario.crearComentario(asunto, ((Usuario)session.getAttribute("usuario")));
 		
 		a.getForo().getComentarios().add(c);
 

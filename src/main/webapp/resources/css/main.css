@@ -2,15 +2,15 @@
 
 /* CSS GoOut */
 
-	html, body, div, span, p, blockquote, a, ins, kbd, strong, center, ul, li,table,thead, tr, th, td, footer, header, nav  {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		font-size: 100%;
-		font: inherit;
-		vertical-align: baseline;
-        font-style: normal;
-	}
+/* 	html, body, div, span, p, blockquote, a, ins, kbd, strong, center, ul, li,table,thead, tr, th, td, footer, header, nav  { */
+/* 		margin: 0; */
+/* 		padding: 0; */
+/* 		border: 0; */
+/* 		font-size: 100%; */
+/* 		font: inherit; */
+/* 		vertical-align: baseline; */
+/*         font-style: normal; */
+/* 	} */
 
 	body {
 		line-height: 1;

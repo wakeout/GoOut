@@ -107,6 +107,14 @@ width: 530px;
  position: absolute;
  }
 
+.caja{
+	width: 200px;
+	margin-left: 20px;
+}
+
+.cambio_img{
+	margin-left: 20px;
+}
 /* .privacidad_actividad { */
 /* 	clear: left; */
 /* 	margin: 10px 10px; */
