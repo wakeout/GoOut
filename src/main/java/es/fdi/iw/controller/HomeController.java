@@ -168,6 +168,7 @@ public class HomeController {
 	 *	Además se puede agregar informacion como provincia, fecha de nacimiento etc.
 	 */
 	
+	
 	@RequestMapping(value = "/modificarActividad", method = RequestMethod.POST)
 	@Transactional
 	public String modificarActividad(
@@ -318,7 +319,40 @@ public class HomeController {
 	//adds-------------------------------------
 	
 	
-	
+	@RequestMapping(value = "/addActividad", method = RequestMethod.POST)
+	@Transactional
+	public String addActividad(
+			@RequestParam("nombre_actividad") String nombre_actv,
+			@RequestParam("fecha_inicio") Date fecha_ini,
+			@RequestParam("fecha_fin") Date fecha_fin,
+			@RequestParam("lugar") String origen,
+			@RequestParam("destino") String destino,
+			@RequestParam("num_participantes") int max_participantes,
+			Model model, HttpSession session){
+		
+		Actividad a = null;
+		Registro r = null;
+		Usuario usuario_creador = null;
+		String privacidad="publica";
+		
+		usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
+		a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad);
+		r = Registro.crearRegistro(a, usuario_creador);
+		Foro f=Foro.crearForo();
+		a.setForo(f);
+		
+		entityManager.persist(f);
+		entityManager.persist(a);
+		a.getRegistros().add(r);
+		
+		entityManager.persist(usuario_creador);
+		usuario_creador.getRegistros().add(r);
+		
+		entityManager.persist(r);
+		
+		
+		return "redirect:mis_actividades";
+	}
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
 	@Transactional
@@ -327,7 +361,8 @@ public class HomeController {
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
 			@RequestParam("tags") long[] tagIds,
-			@RequestParam("fecha_ini") String fecha_ini,
+			@RequestParam("fecha_ini") Date fecha_ini,
+			@RequestParam("fecha_fin") Date fecha_fin,
 			@RequestParam("origen") String origen,
 			@RequestParam("destino") String destino,
 			@RequestParam("actv_privada") int privado,
@@ -340,12 +375,6 @@ public class HomeController {
 			String imagen="";
 			String extension="";
 			String privacidad="publica";
-			
-			Date inicio = null;
-			
-			//inicio.parse(fecha_ini);
-			
-			
 				
 			if(privado == 1)
 				privacidad = "privada";
@@ -353,10 +382,8 @@ public class HomeController {
 			try {
 
 				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, inicio, inicio, origen, destino, privacidad);
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad);
 				r = Registro.crearRegistro(a, usuario_creador);
-				//a.setRegistros(new ArrayList<Registro>());
-				//usuario_creador.getRegistros().add(r);
 				Foro f=Foro.crearForo();
 				a.setForo(f);
 				

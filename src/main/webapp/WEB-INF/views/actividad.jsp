@@ -38,7 +38,9 @@
 						
 						<%@ include file="../fragments/proponer_hito.jspf" %>	
 						
-						<%@ include file="../fragments/ajustes_actividad.jspf" %>			  
+						<!-- file="../fragments/ajustes_actividad.jspf" -->
+						
+						<%@ include file="../fragments/addActividad.jspf" %>			  
 						
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />

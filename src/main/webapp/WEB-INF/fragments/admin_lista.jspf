@@ -21,7 +21,11 @@
    		
 	</div>
 	
-	
+	 <form action="${prefix}addActividad" method="POST">
+		<a href="#0" class="btne" data-type="modal-trigger">
+			<input type="button" class="add">
+		</a>
+	</form>	
 			
 	<button id="Actividad" class="papelera"></button>	
 	
@@ -45,12 +49,10 @@
 	<div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Usuarios">
-   		
 	</div>
 	
-	
 	<form action="${prefix}addUsuario" method="POST">
-		<input type="button" class="add">
+			<input type="button" class="add">
 	</form>	
 	
 	<button id="Usuario" class="papelera"></button>	
