@@ -31,8 +31,6 @@
 								
 								<div id="contenido" align="center">
 
-									<form action="${prefix}buscarAmigos" id="bus_amigos" method="POST">
-										<button type="button" class="buscar">Buscar</button>
 										<span>
 										<input type="text" onkeyup="buscar()" id="buscar_amigos" name="amigo_b">
 										</span>
@@ -42,8 +40,6 @@
 										<input type="radio" id="noamigos" name="tipo_busqueda"/>Gente nueva
 										<input type="radio" id="todo" name="tipo_busqueda"/>Todo GoOut
 										
-										
-									</form>
 									<div id="resultado_buscar">
 									    <table id="usuarios_buscados">
 									    </table>

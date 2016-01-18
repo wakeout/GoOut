@@ -72,8 +72,7 @@ public class Actividad{
 	public static String getSingleString(Actividad a){
 		return "{ "
 				+ "\"id\": \"" + a.getId() + "\", "
-				+ "\"nombre\": \""+a.getNombre()+"\", "
-				+ "\"id_foto\": \""+a.getIdImagen()+"\"}";
+				+ "\"nombre\": \""+a.getNombre()+"\"}";
 	}
 	
 	

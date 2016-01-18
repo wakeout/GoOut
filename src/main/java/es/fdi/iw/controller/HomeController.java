@@ -55,10 +55,16 @@ import es.fdi.iw.model.Usuario;
  */
 @Controller
 public class HomeController {
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@RequestMapping(value = "/pruebas")
+	public String pruebas(){
+		
+		return "pruebas";
+	}
+	
 	
 	/** MÉTODO PARA EL REGISTRO */
 		
@@ -913,7 +919,14 @@ public class HomeController {
 		StringBuilder sb = new StringBuilder("[");
 		
 		if(tipo.equals("misamigos")){
-			sb=Usuario.getJSONString(u.getAmigos());	
+			List<Usuario> amigos=new ArrayList<Usuario>();
+			for(Usuario a: u.getAmigos()){
+				if(a.getLogin().indexOf(buscado)!=-1){
+					amigos.add(a);
+					System.out.println("ssss");
+				}
+			}
+			sb=Usuario.getJSONString(amigos);	
 		}else{
 			if(tipo.equals("noamigos")){
 				List<Usuario> no_amigos=new ArrayList<Usuario>();
