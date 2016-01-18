@@ -817,6 +817,7 @@ public class HomeController {
 			model.addAttribute("participantes", participantes);
 			model.addAttribute("actividad", a);
 			model.addAttribute("tags", a.getTags());
+			model.addAttribute("encuestas", a.getEncuestas());
 		}
 		model.addAttribute("prefix", "../");
 		return "actividad";

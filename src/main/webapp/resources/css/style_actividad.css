@@ -71,7 +71,11 @@
 	text-align:center;
 }
 
-
+.foro_actv { 
+ 	margin: 10px 100px; 
+ 	border-radius: 50px; 
+ 	background: rgba(253, 253, 253, 0.5); 
+ }
 
 /* .privacidad_actividad { */
 /* 	clear: left; */

@@ -15,14 +15,6 @@ insert into foro values(8)
 insert into foro values(9)
 insert into foro values(10)
 
-
-insert into comentario values(3, 'hola',  false, '1', '1')
-insert into comentario values(4, 'eeey',  false, '2', '1')
-insert into comentario values(5, 'que hay',  false, '4', '1')
-insert into comentario values(6, 'hola',  false, '1', '2')
-
-
-
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(1, 'cerves', 12, 'Madrid', '1.jpg', 15, 'privada', 1, '1')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(2, 'zombies',  4,'Madrid', '2.jpg', 4, 'publica', 1, '2')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(3, 'futbol',9,  'Madrid', '3.jpg', 20, 'privada', 1, '3')
@@ -33,7 +25,6 @@ insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_perso
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(8, 'visitar la ciudad',9,  'Madrid', '4.jpg', 20, 'publica', 6 , '8')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(9, 'viaje a benidorm',9,  'Madrid', '7.jpg', 20, 'publica', 1, '9')
 insert into Actividad (id, nombre, npersonas, localizacion, id_imagen, max_personas, privacidad, creador,foro) values(10, 'cable esquí en el lago',9,  'Madrid', '8.jpg', 20, 'publica', 2 ,'10')
-
 
 insert into Registro values(1,1,1,1,1);
 insert into Registro values(2,2,1,2,1);
@@ -75,9 +66,30 @@ insert into tag (id, nombre) values (11, 'siesta')
 insert into tag (id, nombre) values (12, 'tele')
 
 insert into novedad (id, mensaje, tipo) values (1, 'Juan: al final jimmy se viene?', 'Alguien ha comentado la actividad!')
+insert into novedad (id, mensaje, tipo) values (2, 'nosequien se unio a cerves', 'Alguien se ha unido a la actividad!')
 
 insert into comentario (id, asunto, sugiero) values (1, 'necesito que alguien me recoja!', false)
 insert into comentario (id, asunto, sugiero) values (2, 'yo paso', false)
+insert into comentario (id, asunto, sugiero) values (3, 'que preferis que lleve peli o juego?', false)
+insert into comentario (id, asunto, sugiero) values (4, 'yo paso', false)
+insert into comentario (id, asunto, sugiero) values (5, 'oye os parece bien que vayamos a por unas palomitas?', false)
+insert into comentario (id, asunto, sugiero) values (6, 'si', false)
+insert into comentario (id, asunto, sugiero) values (7, 'no', false)
+insert into comentario (id, asunto, sugiero) values (8, 'me da pereza', false)
+insert into comentario (id, asunto, sugiero) values (9, 'a las 9?', false)
+insert into comentario (id, asunto, sugiero) values (10, 'vale', false)
+
+insert into encuesta values(1, '3', '1')
+insert into encuesta values(2, '4', '1')
+insert into encuesta values(3, '5', '1')
+insert into encuesta values(4, '9', '1')
+
+insert into respuesta values(1, '2', '1')
+insert into respuesta values(2, '4', '1')
+insert into respuesta values(3, '6', '4')
+insert into respuesta values(4, '7', '4')
+insert into respuesta values(5, '8', '4')
+insert into respuesta values(6, '10', '4')
 
 insert into pago (id, descripcion, precio_individual, pagado) values (1, 'contactar con David para pagar las entradas del concierto', 30, 'true')
 insert into pago (id, descripcion, precio_individual, pagado) values (2, 'contactar con David para pagar las botellas', 3, 'true')
