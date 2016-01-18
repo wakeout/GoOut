@@ -894,7 +894,7 @@ public class HomeController {
 		a.setNpersonas(a.getNpersonas()-1);
 		
 		entityManager.persist(a);
-		entityManager.createNamedQuery("delRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", ((Usuario) session.getAttribute("usuario")).getId()).executeUpdate();
+		entityManager.createNamedQuery("eliminarRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", ((Usuario) session.getAttribute("usuario")).getId()).executeUpdate();
 		
 		
 		
