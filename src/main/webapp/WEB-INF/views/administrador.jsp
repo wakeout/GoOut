@@ -11,6 +11,7 @@
 		<%@ taglib  uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" prefix="e" %>
 		
 		<link rel="stylesheet" href="${prefix}resources/css/style_admin.css">
+		<link rel="stylesheet" href="${prefix}resources/css/style_efecto_admin.css">
 
 	</head>
 <body>

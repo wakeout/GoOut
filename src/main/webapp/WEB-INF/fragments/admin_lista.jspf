@@ -21,6 +21,8 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addActividad.jspf" %>
+	
 	 <form action="${prefix}addActividad" method="POST">
 		<a href="#0" class="btne" data-type="modal-trigger">
 			<input type="button" class="add">
@@ -51,6 +53,8 @@
    		<input type="submit"  value="Buscar en los Usuarios">
 	</div>
 	
+	<%@ include file="../fragments/addUsuario.jspf" %>
+	
 	<form action="${prefix}addUsuario" method="POST">
 			<input type="button" class="add">
 	</form>	
@@ -77,6 +81,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addRegistro.jspf" %>
 	
 	<form action="${prefix}addRegistro" method="POST">
 		<input type="button" class="add">
@@ -108,6 +113,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addMensaje.jspf" %>
 	
 	<form action="${prefix}addMensaje" method="POST">
 		<input type="button" class="add">
@@ -133,9 +139,9 @@
 	<div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Tags">
-   		
 	</div>
 	
+	<%@ include file="../fragments/addTag.jspf" %>
 	
 	<form action="${prefix}addTag" method="POST">
 		<input type="button" class="add">
@@ -156,6 +162,8 @@
 		</table>
 	</form>
 	</div>
+	
+	<%@ include file="../fragments/addComentarios.jspf" %>
 	
 	<div class="admin_comentarios">
 	<div class="search">

@@ -107,6 +107,30 @@ public class HomeController {
 		return "redirect:login";
 	}
 	
+	@RequestMapping(value = "/addUsuario", method = RequestMethod.POST)
+	@Transactional
+	public String addUsuario(
+			@RequestParam("nombre_usuario") String nombre,
+			@RequestParam("contraseña_usuario") String contraseña,
+			@RequestParam("corre_usuario") String correo,
+			@RequestParam("rol_usuario") String rol){
+		
+	
+		
+		Usuario u = null;
+		try {
+			u = (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", nombre).getSingleResult();
+			
+		} catch (NoResultException nre) {
+			logger.info("no-such-user; creating user {}", nombre);				
+			Usuario user = Usuario.createUser(nombre, contraseña, rol, "Sin especificar",null, "Sin especificar", correo, "");
+
+			entityManager.persist(user);
+		}
+		return "home";
+	}
+	
 	
 	/** MÉTODO PARA EL LOGIN **/
 	
@@ -611,6 +635,15 @@ public class HomeController {
 			return "redirect:mi_perfil";
 	}
 	
+	@RequestMapping(value = "/addRegistro", method = RequestMethod.POST)
+	@Transactional
+	public String addRegistro(
+			@RequestParam("id_usuario") String id_usuario,
+			@RequestParam("id_actividad") String id_actividad){
+			
+		
+		return "";
+	}
 	
 	/** METODOS PARA ACTIVIDAD **/
 	

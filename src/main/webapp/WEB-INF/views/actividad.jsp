@@ -40,7 +40,7 @@
 						
 						<!-- file="../fragments/ajustes_actividad.jspf" -->
 						
-						<%@ include file="../fragments/addActividad.jspf" %>			  
+						<%@ include file="../fragments/addRegistro.jspf" %>			  
 						
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />
