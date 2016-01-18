@@ -20,7 +20,7 @@
 			<br>
 			
 			<label>Id actividad</label>
-			<input type="password" name="id_actividad" id="id_actividad"/> 
+			<input type="text" name="id_actividad" id="id_actividad"/> 
 			
 			<button class="boton" name="submit" type="submit">Añadir registro</button>
 			   

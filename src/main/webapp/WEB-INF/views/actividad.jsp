@@ -40,7 +40,7 @@
 						
 						<!-- file="../fragments/ajustes_actividad.jspf" -->
 						
-						<%@ include file="../fragments/addRegistro.jspf" %>			  
+						<%@ include file="../fragments/ajustes_actividad.jspf" %>			  
 						
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />
@@ -125,7 +125,9 @@
 		</div>
 		
 		<div class="movimiento">
-			<div class="foro_actv">
+			
+			<div class="foro_container">
+				<div class="foro_actv">
 				<h1>Foro</h1>
 			
 					<c:forEach items="${comentarios}" var="c"> 
@@ -140,24 +142,21 @@
 							</form>
 						</div>
 					</c:forEach>
+				</div>	
 					
 					
 				<c:if test="${pertenece==true}">
-				
-					<div class="m_actv">
-						<a href="../perfil/${usuario.id}"><img class="i_people" src="../usuario/imagen?id=${usuario.id}" alt="" /></a>
-					
-					<div><form action="${prefix}hacerComentario" method="POST" id="bloque_foro">
-						<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
-						<input id="escribir" type="textarea" name="asunto">
-						<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
-						</form>
-					</div>
+
+					<div class="comentar_actv">
+							<form action="${prefix}hacerComentario" method="POST" id="bloque_foro">
+								<a href="../perfil/${usuario.id}"><img class="i_people" src="../usuario/imagen?id=${usuario.id}" alt="" /></a>
+								<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
+								<input id="escribir" type="text" name="asunto">
+								<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
+							</form>
 					</div>
 					
 				</c:if>
-				
-				
 			</div>
 			<div class="encuestas_actv">
 			<h1>Hitos</h1>

@@ -480,6 +480,14 @@ public class HomeController {
 			}
 		}
 	
+	@RequestMapping(value = "/addTag", method = RequestMethod.POST)
+	@Transactional
+	public String addTag(
+			@RequestParam("nombre_tag") String nombre){
+		
+		return "";
+	}
+	
 	
 	@RequestMapping(value = "/crearTag", method = RequestMethod.POST)
 	@Transactional
@@ -493,6 +501,15 @@ public class HomeController {
 		entityManager.persist(t);
 		
 		return "redirect:crear";
+	}
+	
+	@RequestMapping(value = "/hacerComentario", method = RequestMethod.POST)
+	@Transactional
+	public String addComentario(
+			@RequestParam("id_actividad") String actividad,
+			@RequestParam("comentario") String comentario){
+		
+		return "";
 	}
 
 	@RequestMapping(value = "/hacerComentario", method = RequestMethod.POST)
@@ -533,7 +550,15 @@ public class HomeController {
 		return "redirect:actividad/"+actividad;
 	}
 	
-	
+	@RequestMapping(value = "/addMensaje", method = RequestMethod.POST)
+	@Transactional
+	public String addMensaje(
+			@RequestParam("asunto") String titulo,
+			@RequestParam("destinatario") String destino,
+			@RequestParam("mensaje") String contenido){
+		
+		return "";
+	}
 	
 	@RequestMapping(value = "/crearMensaje", method = RequestMethod.POST)
 	@Transactional

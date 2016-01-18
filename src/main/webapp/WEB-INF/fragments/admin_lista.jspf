@@ -165,7 +165,7 @@
 	</form>
 	</div>
 	
-	<%@ include file="../fragments/addComentarios.jspf" %>
+	
 	
 	<div class="admin_comentarios">
 	<div class="search">
@@ -174,6 +174,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addComentarios.jspf" %>
 	
 	<form action="${prefix}addComentario" method="POST">
 		<input type="button" class="add">
@@ -202,6 +203,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addNovedad.jspf" %>
 	
 	<form action="${prefix}addNovedad" method="POST">
 		<input type="button" class="add">
@@ -230,6 +232,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addHito.jspf" %>
 	
 	<form action="${prefix}addHito" method="POST">
 		<input type="button" class="add">
@@ -257,6 +260,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addPago.jspf" %>
 	
 	<form action="${prefix}addPago" method="POST">
 		<input type="button" class="add">
@@ -287,6 +291,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addEncuesta.jspf" %>
 	
 	<form action="${prefix}addEncuesta" method="POST">
 		<input type="button" class="add">
@@ -316,6 +321,7 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/addRespuesta.jspf" %>
 	
 	<form action="${prefix}addRespuesta" method="POST">
 		<input type="button" class="add">
