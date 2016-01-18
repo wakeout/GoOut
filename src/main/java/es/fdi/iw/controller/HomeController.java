@@ -503,13 +503,13 @@ public class HomeController {
 		return "redirect:crear";
 	}
 	
-	@RequestMapping(value = "/hacerComentario", method = RequestMethod.POST)
+	@RequestMapping(value = "/addComentario", method = RequestMethod.POST)
 	@Transactional
 	public String addComentario(
 			@RequestParam("id_actividad") String actividad,
 			@RequestParam("comentario") String comentario){
 		
-		return "";
+		return "actividad"+actividad;
 	}
 
 	@RequestMapping(value = "/hacerComentario", method = RequestMethod.POST)
