@@ -1,25 +1,47 @@
 
+//function buscar(){
+//	var buscado=document.getElementById("buscar_amigos").value;
+//	var tipo;
+//	
+//	
+//	tipo=$("input[name= tipo_busqueda ]:checked").attr("id");
+//	
+//	
+//	$.post("buscarAmigos", {buscado:buscado, tipo:tipo},function(data) {
+//			refrescar(data);
+//	  });
+//	
+//}
+
+
 function buscar(){
+	
 	var buscado=document.getElementById("buscar_amigos").value;
 	var tipo;
-	
-	
 	tipo=$("input[name= tipo_busqueda ]:checked").attr("id");
 	
 	
-	$.post("buscarAmigos", {buscado:buscado, tipo:tipo},function(data) {
-			refrescar(data);
-	  });
 	
+	$.ajax({
+		contentType: "application/json",
+		dataType: "json",
+		url: "buscarAmigos",
+		type: "POST",
+		data: "buscado=" + buscado + "tipo=" + tipo,
+		success: function(d) {
+			refrescar(d);
+		}
+	});		
 }
 
 function refrescar(data){	
+
 	var tabla=$("<table id='usuarios_buscados'>");
 	var b=false;
+		
 	
-    console.log(data);
+    //console.log(data.items);
     
-	
 	$.each(data, function(i, o) {
 		console.log(o);
 		

@@ -32,6 +32,7 @@
 								<div id="contenido" align="center">
 
 									<form action="${prefix}buscarAmigos" id="bus_amigos" method="POST">
+										<button type="button" class="buscar">Buscar</button>
 										<span>
 										<input type="text" onkeyup="buscar()" id="buscar_amigos" name="amigo_b">
 										</span>

@@ -18,7 +18,7 @@
 		<div id="contenido">		
 			
 			<div id="opciones_actv">
-				<a class=""><img id="i_actv" src="${prefix}resources/images/${actividad.idImagen}" alt="" /></a>
+				<a class=""><img id="i_actv" src="../actividad/imagen?id=${actividad.id}" alt="" /></a>
 				 
 				 <div id="btones_actv">
 					<c:if test="${actividad.privacidad.equals('publica') && pertenece==false}">
