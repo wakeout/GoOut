@@ -2,6 +2,7 @@ package es.fdi.iw.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -74,7 +75,7 @@ public class Mensaje {
 	  this.titulo = titulo;
 	}
 	
-	@OneToOne(targetEntity=Usuario.class, orphanRemoval=true)//----------?
+	@OneToOne(targetEntity=Usuario.class, orphanRemoval=true, cascade = CascadeType.ALL)//----------?
 	public Usuario getOrigen() {
 		return origen;
 	}
@@ -82,7 +83,7 @@ public class Mensaje {
 		this.origen = origen;
 	}
 	
-	@OneToOne(targetEntity=Usuario.class , orphanRemoval=true)
+	@OneToOne(targetEntity=Usuario.class , orphanRemoval=true, cascade = CascadeType.ALL)
 	public Usuario getDestinos() {
 		return destinos;
 	}

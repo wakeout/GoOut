@@ -713,19 +713,7 @@ public class HomeController {
 		
 		
 		if(((Usuario)session.getAttribute("usuario"))!=null){
-		
-			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList<Actividad>();
-			u = entityManager.find(Usuario.class, u.getId());
-			List <Registro> r=u.getRegistros();
-			
-			for(int i=0; i<r.size();i++){
-				actividades.add(r.get(i).getActividad());
-			}
-		
-
-			model.addAttribute("actividades",actividades);
-			
+	
 			return "mis_actividades";
 		}
 		else
@@ -804,89 +792,83 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/buscarAmigos", method = RequestMethod.POST)
-	public String buscarAmigos(@RequestParam("amigo_b") String amigo,HttpServletResponse response,Model model,HttpSession session){
-		List<Usuario> usuario_buscado = null;
-		List<Usuario> usuario_amigos =null;
+	@ResponseBody
+	public ResponseEntity<String> buscarAmigos(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo,HttpServletResponse response,Model model,HttpSession session){
+		buscado="%"+buscado+"%";
+		List<Usuario> usuarios =null;
+		usuarios= entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", buscado).getResultList();		
+		Usuario u=((Usuario)session.getAttribute("usuario"));
+	
 		
-		amigo="%"+amigo+"%";
-
-		Usuario u=(Usuario)session.getAttribute("usuario");
+		StringBuilder sb = new StringBuilder("[");
 		
-		usuario_amigos = u.getAmigos();
-		
-		try {
-			usuario_buscado = entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", amigo).getResultList();		
-		}catch(NoResultException e){
-			model.addAttribute("noEncontrado", "No hay resultados");
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		}
-		
-		List<Usuario> no_amigos=new ArrayList<Usuario>();
-		
-		boolean amigos=false;
-		for(Usuario us: usuario_buscado){
-			for(int i=0; i<usuario_amigos.size() && !amigos; i++){
-				amigos=(us.getId()==usuario_amigos.get(i).getId() || us.getId()==u.getId());
+		if(tipo.equals("misamigos")){
+			sb=Usuario.getJSONString(u.getAmigos());	
+		}else{
+			if(tipo.equals("noamigos")){
+				List<Usuario> no_amigos=new ArrayList<Usuario>();
+				
+				boolean amigos=false;
+				for(Usuario us: usuarios){
+					for(int i=0; i<u.getAmigos().size() && !amigos; i++){
+						amigos=(us.getId()==usuarios.get(i).getId() || us.getId()==u.getId());
+					}
+					if(!amigos) no_amigos.add(us);
+					amigos=false;
+				}
+				
+				sb=Usuario.getJSONString(no_amigos);
+			}else{
+				sb=Usuario.getJSONString(usuarios);
 			}
-			if(!amigos) no_amigos.add(us);
-			amigos=false;
 		}
-					
-		model.addAttribute("no_amigos", no_amigos);
-		model.addAttribute("usuario_amigos", usuario_amigos);		
-		model.addAttribute("buscado", usuario_buscado);
-		model.addAttribute("noEncontrado", "No hay resultados");
 
-		return "amigos";
+		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/buscarActividades", method = RequestMethod.POST)
-	public String buscarActividades(@RequestParam("actividad_b") String actividad,HttpServletResponse response,Model model,HttpSession session){
-		List<Actividad> actividad_buscada = null;
-		List<Actividad> mis_actividades =new ArrayList<Actividad>();
-		
-		actividad="%"+actividad+"%";
-		try {
-			
+	@ResponseBody
+	public ResponseEntity<String> buscarActividades(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo, HttpSession session){
+		List<Actividad> buscadas = null;
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		
+		buscado="%"+buscado+"%";
 		
+		buscadas = entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+
+		List<Actividad> mis_actividades =new ArrayList<Actividad>();
+
 		if(!u.getRegistros().isEmpty())
 			for(Registro r: u.getRegistros())
 				mis_actividades.add(r.getActividad());
 		
+		StringBuilder sb = new StringBuilder("[");
 		
-			actividad_buscada = entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", actividad).getResultList();		
-		}catch(NoResultException e){
-			model.addAttribute("noEncontrado", "No hay resultados");
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		}
-		
-		List<Actividad> no_mias=new ArrayList<Actividad>();
-		
-		boolean mia=false;
-		for(Actividad a: actividad_buscada){
-			for(int i=0; i<mis_actividades.size() && !mia; i++){
-				mia=(a.getId()==mis_actividades.get(i).getId());
+		if(tipo=="misactividades"){
+
+			sb=Actividad.getJSONString(mis_actividades);
+		}else{
+			if(tipo.equals("nomias")){	
+				List<Actividad> no_mias=new ArrayList<Actividad>();
+				
+				boolean mia=false;
+				for(Actividad a: buscadas){
+					for(int i=0; i<mis_actividades.size() && !mia; i++){
+						mia=(a.getId()==mis_actividades.get(i).getId());
+					}
+					if(!mia) no_mias.add(a);
+					mia=false;
+				}
+				
+				sb=Actividad.getJSONString(no_mias);
+			}else{
+				sb=Actividad.getJSONString(buscadas);
 			}
-			if(!mia) no_mias.add(a);
-			mia=false;
+			
 		}
-					
-		model.addAttribute("no_mias", no_mias);
-		model.addAttribute("mis_actividades", mis_actividades);		
-		model.addAttribute("buscada", actividad_buscada);
-		model.addAttribute("noEncontrado", "No hay resultados");
-
-		return "mis_actividades";
+	
+		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
 	}
-	/*
-	private boolean existe(List<Usuario> lista, Usuario u){
-		
-		
-		return ;
-	}*/
-
 	
 	@RequestMapping(value = "/actividad_creador", method = RequestMethod.GET)
 	public String actividad_creador(){
@@ -992,9 +974,40 @@ public class HomeController {
 	public void borrarElemento(@RequestParam("id") long [] id, @RequestParam("tipo") String tipo, HttpServletRequest request){
 		try {
 			
-			for(int i=0; i<id.length; i++)
-				entityManager.createNamedQuery("del"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
+			if(tipo.equals("Actividad")){
+				for(int i = 0; i < id.length; i++){
+					Actividad a = entityManager.find(Actividad.class, id[i]);
+					for(int j = 0; j < a.getRegistros().size(); j++){
+						Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
+						entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
+					}
+					entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
+				}
+			}else{
+				if(tipo.equals("Usuario")){
+					for(int i = 0; i < id.length; i++){
+						Usuario u = entityManager.find(Usuario.class, id[i]);
+						for(int j = 0; j < u.getRegistros().size(); j++){
+							Registro r = entityManager.find(Registro.class, u.getRegistros().get(j).getId());
+							entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
+						}
+						
+						for(int j = 0; j < u.getAmigos().size(); j++){
+							Usuario us = entityManager.find(Usuario.class, u.getAmigos().get(j).getId());
+							us.getAmigos().remove(u);
+							entityManager.persist(us);
+						}
+						u.getAmigos().removeAll(u.getAmigos());
+						entityManager.createNamedQuery("delUsuario").setParameter("idUsuario", u.getId()).executeUpdate();
+					}
+				}else{	
+				
+					for(int i=0; i<id.length; i++)
+						entityManager.createNamedQuery("del"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
+			
 					
+				}	
+			}
 		} catch (NoResultException nre) {
 			logger.error("No such"+ tipo + ": {}", id);
 		}

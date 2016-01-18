@@ -4,6 +4,7 @@ package es.fdi.iw.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,9 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import java.sql.Date;
 
 
@@ -34,8 +32,11 @@ import java.sql.Date;
     @NamedQuery(name="eliminarActividad", 
     		query="delete  from Actividad a where a.id= :idActividad"),
     @NamedQuery(name="actividadesCreadas", 
-    		query="select a from Actividad a where a.creador = :creadorParam")
-})
+    		query="select a from Actividad a where a.creador = :creadorParam"),
+    @NamedQuery(name="buscaActividad", 
+    		query="select a from Actividad a where a.nombre = :nombreParam")
+
+}) 
 public class Actividad{
 
 	private long id;//key
@@ -52,14 +53,10 @@ public class Actividad{
 	private int n_personas;
 	private Foro foro;
 	private List<Tag> tags;
-	private List<Novedad> novedades;
-	private Pago pago;
 	private String privacidad;
 	private String descripcion;
 	private List<Registro> registros;
 	private List<Encuesta> encuestas;
-	
-	
 	
 	public static StringBuilder getJSONString(List<Actividad> l){
 		StringBuilder sb = new StringBuilder("[");
@@ -72,11 +69,11 @@ public class Actividad{
 		return sb;
 	}
 	
-	
 	public static String getSingleString(Actividad a){
 		return "{ "
 				+ "\"id\": \"" + a.getId() + "\", "
-				+ "\"familyName\": \""+a.getNombre()+"\"}";
+				+ "\"nombre\": \""+a.getNombre()+"\", "
+				+ "\"id_foto\": \""+a.getIdImagen()+"\"}";
 	}
 	
 	
@@ -149,14 +146,14 @@ public class Actividad{
 		 this.proximosHitos = hitos;
 	 }
 
-	@OneToOne(targetEntity=Foro.class)
+	@OneToOne(targetEntity=Foro.class, cascade = CascadeType.ALL)
 	public Foro getForo() {
 		return foro;
 	}
 	public void setForo(Foro foro) {
 		this.foro = foro;
 	}
-	@OneToOne(targetEntity=Usuario.class)
+	@OneToOne(targetEntity=Usuario.class, cascade = CascadeType.ALL)
 	public Usuario getCreador() {
 		return creador;
 	}
@@ -182,27 +179,12 @@ public class Actividad{
 		this.estado = estado;
 	}
 	
-	@OneToMany(targetEntity=Novedad.class)
-	@JoinColumn(name="id_actividad")
-	public List<Novedad> getNovedades() {
-		return novedades;
-	}
-	public void setNovedades(List<Novedad> novedades) {
-		this.novedades = novedades;
-	}
 	@ManyToMany(targetEntity=Tag.class, mappedBy="etiquetados")
 	public List<Tag> getTags() {
 		return tags;
 	}
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
-	}
-	@OneToOne(targetEntity=Pago.class)
-	public Pago getPago() {
-		return pago;
-	}
-	public void setPago(Pago pago) {
-		this.pago = pago;
 	}
 
 	public String getPrivacidad() {

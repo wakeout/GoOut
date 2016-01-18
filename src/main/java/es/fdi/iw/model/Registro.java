@@ -4,6 +4,7 @@ package es.fdi.iw.model;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -53,7 +54,7 @@ public class Registro {
 		this.id = id;
 	}	
 	
-	@ManyToOne(targetEntity=Usuario.class)
+	@ManyToOne(targetEntity=Usuario.class, cascade = CascadeType.ALL)
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -62,7 +63,7 @@ public class Registro {
 		this.usuario = u;
 	}
 	
-	@ManyToOne(targetEntity=Actividad.class)
+	@ManyToOne(targetEntity=Actividad.class, cascade = CascadeType.ALL)
 	public Actividad getActividad() {
 		return actividad;
 	}
