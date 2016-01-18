@@ -21,8 +21,9 @@ function refrescar(data){
 	var div=$("<div id='fotos'>");
 	
     console.log(data);
+    var obj = $.parseJSON(data);
     
-	$.each(data, function(i, o) {
+	$.each(obj, function(i, o) {
 		div.append(elemento(o)); 	
 	})	
 		

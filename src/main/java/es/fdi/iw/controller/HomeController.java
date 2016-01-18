@@ -910,9 +910,9 @@ public class HomeController {
 	@RequestMapping(value = "/buscarAmigos", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> buscarAmigos(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo,HttpServletResponse response,Model model,HttpSession session){
-		buscado="%"+buscado+"%";
+		String buscadosql="%"+buscado+"%";
 		List<Usuario> usuarios =null;
-		usuarios= entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", buscado).getResultList();		
+		usuarios= entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", buscadosql).getResultList();		
 		Usuario u=((Usuario)session.getAttribute("usuario"));
 	
 		
@@ -920,12 +920,10 @@ public class HomeController {
 		
 		if(tipo.equals("misamigos")){
 			List<Usuario> amigos=new ArrayList<Usuario>();
-			for(Usuario a: u.getAmigos()){
-				if(a.getLogin().indexOf(buscado)!=-1){
+			for(Usuario a: u.getAmigos())
+				if(a.getLogin().indexOf(buscado)!=-1)
 					amigos.add(a);
-					System.out.println("ssss");
-				}
-			}
+			
 			sb=Usuario.getJSONString(amigos);	
 		}else{
 			if(tipo.equals("noamigos")){
