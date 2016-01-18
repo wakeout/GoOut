@@ -65,6 +65,15 @@ insert into tag (id, nombre) values (10, 'futbol')
 insert into tag (id, nombre) values (11, 'siesta')
 insert into tag (id, nombre) values (12, 'tele')
 
+INSERT INTO TAG_ETIQUETADOS VALUES (1 ,1 )
+INSERT INTO TAG_ETIQUETADOS VALUES (1 ,2 )
+INSERT INTO TAG_ETIQUETADOS VALUES (2 ,1 )
+INSERT INTO TAG_ETIQUETADOS VALUES (3 ,1 )
+INSERT INTO TAG_ETIQUETADOS VALUES (4 ,1 )
+INSERT INTO TAG_ETIQUETADOS VALUES (1 ,6 )
+INSERT INTO TAG_ETIQUETADOS VALUES (3 ,2 )
+
+
 insert into novedad (id, mensaje, tipo) values (1, 'Juan: al final jimmy se viene?', 'Alguien ha comentado la actividad!')
 insert into novedad (id, mensaje, tipo) values (2, 'nosequien se unio a cerves', 'Alguien se ha unido a la actividad!')
 
