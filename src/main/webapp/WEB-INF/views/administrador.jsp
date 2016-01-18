@@ -12,11 +12,7 @@
 		
 		<link rel="stylesheet" href="${prefix}resources/css/style_admin.css">
 		<link rel="stylesheet" href="${prefix}resources/css/style_efecto_admin.css">
-<<<<<<< HEAD
-
-=======
->>>>>>> 306d98d0dd0dc3e745619d427fd0efde731d7e28
-	</head>
+</head>
 <body>
 	<div class="cabecera">
 		<a href="home"><h1>GoOut <h1></a>
