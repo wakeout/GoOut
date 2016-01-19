@@ -43,9 +43,11 @@ import org.springframework.web.multipart.MultipartFile;
 import es.fdi.iw.ContextInitializer;
 import es.fdi.iw.model.Actividad;
 import es.fdi.iw.model.Comentario;
+import es.fdi.iw.model.Encuesta;
 import es.fdi.iw.model.Foro;
 import es.fdi.iw.model.Hito;
 import es.fdi.iw.model.Mensaje;
+import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Registro;
 import es.fdi.iw.model.Tag;
 import es.fdi.iw.model.Usuario;
@@ -509,7 +511,13 @@ public class HomeController {
 	public String addTag(
 			@RequestParam("nombre_tag") String nombre){
 		
-		return "";
+		Tag t = null;
+		
+		t = Tag.crearTag(nombre);
+		
+		entityManager.persist(t);
+		
+		return "home";
 	}
 	
 	
@@ -527,13 +535,36 @@ public class HomeController {
 		return "redirect:crear";
 	}
 	
+	@RequestMapping(value = "/addNovedad", method = RequestMethod.POST)
+	@Transactional
+	public String addNovedad(
+			@RequestParam("tipo_novedad") String tipo,
+			@RequestParam("contenido") String novedad){
+		
+		Novedad n = null;
+		
+		n = n.crearNovedad(novedad, tipo);
+		entityManager.persist(n);
+		
+		return "home";
+	}
+	
 	@RequestMapping(value = "/addComentario", method = RequestMethod.POST)
 	@Transactional
 	public String addComentario(
 			@RequestParam("id_actividad") String actividad,
-			@RequestParam("comentario") String comentario){
+			@RequestParam("comentario") String contenido,
+			HttpSession session){
 		
-		return "actividad"+actividad;
+		long id_actividad = Integer.parseInt(actividad);
+		Comentario c= Comentario.crearComentario(contenido, ((Usuario)session.getAttribute("usuario")));
+		Actividad a = entityManager.find(Actividad.class, id_actividad);
+		
+		a.getForo().getComentarios().add(c);
+		entityManager.persist(c);
+		entityManager.persist(a);
+		
+		return "home";
 	}
 
 	@RequestMapping(value = "/hacerComentario", method = RequestMethod.POST)
@@ -551,6 +582,63 @@ public class HomeController {
 		entityManager.persist(a);
 		
 		return "redirect:actividad/"+actividad;
+	}
+	
+	/*@RequestMapping(value = "/addPago", method = RequestMethod.POST)
+	@Transactional
+	public String addPago(
+			@RequestParam("id_registro") String registro,
+			@RequestParam("precio_individual") String precio,
+			@RequestParam("descripcion") String descripcion,
+			@RequestParam("fecha") Date fecha){
+		
+		long id_registro = Integer.parseInt(registro);
+		
+		Registro r = entityManager.find(Registro.class, id_registro);
+		
+		
+		return "";
+	}*/
+	
+	@RequestMapping(value = "/addEncuesta", method = RequestMethod.POST)
+	@Transactional
+	public String addEncuesta(
+			@RequestParam("id_actividad") String actividad,
+			@RequestParam("pregunta_encuesta") String pregunta,
+			HttpSession session){
+		
+		long id_actividad = Integer.parseInt(actividad);
+		Actividad a=entityManager.find(Actividad.class, id_actividad);
+		Comentario c= Comentario.crearComentario(pregunta, ((Usuario)session.getAttribute("usuario")));
+		Encuesta e = Encuesta.crearEncuesta(c);
+		
+		a.getEncuestas().add(e);
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/addHito", method = RequestMethod.POST)
+	@Transactional
+	public String addHito(
+			@RequestParam("nombre") String nombre,
+			@RequestParam("id_actividad") String actividad,
+			@RequestParam("fecha") Date fecha){
+		
+		long id_actividad = Integer.parseInt(actividad);
+		Actividad a=entityManager.find(Actividad.class, id_actividad);
+		Hito h= Hito.crearHito(nombre, fecha);
+		
+		if(a.getHitos()==null){
+			List<Hito> lHitos=new ArrayList<Hito>();
+			a.setHitos(lHitos);
+		}
+		a.getHitos().add(h);
+		
+		entityManager.persist(h);
+		entityManager.persist(a);
+		
+		
+		return "home";
 	}
 	
 	@RequestMapping(value = "/crearHito", method = RequestMethod.POST)
@@ -579,9 +667,32 @@ public class HomeController {
 	public String addMensaje(
 			@RequestParam("asunto") String titulo,
 			@RequestParam("destinatario") String destino,
-			@RequestParam("mensaje") String contenido){
+			@RequestParam("mensaje") String contenido,
+			HttpSession session){
 		
-		return "";
+		Mensaje m = null;
+		Usuario u = null;
+		Usuario d = null;
+		
+		try{
+			u=(Usuario)session.getAttribute("usuario");
+			
+			d = (Usuario)entityManager.createNamedQuery("userByLogin")
+					.setParameter("loginParam", destino).getSingleResult();
+			
+			//d = entityManager.find(Usuario.class, destino);
+			
+			
+			m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d);
+			entityManager.persist(m);
+		}
+		catch(NoResultException nre){
+			//ERROR
+		}
+		
+		
+		
+		return "home";
 	}
 	
 	@RequestMapping(value = "/crearMensaje", method = RequestMethod.POST)
@@ -700,10 +811,45 @@ public class HomeController {
 	@Transactional
 	public String addRegistro(
 			@RequestParam("id_usuario") String id_usuario,
-			@RequestParam("id_actividad") String id_actividad){
+			@RequestParam("id_actividad") String id_actividad,
+			HttpSession session){
+		
+		Actividad actv = new Actividad();
+		Usuario usuario = new Usuario();
+		Registro r = null;
+		int i = 0;
+		boolean existe = false;
+		
+		long u = Integer.parseInt(id_usuario);
+		long a = Integer.parseInt(id_actividad);
+		
+		actv = entityManager.find(Actividad.class, a);
+		usuario = entityManager.find(Usuario.class, u);
+		
+		if(actv.getNpersonas() < actv.getMaxPersonas())
+		{
+			while(i < actv.getRegistros().size() && !existe){
+				if(actv.getRegistros().get(i).getUsuario() == usuario)
+					existe = true;
+				i++;
+			}
+			
+			if(!existe){
+				r = Registro.crearRegistro(actv, usuario);
+				
+				usuario.getRegistros().add(r);
+				entityManager.persist(usuario);
+				
+				actv.getRegistros().add(r);
+				actv.setNpersonas(actv.getNpersonas()+1);
+				entityManager.persist(actv);
+				
+				entityManager.persist(r);
+			}
+		}
 			
 		
-		return "";
+		return "home";
 	}
 	
 	/** METODOS PARA ACTIVIDAD **/

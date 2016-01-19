@@ -26,6 +26,17 @@ public class Pago {
 	private String descripcion;
 	private boolean pagado;
 	
+	public static Pago crearPago(double precio, Date fecha, String descripcion){
+		Pago p = new Pago();
+		
+		p.precioIndividual = precio;
+		p.fechaLimite = fecha;
+		p.descripcion = descripcion;
+		
+		return p;
+		
+	}
+	
 	@Id
     @GeneratedValue
 	public long getId() {

@@ -12,29 +12,25 @@
 			<span id="titulo">Añadir Mensaje</span>
 	 		<hr></hr>
 		<form action="${prefix}addMensaje" method="post">
-			<table class="mensajes" align="center">
-				<tbody>
-				<tr>
-				<td>Asunto: <input class="barra_men" type="text" name="asunto"
-					size="20"> 
-					Destinatario:<input class="barra_men"
-					type="text" name="destinatario" value="${nombre.login}" size="20">
-				</td>
-				</tr>
-				<tr>
-				<td colspan="2"><textarea id="cuerpo_msj" rows="7" cols="60"
-						name="mensaje" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea></td>
-				</tr>
-				<tr>
-				<input type="hidden" name="tipo" value="Ordinario">
 			
-				<td colspan="2"><input class="enviar" type="submit"
-					value="Enviar Mensaje" name="Enviar"> <input type="reset"
-					value="Borrar" name="Borrar"></td>
-				</tr>
-				</tbody>
-			</table>
-		</form>	
+			<label>Asunto</label>
+			<input type="text" name="asunto" id="asunto"/> 
+			
+			<br>
+			<br>
+			
+			<label>Destino</label>
+			<input type="text" name="destinatario" id="destinatario"/> 
+			
+			<br>
+			<br>
+			
+			<textarea id="cuerpo_msj" rows="7" cols="60"
+						name="mensaje" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea>
+			<br>
+			<button class="boton" name="submit" type="submit">Añadir comentario</button>
+			   
+		</form>		
 		
 		
 		</div> <!-- cd-modal-content -->
@@ -42,4 +38,4 @@
 
 	<a href="#0" id="v" class="cd-modal-close">Close</a>
 
-</section>
+</section>	

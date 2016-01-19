@@ -23,6 +23,15 @@ public class Novedad {
 	private String tipo;
 	private List<Usuario> usuarios;
 	
+	public static Novedad crearNovedad(String mensaje, String tipo){
+		Novedad n = new Novedad();
+		
+		n.mensaje = mensaje;
+		n.tipo = tipo;
+		
+		return n;
+	}
+	
 	@Id
     @GeneratedValue
 	public long getId() {

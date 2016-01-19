@@ -1,5 +1,6 @@
 package es.fdi.iw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,6 +26,15 @@ public class Encuesta {
 	private long id;
 	private Comentario pregunta;
 	List<Respuesta> respuestas;
+	
+	public static Encuesta crearEncuesta(Comentario pregunta){
+		Encuesta e = new Encuesta();
+		
+		e.pregunta = pregunta;
+		e.respuestas = new ArrayList<Respuesta>();
+		
+		return e;
+	}
 	
 	@Id
     @GeneratedValue

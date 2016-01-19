@@ -13,8 +13,10 @@
 	 		<hr></hr>
 		<form action="${prefix}addTag" method="post">
 			
-			<label>Id usuario</label>
+			<label>Nombre tag</label>
 			<input type="text" name="nombre_tag" id="nombre_tag"/>
+			<br>
+			<br>
 			
 			<button class="boton" name="submit" type="submit">Añadir tag</button>
 			   

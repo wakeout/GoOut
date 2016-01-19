@@ -1,0 +1,43 @@
+<section class="cd-section">
+	<div class="cd-modal-action">
+		<a href="#0" class="btne" data-type="modal-trigger">
+		Añadir hito
+		</a>
+		<span class="cd-modal-bg"></span>
+	</div> <!-- cd-modal-action -->
+
+	<div class="cd-modal">
+		<div class="cd-modal-content">
+									
+			<span id="titulo">Añadir Hito</span>
+	 		<hr></hr>
+		<form action="${prefix}addHito" method="post">
+			
+			<label>Titulo</label>
+			<input type="text" name="nombre" id="nombre" required/>
+			
+			<br>
+			<br>
+			
+			<label>Id actividad</label>
+			<input type="text" name="id_actividad" id="id_actividad" required/> 
+			
+			<br>
+			<br>
+			
+			<label>Fecha</label>
+			<input type="date" size="12" id="inputField" class="caja" id="fecha" name="fecha" required/>
+			
+			<br>
+			<br>
+			<button class="boton" name="submit" type="submit">Añadir hito</button>
+			   
+		</form>		
+		
+		
+		</div> <!-- cd-modal-content -->
+	</div> <!-- cd-modal -->
+
+	<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+</section>	

@@ -22,6 +22,9 @@
 			<label>Id actividad</label>
 			<input type="text" name="id_actividad" id="id_actividad"/> 
 			
+			<br>
+			<br>
+			
 			<button class="boton" name="submit" type="submit">Añadir registro</button>
 			   
 		</form>		
