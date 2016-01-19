@@ -1148,6 +1148,7 @@ public class HomeController {
 			u = entityManager.find(Usuario.class,u.getId());
 			
 			model.addAttribute("amigos", u.getAmigos());
+			model.addAttribute("namigos", u.getAmigos().size());
 			
 			return "mi_perfil";
 		}else 

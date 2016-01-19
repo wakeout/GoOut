@@ -16,7 +16,6 @@
 			<div class="container">
 
 				<div class="s_perfil">
-					<a><!--<img id="i_perfil" src="${prefix}resources/images/${usuario.idFoto}"/>-->
 					<img id="i_perfil" src="usuario/imagen?id=${usuario.id}"/></a>
 					<br>
 				</div>
@@ -45,7 +44,7 @@
 							<ul id="menu">
 							  <li><a id="menu1" href="#">Mi Perfil</a></li>
 							  <li><a id="menu2" href="#">Modificar Perfil</a></li>
-							  <li><a id="menu3" href="#">Privacidad</a></li>
+							  <li><a id="menu3" href="#">Mi Galeria</a></li>
 							</ul>
 						</div>					
 					
@@ -82,12 +81,7 @@
 							<br>
 							<div class="campos_Perfil">
 								<label for="n_amigos">Amigos:</label> 
-								<label id="n_amigos"> 0 </label>
-							</div>
-							<br>
-							<div class="campos_Perfil">
-								<label for="union">Unido: </label> 
-								<label id="union">10-11-2015</label>
+								<label id="n_amigos"> ${namigos}</label>
 							</div>
 							</fieldset>
 						</div>
