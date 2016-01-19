@@ -22,7 +22,6 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -46,6 +45,7 @@ import es.fdi.iw.model.Comentario;
 import es.fdi.iw.model.Foro;
 import es.fdi.iw.model.Hito;
 import es.fdi.iw.model.Mensaje;
+import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Registro;
 import es.fdi.iw.model.Tag;
 import es.fdi.iw.model.Usuario;
@@ -63,6 +63,21 @@ public class HomeController {
 	public String pruebas(){
 		
 		return "pruebas";
+	}
+	
+	
+	public static void miraLaHora(EntityManager em) {
+	
+		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+		List<Novedad> novedades = (List<Novedad>)em
+				.createNamedQuery("siguienteNovedad").getResultList();
+		if (novedades.size() > 0) {
+			Novedad n = novedades.get(0);
+			if ( true /* miro la hora y true si ya toca */ ) {
+				/* proceso novedad */
+				/* me llamo recursivamente para procesar la siguiente */
+			}
+		}
 	}
 	
 	
@@ -308,6 +323,42 @@ public class HomeController {
 			}
 		else
 			return "sin_registro";
+	}
+	
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/mod_password", method = RequestMethod.POST)
+	@Transactional
+	public String modPassword(
+			@RequestParam("nick_psw") String nick,
+			@RequestParam("psw_actual") String pass_actual,
+			@RequestParam("psw_nuevo") String pass_nuevo,
+			@RequestParam("psw_nuevo_2") String pass_nuevo2,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session) {
+		
+		Usuario usuario = (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", nick).getSingleResult();
+			String pass_cod="";
+			
+			if (!usuario.isPassValid(pass_actual)) {
+				logger.info("pass actual invalido");
+			}
+			else{
+				if (pass_nuevo == null || pass_nuevo.length() < 3 || pass_nuevo2 == null || pass_nuevo2.length() < 3) {
+					model.addAttribute("passError", "Los passwords no son válidos");
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				}
+				else{
+					if(pass_nuevo.equals(pass_nuevo2)){
+						pass_cod = usuario.generateHashedAndSalted(pass_nuevo);
+						usuario.setPassword(pass_cod);
+						entityManager.persist(usuario);
+					}
+				}
+				
+			}
+			
+			return "mi_perfil";
 	}
 	
 	@ResponseBody
@@ -1100,6 +1151,7 @@ public class HomeController {
 			u = entityManager.find(Usuario.class,u.getId());
 			
 			model.addAttribute("amigos", u.getAmigos());
+			model.addAttribute("namigos", u.getAmigos().size());
 			
 			return "mi_perfil";
 		}else 
