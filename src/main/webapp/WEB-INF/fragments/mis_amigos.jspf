@@ -18,8 +18,9 @@
 				<span id="list">
 					<a id="enlace" href="../perfil/${p.id}">
 					<img class="i_people" src="usuario/imagen?id=${p.id}" alt="" />
-									
 						${p.login}
+					<input name="amigo" id="" type="checkbox" value="${p.login}"/>
+					<input type="hidden" name="tipo" value="invitacion">
 					</a>
 				</span>
 			</c:forEach>

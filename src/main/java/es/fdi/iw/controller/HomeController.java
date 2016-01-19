@@ -490,6 +490,8 @@ public class HomeController {
 			@RequestParam("origen") String origen,
 			@RequestParam("destino") String destino,
 			@RequestParam("actv_privada") int privado,
+			@RequestParam("amigo") String[] amigosIds,
+			@RequestParam("tipo") String tipo,
 			Model model, HttpSession session) throws IOException {
 
 			if(session.getAttribute("usuario")!=null){
@@ -519,6 +521,26 @@ public class HomeController {
 				usuario_creador.getRegistros().add(r);
 				
 				entityManager.persist(r);	
+				
+				/*usuario_creador=(Usuario)session.getAttribute("usuario");
+				
+				d = (Usuario)entityManager.createNamedQuery("userByLogin")
+						.setParameter("loginParam", destino).getSingleResult();
+				
+				
+				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d);
+				entityManager.persist(m);*/
+				
+				Mensaje m = new Mensaje();
+				for(int i = 0; i < amigosIds.length; i++){
+					Usuario d = (Usuario)entityManager.createNamedQuery("userByLogin")
+							.setParameter("loginParam", amigosIds[i]).getSingleResult();
+					
+					m = Mensaje.crearMensaje("Apuntate a la actividad" + nombre_actv, "", tipo, usuario_creador, d); 
+					
+					entityManager.persist(m);
+				}
+					
 				
 				for (long aid : tagIds) {
 					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
@@ -1005,6 +1027,9 @@ public class HomeController {
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public String crear(Model model, HttpSession session){
 		if(session.getAttribute("usuario")!=null){
+			Usuario u=(Usuario)session.getAttribute("usuario");
+			
+			u = entityManager.find(Usuario.class,u.getId());
 			
 			HashMap<Integer, Tag> tagMap = new HashMap<Integer, Tag>();
 		
@@ -1026,6 +1051,7 @@ public class HomeController {
 			 
 			 model.addAttribute("tags", fin);
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
+			model.addAttribute("amigos", u.getAmigos());
 			return "crear";
 		}else
 			return "redirect:sin_registro";

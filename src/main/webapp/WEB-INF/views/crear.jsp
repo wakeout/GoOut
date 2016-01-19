@@ -5,6 +5,7 @@
 
 <%@ include file="../fragments/head.jspf"%>
 <link rel="stylesheet" href="${prefix}resources/css/style_crear.css">
+<link rel="stylesheet" href="${prefix}resources/css/style_efecto_admin.css">
 
 </head>
 <body class="homepage">
@@ -109,10 +110,11 @@
 											<div id="crear_3">
 												<p id="text">¿DÓNDE ES?</p>
 												<div id="mapa">
-													<iframe
+													<!--<iframe
 														src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6286564.690415084!2d-5.4376118!3d39.7034345!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1445771146399"
 														width="390" height="300" frameborder="0" style="border: 0"
-														allowfullscreen></iframe>
+														allowfullscreen></iframe>-->
+													<%@ include file="../fragments/mis_amigos.jspf"%>
 												</div>
 												<label>Lugar de Origen</label> <input type="text" size="10"
 													class="caja" name="origen" required/> <br> <input name="ruta" id="ruta"
