@@ -130,17 +130,18 @@
 								<fieldset>
 	  							<legend>Cambio password</legend>
 	  							<div class="campos_Perfil">
+	  								<input type="hidden" name="nick_psw" value="${usuario.login}">
 									<label for="psw_actual_perfil">Password Actual:</label> 
-									<input id="psw_actual_perfil" type="password" />
+									<input id="psw_actual_perfil" type="password" name="psw_actual"/>
 								</div>
 								
 								<div class="campos_Perfil">
 								<label>Nuevo Password:</label> 
-									<input id="psw_nuevo_perfil" type="password"/>
+									<input id="psw_nuevo_perfil" type="password" name="psw_nuevo"/>
 								</div>
 								<div class="campos_Perfil">
 									<label for="psw_nuevo2_perfil">Repite Password:</label> 
-									<input id="psw_nuevo2_perfil" type="password"/>
+									<input id="psw_nuevo2_perfil" type="password" name="psw_nuevo_2"/>
 								</div>
 								<div class="actualizar">
 									<button id="actualizar_password" name="submit" type="submit">Cambiar Password</button>

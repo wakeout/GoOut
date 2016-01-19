@@ -42,7 +42,6 @@ public class Usuario {
 	private Date nacimiento;
 	private String provincia;
 	private String email;
-	private String idFoto;
 	private List<Registro> registros;
 	private List<Usuario> amigos;
 	private List<Novedad> novedades;
@@ -76,7 +75,6 @@ public class Usuario {
 		u.pass_cifrado = generateHashedAndSalted(pass);
 		u.rol = rol;
 		u.nacimiento=nacimiento;
-		u.idFoto=idFoto;
 		u.provincia=prov;
 		u.email=email;
 		u.nombre=nombre;
@@ -203,15 +201,6 @@ public class Usuario {
 	public void setAmigos(List<Usuario> amigos) {
 		this.amigos = amigos;
 	}
-
-	public String getIdFoto() {
-		return idFoto;
-	}
-
-	public void setIdFoto(String idFoto) {
-		this.idFoto = idFoto;
-	}
-
 
 	public String getNombre() {
 		return nombre;
