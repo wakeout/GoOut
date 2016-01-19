@@ -73,8 +73,9 @@ public class Actividad{
 		return "{ "
 				+ "\"id\": \"" + a.getId() + "\", "
 				+ "\"estado\": \"" + a.getEstado() + "\", "
-				+ "\"id\": \"" + a.getId() + "\", "
-				+ "\"id\": \"" + a.getId() + "\", "
+				+ "\"num\": \"" + a.getNpersonas() + "\", "
+				+ "\"fecha\": \"" + a.getFecha_ini() + "\", "
+				+ "\"localizacion\": \"" + a.getLocalizacion() + "\", "
 				+ "\"nombre\": \""+a.getNombre()+"\"}";
 	}
 	

@@ -100,8 +100,8 @@ insert into respuesta values(4, '7', '4')
 insert into respuesta values(5, '8', '4')
 insert into respuesta values(6, '10', '4')
 
-insert into pago (id, descripcion, precio_individual, pagado) values (1, 'contactar con David para pagar las entradas del concierto', 30, 'true')
-insert into pago (id, descripcion, precio_individual, pagado) values (2, 'contactar con David para pagar las botellas', 3, 'true')
+insert into pago (id, descripcion, precio_individual, pagado, id_registro) values (1, 'contactar con David para pagar las entradas del concierto', 30, 'true', '1')
+insert into pago (id, descripcion, precio_individual, pagado, id_registro) values (2, 'contactar con David para pagar las botellas', 3, 'true', '1')
 
 insert into usuario_amigos(usuario, amigos)values(1,2)
 insert into usuario_amigos(usuario, amigos)values(2,1)

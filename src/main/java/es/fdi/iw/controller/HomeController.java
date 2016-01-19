@@ -817,15 +817,15 @@ public class HomeController {
 			 
 			 Iterator<Tag> iter = (Iterator) tagMap.values().iterator();
 
-			 
+			 List<Tag> fin=new ArrayList<Tag>();
 			 int i=0;
 			 while (iter.hasNext() && i<10) {
-			        lT.set(i, (Tag)iter.next());
+			        fin.add((Tag)iter.next());
 			        i++;
 			 } 
 			 
 			 
-			 model.addAttribute("tags", lT);
+			 model.addAttribute("tags", fin);
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			return "crear";
 		}else
@@ -915,12 +915,13 @@ public class HomeController {
 			
 			Usuario u=(Usuario)session.getAttribute("usuario");
 			
+			
+			Registro r=null;
+			
 			try{
 				if(u==null)throw new NoResultException();
-				
-				List<Registro> lr=entityManager.createNamedQuery("pertenece").setParameter("actividadParam",id).setParameter("usuarioParam", u.getId()).getResultList();
-			
-				if(lr.isEmpty())throw new NoResultException();
+		
+				r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam",id).setParameter("usuarioParam", u.getId()).getSingleResult();
 				
 			}catch(NoResultException nre){
 				pertenece=false;
@@ -933,6 +934,8 @@ public class HomeController {
 			
 			}
 			
+			
+			if(pertenece) model.addAttribute("pagos", r.getPagos());
 			model.addAttribute("hitos", a.getHitos());
 			model.addAttribute("comentarios", a.getForo().getComentarios());
 			model.addAttribute("pertenece", pertenece);
