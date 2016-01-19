@@ -34,7 +34,7 @@ import java.sql.Date;
     @NamedQuery(name="actividadesCreadas", 
     		query="select a from Actividad a where a.creador = :creadorParam"),
     @NamedQuery(name="buscaActividad", 
-    		query="select a from Actividad a where a.nombre = :nombreParam")
+    		query="select a from Actividad a where a.nombre like :nombreParam")
 
 }) 
 public class Actividad{
@@ -72,6 +72,10 @@ public class Actividad{
 	public static String getSingleString(Actividad a){
 		return "{ "
 				+ "\"id\": \"" + a.getId() + "\", "
+				+ "\"estado\": \"" + a.getEstado() + "\", "
+				+ "\"num\": \"" + a.getNpersonas() + "\", "
+				+ "\"fecha\": \"" + a.getFecha_ini() + "\", "
+				+ "\"localizacion\": \"" + a.getLocalizacion() + "\", "
 				+ "\"nombre\": \""+a.getNombre()+"\"}";
 	}
 	

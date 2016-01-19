@@ -22,7 +22,6 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -65,6 +64,21 @@ public class HomeController {
 	public String pruebas(){
 		
 		return "pruebas";
+	}
+	
+	
+	public static void miraLaHora(EntityManager em) {
+	
+		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+		List<Novedad> novedades = (List<Novedad>)em
+				.createNamedQuery("siguienteNovedad").getResultList();
+		if (novedades.size() > 0) {
+			Novedad n = novedades.get(0);
+			if ( true /* miro la hora y true si ya toca */ ) {
+				/* proceso novedad */
+				/* me llamo recursivamente para procesar la siguiente */
+			}
+		}
 	}
 	
 	
@@ -310,6 +324,42 @@ public class HomeController {
 			}
 		else
 			return "sin_registro";
+	}
+	
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/mod_password", method = RequestMethod.POST)
+	@Transactional
+	public String modPassword(
+			@RequestParam("nick_psw") String nick,
+			@RequestParam("psw_actual") String pass_actual,
+			@RequestParam("psw_nuevo") String pass_nuevo,
+			@RequestParam("psw_nuevo_2") String pass_nuevo2,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session) {
+		
+		Usuario usuario = (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", nick).getSingleResult();
+			String pass_cod="";
+			
+			if (!usuario.isPassValid(pass_actual)) {
+				logger.info("pass actual invalido");
+			}
+			else{
+				if (pass_nuevo == null || pass_nuevo.length() < 3 || pass_nuevo2 == null || pass_nuevo2.length() < 3) {
+					model.addAttribute("passError", "Los passwords no son válidos");
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				}
+				else{
+					if(pass_nuevo.equals(pass_nuevo2)){
+						pass_cod = usuario.generateHashedAndSalted(pass_nuevo);
+						usuario.setPassword(pass_cod);
+						entityManager.persist(usuario);
+					}
+				}
+				
+			}
+			
+			return "mi_perfil";
 	}
 	
 	@ResponseBody
@@ -963,15 +1013,15 @@ public class HomeController {
 			 
 			 Iterator<Tag> iter = (Iterator) tagMap.values().iterator();
 
-			 
+			 List<Tag> fin=new ArrayList<Tag>();
 			 int i=0;
 			 while (iter.hasNext() && i<10) {
-			        lT.set(i, (Tag)iter.next());
+			        fin.add((Tag)iter.next());
 			        i++;
 			 } 
 			 
 			 
-			 model.addAttribute("tags", lT);
+			 model.addAttribute("tags", fin);
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			return "crear";
 		}else
@@ -1061,12 +1111,13 @@ public class HomeController {
 			
 			Usuario u=(Usuario)session.getAttribute("usuario");
 			
+			
+			Registro r=null;
+			
 			try{
 				if(u==null)throw new NoResultException();
-				
-				List<Registro> lr=entityManager.createNamedQuery("pertenece").setParameter("actividadParam",id).setParameter("usuarioParam", u.getId()).getResultList();
-			
-				if(lr.isEmpty())throw new NoResultException();
+		
+				r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam",id).setParameter("usuarioParam", u.getId()).getSingleResult();
 				
 			}catch(NoResultException nre){
 				pertenece=false;
@@ -1079,6 +1130,8 @@ public class HomeController {
 			
 			}
 			
+			
+			if(pertenece) model.addAttribute("pagos", r.getPagos());
 			model.addAttribute("hitos", a.getHitos());
 			model.addAttribute("comentarios", a.getForo().getComentarios());
 			model.addAttribute("pertenece", pertenece);
@@ -1147,18 +1200,21 @@ public class HomeController {
 	public ResponseEntity<String> buscarActividades(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo, HttpSession session){
 		List<Actividad> buscadas = null;
 		Usuario u=(Usuario)session.getAttribute("usuario");
+		StringBuilder sb = new StringBuilder("[");
+		
 		
 		buscado="%"+buscado+"%";
 		
 		buscadas = entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-
+		
+		sb=Actividad.getJSONString(buscadas);
+		
+		/*
 		List<Actividad> mis_actividades =new ArrayList<Actividad>();
 
 		if(!u.getRegistros().isEmpty())
 			for(Registro r: u.getRegistros())
 				mis_actividades.add(r.getActividad());
-		
-		StringBuilder sb = new StringBuilder("[");
 		
 		if(tipo=="misactividades"){
 			sb=Actividad.getJSONString(mis_actividades);
@@ -1181,7 +1237,7 @@ public class HomeController {
 			}
 			
 		}
-	
+	*/
 		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
 	}
 	
@@ -1240,6 +1296,7 @@ public class HomeController {
 			u = entityManager.find(Usuario.class,u.getId());
 			
 			model.addAttribute("amigos", u.getAmigos());
+			model.addAttribute("namigos", u.getAmigos().size());
 			
 			return "mi_perfil";
 		}else 

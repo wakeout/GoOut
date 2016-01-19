@@ -1,5 +1,6 @@
 package es.fdi.iw.model;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,6 +22,7 @@ public class Novedad {
 	private long id;
 	private String mensaje;
 	private String tipo;
+	private Date fecha;
 	private List<Usuario> usuarios;
 	
 	public static Novedad crearNovedad(String mensaje, String tipo){
@@ -59,6 +61,12 @@ public class Novedad {
 	}
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 	
 	

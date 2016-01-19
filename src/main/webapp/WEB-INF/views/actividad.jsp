@@ -66,7 +66,7 @@
 					<span title="estado de la actividad">${actividad.estado}</span>
 					<span title="privacidad de la actividad">${actividad.privacidad}</span></div>
 					<div class="dato_actv">Fecha: ${actividad.fecha_ini} - ${actividad.fecha_fin}</div>
-					<div class="dato_actv">Localización: ${actividad.localizacion}
+					<div class="dato_actv">LocalizaciÃ³n: ${actividad.localizacion}
 						<br>
 						
 						<c:forEach items="${tags}" var="a">
@@ -77,7 +77,7 @@
 				
 				</div>
 			<div id="descripcion">
-			<p>Descripción de la actividad</p>
+			<p>DescripciÃ³n de la actividad</p>
 				<div id="desc_actv">
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non ipsum repudiandae sequi ut optio reiciendis consectetur, cum, a provident, iusto quod esse, perferendis iure iste! Quidem itaque, exercitationem aliquam, mollitia recusandae repellat dolores quibusdam minima quae reprehenderit ut, reiciendis officia.
@@ -127,6 +127,19 @@
 		<div class="movimiento">
 			
 			<div class="foro_container">
+				<div class="pagos_actv">
+				<h1>Pagos</h1>
+					<c:forEach items="${pagos}" var="p">
+						<div>
+							<p>
+								Forma de Pago: ${p.descripcion}
+								<br>
+								Precio:${p.precioIndividual}
+								<br>
+							</p>
+						</div>
+					</c:forEach>	
+				</div>
 				<div class="foro_actv">
 				<h1>Foro</h1>
 			
@@ -164,15 +177,19 @@
 				<c:forEach items="${hitos}" var="h">
 			  		<span>${h.anuncio}</span>
 					<br>
+					<br>
 				</c:forEach>
 			<br>
 			<h1>Encuestas</h1>
 			<br>
 				<c:forEach items="${encuestas}" var="e"> 
 					<span> ${e.pregunta.asunto}</span>
+					<br>
 					<c:forEach items="${e.respuestas}" var="r">
-						<span> ${r.mensaje.asunto}</span>	
+						<input type="checkbox"/> ${r.mensaje.asunto}	
+						<br>
 					</c:forEach>
+					<br>
 					<br>
 				</c:forEach>
 
