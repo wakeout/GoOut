@@ -2,7 +2,19 @@
 <html>
 	<head>
 	<%@ include file="../fragments/head.jspf" %>
-	<link rel="stylesheet" href="${prefix}resources/css/style_mis_actividades.css"> 
+	<link rel="stylesheet" href="${prefix}resources/css/style_mis_actividades.css"> 	
+	<script src="${prefix}resources/js/misActividades.js"></script>
+	<script src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+	<script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+	<script>
+
+		$(function(){
+			buscar();
+		});
+	
+	</script>
+	
+	
 	
 	</head>
 	<body class="homepage">
@@ -53,7 +65,21 @@
 										</div>
 										</form>
 									</div>
-
+											<div id="modo_lista">
+												<table id="lista_actv">
+												<tr><td>Nombre Actividad</td><td>Personas unidas</td>
+												<td>Máximo</td><td>Dia</td>
+												<td>Lugar</td><td>Estado</td></tr>
+													<c:forEach items="${actividades}" var="a">
+														<tr><td><a href="actividad/${a.id}"> ${a.nombre} </a></td>
+														<td>1</td><td>${a.maxPersonas}</td>
+														<td>${a.fecha_ini}</td>
+														<td>${a.localizacion}</td><td>${a.estado}</td>
+														</tr>
+													</c:forEach>
+													 
+												</table>
+											</div>
 									<div id="fotos">
 									
 									</div>
@@ -74,7 +100,6 @@
 
 		<!-- Scripts -->
 		<%@ include file="../fragments/scripts.jspf" %>
-		<script src="${prefix}resources/js/misActividades.js"></script>
 		<!--FIN DEL AÑADIDO -->
 
 	</body>

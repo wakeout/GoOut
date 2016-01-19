@@ -1001,18 +1001,21 @@ public class HomeController {
 	public ResponseEntity<String> buscarActividades(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo, HttpSession session){
 		List<Actividad> buscadas = null;
 		Usuario u=(Usuario)session.getAttribute("usuario");
+		StringBuilder sb = new StringBuilder("[");
+		
 		
 		buscado="%"+buscado+"%";
 		
 		buscadas = entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-
+		
+		sb=Actividad.getJSONString(buscadas);
+		
+		/*
 		List<Actividad> mis_actividades =new ArrayList<Actividad>();
 
 		if(!u.getRegistros().isEmpty())
 			for(Registro r: u.getRegistros())
 				mis_actividades.add(r.getActividad());
-		
-		StringBuilder sb = new StringBuilder("[");
 		
 		if(tipo=="misactividades"){
 			sb=Actividad.getJSONString(mis_actividades);
@@ -1035,7 +1038,7 @@ public class HomeController {
 			}
 			
 		}
-	
+	*/
 		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
 	}
 	

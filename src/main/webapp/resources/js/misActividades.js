@@ -4,6 +4,11 @@ var temp2 = null;
 var temp3 = null;
 var temp4 = null;
 
+$('input[type="radio"][name="tipo_busqueda"]').change(function() {
+    if(this.checked) {
+   	 buscar();
+    }
+});
 
 function buscar(){
 	var buscado=document.getElementById("buscar_actividades").value;
@@ -18,30 +23,26 @@ function buscar(){
 }
 
 function refrescar(data){	
-	var div=$("<div id='fotos'>");
-	
-    console.log(data);
-    var obj = $.parseJSON(data);
+	var div="<div id='fotos'>";
+	var obj = $.parseJSON(data);
     
 	$.each(obj, function(i, o) {
-		div.append(elemento(o)); 	
-	})	
 		
-	div.append("</div>")
-	
-	var target=document.getElementById("fotos");
-	
-	target.replaceWith(div);
+		console.log(o.nombre);
+		
+		div+="<a  href='actividad/"+o.id+
+		"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
+		+ o.nombre+ 
+		"</p></div><img class='i_actv'src='actividad/imagen?id="
+		+o.id+"'/></div></a>";
 
-}
-
-function elemento(elem){
+	})	
+			
+	div+="</div>"
+		
+	console.log(div);
 	
-	return $(" <a href='actividad/"+elem.id+
-			"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
-			+elem.nombre+ "</p></div><img class='i_actv' src='${prefix}resources/images/"
-			+ elem.id_foto+"' /></div></a>");
-	
+	$("#fotos").replaceWith(div);
 }
 
 $('.img_thumb' ).hover(function(e){
