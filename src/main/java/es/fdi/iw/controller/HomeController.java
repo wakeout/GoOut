@@ -981,7 +981,7 @@ public class HomeController {
 				boolean amigos=false;
 				for(Usuario us: usuarios){
 					for(int i=0; i<u.getAmigos().size() && !amigos; i++){
-						amigos=(us.getId()==usuarios.get(i).getId() || us.getId()==u.getId());
+						amigos=(us.getId()==u.getAmigos().get(i).getId() || us.getId()==u.getId());
 					}
 					if(!amigos) no_amigos.add(us);
 					amigos=false;
@@ -1015,7 +1015,6 @@ public class HomeController {
 		StringBuilder sb = new StringBuilder("[");
 		
 		if(tipo=="misactividades"){
-
 			sb=Actividad.getJSONString(mis_actividades);
 		}else{
 			if(tipo.equals("nomias")){	

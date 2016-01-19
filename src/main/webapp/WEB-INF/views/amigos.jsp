@@ -10,6 +10,13 @@
 <script src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 <script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
 	
+<script>
+
+	$(function(){
+		buscar();
+	});
+	
+</script>	
 </head>
 
 <body class="homepage">

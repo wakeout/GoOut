@@ -1,3 +1,8 @@
+$('input[type="radio"][name="tipo_busqueda"]').change(function() {
+     if(this.checked) {
+    	 buscar();
+     }
+ });
 
 function buscar(){
 	var buscado=document.getElementById("buscar_amigos").value;
