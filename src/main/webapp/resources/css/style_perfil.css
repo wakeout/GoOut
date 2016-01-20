@@ -83,8 +83,8 @@
 }
 
 #menu li a {
-	font-family: Arial;
-	font-size: 11px;
+
+	font-size: 15px;
 	text-decoration: none;
 	padding: 10px;
 	background-color: #2175bc;
@@ -125,4 +125,8 @@ div.n_perfil table {
 
 #upload {
 text-align: center;
+}
+
+.estilo_campos{
+	background: white
 }

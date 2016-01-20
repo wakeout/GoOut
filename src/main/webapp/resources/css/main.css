@@ -109,7 +109,7 @@
 		height:800px;
 	}
 	.i_actv, .img_desc{
-		/*object-fit: cover;	*/	
+		object-fit: cover;	
 		width:100px;
 		height:100px;
 		border-radius:500px;

@@ -28,7 +28,7 @@
 			<textarea id="cuerpo_msj" rows="7" cols="60"
 						name="mensaje" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea>
 			<br>
-			<button class="boton" name="submit" type="submit">Añadir comentario</button>
+			<button class="boton" name="submit" type="submit">Añadir mensaje</button>
 			   
 		</form>		
 		

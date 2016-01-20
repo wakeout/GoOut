@@ -137,7 +137,7 @@
 		</tr>
 		<tr>	
 			<td colspan="2"><textarea id="cuerpo_msj" rows="7" cols="60"
-						name="mensaje"><c:out value="${contenido}"/></textarea></td>
+						name="mensaje" readonly><c:out value="${contenido}"/></textarea></td>
 		</tr>
 		</tbody>
 	</table>

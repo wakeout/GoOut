@@ -13,7 +13,8 @@
 		
 		<!-- Main -->
 		<div id="main-wrapper">
-			<div class="container">
+		<div class="container">
+			<div id="contenido_perfil">
 
 				<div class="s_perfil">
 					<img id="i_perfil" src="usuario/imagen?id=${usuario.id}"/></a>
@@ -52,7 +53,7 @@
 						<div class="mi_perfil">
 						
 										
-						<fieldset>
+						<fieldset class="estilo_campos">
   							<legend>Datos usuario</legend>
   							<div class="campos_Perfil">
 								<label for="nombre_perfil">Nombre:</label> 
@@ -90,7 +91,7 @@
 						<div class="mod_perfil">
 						
 							<form action="${prefix}mi_perfil" method="POST" enctype="multipart/form-data">
-								<fieldset>
+								<fieldset class="estilo_campos">
 	  							<legend>Datos usuario</legend>
 	  							<div class="campos_Perfil">
 									<label for="nick_perfil">Nick de usuario:</label> 
@@ -121,7 +122,7 @@
 							</form>
 							
 							<form action="${prefix}mod_password" method="POST">
-								<fieldset>
+								<fieldset class="estilo_campos">
 	  							<legend>Cambio password</legend>
 	  							<div class="campos_Perfil">
 	  								<input type="hidden" name="nick_psw" value="${usuario.login}">
@@ -147,6 +148,7 @@
 					</div>
 					
 					
+				</div>
 				</div>
 			</div>
 
