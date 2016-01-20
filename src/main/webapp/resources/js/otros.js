@@ -65,6 +65,7 @@ $("#check").click(function() {
 $("#menu1").click(function() {
 	  
 	$( ".mod_perfil" ).hide();
+	$(".mi_galeria").hide();
 	$( ".mi_perfil" ).show();
 	
 });
@@ -72,6 +73,7 @@ $("#menu2").click(function() {
 	  
 	$( ".mod_perfil" ).show();
 	$( ".mi_perfil" ).hide();
+	$(".mi_galeria").hide();
 	
 });
 
@@ -79,6 +81,7 @@ $("#menu3").click(function() {
 	  
 	$( ".mod_perfil" ).hide();
 	$( ".mi_perfil" ).hide();
+	$(".mi_galeria").show();
 	
 });
 

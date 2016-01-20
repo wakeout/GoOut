@@ -267,6 +267,7 @@ public class HomeController {
 	@Transactional
 	public String modPerfil(
 			@RequestParam("nick_perfil") String nick,
+			@RequestParam("fecha_perfil") Date nacimiento,
 			@RequestParam("prov_perfil") String provincia,
 			@RequestParam("email_perfil") String email,
 			@RequestParam("photo") MultipartFile foto,
@@ -306,6 +307,8 @@ public class HomeController {
 					
 					u.setProvincia(provincia);
 					u.setEmail(email);
+
+					u.setNacimiento(nacimiento);
 					
 					entityManager.persist(u);
 					

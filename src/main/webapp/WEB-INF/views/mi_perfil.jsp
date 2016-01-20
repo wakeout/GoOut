@@ -3,6 +3,7 @@
 
 <%@ include file="../fragments/head.jspf" %>
 		<link rel="stylesheet" href="${prefix}resources/css/style_perfil.css"> 
+		<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css"> 
 </head>
 <body class="homepage">
 	<div id="page-wrapper">
@@ -38,7 +39,20 @@
 								
 									</c:forEach>
 							</table>
-							<a href="">Ver todos mis amigos</a>
+							<section class="cd-section">
+								<div class="cd-modal-action">
+									<a href="#0"  data-type="modal-trigger"><center><button>Ver mis amigos</button></center></a>
+									<span class="cd-modal-bg"></span>
+								</div> <!-- cd-modal-action -->
+						
+								<div class="cd-modal">	
+									<div class="cd-modal-content">
+										<%@ include file="../fragments/mis_amigos.jspf" %>
+									</div> <!-- cd-modal-content -->
+								</div> <!-- cd-modal -->
+						
+								<a href="#0" class="cd-modal-close">Close</a>
+							</section>
 						</div>
 						
 						<div id="opciones_perfil">
@@ -101,7 +115,7 @@
 								
 								<div class="campos_Perfil">
 									<label for="fecha_perfil">Fecha Nac:</label> 
-									<input id="fecha_perfil" name="fecha_perfil" type="date" value="${usuario.nacimiento}" />
+									<input id="fecha_perfil" name="fecha_perfil" type="date" value="${usuario.nacimiento}" required/>
 								</div>
 								<div class="campos_Perfil">
 									<label for="prov_perfil">Provincia:</label> 
@@ -116,7 +130,7 @@
 									<input type="file" id="file1"  name="photo" style="display:none" />
 					    		</div>
 								<div class="actualizar">
-									<button id="actualizar_perfil" namarginme="submit" type="submit">Actualizar Informacion</button>
+									<button id="actualizar_perfil" name="submit" type="submit">Actualizar Informacion</button>
 								</div>
 								</fieldset>
 							</form>
@@ -143,6 +157,15 @@
 								</div>
 								</fieldset>
 							</form>
+						</div>
+						
+						<div class="mi_galeria">
+						<form type="POST" action"" enctype="multipart/form-data">
+							Seleccionar Imagen:
+							<br><input type="file" name="subir_galeria">
+							<br>
+							<button type="submit" name="submit">Subir imagen</button>
+						</form>
 						</div>
 						</div>
 					</div>

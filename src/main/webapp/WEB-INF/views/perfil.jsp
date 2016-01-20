@@ -58,7 +58,20 @@
 									</c:forEach>
 								</tbody>
 							</table>
-							<a href="">Ver amigos de ${perfil.login}</a>
+							<section class="cd-section">
+								<div class="cd-modal-action">
+									<a href="#0"  data-type="modal-trigger"><center><button>Ver amigos de ${perfil.login}</button></center></a>
+									<span class="cd-modal-bg"></span>
+								</div> <!-- cd-modal-action -->
+						
+								<div class="cd-modal">	
+									<div class="cd-modal-content">
+										<%@ include file="../fragments/ver_amigos.jspf" %>
+									</div> <!-- cd-modal-content -->
+								</div> <!-- cd-modal -->
+						
+								<a href="#0" class="cd-modal-close">Close</a>
+							</section>
 						</div>					
 					
 
@@ -69,7 +82,7 @@
 								<td id="login_perfil">${perfil.login}</td>
 							 </tr>
 							 <tr>
-								 <td id="nacimiento_perfil"> ${perfil.nacimiento} </td>
+								 <td id="nacimiento_perfil"> ${perfil.email} </td>
 							 </tr>
 							 <tr>
 						 		<td id="provincia_perfil"> ${perfil.provincia}</td>
