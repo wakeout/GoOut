@@ -24,7 +24,7 @@ $("#check_amigos").click(function() {
     $( "#actv_amigos" ).slideUp();
   }
 });
-
+/*
 $("#switch1").click(function() {
 	  if ( $( "#modo_burbuja" ).is( ":hidden" ) ) {
 	    $( "#modo_burbuja" ).show( "slow" );
@@ -34,7 +34,7 @@ $("#switch1").click(function() {
 		$( "#modo_lista" ).show( "slow" );
 	  }
 });
-
+*/
 
 var i=1;
 function cambia_imagen() {                      
