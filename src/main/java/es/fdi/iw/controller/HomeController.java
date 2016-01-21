@@ -47,6 +47,7 @@ import es.fdi.iw.model.Foro;
 import es.fdi.iw.model.Hito;
 import es.fdi.iw.model.Mensaje;
 import es.fdi.iw.model.Novedad;
+import es.fdi.iw.model.Pago;
 import es.fdi.iw.model.Registro;
 import es.fdi.iw.model.Tag;
 import es.fdi.iw.model.Usuario;
@@ -1114,12 +1115,23 @@ public class HomeController {
 	@Transactional
 	public String salirActividad(@RequestParam("actividad") long actividad, Model model,HttpSession session){
 		
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		 u= (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", u.getLogin()).getSingleResult();
+	
 		Actividad a = entityManager.find(Actividad.class, actividad);
 		
 		a.setNpersonas(a.getNpersonas()-1);
 		
+		
+		Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam",actividad).setParameter("usuarioParam", u.getId()).getSingleResult();
+		
+		for(Pago p: r.getPagos()){
+			entityManager.createNamedQuery("delPago").setParameter("idPago", p.getId()).executeUpdate();
+		}
+	
 		entityManager.persist(a);
-		entityManager.createNamedQuery("eliminarRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", ((Usuario) session.getAttribute("usuario")).getId()).executeUpdate();
+		entityManager.createNamedQuery("eliminarRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", u.getId()).executeUpdate();
 		
 		
 		
@@ -1230,22 +1242,20 @@ public class HomeController {
 		List<Actividad> buscadas = null;
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		StringBuilder sb = new StringBuilder("[");
-		
+		u= (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", u.getLogin()).getSingleResult();
 		
 		buscado="%"+buscado+"%";
 		
 		buscadas = entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
 		
-		sb=Actividad.getJSONString(buscadas);
-		
-		/*
 		List<Actividad> mis_actividades =new ArrayList<Actividad>();
 
 		if(!u.getRegistros().isEmpty())
 			for(Registro r: u.getRegistros())
 				mis_actividades.add(r.getActividad());
 		
-		if(tipo=="misactividades"){
+		if(tipo.equals("misactividades")){
 			sb=Actividad.getJSONString(mis_actividades);
 		}else{
 			if(tipo.equals("nomias")){	
@@ -1266,7 +1276,7 @@ public class HomeController {
 			}
 			
 		}
-	*/
+	
 		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
 	}
 	
@@ -1375,12 +1385,15 @@ public class HomeController {
 	@Transactional
 	public void borrarElemento(@RequestParam("id") long [] id, @RequestParam("tipo") String tipo, HttpServletRequest request){
 		try {
-			
+			//(cascade=CascadeType.REMOVE)
 			if(tipo.equals("Actividad")){
 				for(int i = 0; i < id.length; i++){
 					Actividad a = entityManager.find(Actividad.class, id[i]);
 					for(int j = 0; j < a.getRegistros().size(); j++){
 						Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
+						for(Pago p: r.getPagos()){
+							entityManager.createNamedQuery("delPago").setParameter("idPago", p.getId()).executeUpdate();
+						}
 						entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
 					}
 					entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();

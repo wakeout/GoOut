@@ -45,8 +45,7 @@
 										<input type="radio" id="todo" name="tipo_busqueda"/>Todas las actividades
 								
 									
-									
-									<div id="filtro_MisActividades">
+									<!-- 									<div id="filtro_MisActividades">
 										<form action="${prefix}filtrarActividades">
 										<div id="cajaA">
 										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
@@ -64,7 +63,8 @@
 										
 										</div>
 										</form>
-									</div>
+									</div> 
+									
 											<div id="modo_lista">
 												<table id="lista_actv">
 												<tr><td>Nombre Actividad</td><td>Personas unidas</td>
@@ -79,7 +79,8 @@
 													</c:forEach>
 													 
 												</table>
-											</div>
+											</div> -->
+											
 									<div id="fotos">
 									
 									</div>

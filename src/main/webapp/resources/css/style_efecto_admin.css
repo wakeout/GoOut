@@ -39,26 +39,7 @@ hr {
 Main Components 
 
 -------------------------------- */
-header {
-  position: relative;
-  height: 160px;
-  line-height: 160px;
-}
-header h1 {
-  font-size: 2.4rem;
-  text-align: center;
-}
-@media only screen and (min-width: 1170px) {
-  header {
-    height: 240px;
-    line-height: 240px;
-  }
-  header h1 {
-    font-size: 3.2rem;
-    font-weight: 300;
-  }
-}
-
+¡
 .cd-section {
   text-align: center;
   
@@ -110,7 +91,7 @@ header h1 {
 }
 .cd-modal::after {
   /* gradient overlay at bottom of modal window */
-  content: '';
+ /* content: '';
   position: absolute;
   left: 0;
   bottom: 0;
@@ -119,7 +100,7 @@ header h1 {
   pointer-events: none;
   background: transparent;
   background: -webkit-linear-gradient( bottom , #34383c, rgba(52, 56, 60, 0));
-  background: linear-gradient(to top, #34383c, rgba(52, 56, 60, 0));
+  background: linear-gradient(to top, #34383c, rgba(52, 56, 60, 0));*/
 }
 .cd-modal .cd-modal-content {
   height: 100%;
@@ -139,7 +120,7 @@ header h1 {
   z-index: 1;
   visibility: visible;
   opacity: 1;
-  background-color:black; /*Color del fondo al pulsar el boton*/
+  background-color:white; /*Color del fondo al pulsar el boton*/
   pointer-events: auto;
   -webkit-transition: visibility 0s 0s, opacity 0.3s 0s, z-index 0s 0s;
   -moz-transition: visibility 0s 0s, opacity 0.3s 0s, z-index 0s 0s;
@@ -148,7 +129,7 @@ header h1 {
 .modal-is-visible .cd-modal .cd-modal-content {
   font-size: x-large;
   padding-top: 80px;
-  color: white;
+  color: black;
   -webkit-overflow-scrolling: touch;
 }
 @media only screen and (min-width: 768px) {
@@ -180,18 +161,20 @@ header h1 {
 }
 
 .cd-modal-action .btne {
-  width: 100px;
-  height: 40px;
-  border-radius: 5em;
-  color: black;
-  line-height: 2.3em;
-  white-space: nowrap;
-  font-weight: 700;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-transition: color 0.2s 0.3s, width 0.3s 0s;
-  -moz-transition: color 0.2s 0.3s, width 0.3s 0s;
-  transition: color 0.2s 0.3s, width 0.3s 0s;
+    text-align: center;
+    float: right;
+    width: 130px;
+    height: 35px;
+    border-radius: 5em;
+    color: white;
+    line-height: 2.3em;
+    white-space: initial;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition: color 0.2s 0.3s, width 0.3s 0s;
+    -moz-transition: color 0.2s 0.3s, width 0.3s 0s;
+    transition: color 0.2s 0.3s, width 0.3s 0s;
 }
 .cd-modal-action .btne.to-circle {
   width: 4em;
