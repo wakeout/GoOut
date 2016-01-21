@@ -16,28 +16,27 @@ $('.img_thumb' ).hover(function(e){
 
 $('input[type="checkbox"][name="switch1"]').change(function(){
 	if(this.checked){
-		$( "#modo_lista" ).show( "slow" );
-		$( "#modo_burbuja" ).slideUp();
+		$("#modo_burbuja" ).slideUp();
+		$("#modo_lista" ).show("slow");
 	}else{
 		$( "#modo_burbuja" ).show( "slow" );
 		$( "#modo_lista" ).slideUp();
 	}
-	
 	actualizar();
 });
 
 function actualizar(){
-	if($('#switch1').prop('checked'))
+	if($('#switch1').prop('checked')){
 		lista(objetos);
-	else
+	}
+	else{
 		burbuja(objetos);
-	
+	}
 }
 
 $('input[type="radio"][name="tipo_busqueda"]').change(function() {
     if(this.checked){
    	 buscar();
-   	 actualizar();
     }
 });
 
@@ -50,6 +49,7 @@ function buscar(){
 	
 	$.post("buscarActividades", {buscado:buscado, tipo:tipo},function(data) {
 			objetos=$.parseJSON(data);
+		   	actualizar();
 	  });
 	
 }
@@ -74,15 +74,6 @@ function burbuja(obj){
 	div+="</div>"
 	
 	$("#modo_burbuja").replaceWith(div);
-
-//	var str = document.getElementById("modo_burbuja").innerHTML; 
-//    var res = str.replace(div, div);
-//    document.getElementById("modo_burbuja").innerHTML = res;
-//	
-	//var parrafo = document.getElementById("modo_burbuja");
-	//parrafo.parentNode.removeChild(parrafo);
-	
-
 }
 
 function lista(obj){
@@ -101,17 +92,12 @@ function lista(obj){
 
 	})	
 			
-	div+="</table></div><div id='modo_burbuja'>";
+	div+="</table></div>";
 		
 	
-//	
-//	var str = document.getElementById("modo_lista").innerHTML; 
-//    var res = str.replace(div);
-//    document.getElementById("modo_lista").innerHTML = res;
-	
 	$("#modo_lista").replaceWith(div);
-	//var parrafo = document.getElementById("modo_lista");
-	//parrafo.parentNode.removeChild(parrafo);
+	$("#modo_lista" ).show("slow");
+	
 	
 }
 
