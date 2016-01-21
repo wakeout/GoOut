@@ -125,8 +125,9 @@
 													style="width: 110px; height: 30px" class="caja"/>
 												<br>
 												<br>
-													
+												<div class="invitar_amigos">
 												<%@ include file="../fragments/invitacionesAmigos.jspf"%>
+												</div>
 											</div>
 										</form>
 									</div>
