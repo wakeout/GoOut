@@ -62,7 +62,7 @@
 		<span>Descripción</span>
 		<br>
 		<br>
-		<textarea rows="5" cols="105"></textarea>
+		<textarea name="descripcion_actividad" id="descripcion_actividad" rows="5" cols="105"></textarea>
 		<br>
 		<button class="boton" name="submit" type="submit">Modificar</button>
 	</form>

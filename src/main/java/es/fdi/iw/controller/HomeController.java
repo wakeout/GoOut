@@ -453,6 +453,7 @@ public class HomeController {
 			@RequestParam("lugar") String origen,
 			@RequestParam("destino") String destino,
 			@RequestParam("num_participantes") int max_participantes,
+			@RequestParam("descripcion_actividad") String descripcion,
 			Model model, HttpSession session){
 		
 		Actividad a = null;
@@ -461,7 +462,7 @@ public class HomeController {
 		String privacidad="publica";
 		
 		usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-		a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad);
+		a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, descripcion);
 		r = Registro.crearRegistro(a, usuario_creador);
 		Foro f=Foro.crearForo();
 		a.setForo(f);
@@ -509,7 +510,7 @@ public class HomeController {
 			try {
 
 				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad);
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, "");
 				r = Registro.crearRegistro(a, usuario_creador);
 				Foro f=Foro.crearForo();
 				a.setForo(f);
