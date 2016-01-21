@@ -100,7 +100,7 @@
 													
 													<button name="submit" id="bcrear"
 														value="CREAR ACTIVIDAD" onclick="comprobarDatosActividad()">
-														Enviar
+														CREAR ACTIVIDAD
 													</button>
 													
 												</div>
