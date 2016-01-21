@@ -4,6 +4,7 @@
 <%@ include file="../fragments/head.jspf"%>
 
 <link rel="stylesheet" href="${prefix}resources/css/style_perfil.css">
+<script src="${prefix}resources/js/perfil.js"></script>
 </head>
 <body class="homepage">
 	<div id="page-wrapper">
@@ -27,11 +28,12 @@
 						
 						<%@ include file="../fragments/galeria.jspf" %>
 
-						<c:if test="${amigos == false}">
+						<c:if test="${amigos == false && (usuario.id != perfil.id) && solicitado == false}">
 						<form action="${prefix}solicitudAmigo" class="cuadro_acciones" method="POST">
 							<input type="hidden" name="id_amigo" value="${perfil.id}">
 							<input type="hidden" name="id_propio" value="${usuario.id}">
-							<button class="" type="submit" name="submit">Enviar solicitud de
+							<br>
+							<button id="envio_solicitud" type="submit" name="submit">Enviar solicitud de
 								amistad</button>
 						</form>
 						</c:if>

@@ -32,7 +32,7 @@ public class Encuesta {
 		
 		e.pregunta = pregunta;
 		e.respuestas = new ArrayList<Respuesta>();
-		
+
 		return e;
 	}
 	

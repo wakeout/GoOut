@@ -230,5 +230,4 @@ public class Usuario {
 		this.novedades = novedades;
 	}
 
-
 }

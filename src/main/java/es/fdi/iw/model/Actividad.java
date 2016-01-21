@@ -82,7 +82,7 @@ public class Actividad{
 	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
 			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
-			String destino, String privacidad) {
+			String destino, String privacidad, String descripcion) {
 		
 		Actividad a = new Actividad();
 		
