@@ -6,6 +6,7 @@ var temp4 = null;
 var modo=0;
 var filtro=" ";
 
+var objetos;
 
 
 function filtro(valor){
@@ -17,7 +18,9 @@ function filtro(valor){
 $('input[type="checkbox"][name="switch1"]').change(function(){
 	if(this.checked){
 	   	modo=1;
+	   	alert(1);
 	}else{
+		alert(0);
 		modo=0;
 	}
 	buscar();
@@ -39,28 +42,18 @@ function buscar(){
 	tipo=$("input[name= tipo_busqueda ]:checked").attr("id");
 	
 	$.post("buscarActividades", {buscado:buscado, tipo:tipo},function(data) {
-			refrescar(data);
+			objetos=$.parseJSON(data);
 	  });
 	
 }
 
-function refrescar(data){	
-	 if (modo) {
-		 lista(data);
-	 } else {
-		 burbuja(data);
-	 }
-	 filtro="";
-}
 
-
-function burbuja(data){
+function burbuja(obj){
 	var div="<div id='modo_burbuja'>";
-	var obj = $.parseJSON(data);
-    
+	
+
 	$.each(obj, function(i, o) {
 		
-		console.log(o.nombre);
 		
 		div+="<a  href='actividad/"+o.id+
 		"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
@@ -72,18 +65,16 @@ function burbuja(data){
 			
 	div+="</div>"
 		
-	console.log(div);
 	
 	$("#modo_burbuja").replaceWith(div);
+	div="";
 }
 
-function lista(data){
+function lista(obj){
 	var div="<div id='modo_lista'><table id='lista_actv'><tr>" +
 			"<td>Nombre Actividad</td><td>Personas unidas</td>" +
 			"<td>Máximo</td><td>Dia</td><td>Lugar</td><td>Estado</td></tr>";
 
-	var obj = $.parseJSON(data);
-    
 	$.each(obj, function(i, o) {
 		
 		console.log(o.nombre);
@@ -97,7 +88,6 @@ function lista(data){
 			
 	div+="</table></div><div id='modo_burbuja'>";
 		
-	console.log(div);
 	
 	$("#modo_lista").replaceWith(div);
 }
