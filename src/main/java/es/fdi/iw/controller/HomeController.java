@@ -49,6 +49,7 @@ import es.fdi.iw.model.Mensaje;
 import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Pago;
 import es.fdi.iw.model.Registro;
+import es.fdi.iw.model.Respuesta;
 import es.fdi.iw.model.Tag;
 import es.fdi.iw.model.Usuario;
 
@@ -404,9 +405,6 @@ public class HomeController {
 		Usuario p=entityManager.find(Usuario.class, amigo);
 		
 		model.addAttribute("nombre", p);
-		//session.setAttribute("nombre", p);
-		//getTokenForSession(session);
-		//return "redirect:mensajes";
 		return "mensajes";
 	}
 	
@@ -457,17 +455,6 @@ public class HomeController {
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		Usuario u = new Usuario();
 		Registro r = new Registro();
-		
-		/*Hito h= Hito.crearHito(asunto, fecha);
-		
-		if(a.getHitos()==null){
-			List<Hito> lHitos=new ArrayList<Hito>();
-			a.setHitos(lHitos);
-		}
-		a.getHitos().add(h);
-		
-		entityManager.persist(h);
-		entityManager.persist(a);*/
 		
 		u=(Usuario)session.getAttribute("usuario");
 		
@@ -556,23 +543,41 @@ public class HomeController {
 			@RequestParam("origen") String origen,
 			@RequestParam("destino") String destino,
 			@RequestParam("actv_privada") int privado,
-			@RequestParam("amigo") String[] amigosIds,
+			//@RequestParam("amigo") String[] amigosIds,
 			@RequestParam("tipo") String tipo,
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
+		
+		
+			String[] amigosIds = new String[0];
+			amigosIds = request.getParameterValues("amigo");
+			
+			
+			/*Tratamiento de los tags*/
+		
+			Tag tag_nombre = new Tag();
+			String[] tags = new String[0];
 			long[] tagIds = new long[0];
-			String[] tags = request.getParameterValues("tags");
-			if (tags.length > 0) {
+			tags = request.getParameterValues("tags");
+			
+			
+			if (tags != null) {
 				tagIds = new long[tags.length];
 			}
+			
+			for(int i=0;i<tagIds.length;i++){
+
+				tagIds[i] = Long.parseLong(tags[i]);
+			}
+			
+			/*###########################*/
 			
 			if(session.getAttribute("usuario")!=null){
 			Actividad a = null;
 			Registro r = null;
 			Usuario usuario_creador = null;
 			String imagen="";
-			String extension="";
 			String privacidad="publica";
 				
 			if(privado == 1)
@@ -586,6 +591,8 @@ public class HomeController {
 				Foro f=Foro.crearForo();
 				a.setForo(f);
 				
+				a.getId();
+				
 				entityManager.persist(f);
 				entityManager.persist(a);
 				a.getRegistros().add(r);
@@ -596,13 +603,15 @@ public class HomeController {
 				entityManager.persist(r);	
 				
 				Mensaje m = new Mensaje();
-				for(int i = 0; i < amigosIds.length; i++){
-					Usuario d = (Usuario)entityManager.createNamedQuery("userByLogin")
-							.setParameter("loginParam", amigosIds[i]).getSingleResult();
-					
-					m = Mensaje.crearMensaje("Apuntate a la actividad" + nombre_actv, "", tipo, usuario_creador, d); 
-					
-					entityManager.persist(m);
+				if(amigosIds != null){
+					for(int i = 0; i < amigosIds.length; i++){
+						Usuario d = (Usuario)entityManager.createNamedQuery("userByLogin")
+								.setParameter("loginParam", amigosIds[i]).getSingleResult();
+						
+						m = Mensaje.crearMensaje("Apuntate a la actividad " + nombre_actv, a.getId()+"", tipo, usuario_creador, d); 
+						
+						entityManager.persist(m);
+					}
 				}
 					
 				
@@ -723,35 +732,41 @@ public class HomeController {
 		return "redirect:actividad/"+actividad;
 	}
 	
-	/*@RequestMapping(value = "/addPago", method = RequestMethod.POST)
-	@Transactional
-	public String addPago(
-			@RequestParam("id_registro") String registro,
-			@RequestParam("precio_individual") String precio,
-			@RequestParam("descripcion") String descripcion,
-			@RequestParam("fecha") Date fecha){
-		
-		long id_registro = Integer.parseInt(registro);
-		
-		Registro r = entityManager.find(Registro.class, id_registro);
-		
-		
-		return "";
-	}*/
-	
+
 	@RequestMapping(value = "/addEncuesta", method = RequestMethod.POST)
 	@Transactional
 	public String addEncuesta(
 			@RequestParam("id_actividad") String actividad,
 			@RequestParam("pregunta_encuesta") String pregunta,
+			@RequestParam("opcion1") String opcion1,
+			@RequestParam("opcion2") String opcion2,
 			HttpSession session){
 		
-		long id_actividad = Integer.parseInt(actividad);
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		long id_actividad = Long.parseLong(actividad);
 		Actividad a=entityManager.find(Actividad.class, id_actividad);
-		Comentario c= Comentario.crearComentario(pregunta, ((Usuario)session.getAttribute("usuario")));
+		Comentario c= Comentario.crearComentario(pregunta, u);
+		Comentario c1 = Comentario.crearComentario(opcion1, u);
+		Comentario c2 = Comentario.crearComentario(opcion2, u);
 		Encuesta e = Encuesta.crearEncuesta(c);
+		Respuesta r1 = new Respuesta();
+		Respuesta r2 = new Respuesta();
+		
+		r1 = Respuesta.crearRespuesta(c1);
+		r2 = Respuesta.crearRespuesta(c2);
+		
+		e.getRespuestas().add(r1);
+		e.getRespuestas().add(r2);
+		
+		entityManager.persist(c);
+		entityManager.persist(c1);
+		entityManager.persist(c2);
+		entityManager.persist(e);
+		entityManager.persist(r1);
+		entityManager.persist(r2);
 		
 		a.getEncuestas().add(e);
+		entityManager.persist(a);
 		
 		return "home";
 	}
@@ -1060,13 +1075,6 @@ public class HomeController {
 		actv = entityManager.find(Actividad.class, id_actividad);
 		usuario = entityManager.find(Usuario.class, id_propio);
 		
-		// Comprobar que la actividad no este cerrada
-		
-		//if(/*actv.getEstado().equals("cerrada") || actv.getEstado().equals("completa")*/ false){	
-			//Aviso al usuario de que no puede unirse a esta actividad. NO seria necesario?
-		//}
-		//else
-		//{
 			if(actv.getNpersonas() < actv.getMaxPersonas())
 			{
 				while(i < actv.getRegistros().size() && !existe){
@@ -1087,18 +1095,6 @@ public class HomeController {
 					
 					entityManager.persist(r);
 				}
-			/*	if(!actv.getPersonas().contains(usuario)){
-					//Unirse a la actividad
-					usuario.getActuales().add(actv);
-					entityManager.persist(usuario);
-				
-					actv.getPersonas().add(usuario);
-					entityManager.persist(actv);
-				
-					//Incrementar el numero de personas y si es igual a max personas, cerrar (poner completa) la actividad.
-					actv.setNpersonas(actv.getPersonas().size());
-				}
-				*/
 			}
 			else
 			{
@@ -1195,17 +1191,6 @@ public class HomeController {
 		}
 		else
 			return "redirect:sin_registro";
-		
-		/*if(filtro == 5)
-			System.out.println("-------------------------" + filtro);
-		if(filtro == 4)
-			System.out.println("-------------------------" + filtro);
-		if(filtro == 3)
-			System.out.println("-------------------------" + filtro);
-		if(filtro==2)
-			System.out.println("-------------------------" + filtro);
-		if(filtro==1)
-			System.out.println("-------------------------" + filtro);*/
 		
 	}
 

@@ -28,6 +28,7 @@ public class Comentario {
 		
 		c.usuario=u;
 		c.asunto=asunto;
+		c.sugiero = false;
 		
 		return c;
 	}
