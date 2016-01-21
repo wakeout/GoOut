@@ -134,7 +134,7 @@
 							<p>
 								Forma de Pago: ${p.descripcion}
 								<br>
-								Precio:${p.precioIndividual}
+								Precio:    ${p.precioIndividual}
 								<br>
 							</p>
 						</div>
@@ -176,6 +176,8 @@
 			<br>
 				<c:forEach items="${hitos}" var="h">
 			  		<span>${h.anuncio}</span>
+					<br>
+					${h.fecha}
 					<br>
 					<br>
 				</c:forEach>

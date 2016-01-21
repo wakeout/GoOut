@@ -477,7 +477,7 @@ public class HomeController {
 		entityManager.persist(r);
 		
 		
-		return "redirect:mis_actividades";
+		return "redirect:actividades";
 	}
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
@@ -576,7 +576,7 @@ public class HomeController {
 				//Error
 			}
 
-				return "redirect:mis_actividades";
+				return "redirect:actividades";
 			}
 			else{
 				return "sin_registro";
@@ -1081,7 +1081,7 @@ public class HomeController {
 				model.addAttribute("actividades",actividades);
 			}
 					
-			return "mis_actividades";
+			return "actividades";
 		}
 		else
 			return "redirect:sin_registro";
@@ -1099,13 +1099,13 @@ public class HomeController {
 		
 	}
 
-	@RequestMapping(value = "/mis_actividades", method = RequestMethod.GET)
-	public String mis_actividades(Model model, HttpSession session){
+	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
+	public String actividades(Model model, HttpSession session){
 		
 		
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 	
-			return "mis_actividades";
+			return "actividades";
 		}
 		else
 			return "redirect:sin_registro";
