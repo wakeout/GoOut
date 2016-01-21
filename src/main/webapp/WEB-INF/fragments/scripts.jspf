@@ -5,7 +5,6 @@
 	<script src="${prefix}resources/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="${prefix}resources/js/main.js"></script>
-	<script src="${prefix}resources/js/mensajes.js"></script>
 	
 		<script src="${prefix}resources/js/misActividades.js"></script>
 		<script src="${prefix}resources/js/otros.js"></script>

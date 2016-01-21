@@ -9,16 +9,7 @@
 	#fotos{
 		
 		height:800px;
-	}
-	.i_actv, .img_desc{
-		object-fit: cover;	
-		width:100px;
-		height:100px;
-		border-radius:500px;
-		/*border: 2px solid black;*/
-		margin:0px;
-	}
-	
+	}	
 	
 	#actividad{
 	 font-size: 10px;
@@ -62,26 +53,3 @@
 }
 
 
-			 /*  capa hover con la descripcion de cada miniatura */
-.img_desc{   /*aplicar tb propiedad de i_act a este para la forma radial*/
-   
-    position: absolute;
-    background-color: white;
-    opacity: 0.7;
-    padding: 40px 5px 5px 5px;
-    display: none;
-	transition: 1.5s ease;
- 	-moz-transition: 1.5s ease; /* Firefox */
- 	-webkit-transition: 1.5s ease; /* Chrome - Safari */
- 	-o-transition: 1.5s ease; /* Opera */
-	
-	}
-
-.img_thumb:hover{		
-		transform : scale(1.5);
-		-moz-transform : scale(1.5); /* Firefox */
-		-webkit-transform : scale(1.5); /* Chrome - Safari */
-		-o-transform : scale(1.5); /* Opera */
-		-ms-transform : scale(1.5); /* IE9 */
-		}
-	

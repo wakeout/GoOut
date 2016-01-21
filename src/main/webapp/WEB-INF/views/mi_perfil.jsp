@@ -178,12 +178,12 @@
 							Actividades en las que estoy apuntado
 							<table id="mis_actv">
 								<c:forEach items="${actv}" var="actividad">
-								<a  href="actividad/${actividad.actividad}">
+								<a  href="actividad/${actividad.id}">
 								<div class='img_thumb'>
 									<div class='img_desc'>
 										<p id='actividad'>${actividad.actividad.nombre}</p>
 									</div>
-								<img class='i_actv'src="actividad/imagen?id=${actividad.actividad}"/>
+								<img class='i_actv'src="actividad/imagen?id=${actividad.id}"/>
 								</div>
 								</a>
 								</c:forEach>

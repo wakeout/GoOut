@@ -58,7 +58,6 @@ function buscar(){
 function burbuja(obj){
 
 	var div="<div id='modo_burbuja'>";
-	
 
 	$.each(obj, function(i, o) {
 		
@@ -69,7 +68,7 @@ function burbuja(obj){
 		"</p></div><img class='i_actv' src='actividad/imagen?id="
 		+o.id+"' alt=''/></div></a>";
 
-	})	
+	})
 			
 	div+="</div>"
 	

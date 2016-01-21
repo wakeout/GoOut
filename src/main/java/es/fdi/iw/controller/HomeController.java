@@ -544,12 +544,12 @@ public class HomeController {
 			@RequestParam("destino") String destino,
 			@RequestParam("actv_privada") int privado,
 			//@RequestParam("amigo") String[] amigosIds,
-			@RequestParam("tipo") String tipo,
+			//@RequestParam("tipo") String tipo,
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
 		
-		
+			String tipo = "invitacion";
 			String[] amigosIds = new String[0];
 			amigosIds = request.getParameterValues("amigo");
 			
