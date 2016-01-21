@@ -26,6 +26,20 @@
 			<br>
 			<br>
 			
+			<label>Opcion 1</label>
+			<br>
+			<input type="text" name="opcion1" id="opcion1" required/>
+			
+			<br>
+			<br>
+			
+			<label>Opcion 2</label>
+			<br>
+			<input type="text" name="opcion2" id="opcion2" required/>
+			
+			<br>
+			<br>
+			
 			<button class="boton" name="submit" type="submit">Añadir encuesta</button>
 			   
 		</form>		

@@ -49,6 +49,7 @@ import es.fdi.iw.model.Mensaje;
 import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Pago;
 import es.fdi.iw.model.Registro;
+import es.fdi.iw.model.Respuesta;
 import es.fdi.iw.model.Tag;
 import es.fdi.iw.model.Usuario;
 
@@ -731,20 +732,44 @@ public class HomeController {
 		return "redirect:actividad/"+actividad;
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 127286d86e8c7bb91c8cb4770f918ddab8055fde
 	@RequestMapping(value = "/addEncuesta", method = RequestMethod.POST)
 	@Transactional
 	public String addEncuesta(
 			@RequestParam("id_actividad") String actividad,
 			@RequestParam("pregunta_encuesta") String pregunta,
+			@RequestParam("opcion1") String opcion1,
+			@RequestParam("opcion2") String opcion2,
 			HttpSession session){
 		
-		long id_actividad = Integer.parseInt(actividad);
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		long id_actividad = Long.parseLong(actividad);
 		Actividad a=entityManager.find(Actividad.class, id_actividad);
-		Comentario c= Comentario.crearComentario(pregunta, ((Usuario)session.getAttribute("usuario")));
+		Comentario c= Comentario.crearComentario(pregunta, u);
+		Comentario c1 = Comentario.crearComentario(opcion1, u);
+		Comentario c2 = Comentario.crearComentario(opcion2, u);
 		Encuesta e = Encuesta.crearEncuesta(c);
+		Respuesta r1 = new Respuesta();
+		Respuesta r2 = new Respuesta();
+		
+		r1 = Respuesta.crearRespuesta(c1);
+		r2 = Respuesta.crearRespuesta(c2);
+		
+		e.getRespuestas().add(r1);
+		e.getRespuestas().add(r2);
+		
+		entityManager.persist(c);
+		entityManager.persist(c1);
+		entityManager.persist(c2);
+		entityManager.persist(e);
+		entityManager.persist(r1);
+		entityManager.persist(r2);
 		
 		a.getEncuestas().add(e);
+		entityManager.persist(a);
 		
 		return "home";
 	}
