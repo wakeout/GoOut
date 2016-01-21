@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="delDenuncia", 
     		query="delete from Mensaje m where m.id = :idParam"),
     @NamedQuery(name="buscarSolicitud", 
-    		query="select m from Mensaje m where m.origen = :origen AND m.destinos = :destino AND m.tipo = :tipo")
+    		query="select m from Mensaje m where m.origen.id = :origen AND m.destinos.id = :destino AND m.tipo = :tipo")
 })
 public class Mensaje {
 	private long id;

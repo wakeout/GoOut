@@ -880,6 +880,7 @@ public class HomeController {
 				
 				entityManager.persist(usuario_propio);
 				entityManager.persist(usuario_amigo);
+				session.setAttribute("usuario", usuario_propio);
 			}
 			
 		}
@@ -889,7 +890,51 @@ public class HomeController {
 		}
 		
 		
-			return "redirect:mi_perfil";
+			return "redirect:perfil/"+usuario_propio.getId();
+	}
+	
+	@RequestMapping(value = "/eliminarAmistad", method = RequestMethod.POST)
+	@Transactional
+	public String eliminarAmistad(
+		@RequestParam("id_amigo") long amigo,
+		@RequestParam("id_propio") long propio,
+		HttpSession session){
+		
+		Usuario usuario_amigo = null;
+		Usuario usuario_propio = null;
+		int i = 0;
+		boolean existe = false;
+		
+		try
+		{
+			usuario_amigo = entityManager.find(Usuario.class,amigo);
+			usuario_propio = entityManager.find(Usuario.class,propio);
+			List<Usuario> aux = usuario_propio.getAmigos();
+			
+			while(aux.size()> i){
+				if(aux.get(i).getId() == usuario_amigo.getId())
+					existe=true;
+				i++;
+			}
+			
+			if(existe)
+			{
+				usuario_propio.getAmigos().remove(usuario_amigo);
+				usuario_amigo.getAmigos().remove(usuario_propio);
+				
+				entityManager.persist(usuario_propio);
+				entityManager.persist(usuario_amigo);
+				session.setAttribute("usuario", usuario_propio);
+			}
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		
+		return "redirect:perfil/"+usuario_propio.getId();
 	}
 	
 	@RequestMapping(value = "/addRegistro", method = RequestMethod.POST)

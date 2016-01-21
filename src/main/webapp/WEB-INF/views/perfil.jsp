@@ -37,6 +37,14 @@
 								amistad</button>
 						</form>
 						</c:if>
+						<c:if test="${amigos == true}">
+						<form action="${prefix}eliminarAmistad" class="cuadro_acciones" method="POST">
+						<input type="hidden" name="id_amigo" value="${perfil.id}">
+							<input type="hidden" name="id_propio" value="${usuario.id}">
+							<br>
+							<button id="envio_solicitud" type="submit" name="submit">Eliminar amistad</button>
+						</form>
+						</c:if>
 						
 						
 				</div>
