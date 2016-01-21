@@ -1321,11 +1321,18 @@ public class HomeController {
 	public String mi_perfil(HttpSession session, Model model){
 		if(session.getAttribute("usuario")!=null){
 			Usuario u=(Usuario)session.getAttribute("usuario");
-			
+		
 			u = entityManager.find(Usuario.class,u.getId());
+			
+			List<Registro> r = null;
+			
+			r = u.getRegistros();
 			
 			model.addAttribute("amigos", u.getAmigos());
 			model.addAttribute("namigos", u.getAmigos().size());
+			model.addAttribute("actv", r);
+			
+
 			
 			return "mi_perfil";
 		}else 
