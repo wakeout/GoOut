@@ -27,7 +27,7 @@
 										<c:forEach items="${actividades}" var="a">
 											<a class="" href="actividad/${a.id}">
 												<div class="img_thumb">
-
+			
 													<div class="img_desc">
 														<p id="actividad">${a.nombre}</p>
 													</div>

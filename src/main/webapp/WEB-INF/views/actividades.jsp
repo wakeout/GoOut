@@ -1,13 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<%@ include file="../fragments/head.jspf" %>
-	<link rel="stylesheet" href="${prefix}resources/css/style_mis_actividades.css"> 	
 	<script src="${prefix}resources/js/misActividades.js"></script>
 	<script src="${prefix}resources/js/buscar.js"></script>
 	<script src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
-	<script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="${prefix}resources/css/style_buscar.css">
+	<%@ include file="../fragments/head.jspf" %>
 	
 	<script>
 
@@ -71,6 +69,8 @@
 									</div> 
 									
 									<div id="modo_lista">
+									
+									
 							
 									</div> 
 											

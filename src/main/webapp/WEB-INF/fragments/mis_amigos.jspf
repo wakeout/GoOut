@@ -16,7 +16,7 @@
 			<c:forEach items="${amigos}" var="p">
 
 				<span id="list">
-					<a id="enlace" href="../perfil/${p.id}">
+					<a id="" href="../perfil/${p.id}">
 					<img class="i_people" src="usuario/imagen?id=${p.id}" alt="" />
 						${p.login}
 					<input name="amigo" id="" type="checkbox" value="${p.login}"/>

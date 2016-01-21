@@ -1199,6 +1199,7 @@ public class HomeController {
 		
 		
 		if(((Usuario)session.getAttribute("usuario"))!=null){
+			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 			return "actividades";
 		}

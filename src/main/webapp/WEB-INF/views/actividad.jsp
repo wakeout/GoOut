@@ -1,13 +1,14 @@
 
 <!DOCTYPE HTML>
 
-<html class="no-js">
+<html>
 	<head>
 		<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css">
 		
 		<script src="${prefix}resources/js/modernizr.js"></script>
 		
 		<%@ include file="../fragments/head.jspf" %>
+		<%@ page contentType="text/html; charset=UTF-8"%>
 		<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
 	
 	</head>

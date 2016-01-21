@@ -6,6 +6,13 @@ var temp4 = null;
 var modo=0;
 
 
+$('.img_thumb' ).hover(function(e){
+    target = $(this);
+    $(target[0].firstElementChild).fadeIn(200);
+}, function(){
+    $(target[0].firstElementChild).fadeOut(200);
+});
+
 $('input[type="checkbox"][name="switch1"]').change(function(){
 	if(this.checked){
 	   	modo=1;
@@ -21,6 +28,15 @@ $('input[type="radio"][name="tipo_busqueda"]').change(function() {
     }
 });
 
+//$("#switch1").click(function() {
+//	  if ( $( "#modo_burbuja" ).is( ":hidden" ) ) {
+//	    $( "#modo_burbuja" ).show( "slow" );
+//		 $( "#modo_lista" ).slideUp();
+//	  } else {
+//	    $( "#modo_burbuja" ).slideUp();
+//		$( "#modo_lista" ).show( "slow" );
+//	  }
+//});
 
 
 function buscar(){
@@ -45,6 +61,7 @@ function refrescar(data){
 }
 
 
+
 function burbuja(data){
 	var div="<div id='modo_burbuja'>";
 	var obj = $.parseJSON(data);
@@ -53,11 +70,11 @@ function burbuja(data){
 		
 		console.log(o.nombre);
 		
-		div+="<a  href='actividad/"+o.id+
+		div+="<a class='' href='actividad/"+o.id+
 		"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
 		+ o.nombre+ 
-		"</p></div><img class='i_actv'src='actividad/imagen?id="
-		+o.id+"'/></div></a>";
+		"</p></div><img class='i_actv' src='actividad/imagen?id="
+		+o.id+"' alt=''/></div></a>";
 
 	})	
 			
@@ -66,6 +83,7 @@ function burbuja(data){
 	console.log(div);
 	
 	$("#modo_burbuja").replaceWith(div);
+	div="";
 }
 
 function lista(data){
@@ -91,42 +109,9 @@ function lista(data){
 	console.log(div);
 	
 	$("#modo_lista").replaceWith(div);
+	div="";
 }
 
-$('.img_thumb' ).hover(function(e){
-    target = $(this);
-    $(target[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(target[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb2' ).hover(function(e){
-    temp = $(this);
-    $(temp[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb3' ).hover(function(e){
-    temp2 = $(this);
-    $(temp2[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp2[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb4' ).hover(function(e){
-    temp3 = $(this);
-    $(temp3[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp3[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb5' ).hover(function(e){
-    temp4 = $(this);
-    $(temp4[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp4[0].firstElementChild).fadeOut(200);
-});
 
 $("#mis_creaciones").click(function() {
 	  if ( $( "#mis_creaciones" ).prop('checked') ) {
