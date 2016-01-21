@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf8"><title>Leeme</title></head>
 <body>
-<h1>GoOut- Entrega 2</h1>
+<h1>GoOut- Entrega opcional día 21</h1>
 <p>Componentes del grupo "GoOut"
 <ul>
 <li>David Rodríguez
@@ -30,19 +30,15 @@ victor, david, marquitos, jorge y freire. La contraseña para todos los usuarios
 <li><a href="http://localhost:8080/goout/sin_registro">sin_registro</a> - En la ventana de login al pinchar en el símbolo de GoOut entras en esta ventana (ya que no te has logeado
 o no estás registrado).
 <li><a href="http://localhost:8080/goout/crear">crear</a> - Permite crear una nueva actividad. Tienes que poner el nombre de la actividad, seleccionar el género, hora de inicio y lugar
-entre otras opciones.
-<li><a href="http://localhost:8080/goout/buscar">buscar</a> - Vista para buscar una actividad concreta.
-<li><a href="http://localhost:8080/goout/mis_actividades">mis_actividades</a> - Pagina donde el usuario puede consultar todas tus actividades (finalizadas y activas).
-Se puede filtar por actividades activas o finalizadas y por tiempo, es decir, actividades de hoy, esta semana, de dentro de un mes o próximos meses y también puedes filtrar
-tus actividades en las que eres el creador. (La actividad de fútbol te lleva a la ventana actividad_creador)
-<li><a href="http://localhost:8080/goout/actividad">actividad</a> -(solo visible cuando pinchas en una actividad anteriormente listada) Contiene detalles de una actividad 
-y un foro que pueden hacer comentarios los participantes de la misma.
+entre otras opciones. También puedes invitar a tus amigos a la actividad.
+<li><a href="http://localhost:8080/goout/amigos">amigos</a> - Vista para buscar a tus amigos.
+<li><a href="http://localhost:8080/goout/actividades">actividades</a> - en esta vista puedes buscar y filtrar actividades. 
+<li><a href="http://localhost:8080/goout/actividad">actividad</a> -(solo visible cuando pinchas en una actividad anteriormente listada) Contiene detalles de una actividad, un foro donde pueden interactuar los usuarios participantes, información sobre pagos e hitos (si es que los tiene). Además puedes añadir nuevos pagos, nuevos hitos, modificar aspectos de la actividad e invitar a otros usuarios a unirse.
 <li><a href="http://localhost:8080/goout/actividad_creador">actividad_creador</a> - Es la misma vista que actividad pero desde el punto de vista del creador de la actividad,
 teniendo la opción de modificar los datos de la actividad, eliminar usuarios entre otras opciones que no tienen el resto de usuarios.
-<li><a href="http://localhost:8080/goout/perfil">perfil</a> - (solo accesible cuando pienchas en la foto de perfil) Muestra los datos de un usuario, así como las actividades a las que asistirá.
-<li><a href="http://localhost:8080/goout/administrador">administrador</a>- solo accseible cuando te has logeado con un usuario de la base de datos que tenga el rol de administrador.
-En esta ventana puedes modificar todos los aspectos de la página web, por ejemplo eliminar, editar o añadir usuarios, actividades etc.
-<li><a href="http://localhost:8080/goout/mensajes">mensajes</a> - en esta vista puedes mandar mensajes a todos tus amigos y el administrador.
+<li><a href="http://localhost:8080/goout/perfil">perfil</a> - (solo accesible cuando pienchas en la foto de perfil) Muestra los datos de un usuarios y sus amigos. Si la persona ya es tu amiga puedes mandarle un mensaje directamente.
+<li><a href="http://localhost:8080/goout/administrador">administrador</a>- solo accseible cuando te has logeado con un usuario de la base de datos que tenga el rol de administrador. Tienes acceso a múltiples elementos de la página, como pueden ser actividades, mensajes, tags, etc. DIchos elementos pueden ser eliminados o agregar nuevos. (Borrar Actividad y Usuario no funcionan)
+<li><a href="http://localhost:8080/goout/mensajes">mensajes</a> - en esta vista puedes mandar mensajes a otros usuarios de la actividad, además de revisar tu bandeja de entrada y de salida, pudiendo acceder al contenido de dichos mensajes. Estos pueden ser simples mensajes privados o invitaciones a actividades o solicitudes de amistad.
 </ul>
 
 <h2>Recursos externos utilizados</h2>
@@ -58,10 +54,11 @@ En esta ventana puedes modificar todos los aspectos de la página web, por ejemp
 <h2>Próximos cambios</h2>
 <p>Aquí se exponen los próximos cambios a realizar en la web.</p>
 <ul>
-<li>Rediseño de las actividades (los globos) para poder mostrar un mayor número.
-<li>Búsquedas ampliadas, mostrando además todas actividades que cumplan los criterios a especificar.
-<li>Rediseño de creación de actividades.
-<li>Creación de un foro, y añadir encuestas, por ejemplo para realizar pagos.
+<li>Tablón de novedades de la vista home
+<li>Galería en la vista perfil.
+<li>Implementar filtrado de actividades.
+<li>Añadir seguridad en todos los inputs.
+<li>Cambios de estilo varios.
 <li>Otros aspectos.
 </ul>
 </body>
