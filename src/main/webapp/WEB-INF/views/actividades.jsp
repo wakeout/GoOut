@@ -7,13 +7,7 @@
 	<link rel="stylesheet" href="${prefix}resources/css/style_buscar.css">
 	<%@ include file="../fragments/head.jspf" %>
 	
-	<script>
 
-		$(function(){
-			buscar();
-		});
-	
-	</script>
 	
 	
 	
@@ -50,24 +44,19 @@
 									    <label for="switch1">Modo lista</label>
 									</div>
 									
-									
+								<!-- 	
 									<div id="filtro_MisActividades">
 										<div id="cajaA">
 										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
 										<input type="radio" id="act_fin" name="activas_fin" value="finalizadas"/>Finalizadas
-										
-									
-										
-										<input type="checkbox" id="tiempo" value="1" name="filtro" />Hoy
-										<input type="checkbox" id="tiempo" value="2" name="filtro" />Esta semana
-										<input type="checkbox" id="tiempo" value="3" name="filtro" />Este mes
-										<input type="checkbox" id="tiempo" value="4"name="filtro" />Proximos meses
-										<input type="checkbox" id="mis_creaciones" value="5" name="filtro" />Mis Creaciones
+											
+										<input type="checkbox" onchange="filtro(${hoy})"  id="f1" value="1" name="filtro" />Hoy
+										<input type="checkbox" onchange="filtro(${mes})" id="f2" value="2" name="filtro" />Este mes
 										
 										</div>
 								
 									</div> 
-									
+									-->
 									<div id="modo_lista">
 									
 									
@@ -94,6 +83,14 @@
 
 		<!-- Scripts -->
 		<%@ include file="../fragments/scripts.jspf" %>
+			<script>
+
+		$(function(){
+			buscar();
+			actualizar();
+		});
+	
+	</script>
 		<!--FIN DEL AÑADIDO -->
 
 	</body>

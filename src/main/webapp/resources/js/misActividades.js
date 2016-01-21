@@ -3,7 +3,8 @@ var temp = null;
 var temp2 = null;
 var temp3 = null;
 var temp4 = null;
-var modo=0;
+
+var objetos;
 
 
 $('.img_thumb' ).hover(function(e){
@@ -15,60 +16,52 @@ $('.img_thumb' ).hover(function(e){
 
 $('input[type="checkbox"][name="switch1"]').change(function(){
 	if(this.checked){
-	   	modo=1;
+		$( "#modo_lista" ).show( "slow" );
+		$( "#modo_burbuja" ).slideUp();
 	}else{
-		modo=0;
+		$( "#modo_burbuja" ).show( "slow" );
+		$( "#modo_lista" ).slideUp();
 	}
-	buscar();
+	
+	actualizar();
 });
+
+function actualizar(){
+	if($('#switch1').prop('checked'))
+		lista(objetos);
+	else
+		burbuja(objetos);
+	
+}
 
 $('input[type="radio"][name="tipo_busqueda"]').change(function() {
     if(this.checked){
    	 buscar();
+   	 actualizar();
     }
 });
 
-//$("#switch1").click(function() {
-//	  if ( $( "#modo_burbuja" ).is( ":hidden" ) ) {
-//	    $( "#modo_burbuja" ).show( "slow" );
-//		 $( "#modo_lista" ).slideUp();
-//	  } else {
-//	    $( "#modo_burbuja" ).slideUp();
-//		$( "#modo_lista" ).show( "slow" );
-//	  }
-//});
-
-
 function buscar(){
-	console.log(modo);
+	
 	var buscado=document.getElementById("buscar_actividades").value;
 	var tipo;
 	
 	tipo=$("input[name= tipo_busqueda ]:checked").attr("id");
 	
 	$.post("buscarActividades", {buscado:buscado, tipo:tipo},function(data) {
-			refrescar(data);
+			objetos=$.parseJSON(data);
 	  });
 	
 }
 
-function refrescar(data){	
-	 if (modo) {
-		 lista(data);
-	 } else {
-		 burbuja(data);
-	 }
-}
 
+function burbuja(obj){
 
-
-function burbuja(data){
 	var div="<div id='modo_burbuja'>";
-	var obj = $.parseJSON(data);
-    
+	
+
 	$.each(obj, function(i, o) {
 		
-		console.log(o.nombre);
 		
 		div+="<a class='' href='actividad/"+o.id+
 		"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
@@ -79,20 +72,24 @@ function burbuja(data){
 	})	
 			
 	div+="</div>"
-		
-	console.log(div);
 	
 	$("#modo_burbuja").replaceWith(div);
-	div="";
+
+//	var str = document.getElementById("modo_burbuja").innerHTML; 
+//    var res = str.replace(div, div);
+//    document.getElementById("modo_burbuja").innerHTML = res;
+//	
+	//var parrafo = document.getElementById("modo_burbuja");
+	//parrafo.parentNode.removeChild(parrafo);
+	
+
 }
 
-function lista(data){
+function lista(obj){
 	var div="<div id='modo_lista'><table id='lista_actv'><tr>" +
 			"<td>Nombre Actividad</td><td>Personas unidas</td>" +
 			"<td>Máximo</td><td>Dia</td><td>Lugar</td><td>Estado</td></tr>";
 
-	var obj = $.parseJSON(data);
-    
 	$.each(obj, function(i, o) {
 		
 		console.log(o.nombre);
@@ -106,10 +103,16 @@ function lista(data){
 			
 	div+="</table></div><div id='modo_burbuja'>";
 		
-	console.log(div);
+	
+//	
+//	var str = document.getElementById("modo_lista").innerHTML; 
+//    var res = str.replace(div);
+//    document.getElementById("modo_lista").innerHTML = res;
 	
 	$("#modo_lista").replaceWith(div);
-	div="";
+	//var parrafo = document.getElementById("modo_lista");
+	//parrafo.parentNode.removeChild(parrafo);
+	
 }
 
 
