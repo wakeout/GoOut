@@ -109,7 +109,7 @@
 						  <c:when test="${(actividad.maxPersonas-actividad.npersonas) > 0}">
 						    <span>Aun faltan ${actividad.maxPersonas-actividad.npersonas} por apuntarse!</span> 
 						   	<c:if test="${pertenece}">
-								<%@ include file="../fragments/invitar.jspf" %>				  
+								<%@ include file="../fragments/invitar.jspf"%>				  
 						   	</c:if>
 							 </c:when>
 						  <c:otherwise>
@@ -119,7 +119,9 @@
 					
 					<%@ include file="../fragments/participantes.jspf" %>		
 					
-					<%@ include file="../fragments/proponer_pago.jspf" %>		  
+					<%@ include file="../fragments/proponer_pago.jspf" %>
+					
+					<%@ include file="../fragments/nuevaEncuesta.jspf" %>		  
 						  
 						 
 			
@@ -187,6 +189,7 @@
 			<br>
 			<h1>Encuestas</h1>
 			<br>
+				
 				<c:forEach items="${encuestas}" var="e"> 
 					<span> ${e.pregunta.asunto}</span>
 					<br>
@@ -197,7 +200,7 @@
 					<br>
 					<br>
 				</c:forEach>
-
+				
 			</div>	
 		</div>
 

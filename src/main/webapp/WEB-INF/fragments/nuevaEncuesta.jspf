@@ -1,0 +1,49 @@
+<section class="cd-section">
+	<div class="cd-modal-action">
+		<a href="#0" class="btne" data-type="modal-trigger">
+		Añadir encuesta
+		</a>
+		<span class="cd-modal-bg"></span>
+	</div> <!-- cd-modal-action -->
+
+	<div class="cd-modal">
+		<div class="cd-modal-content">
+									
+			<span id="titulo">Añadir Encuesta</span>
+	 		<hr></hr>
+		<form action="${prefix}nuevaEncuesta" method="post">
+			
+			<input type="hidden" name="actividad" value=" ${actividad.id}">
+			
+			<label>Pregunta</label>
+			<br>
+			<textarea id="cuerpo_msj" rows="7" cols="60"
+						name="pregunta_encuesta" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea>
+			<br>
+			<br>
+			
+			<label>Opcion 1</label>
+			<br>
+			<input type="text" name="opcion1" id="opcion1" required/>
+			
+			<br>
+			<br>
+			
+			<label>Opcion 2</label>
+			<br>
+			<input type="text" name="opcion2" id="opcion2" required/>
+			
+			<br>
+			<br>
+			
+			<button class="boton" name="submit" type="submit">Añadir encuesta</button>
+			   
+		</form>		
+		
+		
+		</div> <!-- cd-modal-content -->
+	</div> <!-- cd-modal -->
+
+	<a href="#0" id="v" class="cd-modal-close">Close</a>
+
+</section>

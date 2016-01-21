@@ -732,6 +732,44 @@ public class HomeController {
 		return "redirect:actividad/"+actividad;
 	}
 	
+	@RequestMapping(value = "/nuevaEncuesta", method = RequestMethod.POST)
+	@Transactional
+	public String nuevaEncuesta(
+			@RequestParam("actividad") long actividad,
+			@RequestParam("pregunta_encuesta") String pregunta,
+			@RequestParam("opcion1") String opcion1,
+			@RequestParam("opcion2") String opcion2,
+			HttpSession session){
+		
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		Actividad a=entityManager.find(Actividad.class, actividad);
+		Comentario c= Comentario.crearComentario(pregunta, u);
+		Comentario c1 = Comentario.crearComentario(opcion1, u);
+		Comentario c2 = Comentario.crearComentario(opcion2, u);
+		Encuesta e = Encuesta.crearEncuesta(c);
+		Respuesta r1 = new Respuesta();
+		Respuesta r2 = new Respuesta();
+		
+		r1 = Respuesta.crearRespuesta(c1);
+		r2 = Respuesta.crearRespuesta(c2);
+		
+		e.getRespuestas().add(r1);
+		e.getRespuestas().add(r2);
+		
+		entityManager.persist(c);
+		entityManager.persist(c1);
+		entityManager.persist(c2);
+		entityManager.persist(e);
+		entityManager.persist(r1);
+		entityManager.persist(r2);
+		
+		a.getEncuestas().add(e);
+		entityManager.persist(a);
+		
+		
+		
+		return "redirect:actividad/"+actividad;
+	}
 
 	@RequestMapping(value = "/addEncuesta", method = RequestMethod.POST)
 	@Transactional
@@ -1277,6 +1315,7 @@ public class HomeController {
 			model.addAttribute("actividad", a);
 			model.addAttribute("tags", a.getTags());
 			model.addAttribute("encuestas", a.getEncuestas());
+			model.addAttribute("amigos", u.getAmigos());
 		}
 		model.addAttribute("prefix", "../");
 		return "actividad";
