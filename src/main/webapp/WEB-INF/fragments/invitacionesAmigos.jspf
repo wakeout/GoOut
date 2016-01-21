@@ -2,7 +2,7 @@
 <section class="cd-section">
 	<div class="cd-modal-action">
 		<a href="#0" class="btne" data-type="modal-trigger">
-		Mis Amigos
+		Invitar amigos
 		</a>
 		<span class="cd-modal-bg"></span>
 	</div> <!-- cd-modal-action -->
@@ -19,6 +19,8 @@
 					<a id="enlace" href="../perfil/${p.id}">
 					<img class="i_people" src="usuario/imagen?id=${p.id}" alt="" />
 						${p.login}
+					<input name="amigo" id="" type="checkbox" value="${p.login}"/>
+					<input type="hidden" name="tipo" value="invitacion">
 					</a>
 				</span>
 			</c:forEach>
@@ -28,4 +30,4 @@
 	<a href="#0" id="v" class="cd-modal-close">Close</a>
 
 </section>	
-							
+			
