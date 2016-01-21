@@ -57,7 +57,7 @@
 			<ul>
 			
 				<li><a id="b_crear" href="${prefix}crear">CREAR</a></li>
-				<li><a id="b_actv" href="${prefix}mis_actividades">ACTIVIDADES</a></li>
+				<li><a id="b_actv" href="${prefix}actividades">ACTIVIDADES</a></li>
 				<li><a id="b_buscar" href="${prefix}amigos">AMIGOS</a></li>
 			</ul>
 		</nav>
