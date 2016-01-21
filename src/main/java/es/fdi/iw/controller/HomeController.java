@@ -732,10 +732,7 @@ public class HomeController {
 		return "redirect:actividad/"+actividad;
 	}
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> 127286d86e8c7bb91c8cb4770f918ddab8055fde
+
 	@RequestMapping(value = "/addEncuesta", method = RequestMethod.POST)
 	@Transactional
 	public String addEncuesta(
