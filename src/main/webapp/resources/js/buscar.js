@@ -25,16 +25,3 @@ $("#check_amigos").click(function() {
   }
 });
 
-var i=1;
-function cambia_imagen() {                      
-   if (i == 1)
-      {
-      document.images['prueba'].src=mi_imagen2.src
-      i=2;
-      }
-   else
-      {
-      document.images['prueba'].src=mi_imagen1.src;
-      i=1;
-      }
-   }

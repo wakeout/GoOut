@@ -67,14 +67,26 @@
 		 
     .i_profile
 	{	
-		width:70px;
-		height:70px;
+		width:80px;
+		height:80px;
 		border-radius:500px;
 		border: 2px;
 		margin-right:40px;
 		object-fit: cover;
 	}
+	
+	.i_profile2
+	{	
+		width:80px;
+		height:80px;
+		border-radius:500px;
+		border: 2px;
+		object-fit: cover;
+	}
 
+#subir{
+	margin-bottom: 20px;
+}
 	
 /*Pantalla principal*/
 	

@@ -28,8 +28,12 @@
 												<!-- <p id="text">¿QUÉ QUIERES HACER?</p>-->
 												<br>
 												<table id="nombre_actv">
-													<div id="upload">
-														<input type="file" name="imagen" />
+													<div id="subir">
+													
+														<img id="img_destino" class="i_profile2" src="${prefix}resources/images/subir.png" alt="Tu imagen">
+														<br>
+														<span id="upfile1" style="cursor:pointer;border: 2px solid black;">Cambiar imagen</span>
+														<input type="file" id="file1" class="cambio_img" name="imagen" style="display:none" />
 
 													</div>
 													<span class="titulos">Nombre de la actividad</span>

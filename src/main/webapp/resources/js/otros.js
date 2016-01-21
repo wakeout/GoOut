@@ -89,6 +89,27 @@ $("#upfile1").click(function () {
     $("#file1").trigger('click');
 });
 
+
+function mostrarImagen(input) {
+	 if (input.files && input.files[0]) {
+	  var reader = new FileReader();
+	  reader.onload = function (e) {
+	   $('#img_destino').attr('src', e.target.result);
+	  }
+	  reader.readAsDataURL(input.files[0]);
+	 }
+	}
+	 
+	$(".cambio_img").change(function(){
+	 mostrarImagen(this);
+	});
+	
+//function cambio_imagen() {                      
+//   if (i == 1)
+//      {
+//      document.getElementById("upload").src=mi_imagen2.src
+//      }
+//   }
 /**/
 
 //$('#bcrear').click(function(){
