@@ -4,8 +4,11 @@
 	<%@ include file="../fragments/head.jspf" %>
 	<link rel="stylesheet" href="${prefix}resources/css/style_mis_actividades.css"> 	
 	<script src="${prefix}resources/js/misActividades.js"></script>
+	<script src="${prefix}resources/js/buscar.js"></script>
 	<script src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 	<script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="${prefix}resources/css/style_buscar.css">
+	
 	<script>
 
 		$(function(){
@@ -44,9 +47,13 @@
 										<input type="radio" id="nomias" name="tipo_busqueda"/>Actividades nuevas
 										<input type="radio" id="todo" name="tipo_busqueda"/>Todas las actividades
 								
+									<div id="cambio_modo">
+									    <input type="checkbox" id="switch1" name="switch1" class="switch"/>
+									    <label for="switch1">Modo lista</label>
+									</div>
 									
-									<!-- 									<div id="filtro_MisActividades">
-										<form action="${prefix}filtrarActividades">
+									
+									<div id="filtro_MisActividades">
 										<div id="cajaA">
 										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
 										<input type="radio" id="act_fin" name="activas_fin" value="finalizadas"/>Finalizadas
@@ -59,29 +66,15 @@
 										<input type="checkbox" id="tiempo" value="4"name="filtro" />Proximos meses
 										<input type="checkbox" id="mis_creaciones" value="5" name="filtro" />Mis Creaciones
 										
-										<button class="boton" id="filtrarMis" name="submit" type="submit">Filtrar</button>
-										
 										</div>
-										</form>
+								
 									</div> 
 									
-											<div id="modo_lista">
-												<table id="lista_actv">
-												<tr><td>Nombre Actividad</td><td>Personas unidas</td>
-												<td>Máximo</td><td>Dia</td>
-												<td>Lugar</td><td>Estado</td></tr>
-													<c:forEach items="${actividades}" var="a">
-														<tr><td><a href="actividad/${a.id}"> ${a.nombre} </a></td>
-														<td>1</td><td>${a.maxPersonas}</td>
-														<td>${a.fecha_ini}</td>
-														<td>${a.localizacion}</td><td>${a.estado}</td>
-														</tr>
-													</c:forEach>
-													 
-												</table>
-											</div> -->
+									<div id="modo_lista">
+							
+									</div> 
 											
-									<div id="fotos">
+									<div id="modo_burbuja">
 									
 									</div>
 

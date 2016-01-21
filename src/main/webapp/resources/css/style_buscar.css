@@ -86,9 +86,7 @@
 	}
 
 
-	#cambio_modo{
-		display:none;
-	}
+	
 	input.switch:empty {
 	    margin-left: -9999px;
 	}
@@ -97,7 +95,6 @@
 	    float: left;
 	    line-height: 1.6em;
 	    text-indent: 4em;
-	    margin: 0.2em 0;
 	    cursor: pointer;
 	    -webkit-user-select: none;
 	    -moz-user-select: none;

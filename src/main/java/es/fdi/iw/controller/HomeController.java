@@ -550,7 +550,7 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
-			@RequestParam("tags") long[] tagIds,
+			//@RequestParam("tags") long[] tagIds,
 			@RequestParam("fecha_ini") Date fecha_ini,
 			@RequestParam("fecha_fin") Date fecha_fin,
 			@RequestParam("origen") String origen,
@@ -558,8 +558,15 @@ public class HomeController {
 			@RequestParam("actv_privada") int privado,
 			@RequestParam("amigo") String[] amigosIds,
 			@RequestParam("tipo") String tipo,
-			Model model, HttpSession session) throws IOException {
+			Model model, HttpSession session,
+			HttpServletRequest request) throws IOException {
 
+			long[] tagIds = new long[0];
+			String[] tags = request.getParameterValues("tags");
+			if (tags.length > 0) {
+				tagIds = new long[tags.length];
+			}
+			
 			if(session.getAttribute("usuario")!=null){
 			Actividad a = null;
 			Registro r = null;
@@ -874,13 +881,14 @@ public class HomeController {
 		Usuario usuario_amigo = null;
 		Usuario usuario_propio = null;
 		Usuario d = null; // Destinatario
-		
 		Mensaje m = null;
+
 		String titulo="Solicitud de amistad";
 
+		usuario_propio=(Usuario)session.getAttribute("usuario");
+		usuario_amigo = entityManager.find(Usuario.class,amigo);
+		
 		try{
-			usuario_propio=(Usuario)session.getAttribute("usuario");
-			usuario_amigo = entityManager.find(Usuario.class,amigo);
 			
 			d = (Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam", usuario_amigo.getLogin()).getSingleResult();
 			
@@ -929,6 +937,7 @@ public class HomeController {
 				
 				entityManager.persist(usuario_propio);
 				entityManager.persist(usuario_amigo);
+				session.setAttribute("usuario", usuario_propio);
 			}
 			
 		}
@@ -938,7 +947,51 @@ public class HomeController {
 		}
 		
 		
-			return "redirect:mi_perfil";
+			return "redirect:perfil/"+usuario_propio.getId();
+	}
+	
+	@RequestMapping(value = "/eliminarAmistad", method = RequestMethod.POST)
+	@Transactional
+	public String eliminarAmistad(
+		@RequestParam("id_amigo") long amigo,
+		@RequestParam("id_propio") long propio,
+		HttpSession session){
+		
+		Usuario usuario_amigo = null;
+		Usuario usuario_propio = null;
+		int i = 0;
+		boolean existe = false;
+		
+		try
+		{
+			usuario_amigo = entityManager.find(Usuario.class,amigo);
+			usuario_propio = entityManager.find(Usuario.class,propio);
+			List<Usuario> aux = usuario_propio.getAmigos();
+			
+			while(aux.size()> i){
+				if(aux.get(i).getId() == usuario_amigo.getId())
+					existe=true;
+				i++;
+			}
+			
+			if(existe)
+			{
+				usuario_propio.getAmigos().remove(usuario_amigo);
+				usuario_amigo.getAmigos().remove(usuario_propio);
+				
+				entityManager.persist(usuario_propio);
+				entityManager.persist(usuario_amigo);
+				session.setAttribute("usuario", usuario_propio);
+			}
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		
+		return "redirect:perfil/"+usuario_propio.getId();
 	}
 	
 	@RequestMapping(value = "/addRegistro", method = RequestMethod.POST)
@@ -1353,6 +1406,8 @@ public class HomeController {
 			Model model, HttpSession session){
 		
 		boolean amigos = false;
+		boolean solicitado = false;
+		
 		model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 		model.addAttribute("prefix", "../");
 		
@@ -1360,14 +1415,27 @@ public class HomeController {
 		
 			Usuario p=entityManager.find(Usuario.class, id);
 			Usuario u=(Usuario)session.getAttribute("usuario");
+			Mensaje m = null;
 			
 			for (Usuario buscado : u.getAmigos()) {
 				if(buscado.getId()==id)
 						amigos=true;
 			}
 			
+			try{
+				m = (Mensaje)entityManager.createNamedQuery("buscarSolicitud").
+						setParameter("origen",u.getId()).setParameter("destino", id)
+						.setParameter("tipo", "solicitud").getSingleResult();
+				
+				solicitado = true;
+			}
+			catch(NoResultException n){
+				
+				solicitado = false;
+			}
 			
 			model.addAttribute("amigos", amigos);
+			model.addAttribute("solicitado", solicitado);
 		
 			if (p == null) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
