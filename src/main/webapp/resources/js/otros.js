@@ -91,16 +91,16 @@ $("#upfile1").click(function () {
 
 /**/
 
-$('#bcrear').click(function(){
-	if ($("#tags:checked").length == 0){
-		//alert("error");
-		alert(Date.now());
-		return false;
-		//document.getElementById('b_crear').disabled = true;
-		//console.log("error");
-	}
-	return true;
-});
+//$('#bcrear').click(function(){
+//	if ($("#tags:checked").length == 0){
+//		//alert("error");
+//		alert(Date.now());
+//		return false;
+//		//document.getElementById('b_crear').disabled = true;
+//		//console.log("error");
+//	}
+//	return true;
+//});
 
 /*$("#tags:checked").each(
 	function(){
