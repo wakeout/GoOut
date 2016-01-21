@@ -1161,7 +1161,7 @@ public class HomeController {
 			 } 
 			 
 			 
-			 model.addAttribute("tags", fin);
+			model.addAttribute("tags", fin);
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			model.addAttribute("amigos", u.getAmigos());
 			return "crear";
@@ -1211,6 +1211,11 @@ public class HomeController {
 
 	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
 	public String actividades(Model model, HttpSession session){
+		
+		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+		
+		model.addAttribute("hoy", sqlDate.getDay());
+		model.addAttribute("mes", sqlDate.getMonth());
 		
 		
 		if(((Usuario)session.getAttribute("usuario"))!=null){

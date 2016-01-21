@@ -4,7 +4,15 @@ var temp2 = null;
 var temp3 = null;
 var temp4 = null;
 var modo=0;
+var filtro=" ";
 
+
+
+function filtro(valor){
+	
+	filtro+=" AND "+valor;
+	
+}
 
 $('input[type="checkbox"][name="switch1"]').change(function(){
 	if(this.checked){
@@ -42,6 +50,7 @@ function refrescar(data){
 	 } else {
 		 burbuja(data);
 	 }
+	 filtro="";
 }
 
 

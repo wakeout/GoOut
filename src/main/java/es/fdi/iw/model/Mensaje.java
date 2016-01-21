@@ -37,7 +37,6 @@ public class Mensaje {
 	private long id;
 	private Usuario origen;
 	private Usuario destinos;
-	private int nDestinos;
 	private String titulo;
 	private String contenido;
 	private String tipo;
@@ -63,12 +62,7 @@ public class Mensaje {
 	public void setId(long id) {
 	  this.id = id;
 	}
-	public int getNDestinos() {
-	  return nDestinos;
-	}
-	public void setNDestinos(int n) {
-	  this.nDestinos = n;
-	} 
+
 	public String getTitulo() {
       return titulo;
 	}

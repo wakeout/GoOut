@@ -47,7 +47,6 @@ public class Actividad{
 	private String localizacion;
 	private String destino;
 	private List<Hito> proximosHitos;
-	private String idImagen;
 	private String estado;
 	private int maxPersonas;
 	private int n_personas;
@@ -122,12 +121,6 @@ public class Actividad{
 		this.nombre = nombre;
 	 }
 
-	 public String getIdImagen(){
-		 return idImagen;
-	 }
-	 public void setIdImagen(String idImagen){
-		 this.idImagen=idImagen;
-	 }
 	 public int getMaxPersonas(){
 		 return maxPersonas;
 	 }
