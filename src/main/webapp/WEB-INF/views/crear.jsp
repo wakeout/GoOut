@@ -25,7 +25,8 @@
 										<form action="${prefix}crearActividad" enctype="multipart/form-data"
 											method="POST" name="cre" id="formularioGordo">
 											<div id="crear_1">
-												<p id="text">¿QUÉ QUIERES HACER?</p>
+												<!-- <p id="text">¿QUÉ QUIERES HACER?</p>-->
+												<br>
 												<table id="nombre_actv">
 													<div id="upload">
 														<input type="file" name="imagen" />
@@ -74,7 +75,8 @@
 												</table>
 											</div>
 											<div id="crear_2">
-												<p id="text">¿CUÁNDO QUIERES HACERLO?</p>
+												<!-- <p id="text">¿CUÁNDO QUIERES HACERLO?</p>-->
+												<br>
 												<label> Inicio:</label> <input type="date" size="12"
 													name="fecha_ini" id="fecha_ini" required/> <!--<br> <input
 													type="checkbox" name="check" id="check" /> <label
@@ -85,16 +87,9 @@
 												<br>
 												<label> Fin:</label> <input type="date" size="12"
 													id="inputField2" name="fecha_fin" required/>
-												<!--</div>-->
+												
 												<tr>
 													
-													
-													 
-													<!--<td><input type="number" min=01 value=00 max="24"
-														id="num_participantes" class="caja"></td>
-													<td>:</td>
-													<td><input type="number" min="1" value="0" max="59"
-														id="num_participantes" class="caja"></td>-->
 												</tr>
 												<br>
 												<div id="boton_crear">
@@ -108,20 +103,30 @@
 
 											</div>
 											<div id="crear_3">
-												<p id="text">¿DÓNDE ES?</p>
-												<div id="mapa">
-													<!--<iframe
-														src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6286564.690415084!2d-5.4376118!3d39.7034345!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1445771146399"
-														width="390" height="300" frameborder="0" style="border: 0"
-														allowfullscreen></iframe>-->
-													<%@ include file="../fragments/mis_amigos.jspf"%>
-												</div>
+												<!-- <p id="text">¿DÓNDE ES?</p>-->
+												<!-- <div id="mapa">-->
+												<!--<div>-->
+												<br>
+													
+													<br>
+													<br>
+												<!-- </div>-->
 												<label>Lugar de Origen</label> <input type="text" size="10"
-													class="caja" name="origen" required/> <br> <input name="ruta" id="ruta"
+													class="caja" name="origen" required/> 
+													<br> 
+													<br>
+													<input name="ruta" id="ruta"
 													type="checkbox" value="cambio" onchange="habilitarRuta()" />¿Habilitar
-												ruta? <br> <label>Destino</label> <input type="text"
+												ruta? 
+												<br> 
+												<br>
+												<label>Destino</label> <input type="text"
 													name="destino" id="destino" disabled
 													style="width: 110px; height: 30px" class="caja"/>
+												<br>
+												<br>
+													
+												<%@ include file="../fragments/invitacionesAmigos.jspf"%>
 											</div>
 										</form>
 									</div>

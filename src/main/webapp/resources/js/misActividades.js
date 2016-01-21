@@ -3,39 +3,46 @@ var temp = null;
 var temp2 = null;
 var temp3 = null;
 var temp4 = null;
-var modo=0;
-var filtro=" ";
 
 var objetos;
 
 
-function filtro(valor){
-	
-	filtro+=" AND "+valor;
-	
-}
+$('.img_thumb' ).hover(function(e){
+    target = $(this);
+    $(target[0].firstElementChild).fadeIn(200);
+}, function(){
+    $(target[0].firstElementChild).fadeOut(200);
+});
 
 $('input[type="checkbox"][name="switch1"]').change(function(){
 	if(this.checked){
-	   	modo=1;
-	   	alert(1);
+		$( "#modo_lista" ).show( "slow" );
+		$( "#modo_burbuja" ).slideUp();
 	}else{
-		alert(0);
-		modo=0;
+		$( "#modo_burbuja" ).show( "slow" );
+		$( "#modo_lista" ).slideUp();
 	}
-	buscar();
+	
+	actualizar();
 });
+
+function actualizar(){
+	if($('#switch1').prop('checked'))
+		lista(objetos);
+	else
+		burbuja(objetos);
+	
+}
 
 $('input[type="radio"][name="tipo_busqueda"]').change(function() {
     if(this.checked){
    	 buscar();
+   	 actualizar();
     }
 });
 
-
-
 function buscar(){
-	console.log(modo);
+	
 	var buscado=document.getElementById("buscar_actividades").value;
 	var tipo;
 	
@@ -49,25 +56,33 @@ function buscar(){
 
 
 function burbuja(obj){
+
 	var div="<div id='modo_burbuja'>";
 	
 
 	$.each(obj, function(i, o) {
 		
 		
-		div+="<a  href='actividad/"+o.id+
+		div+="<a class='' href='actividad/"+o.id+
 		"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
 		+ o.nombre+ 
-		"</p></div><img class='i_actv'src='actividad/imagen?id="
-		+o.id+"'/></div></a>";
+		"</p></div><img class='i_actv' src='actividad/imagen?id="
+		+o.id+"' alt=''/></div></a>";
 
 	})	
 			
 	div+="</div>"
-		
 	
 	$("#modo_burbuja").replaceWith(div);
-	div="";
+
+//	var str = document.getElementById("modo_burbuja").innerHTML; 
+//    var res = str.replace(div, div);
+//    document.getElementById("modo_burbuja").innerHTML = res;
+//	
+	//var parrafo = document.getElementById("modo_burbuja");
+	//parrafo.parentNode.removeChild(parrafo);
+	
+
 }
 
 function lista(obj){
@@ -89,43 +104,17 @@ function lista(obj){
 	div+="</table></div><div id='modo_burbuja'>";
 		
 	
+//	
+//	var str = document.getElementById("modo_lista").innerHTML; 
+//    var res = str.replace(div);
+//    document.getElementById("modo_lista").innerHTML = res;
+	
 	$("#modo_lista").replaceWith(div);
+	//var parrafo = document.getElementById("modo_lista");
+	//parrafo.parentNode.removeChild(parrafo);
+	
 }
 
-$('.img_thumb' ).hover(function(e){
-    target = $(this);
-    $(target[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(target[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb2' ).hover(function(e){
-    temp = $(this);
-    $(temp[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb3' ).hover(function(e){
-    temp2 = $(this);
-    $(temp2[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp2[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb4' ).hover(function(e){
-    temp3 = $(this);
-    $(temp3[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp3[0].firstElementChild).fadeOut(200);
-});
-
-$('.img_thumb5' ).hover(function(e){
-    temp4 = $(this);
-    $(temp4[0].firstElementChild).fadeIn(200);
-}, function(){
-    $(temp4[0].firstElementChild).fadeOut(200);
-});
 
 $("#mis_creaciones").click(function() {
 	  if ( $( "#mis_creaciones" ).prop('checked') ) {

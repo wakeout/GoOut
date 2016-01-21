@@ -24,17 +24,6 @@ $("#check_amigos").click(function() {
     $( "#actv_amigos" ).slideUp();
   }
 });
-/*
-$("#switch1").click(function() {
-	  if ( $( "#modo_burbuja" ).is( ":hidden" ) ) {
-	    $( "#modo_burbuja" ).show( "slow" );
-		 $( "#modo_lista" ).slideUp();
-	  } else {
-	    $( "#modo_burbuja" ).slideUp();
-		$( "#modo_lista" ).show( "slow" );
-	  }
-});
-*/
 
 var i=1;
 function cambia_imagen() {                      

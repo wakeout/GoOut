@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SecondaryTable;
 import javax.validation.constraints.NotNull;
 
 import java.sql.Date;
@@ -46,15 +47,20 @@ public class Actividad{
 	private Date fecha_fin;
 	private String localizacion;
 	private String destino;
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Hito> proximosHitos;
 	private String estado;
 	private int maxPersonas;
 	private int n_personas;
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private Foro foro;
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Tag> tags;
 	private String privacidad;
 	private String descripcion;
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Registro> registros;
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Encuesta> encuestas;
 	
 	public static StringBuilder getJSONString(List<Actividad> l){
