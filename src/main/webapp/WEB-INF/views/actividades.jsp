@@ -5,6 +5,8 @@
 	<script src="${prefix}resources/js/buscar.js"></script>
 	<script src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 	<link rel="stylesheet" href="${prefix}resources/css/style_buscar.css">
+	<link rel="stylesheet" href="${prefix}resources/css/style_mis_actividades.css">
+	
 	<%@ include file="../fragments/head.jspf" %>
 	
 

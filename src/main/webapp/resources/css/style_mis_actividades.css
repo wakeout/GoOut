@@ -1,3 +1,11 @@
+	#modo_lista{
+		overflow-y:scroll;
+	}
+	
+	#modo_burbuja{
+		overflow-y:scroll;
+	}
+	
 	#fotos{
 		
 		height:800px;
