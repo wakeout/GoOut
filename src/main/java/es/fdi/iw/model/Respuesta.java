@@ -1,6 +1,8 @@
 package es.fdi.iw.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,16 @@ import javax.validation.constraints.NotNull;
 public class Respuesta{
 	private long id;
 	private Comentario mensaje;
-	List<Usuario> usuario;
+	List<Usuario> usuario;//USUARIOS QUE HAN RESPONDIDO
+	
+	public static Respuesta crearRespuesta(Comentario mensaje){
+		Respuesta r = new Respuesta();
+		
+		r.mensaje = mensaje;
+		r.usuario = new ArrayList<Usuario>();
+		
+		return r;
+	}
 	
 	@Id
     @GeneratedValue

@@ -38,8 +38,6 @@
 						
 						<%@ include file="../fragments/proponer_hito.jspf" %>	
 						
-						<!-- file="../fragments/ajustes_actividad.jspf" -->
-						
 						<%@ include file="../fragments/ajustes_actividad.jspf" %>			  
 						
 						<form action="${prefix}salirActividad" method="POST">
@@ -80,7 +78,7 @@
 			<p>Descripción de la actividad</p>
 				<div id="desc_actv">
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non ipsum repudiandae sequi ut optio reiciendis consectetur, cum, a provident, iusto quod esse, perferendis iure iste! Quidem itaque, exercitationem aliquam, mollitia recusandae repellat dolores quibusdam minima quae reprehenderit ut, reiciendis officia.
+					${actividad.descripcion}
 				</p>
 				</div>
 			</div>
@@ -118,7 +116,9 @@
 						  </c:otherwise>
 					</c:choose>
 					
-					<%@ include file="../fragments/participantes.jspf" %>				  
+					<%@ include file="../fragments/participantes.jspf" %>		
+					
+					<%@ include file="../fragments/proponer_pago.jspf" %>		  
 						  
 						 
 			
@@ -135,6 +135,8 @@
 								Forma de Pago: ${p.descripcion}
 								<br>
 								Precio:    ${p.precioIndividual}
+								<br>
+								Fecha:	${p.fechaLimite}
 								<br>
 							</p>
 						</div>

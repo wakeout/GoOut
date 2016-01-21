@@ -21,11 +21,9 @@
    		
 	</div>
 			
+	<%@ include file="../fragments/add/addActividad.jspf" %>	
+	
 	<button id="Actividad" class="papelera"></button>	
-	
-	<%@ include file="../fragments/addActividad.jspf" %>			  
-	
-	
 	
 	<br>
 	<h1>Actividades</h1>
@@ -36,10 +34,6 @@
 			<tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
 			</c:forEach>
 		</table>
-	
-	<!--
-	</form>
-	-->
 	</div>
 	
 	<div class="admin_usuario">
@@ -49,10 +43,10 @@
    		<input type="submit"  value="Buscar en los Usuarios">
 	</div>
 	
-	
+	<%@ include file="../fragments/add/addUsuario.jspf" %>
 	<button id="Usuario" class="papelera"></button>	
 	
-	<%@ include file="../fragments/addUsuario.jspf" %>
+	
 	
 	
 	<br>
@@ -75,12 +69,11 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/add/addRegistro.jspf" %>
 	
 	<form name="lista_registros" action="${prefix}borrarRegistros" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Registro" class="papelera">	
-	
-	<%@ include file="../fragments/addRegistro.jspf" %>
 	
 	
 	
@@ -106,13 +99,11 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/add/addMensaje.jspf" %>
 	
 	<form name="lista_mensajes" action="${prefix}borrarMensajes" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Mensaje" class="papelera">	
-	
-	
-	<%@ include file="../fragments/addMensaje.jspf" %>
 	
 	
 	<br>
@@ -134,13 +125,11 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/add/addTag.jspf" %>
 	
 	<form name="lista_tags" action="${prefix}borrarTags" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Tag" class="papelera">	
-	
-	<%@ include file="../fragments/addTag.jspf" %>
-	
 	
 	<br>
 		<h1>Tags</h1>
@@ -163,13 +152,12 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/add/addComentarios.jspf" %>
 
 	<form name="lista_comentarios" action="${prefix}borrarComentarios" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Comentario" class="papelera">	
 
-	<%@ include file="../fragments/addComentarios.jspf" %>
-	
 	
 	<br>
 		<h1>Comentarios</h1>
@@ -190,12 +178,10 @@
    		
 	</div>
 	
-	
+	<%@ include file="../fragments/add/addNovedad.jspf" %>
 	<form name="lista_novedades" action="${prefix}borrarNovedades" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Novedad" class="papelera">	
-	
-	<%@ include file="../fragments/addNovedad.jspf" %>
 	
 	
 	<br>
@@ -217,13 +203,11 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/add/addHito.jspf" %>
 	
 	<form name="lista_hitos" action="${prefix}borrarHitos" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Hito" class="papelera">	
-	
-	<%@ include file="../fragments/addHito.jspf" %>
-	
 	
 	<br>
 		<h1>Hitos</h1>
@@ -243,12 +227,12 @@
    		
 	</div>
 	
-	
+	<%@ include file="../fragments/add/addPago.jspf" %>
 	<form name="lista_pagos" action="${prefix}borrarPagos" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Pago" class="papelera">	
 	
-	<%@ include file="../fragments/addPago.jspf" %>
+	
 	
 	
 	
@@ -273,12 +257,11 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/add/addEncuesta.jspf" %>
 	
 	<form name="lista_encuestas" action="${prefix}borrarEncuestas" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Encuesta" class="papelera">	
-	
-	<%@ include file="../fragments/addEncuesta.jspf" %>
 	
 	<br>
 		<h1>Encuestas</h1>
@@ -300,14 +283,12 @@
    		
 	</div>
 	
+	<%@ include file="../fragments/add/addRespuesta.jspf" %>
 	
 	<form name="lista_respuestas" action="${prefix}borrarRespuestas" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Respuesta" class="papelera">	
-	
-	<%@ include file="../fragments/addRespuesta.jspf" %>
-	
-	
+		
 	<br>
 		<h1>Respuestas</h1>
 		<a class="marcar" onclick="seleccionar(lista_respuestas)">Marcar todos</a>

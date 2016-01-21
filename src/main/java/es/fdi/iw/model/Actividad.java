@@ -88,6 +88,7 @@ public class Actividad{
 		
 		a.nombre=nombre_actv;
 		a.creador=creador;
+		a.descripcion = descripcion;
 		a.fecha_ini=fecha_ini;
 		a.fecha_fin=fecha_fin;
 		a.localizacion=localizacion;

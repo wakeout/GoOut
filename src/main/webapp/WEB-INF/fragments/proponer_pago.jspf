@@ -8,22 +8,18 @@
 
 	<div class="cd-modal">
 		<div class="cd-modal-content">
-									
+			
 			<span id="titulo">Añadir Pago</span>
 	 		<hr></hr>
-		<form action="${prefix}addPago" method="post">
-			
-			<label>Id registro</label>
-			<input type="text" name="id_registro" id="id_registro" required/>
-			
-			<br>
-			<br>
+			<form action="${prefix}nuevoPago" method="post">
 			
 			<label>Precio individual</label>
-			<input type="text" name="precio_individual" id="precio_individual" required/> 
+			<input type="number" name="precio_individual" id="precio_individual" required/> 
 			
 			<br>
 			<br>
+			
+			<input type="hidden" name="actividad" value=" ${actividad.id}">
 			
 			<label>Descripcion</label>
 			<input type="text" name="descripcion" id="descripcion" required/> 
@@ -36,9 +32,9 @@
 			
 			<br>
 			<br>
-			<button class="boton" name="submit" type="submit">Añadir pago</button>
+			<button  name="submit" type="submit">Añadir pago</button>
 			   
-		</form>		
+			</form>		
 		
 		
 		</div> <!-- cd-modal-content -->

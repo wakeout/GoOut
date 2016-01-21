@@ -1,7 +1,7 @@
 <section class="cd-section">
 	<div class="cd-modal-action">
 		<a href="#0" class="btne" data-type="modal-trigger">
-		Proponer nuevo hito
+		Añadir pago
 		</a>
 		<span class="cd-modal-bg"></span>
 	</div> <!-- cd-modal-action -->
@@ -9,27 +9,36 @@
 	<div class="cd-modal">
 		<div class="cd-modal-content">
 									
-			<span id="titulo">Nuevo Hito</span>
+			<span id="titulo">Añadir Pago</span>
 	 		<hr></hr>
-		<form action="${prefix}crearHito" method="post">
+			<form action="${prefix}addPago" method="post">
 			
-			<label>Titulo</label>
-			<input type="text" name=asunto id="asunto" required/>
+			<label>Id registro</label>
+			<input type="text" name="id_registro" id="id_registro" required/>
 			
 			<br>
 			<br>
 			
-			<input type="hidden" name="actividad" value=" ${actividad.id}">
+			<label>Precio individual</label>
+			<input type="number" name="precio_individual" id="precio_individual" required/> 
+			
+			<br>
+			<br>
+			
+			<label>Descripcion</label>
+			<input type="text" name="descripcion" id="descripcion" required/> 
+			
+			<br>
+			<br>
 			
 			<label>Fecha</label>
 			<input type="date" size="12" id="inputField" class="caja" id="fecha" name="fecha" required/>
 			
 			<br>
 			<br>
-			<input class="enviar" type="submit"
-					value="Crear hito" name="Enviar" style="float: right; padding-left: 20px;">
+			<button  name="submit" type="submit">Añadir pago</button>
 			   
-		</form>		
+			</form>		
 		
 		
 		</div> <!-- cd-modal-content -->
@@ -37,5 +46,4 @@
 
 	<a href="#0" id="v" class="cd-modal-close">Close</a>
 
-</section>	
-							
+</section>

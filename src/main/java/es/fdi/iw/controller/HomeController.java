@@ -225,7 +225,8 @@ public class HomeController {
 			@RequestParam("idactividad") long idactividad,
 			@RequestParam("fecha_inicio") Date fecha_ini,
 			@RequestParam("fecha_fin") Date fecha_fin,
-			@RequestParam("imagen") MultipartFile foto){
+			@RequestParam("imagen") MultipartFile foto,
+			@RequestParam("descripcion_actividad") String descripcion){
 		
 		Actividad a = null;
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
@@ -259,6 +260,7 @@ public class HomeController {
 		a.setMaxPersonas(nparticipantes);
 		a.setFecha_ini(fecha_ini);
 		a.setFecha_fin(fecha_fin);
+		a.setDescripcion(descripcion);
 		entityManager.persist(a);
 		
 		return "redirect:actividad/"+idactividad;
@@ -443,6 +445,68 @@ public class HomeController {
 
 	//adds-------------------------------------
 	
+	@RequestMapping(value = "/nuevoPago", method = RequestMethod.POST)
+	@Transactional
+	public String nuevoPago(
+			@RequestParam("actividad") long actividad,
+			@RequestParam("precio_individual") int precio,
+			@RequestParam("descripcion") String descripcion,
+			@RequestParam("fecha") Date fecha,
+			HttpSession session){
+		
+		Actividad a=entityManager.find(Actividad.class, actividad);
+		Usuario u = new Usuario();
+		Registro r = new Registro();
+		
+		/*Hito h= Hito.crearHito(asunto, fecha);
+		
+		if(a.getHitos()==null){
+			List<Hito> lHitos=new ArrayList<Hito>();
+			a.setHitos(lHitos);
+		}
+		a.getHitos().add(h);
+		
+		entityManager.persist(h);
+		entityManager.persist(a);*/
+		
+		u=(Usuario)session.getAttribute("usuario");
+		
+		r = (Registro) entityManager.createNamedQuery("actividadUsuario")
+				.setParameter("idUsuario", u).setParameter("idActividad", a).getSingleResult();
+		
+		Pago p = new Pago();
+		p = Pago.crearPago(precio, fecha, descripcion, r.getId());
+		entityManager.persist(p);
+		
+		r.getPagos().add(p);
+		entityManager.persist(r);
+		
+		
+		return "redirect:actividad/"+actividad;
+	}
+	
+	@RequestMapping(value = "/addPago", method = RequestMethod.POST)
+	@Transactional
+	public String addPago(
+			@RequestParam("id_registro") String registro,
+			@RequestParam("precio_individual") int precio,
+			@RequestParam("descripcion") String descripcion,
+			@RequestParam("fecha") Date fecha){
+		
+		Pago p = new Pago();
+		long id_registro = Integer.parseInt(registro);
+		
+		p = Pago.crearPago(precio, fecha, descripcion, id_registro);
+		entityManager.persist(p);
+		
+		Registro r = (Registro) entityManager.createNamedQuery("unRegistro")
+				.setParameter("registroParam", id_registro).getSingleResult();
+		
+		r.getPagos().add(p);
+		entityManager.persist(r);
+		
+		return "home";
+	}
 	
 	@RequestMapping(value = "/addActividad", method = RequestMethod.POST)
 	@Transactional
@@ -453,7 +517,7 @@ public class HomeController {
 			@RequestParam("lugar") String origen,
 			@RequestParam("destino") String destino,
 			@RequestParam("num_participantes") int max_participantes,
-			@RequestParam("descripcion_actividad") String descripcion,
+			@RequestParam("descripcion") String descripcion,
 			Model model, HttpSession session){
 		
 		Actividad a = null;
@@ -523,15 +587,6 @@ public class HomeController {
 				usuario_creador.getRegistros().add(r);
 				
 				entityManager.persist(r);	
-				
-				/*usuario_creador=(Usuario)session.getAttribute("usuario");
-				
-				d = (Usuario)entityManager.createNamedQuery("userByLogin")
-						.setParameter("loginParam", destino).getSingleResult();
-				
-				
-				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d);
-				entityManager.persist(m);*/
 				
 				Mensaje m = new Mensaje();
 				for(int i = 0; i < amigosIds.length; i++){
@@ -720,7 +775,9 @@ public class HomeController {
 	
 	@RequestMapping(value = "/crearHito", method = RequestMethod.POST)
 	@Transactional
-	public String crearHito(@RequestParam("actividad") long actividad,	@RequestParam("fecha") Date fecha,  @RequestParam("asunto") String asunto){
+	public String crearHito(@RequestParam("actividad") long actividad,
+			@RequestParam("fecha") Date fecha,
+			@RequestParam("asunto") String asunto){
 		
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		

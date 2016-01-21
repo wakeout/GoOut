@@ -2,6 +2,7 @@ package es.fdi.iw.model;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,13 +18,15 @@ import javax.persistence.OneToMany;
 @NamedQueries({
     @NamedQuery(name="allRegistros",
             query="select r from Registro r"),
+    @NamedQuery(name = "actividadUsuario",
+    		query="select r from Registro r where r.usuario= :idUsuario AND r.actividad= :idActividad"),
     @NamedQuery(name="unRegistro",
     		query="select r from Registro r where r.id = :registroParam"),
     @NamedQuery(name="delRegistro", 
      		query="delete  from Registro r where r.id= :idRegistro"),
      @NamedQuery(name="pertenece", 
      		query="select r from Registro r where r.usuario.id= :usuarioParam and r.actividad.id= :actividadParam"),
-     		@NamedQuery(name="eliminarRegistro", 
+     @NamedQuery(name="eliminarRegistro", 
      		query="delete  from Registro r where r.usuario.id= :usuarioParam and r.actividad.id= :actividadParam"),		
     
 })
@@ -38,6 +41,7 @@ public class Registro {
 	public static Registro crearRegistro(Actividad  actv, Usuario user) {
 		
 		Registro r = new Registro();
+		r.pagos = new ArrayList<Pago>();
 		r.actividad=actv;
 		r.usuario=user;
 		return r;

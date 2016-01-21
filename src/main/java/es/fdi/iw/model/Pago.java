@@ -26,7 +26,7 @@ public class Pago {
 	private String descripcion;
 	private boolean pagado;
 	
-	public static Pago crearPago(double precio, Date fecha, String descripcion){
+	public static Pago crearPago(double precio, Date fecha, String descripcion, long registro){
 		Pago p = new Pago();
 		
 		p.precioIndividual = precio;
