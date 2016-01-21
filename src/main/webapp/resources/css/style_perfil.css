@@ -137,3 +137,10 @@ text-align: center;
 .estilo_campos{
 	background: white
 }
+
+.actv_apuntadas{
+	margin-top:250px;
+	height:150px;
+	width:500px;
+	overflow-y: auto;
+}
