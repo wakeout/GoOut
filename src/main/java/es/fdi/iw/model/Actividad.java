@@ -87,7 +87,7 @@ public class Actividad{
 	
 	public static Actividad crearActividad(String nombre_actv, int max_participantes, 
 			Usuario creador, Date fecha_ini, Date fecha_fin, String localizacion, 
-			String destino, String privacidad, String descripcion) {
+			String destino, String privacidad, String descripcion, String estado) {
 		
 		Actividad a = new Actividad();
 		
@@ -98,7 +98,7 @@ public class Actividad{
 		a.fecha_fin=fecha_fin;
 		a.localizacion=localizacion;
 		a.destino = destino;
-		a.estado="Abierta";
+		a.estado=estado;
 		a.maxPersonas=max_participantes;
 		a.n_personas=1;
 		a.privacidad=privacidad;

@@ -4,9 +4,12 @@
 <head>
 
 <%@ include file="../fragments/head.jspf"%>
+<%@ include file="../fragments/scripts.jspf"%>
 <link rel="stylesheet" href="${prefix}resources/css/style_crear.css">
 <link rel="stylesheet" href="${prefix}resources/css/style_efecto_admin.css">
-
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="${prefix}resources/js/crear.js"></script>
 </head>
 <body class="homepage">
 	<div id="page-wrapper">
@@ -23,7 +26,7 @@
 									<p id="text">CREACION DE ACTIVIDADES</p>
 									<div id="creacion">
 										<form action="${prefix}crearActividad" enctype="multipart/form-data"
-											method="POST" name="cre" id="formularioGordo">
+											method="POST" id="formularioGordo">
 											<div id="crear_1">
 												<!-- <p id="text">¿QUÉ QUIERES HACER?</p>-->
 												<br>
@@ -64,7 +67,7 @@
 														</tr>
 													</table>
 
-													<span class="titulos">Numero de participantes</span>
+													<span class="titulos">Número de participantes</span>
 													<br>
 													<tr>
 														<input type="number" min="3" value="3" id="max_parti"
@@ -81,24 +84,22 @@
 											<div id="crear_2">
 												<!-- <p id="text">¿CUÁNDO QUIERES HACERLO?</p>-->
 												<br>
-												<label> Inicio:</label> <input type="date" size="12"
-													name="fecha_ini" id="fecha_ini" required/> <!--<br> <input
-													type="checkbox" name="check" id="check" /> <label
-													for="check">¿Más de un día?</label>-->
-												<!--  inputField-->
-												<!--<div id="fecha_regreso">-->
+												<label class="nombre_caja"> Inicio:</label> <input type="date" size="12"
+													name="fecha_ini" id="caja_inicio" required/> 
 												<br>
 												<br>
-												<label> Fin:</label> <input type="date" size="12"
-													id="inputField2" name="fecha_fin" required/>
-												
-												<tr>
-													
-												</tr>
+												<label class="nombre_caja"> Fin:</label> <input type="date" size="12"
+													id="caja_fin" name="fecha_fin" required/>
 												<br>
+												<br>
+												<label class="nombre_caja">Hora: </label> <input type="time" name="hora" id="caja_hora">
+												<br>
+												<br>
+												Descripción de la actividad
+												<textarea rows="5" cols="30" name="descripcion"> </textarea>
 												<div id="boton_crear">
 													
-													<button name="submit" id="bcrear"
+													<button name="submit" id="b_crear"
 														value="CREAR ACTIVIDAD" onclick="comprobarDatosActividad()">
 														CREAR ACTIVIDAD
 													</button>
@@ -108,25 +109,18 @@
 											</div>
 											<div id="crear_3">
 												<!-- <p id="text">¿DÓNDE ES?</p>-->
-												<!-- <div id="mapa">-->
-												<!--<div>-->
+
+												<div id="map_canvas"> </div>
+												<input id="address" placeholder="Escribe la ubicacion" type ="" />
+												<input id="search" type="button" value ="Buscar" /> 
 												<br>
-													
-													<br>
-													<br>
-												<!-- </div>-->
-												<label>Lugar de Origen</label> <input type="text" size="10"
-													class="caja" name="origen" required/> 
-													<br> 
-													<br>
-													<input name="ruta" id="ruta"
-													type="checkbox" value="cambio" onchange="habilitarRuta()" />¿Habilitar
-												ruta? 
+												<br>
+												<label>Origen</label> <input type="text"
+													class="caja" id="caja_origen" name="origen" readonly/> 
 												<br> 
-												<br>
-												<label>Destino</label> <input type="text"
+												<!-- <label>Destino</label> <input type="text"
 													name="destino" id="destino" disabled
-													style="width: 110px; height: 30px" class="caja"/>
+													style="width: 110px; height: 30px" class="caja"/>-->
 												<br>
 												<br>
 												<div class="invitar_amigos">
@@ -144,6 +138,6 @@
 		<!-- Footer -->
 		<%@ include file="../fragments/footer.jspf"%>
 	</div>
-	<%@ include file="../fragments/scripts.jspf"%>
+		<%@ include file="../fragments/scripts.jspf"%>
 </body>
 </html>

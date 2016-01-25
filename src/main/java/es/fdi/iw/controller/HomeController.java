@@ -511,9 +511,10 @@ public class HomeController {
 		Registro r = null;
 		Usuario usuario_creador = null;
 		String privacidad="publica";
+		String estado = "abierta";
 		
 		usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-		a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, descripcion);
+		a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, descripcion, estado);
 		r = Registro.crearRegistro(a, usuario_creador);
 		Foro f=Foro.crearForo();
 		a.setForo(f);
@@ -540,19 +541,37 @@ public class HomeController {
 			//@RequestParam("tags") long[] tagIds,
 			@RequestParam("fecha_ini") Date fecha_ini,
 			@RequestParam("fecha_fin") Date fecha_fin,
-			@RequestParam("origen") String origen,
-			@RequestParam("destino") String destino,
-			@RequestParam("actv_privada") int privado,
+			//@RequestParam("origen") String origen,
+			//@RequestParam("destino") String destino,
+			//@RequestParam("actv_privada") int privado,
 			//@RequestParam("amigo") String[] amigosIds,
 			//@RequestParam("tipo") String tipo,
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
+			Date hora = new Date(0);
+			
+			hora = (Date)request.getAttribute("hora");
+			System.out.println(hora);
+			String origen="";
+			String destino="";
+			String estado = "abierta";
+			String descripcion;
+			
+			int privado = 0;
+			
+			if(request.getParameter("actv_privada") != null)
+				estado = "cerrada";
+			
+			origen = request.getParameter("origen");
+			destino = request.getParameter("destino");
 		
 			String tipo = "invitacion";
 			String[] amigosIds = new String[0];
 			amigosIds = request.getParameterValues("amigo");
 			
+			
+			descripcion = request.getParameter("descripcion");
 			
 			/*Tratamiento de los tags*/
 		
@@ -586,7 +605,7 @@ public class HomeController {
 			try {
 
 				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, "");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, descripcion, estado);
 				r = Registro.crearRegistro(a, usuario_creador);
 				Foro f=Foro.crearForo();
 				a.setForo(f);
