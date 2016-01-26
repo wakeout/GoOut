@@ -227,8 +227,6 @@ public class Usuario {
 	public List<Novedad> getNovedades() {
 		return novedades;
 	}
-
-
 	public void setNovedades(List<Novedad> novedades) {
 		this.novedades = novedades;
 	}

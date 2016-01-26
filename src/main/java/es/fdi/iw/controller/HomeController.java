@@ -554,13 +554,14 @@ public class HomeController {
 			//@RequestParam("tipo") String tipo,
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
-			
+
 			String origen="";
 			String destino="";
 			String estado = "abierta";
 			String descripcion;
 			
 			int privado = 0;
+			
 			
 			origen = request.getParameter("origen");
 			destino = request.getParameter("destino");
@@ -625,6 +626,30 @@ public class HomeController {
 				usuario_creador.getRegistros().add(r);
 				
 				entityManager.persist(r);	
+
+	        	Usuario u=(Usuario)session.getAttribute("usuario");
+	    		
+				u=(Usuario)entityManager.find(Usuario.class, u.getId());
+				
+				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" ha creado la actividad {Actividad:"+a.getId()+"} " +nombre_actv , "Actividad creada");
+				
+				if(u.getNovedades().isEmpty())
+					u.setNovedades(new ArrayList<Novedad>());
+				
+				
+				entityManager.persist(n);
+				entityManager.persist(u);
+				
+				for(Usuario amigo: u.getAmigos()){
+					amigo.getNovedades().add(n);
+				}
+				
+				u.getNovedades().add(n);
+				
+				//entityManager.persist(u);
+				//entityManager.persist(n);
+				
+				
 				
 				Mensaje m = new Mensaje();
 				if(amigosIds != null){
@@ -1176,6 +1201,12 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session) {
 		
 		if(session.getAttribute("usuario")!=null){
+			Usuario u=(Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam",((Usuario)session.getAttribute("usuario")).getLogin()).getSingleResult();
+			
+			
+			if(!u.getNovedades().isEmpty())
+				model.addAttribute("novedades", u.getNovedades());
+			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 			return "home";
@@ -1187,6 +1218,13 @@ public class HomeController {
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session){
 		if(session.getAttribute("usuario")!=null){
+			Usuario u=(Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam",((Usuario)session.getAttribute("usuario")).getLogin()).getSingleResult();
+			
+			
+			if(!u.getNovedades().isEmpty())
+				model.addAttribute("novedades", u.getNovedades());
+			
+			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			return "home";
 		}else
@@ -1345,7 +1383,7 @@ public class HomeController {
 			model.addAttribute("tags", a.getTags());
 			model.addAttribute("encuestas", a.getEncuestas());
 			if(u!=null)
-			model.addAttribute("amigos", u.getAmigos());
+				model.addAttribute("amigos", u.getAmigos());
 		}
 		model.addAttribute("prefix", "../");
 		return "actividad";
