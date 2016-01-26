@@ -214,7 +214,7 @@ public class Usuario {
 	}
 
 	@OneToMany(targetEntity=Registro.class, orphanRemoval=true)
-	@JoinColumn(name="id_usuario") 
+	@JoinColumn(name="id_usuario")
 	public List<Registro> getRegistros() {
 		return registros;
 	}

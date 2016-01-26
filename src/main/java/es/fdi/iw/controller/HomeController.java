@@ -1,5 +1,6 @@
 package es.fdi.iw.controller;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.owasp.encoder.Encode;
 
 import java.io.BufferedInputStream;
@@ -1383,7 +1384,8 @@ public class HomeController {
 			model.addAttribute("actividad", a);
 			model.addAttribute("tags", a.getTags());
 			model.addAttribute("encuestas", a.getEncuestas());
-			model.addAttribute("amigos", u.getAmigos());
+			if(u!=null)
+				model.addAttribute("amigos", u.getAmigos());
 		}
 		model.addAttribute("prefix", "../");
 		return "actividad";
@@ -1651,6 +1653,12 @@ public class HomeController {
 			}
 		} catch (NoResultException nre) {
 			logger.error("No such"+ tipo + ": {}", id);
+		}
+		catch(ConstraintViolationException e){
+			for(int i = 0; i < id.length; i++){
+				Actividad act = entityManager.find(Actividad.class, id[i]);
+				act.setEliminado(true);
+			}
 		}
 	
 	}

@@ -4,7 +4,7 @@ package es.fdi.iw.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +20,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SecondaryTable;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Date;
 
@@ -47,21 +50,17 @@ public class Actividad{
 	private Date fecha_fin;
 	private String localizacion;
 	private String destino;
-	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Hito> proximosHitos;
 	private String estado;
 	private int maxPersonas;
 	private int n_personas;
-	@OneToOne(cascade=CascadeType.REMOVE)
 	private Foro foro;
-	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Tag> tags;
 	private String privacidad;
 	private String descripcion;
-	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Registro> registros;
-	@OneToOne(cascade=CascadeType.REMOVE)
 	private List<Encuesta> encuestas;
+	private boolean eliminado;
 	
 	public static StringBuilder getJSONString(List<Actividad> l){
 		StringBuilder sb = new StringBuilder("[");
@@ -107,6 +106,7 @@ public class Actividad{
 		a.tags = new ArrayList<Tag>();
 		a.encuestas =new ArrayList<Encuesta>();
 		a.foro=new Foro();
+		a.eliminado = false;
 		
 		return a;
 	}
@@ -125,6 +125,14 @@ public class Actividad{
 	 }
 	 public void setNombre(String nombre) {
 		this.nombre = nombre;
+	 }
+	 
+	 public boolean getEliminado(){
+		 return eliminado;
+	 }
+	 
+	 public void setEliminado(boolean b){
+		 this.eliminado = b;
 	 }
 
 	 public int getMaxPersonas(){
@@ -150,14 +158,14 @@ public class Actividad{
 		 this.proximosHitos = hitos;
 	 }
 
-	@OneToOne(targetEntity=Foro.class, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity=Foro.class)
 	public Foro getForo() {
 		return foro;
 	}
 	public void setForo(Foro foro) {
 		this.foro = foro;
 	}
-	@OneToOne(targetEntity=Usuario.class, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity=Usuario.class)
 	public Usuario getCreador() {
 		return creador;
 	}
