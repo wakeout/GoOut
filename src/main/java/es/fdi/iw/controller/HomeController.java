@@ -11,6 +11,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -553,10 +556,6 @@ public class HomeController {
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
-			Date hora = new Date(0);
-			
-			hora = (Date)request.getAttribute("hora");
-			System.out.println(hora);
 			String origen="";
 			String destino="";
 			String estado = "abierta";
@@ -564,8 +563,6 @@ public class HomeController {
 			
 			int privado = 0;
 			
-			if(request.getParameter("actv_privada") != null)
-				estado = "cerrada";
 			
 			origen = request.getParameter("origen");
 			destino = request.getParameter("destino");
@@ -620,6 +617,12 @@ public class HomeController {
 				entityManager.persist(a);
 				a.getRegistros().add(r);
 				
+				String hora_ini = request.getParameter("hora_ini");
+				a.setHora_ini(hora_ini);
+				
+				String hora_fin = request.getParameter("hora_fin");
+				a.setHora_fin(hora_fin);
+				
 				entityManager.persist(usuario_creador);
 				usuario_creador.getRegistros().add(r);
 				
@@ -631,7 +634,8 @@ public class HomeController {
 				
 				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" ha creado la actividad {Actividad:"+a.getId()+"} " +nombre_actv , "Actividad creada");
 				
-				u.setNovedades(new ArrayList<Novedad>());
+				if(u.getNovedades().isEmpty())
+					u.setNovedades(new ArrayList<Novedad>());
 				
 				
 				entityManager.persist(n);
@@ -641,15 +645,12 @@ public class HomeController {
 					amigo.getNovedades().add(n);
 				}
 				
-				n.getUsuarios().add(u);
 				u.getNovedades().add(n);
 				
-				entityManager.persist(u);
-				entityManager.persist(n);
+				//entityManager.persist(u);
+				//entityManager.persist(n);
 				
-				System.out.println(n.getMensaje());
-	        	
-	        	
+				
 				
 				Mensaje m = new Mensaje();
 				if(amigosIds != null){
@@ -683,8 +684,6 @@ public class HomeController {
 		                        		new FileOutputStream(ContextInitializer.getFile("actv", imagen)));
 		                stream.write(bytes);
 		                stream.close();}
-			        	
-			        	
 			        }
 			        catch(Exception e){
 			        	
@@ -1210,7 +1209,7 @@ public class HomeController {
 				model.addAttribute("novedades", u.getNovedades());
 			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
-			
+	
 			return "home";
 		}else
 			return "redirect:sin_registro";

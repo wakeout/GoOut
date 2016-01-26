@@ -92,7 +92,10 @@
 													id="caja_fin" name="fecha_fin" required/>
 												<br>
 												<br>
-												<label class="nombre_caja">Hora: </label> <input type="time" name="hora" id="caja_hora">
+												<label class="nombre_caja">Hora Inicio: </label> <input type="time" name="hora_ini" id="caja_hora">
+												<br>
+												<br>
+												<label class="nombre_caja">Hora Fin: </label> <input type="time" name="hora_fin" id="caja_hora">
 												<br>
 												<br>
 												Descripción de la actividad

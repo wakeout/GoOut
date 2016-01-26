@@ -27,7 +27,7 @@
 										<c:forEach items="${novedades}" var="n">
 												
 											${n.mensaje}
-	
+											<br>
 										</c:forEach>
 									</div>
 
