@@ -514,9 +514,10 @@ public class HomeController {
 		Registro r = null;
 		Usuario usuario_creador = null;
 		String privacidad="publica";
+		String estado = "abierta";
 		
 		usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-		a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, descripcion);
+		a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, descripcion, estado);
 		r = Registro.crearRegistro(a, usuario_creador);
 		Foro f=Foro.crearForo();
 		a.setForo(f);
@@ -543,19 +544,37 @@ public class HomeController {
 			//@RequestParam("tags") long[] tagIds,
 			@RequestParam("fecha_ini") Date fecha_ini,
 			@RequestParam("fecha_fin") Date fecha_fin,
-			@RequestParam("origen") String origen,
-			@RequestParam("destino") String destino,
-			@RequestParam("actv_privada") int privado,
+			//@RequestParam("origen") String origen,
+			//@RequestParam("destino") String destino,
+			//@RequestParam("actv_privada") int privado,
 			//@RequestParam("amigo") String[] amigosIds,
 			//@RequestParam("tipo") String tipo,
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
+			Date hora = new Date(0);
 			
+			hora = (Date)request.getAttribute("hora");
+			System.out.println(hora);
+			String origen="";
+			String destino="";
+			String estado = "abierta";
+			String descripcion;
+			
+			int privado = 0;
+			
+			if(request.getParameter("actv_privada") != null)
+				estado = "cerrada";
+			
+			origen = request.getParameter("origen");
+			destino = request.getParameter("destino");
+		
 			String tipo = "invitacion";
 			String[] amigosIds = new String[0];
 			amigosIds = request.getParameterValues("amigo");
 			
+			
+			descripcion = request.getParameter("descripcion");
 			
 			/*Tratamiento de los tags*/
 		
@@ -589,7 +608,7 @@ public class HomeController {
 			try {
 
 				usuario_creador = entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
-				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, "");
+				a = Actividad.crearActividad(nombre_actv,max_participantes,usuario_creador, fecha_ini, fecha_fin, origen, destino, privacidad, descripcion, estado);
 				r = Registro.crearRegistro(a, usuario_creador);
 				Foro f=Foro.crearForo();
 				a.setForo(f);
@@ -637,30 +656,6 @@ public class HomeController {
 		                        		new FileOutputStream(ContextInitializer.getFile("actv", imagen)));
 		                stream.write(bytes);
 		                stream.close();}
-			        	
-			        	Usuario u=(Usuario)session.getAttribute("usuario");
-			    		
-						u=(Usuario)entityManager.find(Usuario.class, u.getId());
-						
-						Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" ha creado la actividad {Actividad:"+a.getId()+"} " +nombre_actv , "Actividad creada");
-						
-						u.setNovedades(new ArrayList<Novedad>());
-						
-						
-						entityManager.persist(n);
-						entityManager.persist(u);
-						
-						for(Usuario amigo: u.getAmigos()){
-							amigo.getNovedades().add(n);
-						}
-						
-						n.getUsuarios().add(u);
-						u.getNovedades().add(n);
-						
-						entityManager.persist(u);
-						entityManager.persist(n);
-			        	
-			        	
 			        }
 			        catch(Exception e){
 			        	
@@ -1179,13 +1174,6 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session) {
 		
 		if(session.getAttribute("usuario")!=null){
-			Usuario u=(Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam",((Usuario)session.getAttribute("usuario")).getLogin()).getSingleResult();
-			
-			System.out.println(u.getNovedades().size());
-			
-			if(!u.getNovedades().isEmpty())
-				model.addAttribute("novedades", u.getNovedades());
-			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 			return "home";
@@ -1197,18 +1185,6 @@ public class HomeController {
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session){
 		if(session.getAttribute("usuario")!=null){
-			Usuario u=(Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam",((Usuario)session.getAttribute("usuario")).getLogin()).getSingleResult();
-			
-
-		/*	Novedad n=Novedad.crearNovedad("eeeeeeeeeeeeeeeeee", "comentario", );
-			
-			u.getNovedades().add(n);
-		*/	
-			
-			if(!u.getNovedades().isEmpty())
-				model.addAttribute("novedades", u.getNovedades());
-			
-			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			return "home";
 		}else
@@ -1256,7 +1232,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades= new ArrayList<Actividad>();
+			List<Actividad> actividades = new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			
