@@ -630,7 +630,8 @@ public class HomeController {
 				
 				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" ha creado la actividad {Actividad:"+a.getId()+"} " +nombre_actv , "Actividad creada");
 				
-				u.setNovedades(new ArrayList<Novedad>());
+				if(u.getNovedades().isEmpty())
+					u.setNovedades(new ArrayList<Novedad>());
 				
 				
 				entityManager.persist(n);
@@ -640,15 +641,12 @@ public class HomeController {
 					amigo.getNovedades().add(n);
 				}
 				
-				n.getUsuarios().add(u);
 				u.getNovedades().add(n);
 				
-				entityManager.persist(u);
-				entityManager.persist(n);
+				//entityManager.persist(u);
+				//entityManager.persist(n);
 				
-				System.out.println(n.getMensaje());
-	        	
-	        	
+				
 				
 				Mensaje m = new Mensaje();
 				if(amigosIds != null){
@@ -1383,7 +1381,8 @@ public class HomeController {
 			model.addAttribute("actividad", a);
 			model.addAttribute("tags", a.getTags());
 			model.addAttribute("encuestas", a.getEncuestas());
-			model.addAttribute("amigos", u.getAmigos());
+			if(u!=null)
+				model.addAttribute("amigos", u.getAmigos());
 		}
 		model.addAttribute("prefix", "../");
 		return "actividad";

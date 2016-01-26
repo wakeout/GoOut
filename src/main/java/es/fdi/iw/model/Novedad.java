@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -57,13 +59,14 @@ public class Novedad {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	@OneToMany(targetEntity=Registro.class)
+	@ManyToMany(targetEntity=Usuario.class, fetch=FetchType.EAGER)
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
+	
 	public Date getFecha() {
 		return fecha;
 	}
