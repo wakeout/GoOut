@@ -51,8 +51,7 @@
 	}
 	
 	#resultado_buscar{
-	border:2px solid black;
-	overflow-y: scroll;
+	overflow-y: auto;
 	text-align: left;
 	}
 	

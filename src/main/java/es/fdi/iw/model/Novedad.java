@@ -1,6 +1,7 @@
 package es.fdi.iw.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,9 +28,10 @@ public class Novedad {
 	
 	public static Novedad crearNovedad(String mensaje, String tipo){
 		Novedad n = new Novedad();
-		
+
 		n.mensaje = mensaje;
 		n.tipo = tipo;
+		n.usuarios=new ArrayList<Usuario>();
 		
 		return n;
 	}

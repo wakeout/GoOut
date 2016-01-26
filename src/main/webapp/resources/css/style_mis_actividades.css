@@ -1,9 +1,15 @@
 	#modo_lista{
-		overflow-y:scroll;
+		overflow-y:auto;
+	    margin-top: 5px;
+	    height: 575px;
 	}
 	
 	#modo_burbuja{
-		overflow-y:scroll;
+		
+		overflow-y:auto;
+		margin-top: 5px;
+	    height: 575px;
+
 	}
 	
 	#fotos{

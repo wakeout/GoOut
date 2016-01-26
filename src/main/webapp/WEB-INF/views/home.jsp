@@ -24,18 +24,10 @@
 									<div id="actv_nov">
 										<p id="text">NOVEDADES</p>
 								
-										<c:forEach items="${actividades}" var="a">
-											<a class="" href="actividad/${a.id}">
-												<div class="img_thumb">
-			
-													<div class="img_desc">
-														<p id="actividad">${a.nombre}</p>
-													</div>
-
-													<img class="i_actv"
-														src="actividad/imagen?id=${a.id}" alt="" />
-												</div>
-											</a>
+										<c:forEach items="${novedades}" var="n">
+												
+											${n.mensaje}
+	
 										</c:forEach>
 									</div>
 

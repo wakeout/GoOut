@@ -3,12 +3,6 @@
 
 		<div id="northHeader">
 
-			<!-- Barra buscar amigos -->
-			<div id="find">
-				<input type="text" id="findFriends"
-					placeholder=" Busca a tus amigos"><br>
-			</div>
-
 			<!-- login-->
 			<div id="login">
 

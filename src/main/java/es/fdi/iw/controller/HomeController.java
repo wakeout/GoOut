@@ -1,5 +1,6 @@
 package es.fdi.iw.controller;
 
+import org.owasp.encoder.Encode;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -9,6 +10,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -548,7 +551,7 @@ public class HomeController {
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
-		
+			
 			String tipo = "invitacion";
 			String[] amigosIds = new String[0];
 			amigosIds = request.getParameterValues("amigo");
@@ -634,6 +637,30 @@ public class HomeController {
 		                        		new FileOutputStream(ContextInitializer.getFile("actv", imagen)));
 		                stream.write(bytes);
 		                stream.close();}
+			        	
+			        	Usuario u=(Usuario)session.getAttribute("usuario");
+			    		
+						u=(Usuario)entityManager.find(Usuario.class, u.getId());
+						
+						Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" ha creado la actividad {Actividad:"+a.getId()+"} " +nombre_actv , "Actividad creada");
+						
+						u.setNovedades(new ArrayList<Novedad>());
+						
+						
+						entityManager.persist(n);
+						entityManager.persist(u);
+						
+						for(Usuario amigo: u.getAmigos()){
+							amigo.getNovedades().add(n);
+						}
+						
+						n.getUsuarios().add(u);
+						u.getNovedades().add(n);
+						
+						entityManager.persist(u);
+						entityManager.persist(n);
+			        	
+			        	
 			        }
 			        catch(Exception e){
 			        	
@@ -1152,6 +1179,13 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session) {
 		
 		if(session.getAttribute("usuario")!=null){
+			Usuario u=(Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam",((Usuario)session.getAttribute("usuario")).getLogin()).getSingleResult();
+			
+			System.out.println(u.getNovedades().size());
+			
+			if(!u.getNovedades().isEmpty())
+				model.addAttribute("novedades", u.getNovedades());
+			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 			return "home";
@@ -1163,6 +1197,18 @@ public class HomeController {
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session){
 		if(session.getAttribute("usuario")!=null){
+			Usuario u=(Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam",((Usuario)session.getAttribute("usuario")).getLogin()).getSingleResult();
+			
+
+		/*	Novedad n=Novedad.crearNovedad("eeeeeeeeeeeeeeeeee", "comentario", );
+			
+			u.getNovedades().add(n);
+		*/	
+			
+			if(!u.getNovedades().isEmpty())
+				model.addAttribute("novedades", u.getNovedades());
+			
+			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			return "home";
 		}else
@@ -1210,7 +1256,7 @@ public class HomeController {
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			
 			Usuario u = (Usuario)session.getAttribute("usuario");
-			List<Actividad> actividades = new ArrayList<Actividad>();
+			List<Actividad> actividades= new ArrayList<Actividad>();
 			u = entityManager.find(Usuario.class, u.getId());
 			List <Registro> r=u.getRegistros();
 			

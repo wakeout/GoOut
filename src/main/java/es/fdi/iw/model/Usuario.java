@@ -79,7 +79,8 @@ public class Usuario {
 		u.provincia=prov;
 		u.email=email;
 		u.nombre=nombre;
-
+		u.novedades=new ArrayList<Novedad>();
+		
 		return u;
 	}
 	

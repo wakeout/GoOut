@@ -107,3 +107,4 @@ insert into usuario_amigos(usuario, amigos)values(1,2)
 insert into usuario_amigos(usuario, amigos)values(2,1)
 insert into usuario_amigos(usuario, amigos)values(1,4)
 insert into usuario_amigos(usuario, amigos)values(4,1)
+
