@@ -22,6 +22,7 @@ import javax.persistence.SecondaryTable;
 import javax.validation.constraints.NotNull;
 
 import java.sql.Date;
+import java.sql.Time;
 
 
 @Entity
@@ -45,6 +46,8 @@ public class Actividad{
 	private Usuario creador;
 	private Date fecha_ini;
 	private Date fecha_fin;
+	private String hora_ini;
+	private String hora_fin;
 	private String localizacion;
 	private String destino;
 	@OneToOne(cascade=CascadeType.REMOVE)
@@ -245,6 +248,22 @@ public class Actividad{
 
 	public void setEncuesta(Encuesta e){
 		encuestas.add(e);
+	}
+
+	public String getHora_ini() {
+		return hora_ini;
+	}
+
+	public void setHora_ini(String hora_ini) {
+		this.hora_ini = hora_ini;
+	}
+
+	public String getHora_fin() {
+		return hora_fin;
+	}
+
+	public void setHora_fin(String hora_fin) {
+		this.hora_fin = hora_fin;
 	}
 	
 

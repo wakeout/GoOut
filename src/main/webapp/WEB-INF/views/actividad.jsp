@@ -65,6 +65,7 @@
 					<span title="estado de la actividad">${actividad.estado}</span>
 					<span title="privacidad de la actividad">${actividad.privacidad}</span></div>
 					<div class="dato_actv">Fecha: ${actividad.fecha_ini} - ${actividad.fecha_fin}</div>
+					<div class="dato_actv">Hora: ${actividad.hora_ini} - ${actividad.hora_fin}</div>
 					<div class="dato_actv">Localización: ${actividad.localizacion}
 						<br>
 						
