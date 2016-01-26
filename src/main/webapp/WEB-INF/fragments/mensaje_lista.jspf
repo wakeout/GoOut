@@ -20,7 +20,7 @@
 						name="mensaje" maxlength="200" tooltiptext="Máximo 200 caracteres"></textarea></td>
 			</tr>
 			<tr>
-				<input type="hidden" name="tipo" value="Ordinario">
+				<input type="hidden" name="tipo" value="ordinario">
 			
 				<td colspan="2"><input class="enviar" type="submit"
 					value="Enviar Mensaje" name="Enviar"> <input type="reset"
@@ -92,7 +92,7 @@
 
 <c:if test="${param.metodo == 'leer'}">
 <div class="leer_mensaje">
-<form action="leerMensaje" method="post">
+<form action="#" method="post">
 	<table class="mensajes">
 		<tbody>
 		<tr>
@@ -100,6 +100,7 @@
 			<c:forEach items="${mensajes}" var="a">
 				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destinos.id == usuario.id)}">
 					<c:set var="contenido" value="${a.contenido}"/>
+					<c:set var="titulo" value="${a.titulo}"/>
 					<c:set var="persona" value="${a.origen.login}"/>
 					<c:set var="tipo" value="${a.tipo}"/>
 					<c:set var="id_amigo" value="${a.origen.id}"/>
@@ -111,12 +112,14 @@
 			<c:forEach items="${mensajeS}" var="a">
 				<c:if test="${param.id == a.id && (a.origen.id == usuario.id || a.destinos.id == usuario.id)}">
 					<c:set var="contenido" value="${a.contenido}"/>
+					<c:set var="titulo" value="${a.titulo}"/>
 					<c:set var="persona" value="${a.destinos.login}"/>
+					<c:set var="tipo" value="${a.tipo}"/>
 					<c:set var="bandeja" value="salida"/>
 				</c:if>
 			</c:forEach>
 		</c:if>
-		</form>
+</form>
 		<tr>
 				<td>Usuario <c:if test="${param.origen == 'entrada'}">Origen: </c:if><c:if test="${param.origen == 'salida'}">Destino: </c:if>
 				${persona}
@@ -137,7 +140,8 @@
 		</tr>
 		<tr>	
 			<td colspan="2"><textarea id="cuerpo_msj" rows="7" cols="60"
-						name="mensaje" readonly><c:out value="${asunto}"/></textarea></td>
+						name="mensaje" readonly><c:if test="${(tipo != 'invitacion')}"><c:out value="${contenido}"/></c:if>
+						<c:if test="${(tipo == 'invitacion')}"><c:out value="${titulo}"/></c:if></textarea></td>
 		</tr>
 		</tbody>
 	</table>

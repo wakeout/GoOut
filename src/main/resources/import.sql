@@ -15,16 +15,16 @@ insert into foro values(8)
 insert into foro values(9)
 insert into foro values(10)
 
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(1, 'cerves', 12, 'Madrid', 15, 'privada', 1, '1')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(2, 'zombies',  4,'Madrid',  4, 'publica', 1, '2')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(3, 'futbol',9,  'Madrid', 20, 'privada', 1, '3')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(4, 'xbox',9,  'Madrid', 20, 'publica', 2, '4')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(5, 'concierto', 12, 'Madrid', 15, 'publica', 4, '5')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(6, 'senderismo',  4,'Madrid', 4, 'publica', 4, '6')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(7, 'fiesta',9,  'Madrid', 20, 'publica', 5, '7')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(8, 'visitar la ciudad',9,  'Madrid', 20, 'publica', 6 , '8')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(9, 'viaje a benidorm',9,  'Madrid', 20, 'publica', 1, '9')
-insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro) values(10, 'cable esquí en el lago',9,  'Madrid', 20, 'publica', 2 ,'10')
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(1, 'cerves', 12, 'Madrid', 15, 'privada', 1, '1',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(2, 'zombies',  4,'Madrid',  4, 'publica', 1, '2',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(3, 'futbol',9,  'Madrid', 20, 'privada', 1, '3',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(4, 'xbox',9,  'Madrid', 20, 'publica', 2, '4',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(5, 'concierto', 12, 'Madrid', 15, 'publica', 4, '5',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(6, 'senderismo',  4,'Madrid', 4, 'publica', 4, '6',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(7, 'fiesta',9,  'Madrid', 20, 'publica', 5, '7',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(8, 'visitar la ciudad',9,  'Madrid', 20, 'publica', 6 , '8',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(9, 'viaje a benidorm',9,  'Madrid', 20, 'publica', 1, '9',false)
+insert into Actividad (id, nombre, npersonas, localizacion, max_personas, privacidad, creador,foro, eliminado) values(10, 'cable esquí en el lago',9,  'Madrid', 20, 'publica', 2 ,'10',false)
 
 insert into Registro values(1,1,1,1,1);
 insert into Registro values(2,2,1,2,1);
@@ -37,11 +37,11 @@ insert into Registro values(8,8,4,8,4);
 insert into Registro values(9,8,5,8,5);
 insert into Registro values(10,8,6,8,6);
 
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen) values(1, 'victor me cae fatal','pues eso','ordinario',2,2)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen) values(2, 'david me cae fatal','pues eso','ordinario',2,1)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen) values(3, 'lis me cae fatal','pues eso','ordinario',4,1)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen) values(4, 'marcos es un crak','pues eso','ordinario',1,2)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen) values(5, 'amo a marcos','pues eso','denuncia',2,4)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(1, 'victor me cae fatal','pues eso','ordinario',2,2,0)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(2, 'david me cae fatal','pues eso','ordinario',2,1,0)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(3, 'lis me cae fatal','pues eso','ordinario',4,1,0)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(4, 'marcos es un crak','pues eso','ordinario',1,2,0)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(5, 'amo a marcos','pues eso','denuncia',2,4,0)
 
 insert into hito (id, anuncio, id_actividad, completado) values (1, 'pagar alquiler del cohete espacial', '1', 'true')
 insert into hito (id, anuncio, id_actividad, completado) values (2, 'estudiar las restricciones bd ', '1', 'false')

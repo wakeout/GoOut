@@ -436,7 +436,7 @@ public class HomeController {
 		" ha denunciado la actividad " + a.getNombre() + "(" + a.getId()
 		+ ")." + "Entre paréntesis el id de cada elemento respectivamente";
 		
-		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d);
+		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d, 0);
 		entityManager.persist(m);
 		
 		return "redirect:actividad/"+actv;
@@ -658,7 +658,7 @@ public class HomeController {
 						Usuario d = (Usuario)entityManager.createNamedQuery("userByLogin")
 								.setParameter("loginParam", amigosIds[i]).getSingleResult();
 						
-						m = Mensaje.crearMensaje("Apuntate a la actividad " + nombre_actv, a.getId()+"", tipo, usuario_creador, d); 
+						m = Mensaje.crearMensaje("Apuntate a la actividad " + nombre_actv, a.getId()+"", tipo, usuario_creador, d,0); 
 						
 						entityManager.persist(m);
 					}
@@ -927,7 +927,7 @@ public class HomeController {
 			//d = entityManager.find(Usuario.class, destino);
 			
 			
-			m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d);
+			m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d,0);
 			entityManager.persist(m);
 		}
 		catch(NoResultException nre){
@@ -948,7 +948,6 @@ public class HomeController {
 			@RequestParam("tipo") String tipo,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session){
-			
 		
 			Mensaje m = null;
 			Usuario u = null; // El usuario que manda el mensaje
@@ -963,7 +962,7 @@ public class HomeController {
 				//d = entityManager.find(Usuario.class, destino);
 				
 				
-				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d);
+				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d,0);
 				entityManager.persist(m);
 			}
 			catch(NoResultException nre){
@@ -997,7 +996,7 @@ public class HomeController {
 			
 			String contenido = usuario_propio.getLogin()+" quiere ser tu amigo";
 			
-			m = Mensaje.crearMensaje(titulo, contenido, "solicitud",usuario_propio, d);
+			m = Mensaje.crearMensaje(titulo, contenido, "solicitud",usuario_propio, d,0);
 			entityManager.persist(m);
 		}
 		catch(NoResultException nre){
@@ -1582,6 +1581,18 @@ public class HomeController {
 		else return "redirect:sin_registro";
 	}
 	
+	@RequestMapping(value = "/borrarMensajes", method = RequestMethod.POST)
+	@Transactional
+	public String borrarMensajes(@RequestParam("mensajes") long mensajesId,
+			@RequestParam("tipo") String tipo,Model model, HttpSession session){
+		
+
+		entityManager.createNamedQuery("delMensaje").setParameter("idMensaje", mensajesId).executeUpdate();
+
+		return "redirect:mensajes?metodo="+tipo;
+
+	}
+	
 	@RequestMapping(value = "/registro", method = RequestMethod.GET)
 	public String registro(){
 		return "registro";
@@ -1604,6 +1615,22 @@ public class HomeController {
 			return "amigos";
 		}else
 			return "redirect:sin_registro";
+	}
+	
+	
+	@RequestMapping(value = "/leerMensaje", method = RequestMethod.POST)
+	@Transactional
+	public void leerMensaje(
+			@RequestParam("id") long id_mensaje,
+			HttpServletRequest request, HttpServletResponse response, 
+			Model model, HttpSession session) {
+		
+			Usuario usuario = (Usuario)session.getAttribute("usuario");
+			
+			Mensaje m = entityManager.find(Mensaje.class,id_mensaje);
+			m.setLeido(1);
+			entityManager.persist(m);
+			
 	}
 	
 	

@@ -40,9 +40,10 @@ public class Mensaje {
 	private String titulo;
 	private String contenido;
 	private String tipo;
+	private int leido;
 	
 	public static Mensaje crearMensaje(String titulo, String contenido, String tipo, 
-			Usuario u, Usuario destino){
+			Usuario u, Usuario destino, int leido){
 		Mensaje m = new Mensaje();
 		
 		m.titulo = titulo;
@@ -50,6 +51,7 @@ public class Mensaje {
 		m.tipo = tipo;
 		m.origen= u;
 		m.destinos = destino;
+		m.leido=leido;
 		
 		return m;
 	}
@@ -96,5 +98,13 @@ public class Mensaje {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public int getLeido() {
+		return leido;
+	}
+
+	public void setLeido(int leido) {
+		this.leido = leido;
 	}
 }
