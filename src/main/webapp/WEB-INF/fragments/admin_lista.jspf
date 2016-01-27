@@ -31,7 +31,7 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_actividades)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${actividades}" var="a">
-			<tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}
+			<c:if test="${a.eliminado == false }"><tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}</c:if>
 			</c:forEach>
 		</table>
 	</div>

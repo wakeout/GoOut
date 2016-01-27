@@ -1641,7 +1641,13 @@ public class HomeController {
 		try {
 			//(cascade=CascadeType.REMOVE)
 			if(tipo.equals("Actividad")){
+				
 				for(int i = 0; i < id.length; i++){
+					Actividad a = entityManager.find(Actividad.class, id[i]);
+					a.setEliminado(true);
+				}
+				
+				/*for(int i = 0; i < id.length; i++){
 					Actividad a = entityManager.find(Actividad.class, id[i]);
 					for(int j = 0; j < a.getRegistros().size(); j++){
 						Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
@@ -1650,8 +1656,7 @@ public class HomeController {
 						}
 						entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
 					}
-					entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();
-				}
+					entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();*/
 			}else{
 				if(tipo.equals("Usuario")){
 					for(int i = 0; i < id.length; i++){
