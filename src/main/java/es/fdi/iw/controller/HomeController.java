@@ -1,7 +1,4 @@
 package es.fdi.iw.controller;
-
-import net.wimpi.telnetd.io.terminal.ansi;
-
 import org.hibernate.exception.ConstraintViolationException;
 import org.owasp.encoder.Encode;
 
@@ -77,21 +74,6 @@ public class HomeController {
 	public String pruebas(){
 		
 		return "pruebas";
-	}
-	
-	
-	public static void miraLaHora(EntityManager em) {
-	
-		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-		List<Novedad> novedades = (List<Novedad>)em
-				.createNamedQuery("siguienteNovedad").getResultList();
-		if (novedades.size() > 0) {
-			Novedad n = novedades.get(0);
-			if ( true /* miro la hora y true si ya toca */ ) {
-				/* proceso novedad */
-				/* me llamo recursivamente para procesar la siguiente */
-			}
-		}
 	}
 	
 	
