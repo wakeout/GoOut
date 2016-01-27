@@ -36,6 +36,7 @@
 							<div id="sugerencias">
 								<p id="text">SUGERENCIAS</p>
 									<c:forEach items="${actividades}" var="a">
+										<c:if test="${a.eliminado == false }">
 											<a class="" href="actividad/${a.id}">
 												<div class="img_thumb">
 
@@ -47,7 +48,8 @@
 														src="actividad/imagen?id=${a.id}" alt="" />
 												</div>
 											</a>
-										</c:forEach>
+										</c:if>	
+									</c:forEach>
 
 
 							</div>

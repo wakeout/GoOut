@@ -60,8 +60,6 @@ function burbuja(obj){
 	var div="<div id='modo_burbuja'>";
 
 	$.each(obj, function(i, o) {
-		
-		
 		div+="<a class='' href='actividad/"+o.id+
 		"'><div class='img_thumb'><div class='img_desc'><p id='actividad'>"
 		+ o.nombre+ 

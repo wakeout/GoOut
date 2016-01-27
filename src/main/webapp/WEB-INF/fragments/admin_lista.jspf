@@ -55,7 +55,9 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_usuarios)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${usuarios}" var="u">
+			<c:if test="${u.borrado == false }">
 			<tr id="Usuario_${u.id}"><td><input name="Usuario" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td>${u.login}
+			</c:if>
 			</c:forEach>
 		</table>
 	</form>
@@ -83,7 +85,11 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_registros)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${registros}" var="r">
+			<c:if test="${r.actividad.eliminado == false }">
 			<tr id="Registro_${r.id}"><td><input name="Registro" value="${r.id}" type="checkbox"><a> ${r.id}</a>    ${r.usuario.id}  ${r.actividad.id}<td>
+			</td>
+			</tr>
+			</c:if>
 			</c:forEach>
 		</table>
 	
