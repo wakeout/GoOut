@@ -8,6 +8,7 @@
 	position:relative;
 	margin:0 auto;
 	width:700px;
+	overflow-y:auto;
 	background:#35596a;
 	margin-top:20px;
 }
@@ -94,3 +95,7 @@ a:hover{text-decoration:none;}
 }
 
 a{text-decoration:none;}
+
+.no_leido{
+	font-weight: bold;
+}

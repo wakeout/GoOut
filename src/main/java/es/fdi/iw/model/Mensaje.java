@@ -31,7 +31,9 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name="delDenuncia", 
     		query="delete from Mensaje m where m.id = :idParam"),
     @NamedQuery(name="buscarSolicitud", 
-    		query="select m from Mensaje m where m.origen.id = :origen AND m.destinos.id = :destino AND m.tipo = :tipo")
+    		query="select m from Mensaje m where m.origen.id = :origen AND m.destinos.id = :destino AND m.tipo = :tipo"),
+    @NamedQuery(name="buscarNoLeidos", 
+    		query="select m from Mensaje m where m.leido = false AND m.destinos.id = :destino")
 })
 public class Mensaje {
 	private long id;
@@ -40,10 +42,10 @@ public class Mensaje {
 	private String titulo;
 	private String contenido;
 	private String tipo;
-	private int leido;
+	private boolean leido;
 	
 	public static Mensaje crearMensaje(String titulo, String contenido, String tipo, 
-			Usuario u, Usuario destino, int leido){
+			Usuario u, Usuario destino, boolean leido){
 		Mensaje m = new Mensaje();
 		
 		m.titulo = titulo;
@@ -100,11 +102,11 @@ public class Mensaje {
 		this.tipo = tipo;
 	}
 
-	public int getLeido() {
+	public boolean getLeido() {
 		return leido;
 	}
 
-	public void setLeido(int leido) {
+	public void setLeido(boolean leido) {
 		this.leido = leido;
 	}
 }

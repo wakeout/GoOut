@@ -37,11 +37,11 @@ insert into Registro values(8,8,4,8,4);
 insert into Registro values(9,8,5,8,5);
 insert into Registro values(10,8,6,8,6);
 
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(1, 'victor me cae fatal','pues eso','ordinario',2,2,0)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(2, 'david me cae fatal','pues eso','ordinario',2,1,0)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(3, 'lis me cae fatal','pues eso','ordinario',4,1,0)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(4, 'marcos es un crak','pues eso','ordinario',1,2,0)
-insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(5, 'amo a marcos','pues eso','denuncia',2,4,0)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(1, 'victor me cae fatal','pues eso','ordinario',2,2,false)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(2, 'david me cae fatal','pues eso','ordinario',2,1,false)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(3, 'lis me cae fatal','pues eso','ordinario',4,1,false)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(4, 'marcos es un crak','pues eso','ordinario',1,2,false)
+insert into Mensaje (id, titulo,contenido, tipo,destinos,origen,leido) values(5, 'amo a marcos','pues eso','denuncia',2,4,false)
 
 insert into hito (id, anuncio, id_actividad, completado) values (1, 'pagar alquiler del cohete espacial', '1', 'true')
 insert into hito (id, anuncio, id_actividad, completado) values (2, 'estudiar las restricciones bd ', '1', 'false')

@@ -2,7 +2,8 @@
 <html>
 	<head>
 	<%@ include file="../fragments/head.jspf" %>
-	<link rel="stylesheet" href="${prefix}resources/css/style_mensajes.css"> 
+	<link rel="stylesheet" href="${prefix}resources/css/style_mensajes.css">
+	<script src="${prefix}resources/js/mensajes.js"></script>
 	
 	</head>
 	<body class="homepage">

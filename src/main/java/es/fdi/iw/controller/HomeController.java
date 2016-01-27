@@ -17,6 +17,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -436,7 +437,7 @@ public class HomeController {
 		" ha denunciado la actividad " + a.getNombre() + "(" + a.getId()
 		+ ")." + "Entre paréntesis el id de cada elemento respectivamente";
 		
-		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d, 0);
+		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d, false);
 		entityManager.persist(m);
 		
 		return "redirect:actividad/"+actv;
@@ -658,7 +659,7 @@ public class HomeController {
 						Usuario d = (Usuario)entityManager.createNamedQuery("userByLogin")
 								.setParameter("loginParam", amigosIds[i]).getSingleResult();
 						
-						m = Mensaje.crearMensaje("Apuntate a la actividad " + nombre_actv, a.getId()+"", tipo, usuario_creador, d,0); 
+						m = Mensaje.crearMensaje("Apuntate a la actividad " + nombre_actv, a.getId()+"", tipo, usuario_creador, d,false); 
 						
 						entityManager.persist(m);
 					}
@@ -927,7 +928,7 @@ public class HomeController {
 			//d = entityManager.find(Usuario.class, destino);
 			
 			
-			m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d,0);
+			m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d,false);
 			entityManager.persist(m);
 		}
 		catch(NoResultException nre){
@@ -952,6 +953,11 @@ public class HomeController {
 			Mensaje m = null;
 			Usuario u = null; // El usuario que manda el mensaje
 			Usuario d = null; // Destinatario
+
+			Calendar cal1 = Calendar.getInstance();
+			String dia =""+cal1.get(Calendar.DATE)+"/"+cal1.get(Calendar.MONTH)
+			+"/"+cal1.get(Calendar.YEAR)+" "+cal1.get(Calendar.HOUR)
+			+":"+cal1.get(Calendar.MINUTE)+":"+cal1.get(Calendar.SECOND);
 			
 			try{
 				u=(Usuario)session.getAttribute("usuario");
@@ -959,10 +965,12 @@ public class HomeController {
 				d = (Usuario)entityManager.createNamedQuery("userByLogin")
 						.setParameter("loginParam", destino).getSingleResult();
 				
+				
 				//d = entityManager.find(Usuario.class, destino);
 				
+				contenido = dia+"\n"+contenido;
 				
-				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d,0);
+				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d,false);
 				entityManager.persist(m);
 			}
 			catch(NoResultException nre){
@@ -996,7 +1004,7 @@ public class HomeController {
 			
 			String contenido = usuario_propio.getLogin()+" quiere ser tu amigo";
 			
-			m = Mensaje.crearMensaje(titulo, contenido, "solicitud",usuario_propio, d,0);
+			m = Mensaje.crearMensaje(titulo, contenido, "solicitud",usuario_propio, d,false);
 			entityManager.persist(m);
 		}
 		catch(NoResultException nre){
@@ -1207,6 +1215,12 @@ public class HomeController {
 			if(!u.getNovedades().isEmpty())
 				model.addAttribute("novedades", u.getNovedades());
 			
+			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();
+			
+			int no_leidos = men.size();
+			
+			session.setAttribute("no_leidos", no_leidos);
+			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 			return "home";
@@ -1224,6 +1238,11 @@ public class HomeController {
 			if(!u.getNovedades().isEmpty())
 				model.addAttribute("novedades", u.getNovedades());
 			
+			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();
+			
+			int no_leidos = men.size();
+			
+			session.setAttribute("no_leidos", no_leidos);
 			
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 			return "home";
@@ -1628,7 +1647,7 @@ public class HomeController {
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 			
 			Mensaje m = entityManager.find(Mensaje.class,id_mensaje);
-			m.setLeido(1);
+			m.setLeido(true);
 			entityManager.persist(m);
 			
 	}

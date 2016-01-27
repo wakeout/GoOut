@@ -22,8 +22,8 @@
 										<c:if test="${usuario.rol == rol}">
 										<li class="submenu"><a href="${prefix}administrador"> Administrar </a></li>
 										</c:if>
-										<li class="submenu"><a href="${prefix}mensajes"> Mensajes </a></li>
-										<li class="submenu"><a href="${prefix}logout"> Cerrar Sesion </a></li>
+										<li class="submenu"><a href="${prefix}mensajes"> Mensajes <c:if test="${no_leidos > 0}"><span class="no_leido" id="anim_men">${no_leidos}</span></c:if></a></li>
+										<li class="submenu"><a href="${prefix}logout"> Cerrar Sesión </a></li>
 									</c:when>
 
 									<c:otherwise>

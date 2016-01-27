@@ -1,0 +1,42 @@
+@-webkit-keyframes movimiento-diagonal {
+   from {
+      left: 0px;
+   }
+   
+   to {
+      left: 15px;
+   }
+}   
+
+#anim {
+   -webkit-animation-name: movimiento-diagonal;
+   -webkit-animation-duration: 2s;
+   -webkit-animation-iteration-count: infinite;
+   -webkit-animation-direction: alternate;/*para que vuelva a su posicion inicial */
+   width: 50px;
+   background-color: Teal;
+   color: #fff;
+   position: relative; 
+   padding: 2px;
+}
+
+@-webkit-keyframes movimiento-mensaje {
+   from {
+      left: 0px;
+   }
+   
+   to {
+      left: 5px;
+   }
+} 
+
+#anim_men {
+   -webkit-animation-name: movimiento-mensaje;
+   -webkit-animation-duration: 1s;
+   -webkit-animation-iteration-count: infinite;
+   -webkit-animation-direction: alternate;/*para que vuelva a su posicion inicial */
+   width: 50px;
+   color: #fff;
+   position: relative; 
+   padding: 2px;
+}

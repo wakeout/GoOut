@@ -30,6 +30,12 @@
 	
 	img#logo{
 		width:400px;
+		
+	}
+	
+	#logo{
+	width: 600px;
+	margin:0 auto;
 	}
 
     #global{

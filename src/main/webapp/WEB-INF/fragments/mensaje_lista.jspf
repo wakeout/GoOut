@@ -46,12 +46,13 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${mensajes}" var="a">
+			
 		<tr>	
-			<td>${a.origen.login}
-			<td>${a.titulo}
+			<td><c:if test="${a.leido == false}"><span class="no_leido" id="anim"></c:if>${a.origen.login}<c:if test="${a.leido == false}"></span></c:if>
+			<td><c:if test="${a.leido == false}"><span class="no_leido"></c:if>${a.titulo}<c:if test="${a.leido == false}"></span></c:if>
 			<td>
 			<td>
-				<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button">Leer</button></a>
+				<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button" onclick="leer(${a.id})">Leer</button></a>
 				<input type="hidden" name="tipo" value="entrada"/>
 				<input type="hidden" name="mensajes" value="${a.id}"/>
 				<button type="submit" name="submit">Borrar</button>
@@ -79,7 +80,8 @@
 			<td>${a.titulo}
 			<td>
 			<td>
-				<a href="mensajes?metodo=leer&origen=salida&id=${a.id}"><button type="button">Leer</button></a>
+				<a href="mensajes?metodo=leer&origen=salida&id=${a.id}">
+				<button type="button">Leer</button></a>
 				<input type="hidden" name="tipo" value="salida"/>
 				<input type="hidden" name="mensajes" value="${a.id}"/>
 				<button type="submit" name="submit">Borrar</button>
