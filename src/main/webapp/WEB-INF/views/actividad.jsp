@@ -37,8 +37,6 @@
 				
 						<%@ include file="../fragments/mensaje_a_creador.jspf" %>				  
 						
-						<%@ include file="../fragments/proponer_hito.jspf" %>	
-						
 						<%@ include file="../fragments/ajustes_actividad.jspf" %>			  
 						
 						<form action="${prefix}salirActividad" method="POST">
@@ -122,10 +120,6 @@
 					
 					<%@ include file="../fragments/participantes.jspf" %>		
 					
-					<%@ include file="../fragments/proponer_pago.jspf" %>
-					
-					<%@ include file="../fragments/nuevaEncuesta.jspf" %>
-					
 					<%@ include file="../fragments/galeria.jspf" %>		  
 						  
 						 
@@ -134,79 +128,97 @@
 		
 		<div class="movimiento">
 			
-			<div class="foro_container">
-				<div class="pagos_actv">
-				<h1>Pagos</h1>
-					<c:forEach items="${pagos}" var="p">
-						<div>
-							<p>
-								Forma de Pago: ${p.descripcion}
-								<br>
-								Precio:    ${p.precioIndividual}
-								<br>
-								Fecha:	${p.fechaLimite}
-								<br>
-							</p>
-						</div>
-					</c:forEach>	
-				</div>
-				<div class="foro_actv">
-				<h1>Foro</h1>
-			
-					<c:forEach items="${comentarios}" var="c"> 
-						<div class="m_actv">
-							<a href="../perfil/${c.usuario.id}"><img class="i_people" src="../usuario/imagen?id=${c.usuario.id}" alt="" /></a>
-							<p  class="mensajes_actv">
-								${c.asunto}
-							</p>
-							 <form action="${prefix}denunciarActividad" method="POST">
-								<input type="hidden" name="id_actividad" value="${actividad.id}" />
-								<button class="btne" name="submit" type="submit" id="boton_reportar">Denunciar</button>
-							</form>
-						</div>
-					</c:forEach>
-				</div>	
-					
-					
-				<c:if test="${pertenece==true}">
+			<div class="container">
 
-					<div class="comentar_actv">
+				<ul class="tabs">
+					<li class="tab-link current" data-tab="foro"><h2 style="padding-left: 26px;">Foro</h2></li>
+					<li class="tab-link" data-tab="hitos"> <h2 style="padding-left: 24px;">Hitos</h2></li>
+					<li class="tab-link" data-tab="encuestas"><h2 style="padding-left: 4px;">Encuestas</h2></li>
+					<li class="tab-link" data-tab="pagos"> <h2 style="padding-left:22px;">Pagos</h2></li>
+				</ul>
+				<div id="foro" class="tab-content current">
+					<div class="foro_actv">
+						<c:forEach items="${comentarios}" var="c"> 
+							<div class="m_actv">
+								<a href="../perfil/${c.usuario.id}"><img class="i_people" src="../usuario/imagen?id=${c.usuario.id}" alt="" /></a>
+								<p  class="mensajes_actv">
+									${c.asunto}
+								</p>	
+								<hr></hr>	
+							
+							</div>
+						</c:forEach>
+					</div>	
+						
+					<c:if test="${pertenece==true}">
+						<div class="comentar_actv">
 							<form action="${prefix}hacerComentario" method="POST" id="bloque_foro">
 								<a href="../perfil/${usuario.id}"><img class="i_people" src="../usuario/imagen?id=${usuario.id}" alt="" /></a>
 								<input id="escribir" type="hidden" name="actividad" value="${actividad.id}">
 								<input id="escribir" type="text" name="asunto">
 								<button id="comentar" class="btn" type="submit" name="submit">Comentar</button>
 							</form>
-					</div>
-					
-				</c:if>
-			</div>
-			<div class="encuestas_actv">
-			<h1>Hitos</h1>
-			<br>
-				<c:forEach items="${hitos}" var="h">
-			  		<span>${h.anuncio}</span>
-					<br>
-					${h.fecha}
-					<br>
-					<br>
-				</c:forEach>
-			<br>
-			<h1>Encuestas</h1>
-			<br>
-				
-				<c:forEach items="${encuestas}" var="e"> 
-					<span> ${e.pregunta.asunto}</span>
-					<br>
-					<c:forEach items="${e.respuestas}" var="r">
-						<input type="checkbox"/> ${r.mensaje.asunto}	
+						</div>	
+					</c:if>
+				</div>
+				<div id="hitos" class="tab-content">
+					<div class="foro_actv">
 						<br>
+						<c:forEach items="${hitos}" var="h">
+			  				<span>${h.anuncio}</span>
+							<br>
+							${h.fecha}
+							<br>
+							<hr></hr>	
+						</c:forEach>
+						<c:if test="${pertenece==true}">
+							<%@ include file="../fragments/proponer_hito.jspf" %>	
+						</c:if>
+					</div>	
+				</div>
+				<div id="encuestas" class="tab-content">
+					<div class="foro_actv">
+					<c:forEach items="${encuestas}" var="e"> 
+						<span> ${e.pregunta.asunto}</span>
+						<br>
+						<c:forEach items="${e.respuestas}" var="r">
+							<input type="checkbox"/> ${r.mensaje.asunto}	
+							<br>
+						</c:forEach>
+						<br>
+						<hr></hr>	
 					</c:forEach>
-					<br>
-					<br>
-				</c:forEach>
-				
-			</div>	
+					<c:if test="${pertenece==true}">
+						<%@ include file="../fragments/nuevaEncuesta.jspf" %>
+					</c:if>
+					</div>
+				</div>
+				<div id="pagos" class="tab-content">
+					<div class="foro_actv">
+					<div class="pagos_actv">
+						<c:forEach items="${pagos}" var="p">
+							<div>
+								<p>
+									Forma de Pago: ${p.descripcion}
+									<br>
+									Precio:    ${p.precioIndividual}
+									<br>
+									Fecha:	${p.fechaLimite}
+								</p>
+							</div>
+							<hr></hr>
+						</c:forEach>	
+					</div>
+					<c:if test="${pertenece==true}">
+						<%@ include file="../fragments/proponer_pago.jspf" %>
+					</c:if>
+					</div>
+				</div>
+
+			</div><!-- container -->
+			
+			
+			
 		</div>
 
 	</div>
