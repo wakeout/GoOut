@@ -189,7 +189,7 @@
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Novedad" class="papelera">	
 	
-	
+		
 	<br>
 		<h1>Novedades</h1>
 		<a class="marcar" onclick="seleccionar(lista_novedades)">Marcar todos</a>

@@ -160,7 +160,7 @@ public class HomeController {
 
 			entityManager.persist(user);
 		}
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	
@@ -196,6 +196,11 @@ public class HomeController {
 							logger.info("pass no valido");
 							model.addAttribute("loginError", "Error en usuario o contraseña");
 							response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+						}
+						
+						if(u.getBorrado()){
+							model.addAttribute("loginError", "Error en usuario o contraseña");
+							destino = "login";
 						}
 					} catch (NoResultException nre) {
 						
@@ -500,7 +505,7 @@ public class HomeController {
 		r.getPagos().add(p);
 		entityManager.persist(r);
 		
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	@RequestMapping(value = "/addActividad", method = RequestMethod.POST)
@@ -537,7 +542,7 @@ public class HomeController {
 		entityManager.persist(r);
 		
 		
-		return "redirect:actividades";
+		return "redirect:administrador";
 	}
 
 	@RequestMapping(value = "/crearActividad", method = RequestMethod.POST)
@@ -716,7 +721,7 @@ public class HomeController {
 		
 		entityManager.persist(t);
 		
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	
@@ -745,7 +750,7 @@ public class HomeController {
 		n = n.crearNovedad(novedad, tipo);
 		entityManager.persist(n);
 		
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	@RequestMapping(value = "/addComentario", method = RequestMethod.POST)
@@ -763,7 +768,7 @@ public class HomeController {
 		entityManager.persist(c);
 		entityManager.persist(a);
 		
-		return "home";
+		return "redirect:administrador";
 	}
 
 	@RequestMapping(value = "/hacerComentario", method = RequestMethod.POST)
@@ -857,7 +862,7 @@ public class HomeController {
 		a.getEncuestas().add(e);
 		entityManager.persist(a);
 		
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	@RequestMapping(value = "/addHito", method = RequestMethod.POST)
@@ -881,7 +886,7 @@ public class HomeController {
 		entityManager.persist(a);
 		
 		
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	@RequestMapping(value = "/crearHito", method = RequestMethod.POST)
@@ -937,7 +942,7 @@ public class HomeController {
 		
 		
 		
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	@RequestMapping(value = "/crearMensaje", method = RequestMethod.POST)
@@ -980,6 +985,29 @@ public class HomeController {
 			return "redirect:mensajes?metodo=salida";
 		else	
 			return "redirect:actividad/"+contenido;
+	}
+	
+	@RequestMapping(value = "/invitarAmigo", method = RequestMethod.POST)
+	@Transactional
+	public String invitarAmigo(
+			@RequestParam("amigo") long[] id_amigo,
+			@RequestParam("tipo") String tipo,
+			@RequestParam("asunto") String asunto,
+			@RequestParam("mensaje") String contenido,
+			@RequestParam("actividad_id") long id_actividad,
+			HttpSession session){
+		
+		Usuario origen= new Usuario();
+		origen =(Usuario)session.getAttribute("usuario");
+		Actividad a = entityManager.find(Actividad.class, id_actividad);
+		
+		for(int i = 0; i < id_amigo.length; i++){
+			Usuario destinatario = entityManager.find(Usuario.class, id_amigo[i]);
+			Mensaje m = Mensaje.crearMensaje(asunto, contenido, tipo, origen, destinatario, false);
+			entityManager.persist(m);
+		}
+		
+		return "redirect:actividad/"+id_actividad;
 	}
 	
 	@RequestMapping(value = "/solicitudAmigo", method = RequestMethod.POST)
@@ -1146,7 +1174,7 @@ public class HomeController {
 		}
 			
 		
-		return "home";
+		return "redirect:administrador";
 	}
 	
 	/** METODOS PARA ACTIVIDAD **/
@@ -1682,23 +1710,13 @@ public class HomeController {
 					for(int i = 0; i < id.length; i++){
 						Usuario u = entityManager.find(Usuario.class, id[i]);
 						u.setBorrado(true);
+						for(int j = 0; j < u.getRegistros().size(); j++){
+							Registro r = u.getRegistros().get(j);
+							Actividad a = r.getActividad();
+							a.setNpersonas(a.getNpersonas() - 1);
+						}
 						entityManager.persist(u);
 					}
-					/*for(int i = 0; i < id.length; i++){
-						Usuario u = entityManager.find(Usuario.class, id[i]);
-						for(int j = 0; j < u.getRegistros().size(); j++){
-							Registro r = entityManager.find(Registro.class, u.getRegistros().get(j).getId());
-							entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
-						}
-						
-						for(int j = 0; j < u.getAmigos().size(); j++){
-							Usuario us = entityManager.find(Usuario.class, u.getAmigos().get(j).getId());
-							us.getAmigos().remove(u);
-							entityManager.persist(us);
-						}
-						u.getAmigos().removeAll(u.getAmigos());
-						entityManager.createNamedQuery("delUsuario").setParameter("idUsuario", u.getId()).executeUpdate();
-					}*/
 				}else{	
 				
 					for(int i=0; i<id.length; i++)

@@ -14,15 +14,35 @@
 	 		<hr></hr>
 
 		
-		<form action="${prefix}crearMensaje" method="post">
+		<form action="${prefix}invitarAmigo" method="post">
 		
-			<input class="barra_men" type="text" name="destinatario" size="20">
+			<!--<input class="barra_men" type="text" name="destinatario" size="20">
 			<input type="hidden" name="asunto" value="Apuntate a ${actividad.nombre}">
 			<input type="hidden" name="mensaje" value="${actividad.id}">
 			<input type="hidden" name="tipo" value="invitacion">
 			
 			<input class="enviar" type="submit"
-					value="Enviar Invitacion" name="Enviar"> 
+					value="Enviar Invitacion" name="Enviar"> -->
+			<c:forEach items="${amigos}" var="p">
+				<c:if test="${p.borrado == false }">
+				<span id="list">
+					<a id="enlace" href="../perfil/${p.id}">
+					<img class="i_people" src="../usuario/imagen?id=${p.id}" alt="" />
+						${p.login}
+					<input name="amigo" id="" type="checkbox" value="${p.id}"/>
+					
+					</a>
+				</span>
+				</c:if>
+			</c:forEach>
+			<input type="hidden" name="tipo" value="invitacion"/>
+			<input type="hidden" name="asunto" value="Apuntate a ${actividad.nombre}"/>
+			<input type="hidden" name="mensaje" value="${actividad.id}"/>
+			<input type="hidden" name="actividad_id" value="${actividad.id}">
+			<br>
+			<br>
+			<input class="enviar" type="submit"
+					value="Enviar Invitacion" name="Enviar">
 
 		</form>
 		
