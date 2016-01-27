@@ -46,7 +46,7 @@ public class Usuario {
 	private List<Registro> registros;
 	private List<Usuario> amigos;
 	private List<Novedad> novedades;
-
+	private boolean borrado;
 
 	
 	public static StringBuilder getJSONString(List<Usuario> l){
@@ -80,6 +80,7 @@ public class Usuario {
 		u.email=email;
 		u.nombre=nombre;
 		u.novedades=new ArrayList<Novedad>();
+		u.borrado = false;
 		
 		return u;
 	}
@@ -158,6 +159,14 @@ public class Usuario {
 	}
 	public String getPassword() {
 		return pass_cifrado;
+	}
+	
+	public void setBorrado(boolean b){
+		this.borrado = b;
+	}
+	
+	public boolean getBorrado(){
+		return this.borrado;
 	}
 
 	public void setPassword(String hashedAndSalted) {

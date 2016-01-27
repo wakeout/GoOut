@@ -14,7 +14,7 @@
 	 		<hr></hr>
 									
 			<c:forEach items="${amigos}" var="p">
-
+				<c:if test="${p.borrado == false }">
 				<span id="list">
 					<a id="enlace" href="../perfil/${p.id}">
 					<img class="i_people" src="usuario/imagen?id=${p.id}" alt="" />
@@ -23,6 +23,7 @@
 					<input type="hidden" name="tipo" value="invitacion">
 					</a>
 				</span>
+				</c:if>
 			</c:forEach>
 		</div> <!-- cd-modal-content -->
 	</div> <!-- cd-modal -->

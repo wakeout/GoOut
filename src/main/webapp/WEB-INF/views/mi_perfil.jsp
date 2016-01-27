@@ -30,13 +30,14 @@
 						<p>Amigos</p>
 							<table>
 									<c:forEach items="${amigos}" var="amigos">
+									<c:if test="${amigos.borrado == false }">
 										<tr>
 											<td>
 											<a href="${prefix}perfil/${amigos.id}">
 											<img class="i_people" src="usuario/imagen?id=${amigos.id}" alt="" />
 											</a>
 											</td> 
-								
+									</c:if>
 									</c:forEach>
 							</table>
 							<section class="cd-section">

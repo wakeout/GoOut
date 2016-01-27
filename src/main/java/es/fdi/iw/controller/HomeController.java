@@ -1645,6 +1645,7 @@ public class HomeController {
 				for(int i = 0; i < id.length; i++){
 					Actividad a = entityManager.find(Actividad.class, id[i]);
 					a.setEliminado(true);
+					entityManager.persist(a);
 				}
 				
 				/*for(int i = 0; i < id.length; i++){
@@ -1661,6 +1662,11 @@ public class HomeController {
 				if(tipo.equals("Usuario")){
 					for(int i = 0; i < id.length; i++){
 						Usuario u = entityManager.find(Usuario.class, id[i]);
+						u.setBorrado(true);
+						entityManager.persist(u);
+					}
+					/*for(int i = 0; i < id.length; i++){
+						Usuario u = entityManager.find(Usuario.class, id[i]);
 						for(int j = 0; j < u.getRegistros().size(); j++){
 							Registro r = entityManager.find(Registro.class, u.getRegistros().get(j).getId());
 							entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
@@ -1673,7 +1679,7 @@ public class HomeController {
 						}
 						u.getAmigos().removeAll(u.getAmigos());
 						entityManager.createNamedQuery("delUsuario").setParameter("idUsuario", u.getId()).executeUpdate();
-					}
+					}*/
 				}else{	
 				
 					for(int i=0; i<id.length; i++)

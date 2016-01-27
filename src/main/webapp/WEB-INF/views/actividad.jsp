@@ -95,6 +95,7 @@
 					<table>		
 						<tbody>
 							<c:forEach items="${participantes}" var="p">
+							<c:if test="${p.borrado == false }">
 								<tr>
 								<td>
 								<a href="../perfil/${p.id}">
@@ -102,6 +103,7 @@
 								</a>
 								</td>
 								</tr>
+							</c:if>
 							</c:forEach>
 						</tbody>
 					</table>

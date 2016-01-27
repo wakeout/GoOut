@@ -58,13 +58,15 @@
 								<thead>Amigos</thead>
 								<tbody>
 									<c:forEach items="${perfil.amigos}" var="p_amigos">
+										<c:if test="${p_amigos.borrado == false }">
 										<tr>
 											<td>
 											<a href="../perfil/${p_amigos.id}">
 											<img class="i_people" src="../usuario/imagen?id=${p_amigos.id}" alt="" />
 											</a>
 											</td> 
-								
+										</tr>
+										</c:if>
 									</c:forEach>
 								</tbody>
 							</table>
