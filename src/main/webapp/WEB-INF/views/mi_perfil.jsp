@@ -161,16 +161,17 @@
 						</div>
 						
 						<div class="mi_galeria">
-							<form type="POST" action"" enctype="multipart/form-data">
+							<form method="POST" action="${prefix}subirGaleria" enctype="multipart/form-data">
 							Selecciona una actividad
-							<select name="actividades_galeria">
-							<c:forEach items="${actv}" var="actividad">
-							<option value="${actividad.actividad}">${actividad.actividad.nombre}</option> 	
+							<select name="id_actv">
+							<c:forEach items="${registros}" var="reg">
+							<option value="${reg.actividad.id}">${reg.actividad.nombre}</option> 	
 							</c:forEach>
 							</select>
 							<br>
 								Seleccionar Imagen:
-								<br><input type="file" name="subir_galeria">
+								<br><input type="file" name="imagen">
+								<input type="hidden" name="id_usuario" value="${usuario.id}">
 								<br>
 								<button type="submit" name="submit" class="btne">Subir imagen a la actividad</button>
 							</form>

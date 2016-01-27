@@ -53,6 +53,7 @@ import es.fdi.iw.model.Comentario;
 import es.fdi.iw.model.Encuesta;
 import es.fdi.iw.model.Foro;
 import es.fdi.iw.model.Hito;
+import es.fdi.iw.model.Imagenes;
 import es.fdi.iw.model.Mensaje;
 import es.fdi.iw.model.Novedad;
 import es.fdi.iw.model.Pago;
@@ -390,6 +391,59 @@ public class HomeController {
 	    }
 	    
 	    return IOUtils.toByteArray(in);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/galeria/imagen", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public byte[] galeriaImagen(@RequestParam("id") String id) throws IOException {
+	    File f = ContextInitializer.getFile("galeria", id);
+	    InputStream in = null;
+	    if (f.exists()) {
+	    	in = new BufferedInputStream(new FileInputStream(f));
+	    } else {
+	    	in = new BufferedInputStream(
+	    			this.getClass().getClassLoader().getResourceAsStream("no_imagen.jpg"));
+	    }
+	    
+	    return IOUtils.toByteArray(in);
+	}
+	
+	@RequestMapping(value = "/subirGaleria", method = RequestMethod.POST)
+	@Transactional
+	public String subirGaleria(
+			@RequestParam("id_usuario") long id_usuario,
+			@RequestParam("id_actv") String id_actv,
+			@RequestParam("imagen") MultipartFile foto){
+		
+		System.out.println(id_actv);
+		long id_a = Long.parseLong(id_actv);		
+		Actividad a = entityManager.find(Actividad.class, id_a);
+		int num = a.getImg_galeria().size()+1;
+		
+
+		String imagen =num+"_"+id_actv+"_"+id_usuario;
+		Imagenes i = Imagenes.crearImagen("Subido por: "+id_usuario, imagen);
+		a.getImg_galeria().add(i);
+		
+		try {
+        	if(!foto.isEmpty()){
+			
+			byte[] bytes = foto.getBytes();
+            BufferedOutputStream stream =
+                    new BufferedOutputStream(
+                    		new FileOutputStream(ContextInitializer.getFile("galeria", imagen)));
+            stream.write(bytes);
+            stream.close();
+        }
+		}
+        catch(Exception e){
+        	
+        	//Error
+        	
+        }
+
+		
+		return "redirect:home";
 	}
 	
 	@ResponseBody
@@ -1578,7 +1632,7 @@ public class HomeController {
 			
 			model.addAttribute("amigos", u.getAmigos());
 			model.addAttribute("namigos", u.getAmigos().size());
-			model.addAttribute("actv", r);
+			model.addAttribute("registros", r);
 			
 
 			

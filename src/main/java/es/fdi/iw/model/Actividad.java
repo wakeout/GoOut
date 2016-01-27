@@ -63,6 +63,7 @@ public class Actividad{
 	private String descripcion;
 	private List<Registro> registros;
 	private List<Encuesta> encuestas;
+	private List<Imagenes> img_galeria;
 	private boolean eliminado;
 	
 	public static StringBuilder getJSONString(List<Actividad> l){
@@ -108,6 +109,7 @@ public class Actividad{
 		a.proximosHitos = new ArrayList<Hito>();
 		a.tags = new ArrayList<Tag>();
 		a.encuestas =new ArrayList<Encuesta>();
+		a.img_galeria =new ArrayList<Imagenes>();
 		a.foro=new Foro();
 		a.eliminado = false;
 		
@@ -272,6 +274,20 @@ public class Actividad{
 
 	public void setHora_fin(String hora_fin) {
 		this.hora_fin = hora_fin;
+	}
+
+	@OneToMany(targetEntity=Imagenes.class)
+	@JoinColumn(name="id_actividad")
+	public List<Imagenes> getImg_galeria() {
+		return img_galeria;
+	}
+
+	public void setImg_galeria(List<Imagenes> img_galeria) {
+		this.img_galeria = img_galeria;
+	}
+	
+	public void setImagen(Imagenes i){
+		img_galeria.add(i);
 	}
 	
 
