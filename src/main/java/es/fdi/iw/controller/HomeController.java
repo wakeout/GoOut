@@ -241,7 +241,7 @@ public class HomeController {
 			@RequestParam("fecha_inicio") Date fecha_ini,
 			@RequestParam("fecha_fin") Date fecha_fin,
 			@RequestParam("imagen") MultipartFile foto,
-			@RequestParam("descripcion_actividad") String descripcion){
+			@RequestParam("descripcion_actividad") String descripcion, HttpSession session){
 		
 		Actividad a = null;
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
@@ -261,6 +261,7 @@ public class HomeController {
                     		new FileOutputStream(ContextInitializer.getFile("actv", imagen)));
             stream.write(bytes);
             stream.close();
+            			
         }
 		}
         catch(Exception e){
@@ -277,6 +278,25 @@ public class HomeController {
 		a.setFecha_fin(fecha_fin);
 		a.setDescripcion(descripcion);
 		entityManager.persist(a);
+		
+
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		
+		u=(Usuario)entityManager.find(Usuario.class, u.getId());
+		
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+				" ha modificado {Actividad:"+a.getId()+"} " +
+				a.getNombre() , "Modificacion Actividad");
+	
+		entityManager.persist(n);
+		
+		for(Registro re: a.getRegistros()){
+			if(re.getUsuario().getNovedades().isEmpty())
+				re.getUsuario().setNovedades(new ArrayList<Novedad>());
+			
+			re.getUsuario().getNovedades().add(n);
+			entityManager.persist(re);	
+		}
 		
 		return "redirect:actividad/"+idactividad;
 	}
@@ -534,6 +554,23 @@ public class HomeController {
 		
 		r.getPagos().add(p);
 		entityManager.persist(r);
+	
+		u=(Usuario)entityManager.find(Usuario.class, u.getId());
+		
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+				" ha establecido un nuevo pago en {Actividad:"+a.getId()+": Pago} " +
+				a.getNombre() , "Nuevo participante");
+	
+		entityManager.persist(n);
+		
+		for(Registro re: a.getRegistros()){
+			if(re.getUsuario().getNovedades().isEmpty())
+				re.getUsuario().setNovedades(new ArrayList<Novedad>());
+			
+			re.getUsuario().getNovedades().add(n);
+			entityManager.persist(re);	
+		}
+		
 		
 		
 		return "redirect:actividad/"+actividad;
@@ -707,9 +744,6 @@ public class HomeController {
 				
 				u.getNovedades().add(n);
 				
-				//entityManager.persist(u);
-				//entityManager.persist(n);
-				
 				
 				
 				Mensaje m = new Mensaje();
@@ -834,7 +868,24 @@ public class HomeController {
 		Comentario c= Comentario.crearComentario(asunto, ((Usuario)session.getAttribute("usuario")));
 		
 		a.getForo().getComentarios().add(c);
-
+		
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		
+		u=(Usuario)entityManager.find(Usuario.class, u.getId());
+		
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+				" ha comentado en el foro de {Actividad:"+a.getId()+": Foro} " +
+				a.getNombre() , "Comentario");
+	
+		entityManager.persist(n);
+		
+		for(Registro r: a.getRegistros()){
+			if(r.getUsuario().getNovedades().isEmpty())
+				r.getUsuario().setNovedades(new ArrayList<Novedad>());
+			
+			r.getUsuario().getNovedades().add(n);
+			entityManager.persist(r);	
+		}
 		
 		entityManager.persist(c);
 		entityManager.persist(a);
@@ -875,8 +926,22 @@ public class HomeController {
 		
 		a.getEncuestas().add(e);
 		entityManager.persist(a);
+	
+		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+				" ha añadido una encuesta a {Actividad:"+a.getId()+"} " +
+				a.getNombre() , "Nuevo participante");
+	
+		entityManager.persist(n);
 		
+		for(Registro re: a.getRegistros()){
+			if(re.getUsuario().getNovedades().isEmpty())
+				re.getUsuario().setNovedades(new ArrayList<Novedad>());
+			
+			re.getUsuario().getNovedades().add(n);
+			entityManager.persist(re);	
+		}
 		
 		return "redirect:actividad/"+actividad;
 	}
@@ -947,7 +1012,7 @@ public class HomeController {
 	@Transactional
 	public String crearHito(@RequestParam("actividad") long actividad,
 			@RequestParam("fecha") Date fecha,
-			@RequestParam("asunto") String asunto){
+			@RequestParam("asunto") String asunto, HttpSession session){
 		
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		
@@ -961,6 +1026,26 @@ public class HomeController {
 		
 		entityManager.persist(h);
 		entityManager.persist(a);
+		
+
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		
+		u=(Usuario)entityManager.find(Usuario.class, u.getId());
+		
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+				" ha propuesto algo en {Actividad:"+a.getId()+":hito} " +
+				a.getNombre() , "Hito");
+	
+		entityManager.persist(n);
+		
+		for(Registro re: a.getRegistros()){
+			if(re.getUsuario().getNovedades().isEmpty())
+				re.getUsuario().setNovedades(new ArrayList<Novedad>());
+			
+			re.getUsuario().getNovedades().add(n);
+			entityManager.persist(re);	
+		}
+		
 
 		
 		return "redirect:actividad/"+actividad;
@@ -1024,13 +1109,23 @@ public class HomeController {
 				d = (Usuario)entityManager.createNamedQuery("userByLogin")
 						.setParameter("loginParam", destino).getSingleResult();
 				
-				
-				//d = entityManager.find(Usuario.class, destino);
-				
 				contenido = dia+"\n"+contenido;
 				
 				m = Mensaje.crearMensaje(titulo, contenido, tipo,u, d,false);
 				entityManager.persist(m);
+				
+				
+				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" te ha mandado un mensaje {Mensajes:entrada}", "Mensaje recibido");
+				
+				if(d.getNovedades().isEmpty())
+					d.setNovedades(new ArrayList<Novedad>());
+				
+				
+				entityManager.persist(n);
+				entityManager.persist(d);
+				
+				d.getNovedades().add(n);
+				
 			}
 			catch(NoResultException nre){
 				//ERROR
@@ -1054,12 +1149,22 @@ public class HomeController {
 		Usuario origen= new Usuario();
 		origen =(Usuario)session.getAttribute("usuario");
 		Actividad a = entityManager.find(Actividad.class, id_actividad);
+	
+		Novedad n=Novedad.crearNovedad("{Usuario:"+origen.getId()+"} "+origen.getLogin() +" te ha invitado a que te unas a {Actividad:"+a.getId()+"} " +a.getNombre() , "Invitacion Actividad");
+		
+		entityManager.persist(n);
+		
 		
 		for(int i = 0; i < id_amigo.length; i++){
 			Usuario destinatario = entityManager.find(Usuario.class, id_amigo[i]);
 			Mensaje m = Mensaje.crearMensaje(asunto, contenido, tipo, origen, destinatario, false);
 			entityManager.persist(m);
+			if(destinatario.getNovedades().isEmpty())
+				destinatario.setNovedades(new ArrayList<Novedad>());
+			destinatario.getNovedades().add(n);
+			entityManager.persist(destinatario);
 		}
+	
 		
 		return "redirect:actividad/"+id_actividad;
 	}
@@ -1088,6 +1193,18 @@ public class HomeController {
 			
 			m = Mensaje.crearMensaje(titulo, contenido, "solicitud",usuario_propio, d,false);
 			entityManager.persist(m);
+		
+			Novedad n=Novedad.crearNovedad("Tienes una solicitud de amistad {Mensajes:entrada}" , "Solicitud de amistad");
+			
+			if(d.getNovedades().isEmpty())
+				d.setNovedades(new ArrayList<Novedad>());
+			
+			entityManager.persist(n);
+			entityManager.persist(d);
+			
+			d.getNovedades().add(n);
+			
+			
 		}
 		catch(NoResultException nre){
 			//ERROR
@@ -1130,8 +1247,34 @@ public class HomeController {
 				entityManager.persist(usuario_propio);
 				entityManager.persist(usuario_amigo);
 				session.setAttribute("usuario", usuario_propio);
-			}
+
+				Novedad n=Novedad.crearNovedad("{Usuario:"+usuario_propio.getId()+"} "+ usuario_propio.getLogin()
+						+" ahora es amigo de {Usuario:"+usuario_amigo.getId()+"} " +usuario_amigo.getLogin() , "Nueva amistad");
 			
+				entityManager.persist(n);
+				
+				for(Usuario amigos: usuario_propio.getAmigos()){
+					if(amigos.getNovedades().isEmpty())
+						amigos.setNovedades(new ArrayList<Novedad>());
+					
+					amigos.getNovedades().add(n);
+					entityManager.persist(amigos);
+				}
+				for(Usuario amigos: usuario_amigo.getAmigos()){
+					if(!usuario_propio.getAmigos().contains(amigos)){
+						if(amigos.getNovedades().isEmpty())
+							amigos.setNovedades(new ArrayList<Novedad>());
+					
+						amigos.getNovedades().add(n);
+						entityManager.persist(amigos);
+					}
+				}
+				
+				entityManager.persist(n);
+				
+			
+			}
+				
 		}
 		catch(Exception e)
 		{
@@ -1271,6 +1414,26 @@ public class HomeController {
 					entityManager.persist(actv);
 					
 					entityManager.persist(r);
+					
+
+					Usuario u=(Usuario)session.getAttribute("usuario");
+					
+					u=(Usuario)entityManager.find(Usuario.class, u.getId());
+					
+					Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+							" se ha unido a {Actividad:"+actv.getId()+"} " +
+							actv.getNombre() , "Nuevo participante");
+				
+					entityManager.persist(n);
+					
+					for(Registro re: actv.getRegistros()){
+						if(re.getUsuario().getNovedades().isEmpty())
+							re.getUsuario().setNovedades(new ArrayList<Novedad>());
+						
+						re.getUsuario().getNovedades().add(n);
+						entityManager.persist(re);	
+					}
+					
 				}
 			}
 			else
@@ -1306,6 +1469,7 @@ public class HomeController {
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	
 			return "home";
+			
 		}else
 			return "redirect:sin_registro";
 	}
@@ -1436,7 +1600,20 @@ public class HomeController {
 		entityManager.persist(a);
 		entityManager.createNamedQuery("eliminarRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", u.getId()).executeUpdate();
 		
+
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+				" ha salido de {Actividad:"+a.getId()+"} " +
+				a.getNombre() , "Salida de actividad");
+	
+		entityManager.persist(n);
 		
+		for(Registro re: a.getRegistros()){
+			if(re.getUsuario().getNovedades().isEmpty())
+				re.getUsuario().setNovedades(new ArrayList<Novedad>());
+			
+			re.getUsuario().getNovedades().add(n);
+			entityManager.persist(re);	
+		}
 		
 		return "redirect:home";
 	}
