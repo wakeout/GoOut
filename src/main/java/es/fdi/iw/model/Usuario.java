@@ -64,7 +64,8 @@ public class Usuario {
 	public static String getSingleString(Usuario u){
 		return "{ "
 				+ "\"id\": \"" + u.getId() + "\", "
-				+ "\"login\": \""+u.getLogin()+"\"}";
+				+ "\"login\": \""+u.getLogin()+"\","
+				+ "\"borrado\": \""+u.getBorrado()+"\"}";
 	}
 	
 	

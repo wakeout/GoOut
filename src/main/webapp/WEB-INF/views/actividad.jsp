@@ -124,7 +124,9 @@
 					
 					<%@ include file="../fragments/proponer_pago.jspf" %>
 					
-					<%@ include file="../fragments/nuevaEncuesta.jspf" %>		  
+					<%@ include file="../fragments/nuevaEncuesta.jspf" %>
+					
+					<%@ include file="../fragments/galeria.jspf" %>		  
 						  
 						 
 			

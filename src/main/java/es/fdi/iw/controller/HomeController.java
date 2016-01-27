@@ -1,5 +1,7 @@
 package es.fdi.iw.controller;
 
+import net.wimpi.telnetd.io.terminal.ansi;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.owasp.encoder.Encode;
 
@@ -450,6 +452,9 @@ public class HomeController {
 		Imagenes i = Imagenes.crearImagen("Subido por: "+id_usuario, imagen);
 		a.getImg_galeria().add(i);
 		
+		entityManager.persist(i);
+		entityManager.persist(a);
+		
 		try {
         	if(!foto.isEmpty()){
 			
@@ -468,7 +473,7 @@ public class HomeController {
         }
 
 		
-		return "redirect:home";
+		return "redirect:actividad/"+id_a;
 	}
 	
 	@ResponseBody
@@ -1660,6 +1665,8 @@ public class HomeController {
 			model.addAttribute("actividad", a);
 			model.addAttribute("tags", a.getTags());
 			model.addAttribute("encuestas", a.getEncuestas());
+			model.addAttribute("imagenes", a.getImg_galeria());
+			
 			if(u!=null)
 				model.addAttribute("amigos", u.getAmigos());
 		}
@@ -1915,7 +1922,8 @@ public class HomeController {
 	@RequestMapping(value = "/borrarElemento", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
-	public void borrarElemento(@RequestParam("id") long [] id, @RequestParam("tipo") String tipo, HttpServletRequest request){
+	public void borrarElemento(@RequestParam("id") long [] id, @RequestParam("tipo") String tipo, HttpServletRequest request, HttpSession session){
+		Usuario usu = (Usuario)session.getAttribute("usuario");
 		try {
 			//(cascade=CascadeType.REMOVE)
 			if(tipo.equals("Actividad")){
@@ -1938,15 +1946,17 @@ public class HomeController {
 					entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();*/
 			}else{
 				if(tipo.equals("Usuario")){
+					Usuario u = null;
 					for(int i = 0; i < id.length; i++){
-						Usuario u = entityManager.find(Usuario.class, id[i]);
+						u = entityManager.find(Usuario.class, id[i]);
 						u.setBorrado(true);
+						entityManager.persist(u);
+						
 						for(int j = 0; j < u.getRegistros().size(); j++){
 							Registro r = u.getRegistros().get(j);
 							Actividad a = r.getActividad();
 							a.setNpersonas(a.getNpersonas() - 1);
 						}
-						entityManager.persist(u);
 					}
 				}else{	
 				

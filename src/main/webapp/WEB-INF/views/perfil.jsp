@@ -25,8 +25,6 @@
 						<input type="hidden" name="nombre_amigo" value="${perfil.id}">
 						<a><button type="submit" name="submit" class="btne">Enviar Mensaje a ${perfil.login}</button></a>
 						</form>
-						
-						<%@ include file="../fragments/galeria.jspf" %>
 
 						<c:if test="${amigos == false && (usuario.id != perfil.id) && solicitado == false}">
 						<form action="${prefix}solicitudAmigo" class="cuadro_acciones" method="POST">
