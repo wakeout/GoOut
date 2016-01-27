@@ -24,7 +24,7 @@ public class Imagenes {
 		public static Imagenes crearImagen(String descripcion, String nombre){
 			Imagenes i = new Imagenes();
 			i.descripcion=descripcion;
-			i.setNombre(nombre);
+			i.nombre=nombre;
 			return i;
 		}
 		

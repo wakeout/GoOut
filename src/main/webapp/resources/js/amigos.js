@@ -60,9 +60,12 @@ function refrescar(data){
 
 function elemento(elem){
 	
+	if(elem.borrado == "false"){
+		alert(elem.borrado);
 	return $(" <td><a href='perfil/"+elem.id+
 			"'><img class='i_people' src='usuario/imagen?id="
 			+elem.id+" '></a></td><td><a href='perfil/"+elem.id+
 			"'>"+elem.login+"</a></td>");
-	
+	}
+
 }
