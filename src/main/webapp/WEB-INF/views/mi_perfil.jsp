@@ -72,32 +72,32 @@
   							<legend>Datos usuario</legend>
   							<div class="campos_Perfil">
 								<label for="nombre_perfil">Nombre:</label> 
-								<label id="nombre_perfil">${usuario.login}</label>
+								<label id="nombre_perfil"><c:out value="${usuario.login}"/></label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
 								<label for="fecha_perfil">Fecha Nac:</label> 
-								<label id="fecha_perfil">${usuario.nacimiento}</label>
+								<label id="fecha_perfil"><c:out value="${usuario.nacimiento}"/></label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
 								<label for="prov_perfil">Provincia:</label> 
-								<label id="prov_perfil">${usuario.provincia}</label>
+								<label id="prov_perfil"><c:out value="${usuario.provincia}"/></label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
 								<label for="email_perfil">Email: </label> 
-								<label id="email_perfil">${usuario.email}</label>
+								<label id="email_perfil"><c:out value="${usuario.email}"/></label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
 								<label for="tipo_usuario">Tipo de usuario: </label> 
-								<label id="tipo_usuario">${usuario.rol}</label>
+								<label id="tipo_usuario"><c:out value="${usuario.rol}"/></label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
 								<label for="n_amigos">Amigos:</label> 
-								<label id="n_amigos"> ${namigos}</label>
+								<label id="n_amigos"> <c:out value="${namigos}"/></label>
 							</div>
 							</fieldset>
 							

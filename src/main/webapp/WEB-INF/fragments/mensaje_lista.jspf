@@ -54,8 +54,8 @@
 			<c:forEach items="${mensajes}" var="a">
 			
 		<tr>	
-			<td><c:if test="${a.leido == false}"><span class="no_leido" id="anim"></c:if>${a.origen.login}<c:if test="${a.leido == false}"></span></c:if>
-			<td><c:if test="${a.leido == false}"><span class="no_leido"></c:if>${a.titulo}<c:if test="${a.leido == false}"></span></c:if>
+			<td><c:if test="${a.leido == false}"><span class="no_leido" id="anim"></c:if><c:out value="${a.origen.login}"/><c:if test="${a.leido == false}"></span></c:if>
+			<td><c:if test="${a.leido == false}"><span class="no_leido"></c:if><c:out value="${a.titulo}"/><c:if test="${a.leido == false}"></span></c:if>
 			<td>
 			<td>
 				<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button" onclick="leer(${a.id})">Leer</button></a>
@@ -82,8 +82,8 @@
 		<tbody>
 			<c:forEach items="${mensajeS}" var="a">
 		<tr>	
-			<td>${a.destinos.login}
-			<td>${a.titulo}
+			<td><c:out value="${a.destinos.login}"/>
+			<td><c:out value="${a.titulo}"/>
 			<td>
 			<td>
 				<a href="mensajes?metodo=leer&origen=salida&id=${a.id}">
@@ -130,7 +130,7 @@
 </form>
 		<tr>
 				<td>Usuario <c:if test="${param.origen == 'entrada'}">Origen: </c:if><c:if test="${param.origen == 'salida'}">Destino: </c:if>
-				${persona}
+				<c:out value="${persona}"/>
 				</td>
 				<td><c:if test="${tipo == 'solicitud' && bandeja == 'entrada'}">
 				<form action="agregarAmigo" method="POST">
@@ -153,6 +153,6 @@
 		</tr>
 		</tbody>
 	</table>
-	<a href="mensajes?metodo=${bandeja}"><button type="button">Volver a bandeja de ${bandeja}</button></a>
+	<a href="mensajes?metodo=${bandeja}"><button type="button">Volver a bandeja de <c:out value="${bandeja}"/></button></a>
 </div>
 </c:if>

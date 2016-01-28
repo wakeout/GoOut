@@ -59,16 +59,16 @@
 				<div id="datos_actv">
 				
 					<div id="nombre_actv"><span id="nombre">${actividad.nombre}</span></div>
-					<div class="dato_actv"><span title="creador de la actividad">${actividad.creador.login}</span>
-					<span title="estado de la actividad">${actividad.estado}</span>
-					<span title="privacidad de la actividad">${actividad.privacidad}</span></div>
-					<div class="dato_actv">Fecha: ${actividad.fecha_ini} - ${actividad.fecha_fin}</div>
-					<div class="dato_actv">Hora: ${actividad.hora_ini} - ${actividad.hora_fin}</div>
-					<div class="dato_actv">Localización: ${actividad.localizacion}
+					<div class="dato_actv"><span title="creador de la actividad"><c:out value="${actividad.creador.login}"/></span>
+					<span title="estado de la actividad"><c:out value="${actividad.estado}"/></span>
+					<span title="privacidad de la actividad"><c:out value="${actividad.privacidad}"/></span></div>
+					<div class="dato_actv">Fecha: <c:out value="${actividad.fecha_ini}"/> - <c:out value="${actividad.fecha_fin}"/></div>
+					<div class="dato_actv">Hora: <c:out value="${actividad.hora_ini}"/> - <c:out value="${actividad.hora_fin}"/></div>
+					<div class="dato_actv">Localización: <c:out value="${actividad.localizacion}"/>
 						<br>
 						
 						<c:forEach items="${tags}" var="a">
-							<span style="margin-left: 5px;margin-right: 5px;">#${a.nombre}</span>
+							<span style="margin-left: 5px;margin-right: 5px;">#<c:out value="${a.nombre}"/></span>
 						</c:forEach>
 			
 					</div>
@@ -78,7 +78,7 @@
 			<p>Descripción de la actividad</p>
 				<div id="desc_actv">
 				<p>
-					${actividad.descripcion}
+					<c:out value="${actividad.descripcion}"/>
 				</p>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 				</div>
 		
 		<div id="gente_actv">
-		<p> Usuarios apuntados  ${actividad.npersonas}/${actividad.maxPersonas}</p>
+		<p> Usuarios apuntados  <c:out value="${actividad.npersonas}"/>/<c:out value="${actividad.maxPersonas}"/></p>
 			<div id="gente_apuntada">
 					<table>		
 						<tbody>
@@ -108,7 +108,7 @@
 			</div>		
 					<c:choose> 
 						  <c:when test="${(actividad.maxPersonas-actividad.npersonas) > 0}">
-						    <span>Aun faltan ${actividad.maxPersonas-actividad.npersonas} por apuntarse!</span> 
+						    <span>Aun faltan <c:out value="${actividad.maxPersonas-actividad.npersonas}"/> por apuntarse!</span> 
 						   	<c:if test="${pertenece}">
 								<%@ include file="../fragments/invitar.jspf"%>				  
 						   	</c:if>
@@ -142,10 +142,10 @@
 							<div class="m_actv">
 								<a href="../perfil/${c.usuario.id}"><img class="i_people" src="../usuario/imagen?id=${c.usuario.id}" alt="" /></a>
 								<p  class="mensajes_actv">
-									${c.asunto}
-								</p>	
-								<hr></hr>	
-							
+									<c:out value="${c.asunto}"/>
+								</p>
+								<c:out value="${c.usuario.login}"/>	
+								<hr></hr>								
 							</div>
 						</c:forEach>
 					</div>	
@@ -165,9 +165,9 @@
 					<div class="foro_actv">
 						<br>
 						<c:forEach items="${hitos}" var="h">
-			  				<span>${h.anuncio}</span>
+			  				<span><c:out value="${h.anuncio}"/></span>
 							<br>
-							${h.fecha}
+							<c:out value="${h.fecha}"/>
 							<br>
 							<hr></hr>	
 						</c:forEach>
@@ -178,17 +178,24 @@
 				</div>
 				<div id="encuestas" class="tab-content">
 					<div class="foro_actv">
-					<form action="${prefix}responderEncuesta" method="post">
 					<c:forEach items="${encuestas}" var="e"> 
-						<span> ${e.pregunta.asunto}</span>
-						<br>
-						<c:forEach items="${e.respuestas}" var="r">
-							<input type="checkbox"/> ${r.mensaje.asunto}	
+						<form action="${prefix}responderEncuesta" method="post">
+							<span> <c:out value="${e.pregunta.asunto}"/></span>
 							<br>
-						</c:forEach>
-						<br>
-						<hr></hr>	
+							<c:forEach items="${e.respuestas}" var="r">
+								<input type="checkbox" name="respuestas" value="${r.id}"/> ${r.mensaje.asunto}	
+								<c:forEach items="${r.usuario}" var="u">
+									
+								</c:forEach>								
+								<br>
+							</c:forEach>
+							<br>
+							<input type="hidden" name="actividad" value="${actividad.id}"/>
+							<button name="submit" type="submit">Responder</button>
+							<hr></hr>
+						</form>	
 					</c:forEach>
+					
 					<c:if test="${pertenece==true}">
 						<%@ include file="../fragments/nuevaEncuesta.jspf" %>
 					</c:if>
@@ -200,11 +207,11 @@
 						<c:forEach items="${pagos}" var="p">
 							<div>
 								<p>
-									Forma de Pago: ${p.descripcion}
+									Forma de Pago: <c:out value="${p.descripcion}" />
 									<br>
-									Precio:    ${p.precioIndividual}
+									Precio:    <c:out value="${p.precioIndividual}"/>
 									<br>
-									Fecha:	${p.fechaLimite}
+									Fecha:	<c:out value="${p.fechaLimite}"/>
 								</p>
 							</div>
 							<hr></hr>

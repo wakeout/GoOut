@@ -28,7 +28,7 @@
 				<span id="list">
 					<a id="enlace" href="../perfil/${p.id}">
 					<img class="i_people" src="../usuario/imagen?id=${p.id}" alt="" />
-						${p.login}
+						<c:out value="${p.login}"/>
 					<input name="amigo" id="" type="checkbox" value="${p.id}"/>
 					
 					</a>

@@ -16,7 +16,7 @@
 								<c:choose>
 
 									<c:when test="${not empty usuario}">
-										<li class="submenu"><a href="${prefix}mi_perfil" style="text-transform: uppercase;" >${usuario.login}</a></li>
+										<li class="submenu"><a href="${prefix}mi_perfil" style="text-transform: uppercase;" ><c:out value="${usuario.login}"/></a></li>
 										<c:set var="rol" scope="session" value="admin"/>	
 	
 										<c:if test="${usuario.rol == rol}">

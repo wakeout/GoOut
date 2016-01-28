@@ -10,7 +10,7 @@
 	<div class="cd-modal">
 		<div class="cd-modal-content">
 									
-			<span id="titulo">Mensaje a ${actividad.creador.login}</span>
+			<span id="titulo">Mensaje a <c:out value="${actividad.creador.login}"/></span>
 	 		<hr></hr>
 
 		
