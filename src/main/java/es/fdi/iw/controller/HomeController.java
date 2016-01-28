@@ -267,9 +267,9 @@ public class HomeController {
 		
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
-		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha modificado {Actividad:"+a.getId()+"} " +
-				a.getNombre() , "Modificacion Actividad");
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
+				" ha modificado {Actividad:"+a.getId()+":"+a.getNombre()+"} " 
+				 , "Modificacion Actividad");
 	
 		entityManager.persist(n);
 		
@@ -543,9 +543,9 @@ public class HomeController {
 	
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
-		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha establecido un nuevo pago en {Actividad:"+a.getId()+": Pago} " +
-				a.getNombre() , "Nuevo participante");
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
+				" ha establecido un nuevo pago en {Actividad:"+a.getId()+":"+
+						a.getNombre()+ "Pago} "  , "Nuevo pago");
 	
 		entityManager.persist(n);
 		
@@ -746,7 +746,9 @@ public class HomeController {
 	    		
 				u=(Usuario)entityManager.find(Usuario.class, u.getId());
 				
-				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" ha creado la actividad {Actividad:"+a.getId()+"} " +nombre_actv , "Actividad creada");
+				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
+						" ha creado la actividad {Actividad:"+
+						a.getId()+":"+nombre_actv+"} "  , "Actividad creada");
 				
 				if(u.getNovedades().isEmpty())
 					u.setNovedades(new ArrayList<Novedad>());
@@ -890,9 +892,9 @@ public class HomeController {
 		
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
-		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha comentado en el foro de {Actividad:"+a.getId()+": Foro} " +
-				a.getNombre() , "Comentario");
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
+				" ha comentado en el foro de {Actividad:"+a.getId()+":"+
+						a.getNombre()+ ":Foro} "  , "Comentario");
 	
 		entityManager.persist(n);
 		
@@ -932,9 +934,9 @@ public class HomeController {
 		}
 		
 		
-		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
 				" ha respondido en una encuesta de {Actividad:"+a.getId()+":Encuesta} " +
-				a.getNombre() , "Nuevo participante");
+				a.getNombre() , "Respuesta en encuesta");
 	
 		entityManager.persist(n);
 		
@@ -988,9 +990,9 @@ public class HomeController {
 	
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
-		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha añadido una encuesta a {Actividad:"+a.getId()+":Encuesta} " +
-				a.getNombre() , "Nuevo participante");
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin()+"} " +
+				" ha añadido una encuesta a {Actividad:"+a.getId()+":" +
+						a.getNombre()+":Encuesta} "  , "Nueva encuesta");
 	
 		entityManager.persist(n);
 		
@@ -1091,9 +1093,9 @@ public class HomeController {
 		
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
-		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha propuesto algo en {Actividad:"+a.getId()+":hito} " +
-				a.getNombre() , "Hito");
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
+				" ha propuesto algo en {Actividad:"+a.getId()+":"+ a.getNombre()+":hito}"
+				 , "Hito");
 	
 		entityManager.persist(n);
 		
@@ -1174,7 +1176,8 @@ public class HomeController {
 				entityManager.persist(m);
 				
 				
-				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +" te ha mandado un mensaje {Mensajes:entrada}", "Mensaje recibido");
+				Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +
+						"} te ha mandado un mensaje {Mensajes:entrada}", "Mensaje recibido");
 				
 				if(d.getNovedades().isEmpty())
 					d.setNovedades(new ArrayList<Novedad>());
@@ -1307,8 +1310,8 @@ public class HomeController {
 				entityManager.persist(usuario_amigo);
 				session.setAttribute("usuario", usuario_propio);
 
-				Novedad n=Novedad.crearNovedad("{Usuario:"+usuario_propio.getId()+"} "+ usuario_propio.getLogin()
-						+" ahora es amigo de {Usuario:"+usuario_amigo.getId()+"} " +usuario_amigo.getLogin() , "Nueva amistad");
+				Novedad n=Novedad.crearNovedad("{Usuario:"+usuario_propio.getId()+":"+ usuario_propio.getLogin()+"} "
+						+" ahora es amigo de {Usuario:"+usuario_amigo.getId()+":" +usuario_amigo.getLogin()+"} " , "Nueva amistad");
 			
 				entityManager.persist(n);
 				
@@ -1479,9 +1482,9 @@ public class HomeController {
 					
 					u=(Usuario)entityManager.find(Usuario.class, u.getId());
 					
-					Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-							" se ha unido a {Actividad:"+actv.getId()+"} " +
-							actv.getNombre() , "Nuevo participante");
+					Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"}"+
+							" se ha unido a {Actividad:"+actv.getId()+":"+actv.getNombre()+"} " 
+							 , "Nuevo participante");
 				
 					entityManager.persist(n);
 					
@@ -1517,7 +1520,10 @@ public class HomeController {
 			
 			
 			if(!u.getNovedades().isEmpty())
-				model.addAttribute("novedades", u.getNovedades());
+				model.addAttribute("novedades", Novedad.getJSONString(u.getNovedades()));
+			
+			System.out.println( Novedad.getJSONString(u.getNovedades()));
+			
 			
 			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();
 			
@@ -1541,7 +1547,10 @@ public class HomeController {
 			
 			
 			if(!u.getNovedades().isEmpty())
-				model.addAttribute("novedades", u.getNovedades());
+				model.addAttribute("novedades", Novedad.getJSONString(u.getNovedades()));
+			
+			System.out.println( Novedad.getJSONString(u.getNovedades()));
+			
 			
 			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();
 			
@@ -1660,9 +1669,9 @@ public class HomeController {
 		entityManager.createNamedQuery("eliminarRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", u.getId()).executeUpdate();
 		
 
-		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha salido de {Actividad:"+a.getId()+"} " +
-				a.getNombre() , "Salida de actividad");
+		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
+				" ha salido de {Actividad:"+a.getId()+":"+
+						a.getNombre()+"} "  , "Salida de actividad");
 	
 		entityManager.persist(n);
 		

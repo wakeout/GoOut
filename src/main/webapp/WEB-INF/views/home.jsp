@@ -2,7 +2,10 @@
 
 <html>
 <head>
+
 <%@ include file="../fragments/head.jspf"%>
+<script src="${prefix}resources/js/novedades.js"></script>
+		
 
 </head>
 <body class="homepage">
@@ -23,13 +26,23 @@
 								<div id="novedades">
 									<div id="actv_nov">
 										<p id="text">NOVEDADES</p>
-								
-										<c:forEach items="${novedades}" var="n">
-												
-											${n.mensaje}
-											<br>
-										</c:forEach>
+										<br>
+										<h2>!Aún no hay ninguna novedad!</h2>
+										
+										<p><a href="actividades">Pincha aquí y comienza tu experiencia en goout</a></p>
 									</div>
+									<c:if test="${novedades!=null}">
+												<script>
+
+													$(function(){
+
+		    											var obj = "${novedades}";
+		    
+														formato(obj);
+													});
+	
+												</script>
+									</c:if>
 
 								</div>
 							</div>
@@ -45,7 +58,7 @@
 													</div>
 
 													<img class="i_actv"
-														src="actividad/imagen?id=${a.id}" alt="" />
+														src="actividad/imagen?id=${a.id}" />
 												</div>
 											</a>
 										</c:if>	
@@ -61,11 +74,23 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jspf"%>
 
 	<!-- Scripts -->
 	<%@ include file="../fragments/scripts.jspf"%>
+		<script>
+
+		$(function(){
+
+			console.log("${novedades}");
+		    var obj = "${novedades}";
+		    
+			formato(obj);
+		});
+	
+	</script>
+	
 </body>
 </html>
