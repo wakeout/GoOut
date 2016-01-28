@@ -13,6 +13,11 @@
 					size="20"> 
 					Destinatario:<input class="barra_men"
 					type="text" name="destinatario" value="${nombre.login}" size="20">
+					<select name="amigos">
+					<c:forEach items="${amigos}" var="amigos">
+					<option>${amigos.login}</option>
+					</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>

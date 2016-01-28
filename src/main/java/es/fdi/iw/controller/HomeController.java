@@ -1843,6 +1843,7 @@ public class HomeController {
 			model.addAttribute("mensajes", entityManager.createNamedQuery("mensajesEntrada").setParameter("destinoParam", u).getResultList());
 			model.addAttribute("mensajeS", entityManager.createNamedQuery("mensajesSalida").setParameter("origenParam", u).getResultList());
 			model.addAttribute("usuario", u);
+			model.addAttribute("amigos", u.getAmigos());
 			return "mensajes";
 		}
 		else return "redirect:sin_registro";
