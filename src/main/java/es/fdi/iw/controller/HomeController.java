@@ -629,14 +629,6 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
-			//@RequestParam("tags") long[] tagIds,
-			@RequestParam("fecha_ini") Date fecha_ini,
-			@RequestParam("fecha_fin") Date fecha_fin,
-			//@RequestParam("origen") String origen,
-			//@RequestParam("destino") String destino,
-			//@RequestParam("actv_privada") int privado,
-			//@RequestParam("amigo") String[] amigosIds,
-			//@RequestParam("tipo") String tipo,
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
@@ -644,10 +636,33 @@ public class HomeController {
 			String destino="";
 			String estado = "abierta";
 			String descripcion;
-			
 			int privado = 0;
 			
+			Date fecha_ini=null;
+			Date fecha_fin=null;
 			
+			String f_ini = request.getParameter("fecha_ini");
+			String f_fin = request.getParameter("fecha_fin");
+			
+			SimpleDateFormat dateFormatter = new SimpleDateFormat ( "yyyy-MM-dd" );
+
+			
+			if( f_ini != null && f_ini.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+				try {
+					fecha_ini = new Date(dateFormatter.parse(f_ini).getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if( f_fin != null && f_fin.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+				try {
+					fecha_fin = new Date(dateFormatter.parse(f_fin).getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+
 			origen = request.getParameter("origen");
 			destino = request.getParameter("destino");
 		
@@ -1680,10 +1695,10 @@ public class HomeController {
 		
 		if(tipo.equals("misamigos")){
 			List<Usuario> amigos=new ArrayList<Usuario>();
-			for(Usuario a: u.getAmigos())
-				if(a.getLogin().indexOf(buscado)!=-1)
+			for(Usuario a: u.getAmigos()){
+				if(a.getLogin().indexOf(buscado)!=-1 && a.getBorrado() == false)
 					amigos.add(a);
-			
+			}
 			sb=Usuario.getJSONString(amigos);	
 		}else{
 			if(tipo.equals("noamigos")){
