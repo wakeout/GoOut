@@ -1673,16 +1673,20 @@ public class HomeController {
 		String buscadosql="%"+buscado+"%";
 		List<Usuario> usuarios =null;
 		usuarios= entityManager.createNamedQuery("buscaUsuario").setParameter("loginParam", buscadosql).getResultList();		
-		Usuario u=((Usuario)session.getAttribute("usuario"));
-	
+		Usuario u = (Usuario)entityManager.find(Usuario.class, 
+				((Usuario)session.getAttribute("usuario")).getId());
+		session.setAttribute("usuario", u);
 		
 		StringBuilder sb = new StringBuilder("[");
 		
 		if(tipo.equals("misamigos")){
 			List<Usuario> amigos=new ArrayList<Usuario>();
 			for(Usuario a: u.getAmigos())
-				if(a.getLogin().indexOf(buscado)!=-1)
-					amigos.add(a);
+				if(a.getLogin().indexOf(buscado)!=-1){
+					if(!a.getBorrado())
+						amigos.add(a);
+				}
+					
 			
 			sb=Usuario.getJSONString(amigos);	
 		}else{
