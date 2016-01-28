@@ -72,7 +72,7 @@
   							<legend>Datos usuario</legend>
   							<div class="campos_Perfil">
 								<label for="nombre_perfil">Nombre:</label> 
-								<label id="nombre_perfil"><c:out value="${usuario.login}"/></label>
+								<label id="nombre_perfil"><c:out value="${usuario.nombre}"/></label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
