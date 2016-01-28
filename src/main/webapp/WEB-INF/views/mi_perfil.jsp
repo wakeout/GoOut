@@ -55,7 +55,7 @@
 								<a href="#0" class="cd-modal-close">Close</a>
 							</section>
 						</div>
-						
+							
 						<div id="opciones_perfil">
 							<ul id="menu">
 							  <li><a id="menu1" href="#">Mi Perfil</a></li>
@@ -100,9 +100,26 @@
 								<label id="n_amigos"> ${namigos}</label>
 							</div>
 							</fieldset>
+							
+							<p class="apuntadas">Actividades en las que estoy apuntado</p>
+						
 						</div>
 
-
+						<div class="actv_apuntadas">
+							<table id="mis_actv">
+								<c:forEach items="${actv}" var="a">
+								<a  href="actividad/${a.actividad.id}">
+								<div class='img_thumb'>
+									<div class='img_desc'>
+										<p id='actividad'>${a.actividad.nombre}</p>
+									</div>
+								<img class='i_actv'src="actividad/imagen?id=${a.actividad.id}"/>
+								</div>
+								</a>
+								</c:forEach>
+							</table>
+							
+						</div>
 						<div class="mod_perfil">
 						
 							<form action="${prefix}mi_perfil" method="POST" enctype="multipart/form-data">
@@ -175,30 +192,17 @@
 								<br>
 								<button type="submit" name="submit" class="btne">Subir imagen a la actividad</button>
 							</form>
-							
-							<div class="actv_apuntadas">
-							Actividades en las que estoy apuntado
-							<table id="mis_actv">
-								<c:forEach items="${actv}" var="actividad">
-								<a  href="actividad/${actividad.id}">
-								<div class='img_thumb'>
-									<div class='img_desc'>
-										<p id='actividad'>${actividad.actividad.nombre}</p>
-									</div>
-								<img class='i_actv'src="actividad/imagen?id=${actividad.id}"/>
-								</div>
-								</a>
-								</c:forEach>
-							</table>
-							
-							</div>
 						</div>
+					
 						</div>
+						
 					</div>
 					
 					
 				</div>
+				
 				</div>
+				
 			</div>
 
 			<!-- Footer -->

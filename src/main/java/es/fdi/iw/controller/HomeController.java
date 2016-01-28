@@ -1744,6 +1744,7 @@ public class HomeController {
 
 		if(!u.getRegistros().isEmpty())
 			for(Registro r: u.getRegistros())
+				if(buscadas.contains(r.getActividad()))
 				mis_actividades.add(r.getActividad());
 		
 		if(tipo.equals("misactividades")){
@@ -1847,6 +1848,7 @@ public class HomeController {
 			model.addAttribute("amigos", u.getAmigos());
 			model.addAttribute("namigos", u.getAmigos().size());
 			model.addAttribute("registros", r);
+			model.addAttribute("actv",u.getRegistros());
 			
 
 			

@@ -11,12 +11,13 @@
 			<tr>
 				<td>Asunto: <input class="barra_men" type="text" name="asunto"
 					size="20"> 
-					Destinatario:<input class="barra_men"
-					type="text" name="destinatario" value="${nombre.login}" size="20">
-					<select name="amigos">
+					Destinatario:<select class="sel_mensaje" name="destinatario">
 					<c:forEach items="${amigos}" var="amigos">
-					<option>${amigos.login}</option>
+					<option value="${amigos.login}">${amigos.login}</option>
 					</c:forEach>
+					<c:if test="${nombre.login != null}">
+						<option value="${nombre.login}" selected>${nombre.login}</option>
+					</c:if>
 					</select>
 				</td>
 			</tr>

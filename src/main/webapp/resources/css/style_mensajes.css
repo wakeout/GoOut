@@ -99,3 +99,7 @@ a{text-decoration:none;}
 .no_leido{
 	font-weight: bold;
 }
+.sel_mensaje{
+	height: 35px;
+    width: 200px;
+}
