@@ -120,7 +120,9 @@
 					
 					<%@ include file="../fragments/participantes.jspf" %>		
 					
-					<%@ include file="../fragments/galeria.jspf" %>		  
+					<c:if test="${pertenece==true}">
+					<%@ include file="../fragments/galeria.jspf" %>		
+					</c:if>  
 						  
 						 
 			

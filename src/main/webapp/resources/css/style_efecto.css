@@ -34,6 +34,11 @@ hr {
   text-decoration: none;
 }
 
+.desc_img{
+	text-align: center;
+    font-size: larger;
+}
+
 /* -------------------------------- 
 
 Main Components 

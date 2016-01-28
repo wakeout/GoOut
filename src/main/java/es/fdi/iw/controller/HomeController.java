@@ -421,16 +421,20 @@ public class HomeController {
 	public String subirGaleria(
 			@RequestParam("id_usuario") long id_usuario,
 			@RequestParam("id_actv") String id_actv,
-			@RequestParam("imagen") MultipartFile foto){
+			@RequestParam("imagen") MultipartFile foto,
+			HttpServletRequest request){
 		
-		System.out.println(id_actv);
+		String descripcion="";
+		
+		descripcion = request.getParameter("desc");
 		long id_a = Long.parseLong(id_actv);		
 		Actividad a = entityManager.find(Actividad.class, id_a);
+		Usuario u = entityManager.find(Usuario.class, id_usuario);
 		int num = a.getImg_galeria().size()+1;
 		
 
 		String imagen =num+"_"+id_actv+"_"+id_usuario;
-		Imagenes i = Imagenes.crearImagen("Subido por: "+id_usuario, imagen);
+		Imagenes i = Imagenes.crearImagen("Subida por "+u.getLogin()+" "+descripcion, imagen);
 		a.getImg_galeria().add(i);
 		
 		entityManager.persist(i);

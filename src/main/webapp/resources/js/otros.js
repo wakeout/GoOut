@@ -67,6 +67,7 @@ $("#menu1").click(function() {
 	$( ".mod_perfil" ).hide();
 	$(".mi_galeria").hide();
 	$( ".mi_perfil" ).show();
+	$( ".actv_apuntadas" ).show();
 	
 });
 $("#menu2").click(function() {
@@ -74,7 +75,7 @@ $("#menu2").click(function() {
 	$( ".mod_perfil" ).show();
 	$( ".mi_perfil" ).hide();
 	$(".mi_galeria").hide();
-	
+	$( ".actv_apuntadas" ).hide();
 });
 
 $("#menu3").click(function() {
@@ -82,11 +83,16 @@ $("#menu3").click(function() {
 	$( ".mod_perfil" ).hide();
 	$( ".mi_perfil" ).hide();
 	$(".mi_galeria").show();
+	$( ".actv_apuntadas" ).hide();
 	
 });
 
 $("#upfile1").click(function () {
     $("#file1").trigger('click');
+});
+
+$("#img_galeria").click(function () {
+    $("#file_galeria").trigger('click');
 });
 
 
