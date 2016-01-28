@@ -72,7 +72,7 @@
   							<legend>Datos usuario</legend>
   							<div class="campos_Perfil">
 								<label for="nombre_perfil">Nombre:</label> 
-								<label id="nombre_perfil"><c:out value="${usuario.login}"/></label>
+								<label id="nombre_perfil"><c:out value="${usuario.nombre}"/></label>
 							</div>
 							<br>
 							<div class="campos_Perfil">
@@ -178,6 +178,7 @@
 						</div>
 						
 						<div class="mi_galeria">
+						<br>
 							<form method="POST" action="${prefix}subirGaleria" enctype="multipart/form-data">
 							Selecciona una actividad
 							<select name="id_actv">
@@ -186,11 +187,20 @@
 							</c:forEach>
 							</select>
 							<br>
-								Seleccionar Imagen:
-								<br><input type="file" name="imagen">
-								<input type="hidden" name="id_usuario" value="${usuario.id}">
+							<br>
+							<div id="upload">
+		        					<span id="img_galeria" style="cursor:pointer;background-color: #7AB6DD;">Seleccionar imagen</span>
+									<input type="file" id="file_galeria"  name="imagen" style="display:none" />
+									
+									<input type="hidden" name="id_usuario" value="${usuario.id}">
+								<br>
+								<br>
+								Descripción de la imagen
+								<textarea rows="3" cols="30" name="desc"></textarea>
 								<br>
 								<button type="submit" name="submit" class="btne">Subir imagen a la actividad</button>
+					    	</div>
+								
 							</form>
 						</div>
 					

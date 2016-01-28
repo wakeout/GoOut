@@ -36,9 +36,11 @@
 						
 						<img height='800px' width="1400px" clip-path="url(#cd-image-${num})" class="" src="${prefix}galeria/imagen?id=${p.nombre}">
 					</svg>
-					<p><c:out value="${p.descripcion}"/></p>
+					
 				</div> <!-- .cd-svg-wrapper -->
+				<p class="desc_img"><c:out value="${p.descripcion}"/></p>
 			</li>
+			
 			<c:set var="num" value="${num+1}"/>
 			<c:set var="visible" value="${''}"/>
 			</c:forEach>

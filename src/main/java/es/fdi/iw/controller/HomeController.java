@@ -85,6 +85,7 @@ public class HomeController {
 			@RequestParam("pass") String formPass,
 			@RequestParam("pass2") String formPass2,
 			@RequestParam("email") String formEmail,
+			@RequestParam("nombre_usuario") String nombreUsuario,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 		
@@ -96,6 +97,7 @@ public class HomeController {
 		{
 			model.addAttribute("loginError", "Usuarios y contraseña: 4 caracteres mínimo");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return "registro";
 		} 
 		else 
 		{
@@ -104,18 +106,28 @@ public class HomeController {
 				u = (Usuario)entityManager.createNamedQuery("userByLogin")
 					.setParameter("loginParam", formLogin).getSingleResult();
 				
+				model.addAttribute("loginError", "El usuario ya existe");
+				return "registro";
+				
 			} catch (NoResultException nre) {
 				if (formPass.equals(formPass2)) 
 				{
 					logger.info("no-such-user; creating user {}", formLogin);				
-					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", "Sin especificar",null, "Sin especificar", formEmail, "");
+					Usuario user = Usuario.createUser(formLogin, formPass, "usuario", nombreUsuario ,null, "Sin especificar", formEmail, "");
 
 					entityManager.persist(user);
 				} 
 				else {
 					logger.info("no such login: {}", formLogin);
 				}
-				model.addAttribute("loginError", "Error en usuario o contraseña");
+				//model.addAttribute("loginError", "Error en usuario o contraseña");
+			}
+			if(formPass.equals(formPass2)){
+				
+			}
+			else{
+				model.addAttribute("loginError", "Las contraseñas no coinciden");
+				return "registro";
 			}
 		}
 		
@@ -421,16 +433,20 @@ public class HomeController {
 	public String subirGaleria(
 			@RequestParam("id_usuario") long id_usuario,
 			@RequestParam("id_actv") String id_actv,
-			@RequestParam("imagen") MultipartFile foto){
+			@RequestParam("imagen") MultipartFile foto,
+			HttpServletRequest request){
 		
-		System.out.println(id_actv);
+		String descripcion="";
+		
+		descripcion = request.getParameter("desc");
 		long id_a = Long.parseLong(id_actv);		
 		Actividad a = entityManager.find(Actividad.class, id_a);
+		Usuario u = entityManager.find(Usuario.class, id_usuario);
 		int num = a.getImg_galeria().size()+1;
 		
 
 		String imagen =num+"_"+id_actv+"_"+id_usuario;
-		Imagenes i = Imagenes.crearImagen("Subido por: "+id_usuario, imagen);
+		Imagenes i = Imagenes.crearImagen("Subida por "+u.getLogin()+" "+descripcion, imagen);
 		a.getImg_galeria().add(i);
 		
 		entityManager.persist(i);
@@ -1815,7 +1831,7 @@ public class HomeController {
 
 		if(!u.getRegistros().isEmpty())
 			for(Registro r: u.getRegistros())
-				if(buscadas.contains(r.getActividad()))
+				if(buscadas.contains(r.getActividad()) && !r.getActividad().getEliminado())
 					mis_actividades.add(r.getActividad());
 		
 		if(tipo.equals("misactividades")){
@@ -1829,7 +1845,7 @@ public class HomeController {
 					for(int i=0; i<mis_actividades.size() && !mia; i++){
 						mia=(a.getId()==mis_actividades.get(i).getId());
 					}
-					if(!mia) no_mias.add(a);
+					if(!mia && !a.getEliminado()) no_mias.add(a);
 					mia=false;
 				}
 				
