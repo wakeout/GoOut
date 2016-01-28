@@ -178,6 +178,7 @@
 				</div>
 				<div id="encuestas" class="tab-content">
 					<div class="foro_actv">
+					<form action="${prefix}responderEncuesta" method="post">
 					<c:forEach items="${encuestas}" var="e"> 
 						<span> ${e.pregunta.asunto}</span>
 						<br>
