@@ -133,7 +133,7 @@
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="foro"><h2 style="padding-left: 26px;">Foro</h2></li>
 					<li class="tab-link" data-tab="hitos"> <h2 style="padding-left: 24px;">Hitos</h2></li>
-					<li class="tab-link" data-tab="encuestas"><h2 style="padding-left: 4px;">Encuestas</h2></li>
+					<li class="tab-link" data-tab="encuestas"><h2 style="padding-left: 2px;">Encuestas</h2></li>
 					<li class="tab-link" data-tab="pagos"> <h2 style="padding-left:22px;">Pagos</h2></li>
 				</ul>
 				<div id="foro" class="tab-content current">
