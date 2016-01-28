@@ -917,7 +917,7 @@ public class HomeController {
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
 		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha añadido una encuesta a {Actividad:"+a.getId()+"} " +
+				" ha añadido una encuesta a {Actividad:"+a.getId()+":Encuesta} " +
 				a.getNombre() , "Nuevo participante");
 	
 		entityManager.persist(n);
