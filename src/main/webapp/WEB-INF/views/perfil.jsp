@@ -4,6 +4,7 @@
 <%@ include file="../fragments/head.jspf"%>
 
 <link rel="stylesheet" href="${prefix}resources/css/style_perfil.css">
+<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css">
 <script src="${prefix}resources/js/perfil.js"></script>
 </head>
 <body class="homepage">

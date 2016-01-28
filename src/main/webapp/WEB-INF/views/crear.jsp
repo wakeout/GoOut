@@ -44,11 +44,12 @@
 														<td><input type="text" name="nombre_actv"
 															class="caja" placeholder="Nombre de la actividad" required/></td>
 													</tr>
-
 													<table id="tipo_actividad">
 														<tr>
 															<span class="titulos">Tipo de actividad</span>
 														</tr>
+														<tbody id="todos_tags">
+														
 														<c:forEach items="${tags}" var="t" >
 															<tr>
 
@@ -57,12 +58,14 @@
 																
 															</tr>
 														</c:forEach>
-
+														</tbody>
+														</table>
+													<table>
 														<tr>
 															<td><input name="otro_tag" id="otro_tag"
 																type="checkbox" value="cambio" onchange="habilitar()" />Otros</td>
 															<td><input type="text" name="otro" id="otro"
-																value="" disabled style="width: 110px; height: 30px"
+																 disabled style="width: 110px; height: 30px"
 																class="caja"></td>
 														</tr>
 													</table>

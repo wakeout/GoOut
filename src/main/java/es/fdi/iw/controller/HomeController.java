@@ -659,6 +659,13 @@ public class HomeController {
 			long[] tagIds = new long[0];
 			tags = request.getParameterValues("tags");
 			
+			String tag;
+			tag = request.getParameter("otro");
+			//System.out.println(tag);
+			/*if(tag != null){
+				Tag otro_tag = new Tag();
+				otro_tag.crearTag(tag);
+			}*/
 			
 			if (tags != null) {
 				tagIds = new long[tags.length];
@@ -694,6 +701,14 @@ public class HomeController {
 				entityManager.persist(f);
 				entityManager.persist(a);
 				a.getRegistros().add(r);
+				
+				if(tag != null){
+					Tag otro_tag = new Tag();
+					otro_tag = Tag.crearTag(tag);
+					otro_tag.getEtiquetados().add(a);
+					entityManager.persist(otro_tag);
+					a.getTags().add(otro_tag);
+				}
 				
 				String hora_ini = request.getParameter("hora_ini");
 				a.setHora_ini(hora_ini);
@@ -1527,7 +1542,7 @@ public class HomeController {
 			
 			u = entityManager.find(Usuario.class,u.getId());
 			
-			HashMap<Integer, Tag> tagMap = new HashMap<Integer, Tag>();
+			/*HashMap<Integer, Tag> tagMap = new HashMap<Integer, Tag>();
 		
 			List<Tag> lT=entityManager.createNamedQuery("allTags").getResultList();
 			
@@ -1542,10 +1557,10 @@ public class HomeController {
 			 while (iter.hasNext() && i<10) {
 			        fin.add((Tag)iter.next());
 			        i++;
-			 } 
+			 } */
+			List<Tag> lT=entityManager.createNamedQuery("allTags").getResultList();
 			 
-			 
-			model.addAttribute("tags", fin);
+			model.addAttribute("tags", lT);
 			model.addAttribute("usuarios", entityManager.createNamedQuery("allUsers").getResultList());
 			model.addAttribute("amigos", u.getAmigos());
 			return "crear";
@@ -1734,13 +1749,19 @@ public class HomeController {
 					for(int i=0; i<u.getAmigos().size() && !amigos; i++){
 						amigos=(us.getId()==u.getAmigos().get(i).getId() || us.getId()==u.getId());
 					}
-					if(!amigos) no_amigos.add(us);
+					if(!amigos && !us.getBorrado()) no_amigos.add(us);
 					amigos=false;
 				}
 				
 				sb=Usuario.getJSONString(no_amigos);
 			}else{
-				sb=Usuario.getJSONString(usuarios);
+				List<Usuario> todos_usuarios = new ArrayList<Usuario>();
+				for(Usuario t: usuarios){
+					if(!t.getBorrado())
+						todos_usuarios.add(t);
+				}
+				sb = Usuario.getJSONString(todos_usuarios);
+				//sb=Usuario.getJSONString(usuarios);
 			}
 		}
 
@@ -1764,7 +1785,7 @@ public class HomeController {
 
 		if(!u.getRegistros().isEmpty())
 			for(Registro r: u.getRegistros())
-				if(buscadas.contains(r.getActividad()))
+				if(buscadas.contains(r.getActividad()) && !r.getActividad().getEliminado())
 					mis_actividades.add(r.getActividad());
 		
 		if(tipo.equals("misactividades")){
@@ -1778,13 +1799,19 @@ public class HomeController {
 					for(int i=0; i<mis_actividades.size() && !mia; i++){
 						mia=(a.getId()==mis_actividades.get(i).getId());
 					}
-					if(!mia) no_mias.add(a);
+					if(!mia && !a.getEliminado()) no_mias.add(a);
 					mia=false;
 				}
 				
 				sb=Actividad.getJSONString(no_mias);
 			}else{
-				sb=Actividad.getJSONString(buscadas);
+				List<Actividad> todas_actividades = new ArrayList<Actividad>();
+				for(Actividad t: buscadas){
+					if(!t.getEliminado())
+						todas_actividades.add(t);
+				}
+				sb = Actividad.getJSONString(todas_actividades);
+				//sb=Actividad.getJSONString(buscadas);
 			}
 			
 		}
@@ -1983,10 +2010,19 @@ public class HomeController {
 						}
 					}
 				}else{	
-				
-					for(int i=0; i<id.length; i++)
-						entityManager.createNamedQuery("del"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
-			
+					if(tipo.equals("Registro")){
+						Registro r = new Registro();
+						for(int i = 0; i < id.length; i++){
+							r = entityManager.find(Registro.class, id[i]);
+							Actividad a = r.getActividad();
+							entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
+							a.setNpersonas(a.getNpersonas()-1);
+						}
+					}
+					else{
+						for(int i=0; i<id.length; i++)
+							entityManager.createNamedQuery("del"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
+					}
 					
 				}	
 			}

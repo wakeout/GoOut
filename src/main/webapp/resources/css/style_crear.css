@@ -57,8 +57,17 @@
 		
 	}
 	
+	#todos_tags{
+	height: 200px;
+    overflow: auto;
+    width: 220px;
+    display: list-item;
+	}
+	
 	#tipo_actividad{
 		margin-left:10px;
+		overflow-y: auto;
+		height:50px;
 	}
 	
 	#map_canvas{

@@ -1,5 +1,6 @@
 package es.fdi.iw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -29,6 +30,7 @@ public class Tag {
 		
 		Tag t = new Tag();
 		t.nombre=nombre_tag;
+		t.actividades = new ArrayList<Actividad>();
 		return t;
 	}
 	
