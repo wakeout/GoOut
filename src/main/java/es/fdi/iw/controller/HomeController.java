@@ -629,14 +629,6 @@ public class HomeController {
 			@RequestParam("nombre_actv") String nombre_actv,
 			@RequestParam("max_participantes") int max_participantes,
 			@RequestParam("imagen") MultipartFile imagen_actv,
-			//@RequestParam("tags") long[] tagIds,
-			@RequestParam("fecha_ini") Date fecha_ini,
-			@RequestParam("fecha_fin") Date fecha_fin,
-			//@RequestParam("origen") String origen,
-			//@RequestParam("destino") String destino,
-			//@RequestParam("actv_privada") int privado,
-			//@RequestParam("amigo") String[] amigosIds,
-			//@RequestParam("tipo") String tipo,
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
