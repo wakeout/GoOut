@@ -85,11 +85,11 @@
 												<!-- <p id="text">¿CUÁNDO QUIERES HACERLO?</p>-->
 												<br>
 												<label class="nombre_caja"> Inicio:</label> <input type="date" size="12"
-													name="fecha_ini" id="caja_inicio" required/> 
+													name="fecha_ini" id="caja_inicio"/> 
 												<br>
 												<br>
 												<label class="nombre_caja"> Fin:</label> <input type="date" size="12"
-													id="caja_fin" name="fecha_fin" required/>
+													id="caja_fin" name="fecha_fin"/>
 												<br>
 												<br>
 												<label class="nombre_caja">Hora Inicio: </label> <input type="time" name="hora_ini" id="caja_hora">
