@@ -32,7 +32,7 @@
 							</clipPath>
 						</defs>
 						
-						<img class="" src="${prefix}galeria/imagen?id=${p.nombre}">
+						<img height='800px' width="1400px" class="" src="${prefix}galeria/imagen?id=${p.nombre}">
 					</svg>
 				</div> <!-- .cd-svg-wrapper -->
 			</li>
