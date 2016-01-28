@@ -53,7 +53,7 @@
 															<tr>
 
 																<td><input name="tags" id="tags" type="checkbox"
-																	value="${t.id}"/>${t.nombre}</td>
+																	value="${t.id}"/><c:out value="${t.nombre}"/></td>
 																
 															</tr>
 														</c:forEach>

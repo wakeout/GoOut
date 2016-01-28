@@ -89,16 +89,16 @@
 
 							 <table>
 							 <tr>
-								<td id="login_perfil">${perfil.login}</td>
+								<td id="login_perfil"><c:out value="${perfil.login}"/></td>
 							 </tr>
 							 <tr>
-								 <td id="nacimiento_perfil"> ${perfil.email} </td>
+								 <td id="nacimiento_perfil"> <c:out value="${perfil.email}"/> </td>
 							 </tr>
 							 <tr>
-						 		<td id="provincia_perfil"> ${perfil.provincia}</td>
+						 		<td id="provincia_perfil"> <c:out value="${perfil.provincia}"/></td>
 							 </tr>
 							 <tr>
-								<td id="email_perfil"> ${perfil.provincia}</td>
+								<td id="email_perfil"> <c:out value="${perfil.provincia}"/></td>
 							 </tr>
 							</table>
 							

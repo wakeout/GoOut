@@ -26,8 +26,8 @@ import javax.validation.constraints.NotNull;
 public class Respuesta{
 	private long id;
 	private Comentario mensaje;
-	List<Usuario> usuario;//USUARIOS QUE HAN RESPONDIDO
-	
+	private List<Usuario> usuario;//USUARIOS QUE HAN RESPONDIDO
+
 	public static Respuesta crearRespuesta(Comentario mensaje){
 		Respuesta r = new Respuesta();
 		

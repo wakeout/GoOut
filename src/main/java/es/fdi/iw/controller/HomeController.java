@@ -876,41 +876,28 @@ public class HomeController {
 	@RequestMapping(value = "/responderEncuesta", method = RequestMethod.POST)
 	@Transactional
 	public String responderEncuesta(
+			@RequestParam("respuestas") long [] respuestas,
 			@RequestParam("actividad") long actividad,
-			@RequestParam("pregunta_encuesta") String pregunta,
-			@RequestParam("opcion1") String opcion1,
-			@RequestParam("opcion2") String opcion2,
+			HttpServletRequest request,
 			HttpSession session){
 		
+		//String[] respuestas=request.getParameterValues("respuestas");
 		Usuario u=(Usuario)session.getAttribute("usuario");
-		Actividad a=entityManager.find(Actividad.class, actividad);
-		Comentario c= Comentario.crearComentario(pregunta, u);
-		Comentario c1 = Comentario.crearComentario(opcion1, u);
-		Comentario c2 = Comentario.crearComentario(opcion2, u);
-		Encuesta e = Encuesta.crearEncuesta(c);
-		Respuesta r1 = new Respuesta();
-		Respuesta r2 = new Respuesta();
-		
-		r1 = Respuesta.crearRespuesta(c1);
-		r2 = Respuesta.crearRespuesta(c2);
-		
-		e.getRespuestas().add(r1);
-		e.getRespuestas().add(r2);
-		
-		entityManager.persist(c);
-		entityManager.persist(c1);
-		entityManager.persist(c2);
-		entityManager.persist(e);
-		entityManager.persist(r1);
-		entityManager.persist(r2);
-		
-		a.getEncuestas().add(e);
-		entityManager.persist(a);
-	
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
+		Actividad a=entityManager.find(Actividad.class, actividad);
+		
+		for(int i=0; i<respuestas.length; i++){
+			Respuesta r=entityManager.find(Respuesta.class, respuestas[i]);
+			if(r.getUsuario().isEmpty())
+				r.setUsuario(new ArrayList<Usuario>());
+				
+			r.getUsuario().add(u);
+			entityManager.persist(r);
+		}
+		
 		
 		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+"} "+u.getLogin() +
-				" ha añadido una encuesta a {Actividad:"+a.getId()+":Encuesta} " +
+				" ha respondido en una encuesta de {Actividad:"+a.getId()+":Encuesta} " +
 				a.getNombre() , "Nuevo participante");
 	
 		entityManager.persist(n);
@@ -1697,7 +1684,7 @@ public class HomeController {
 			model.addAttribute("tags", a.getTags());
 			model.addAttribute("encuestas", a.getEncuestas());
 			model.addAttribute("imagenes", a.getImg_galeria());
-			
+			//model.addAttribute("respuestas",)
 			if(u!=null)
 				model.addAttribute("amigos", u.getAmigos());
 		}
@@ -1877,7 +1864,7 @@ public class HomeController {
 			List<Registro> r = null;
 			
 			r = u.getRegistros();
-			
+						
 			model.addAttribute("amigos", u.getAmigos());
 			model.addAttribute("namigos", u.getAmigos().size());
 			model.addAttribute("registros", r);

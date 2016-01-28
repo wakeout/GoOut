@@ -31,7 +31,7 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_actividades)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${actividades}" var="a">
-			<c:if test="${a.eliminado == false }"><tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td>${a.nombre}</c:if>
+			<c:if test="${a.eliminado == false }"><tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td><c:out value="${a.nombre}"/></c:if>
 			</c:forEach>
 		</table>
 	</div>
@@ -56,7 +56,7 @@
 		<table>
 			<c:forEach items="${usuarios}" var="u">
 			<c:if test="${u.borrado == false }">
-			<tr id="Usuario_${u.id}"><td><input name="Usuario" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td>${u.login}
+			<tr id="Usuario_${u.id}"><td><input name="Usuario" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td><c:out value="${u.login}"/>
 			</c:if>
 			</c:forEach>
 		</table>
@@ -118,7 +118,7 @@
 	<a class="desmarcar" onclick="deseleccionar(lista_mensajes)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${mensajes}" var="m">
-			<tr id="Mensaje_${m.id}"><td><input name="Mensaje" value="${m.id}" type="checkbox"><a href="${prefix}mensaje/${m.id}"> ${m.id}</a><td>${m.titulo}
+			<tr id="Mensaje_${m.id}"><td><input name="Mensaje" value="${m.id}" type="checkbox"> ${m.id}<td><c:out value="${m.titulo}"/>
 			</c:forEach>
 		</table>
 	</form>
@@ -143,7 +143,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_tags)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${tags}" var="t">
-			<tr id="Tag_${t.id}"><td><input name="Tag" value="${t.id}" type="checkbox"><a href="${prefix}tag/${t.id}"> ${t.id}</a><td>${t.nombre}
+			<tr id="Tag_${t.id}"><td><input name="Tag" value="${t.id}" type="checkbox"> ${t.id}<td><c:out value="${t.nombre}"/>
 			</c:forEach>
 		</table>
 	</form>
@@ -160,7 +160,6 @@
 	
 	<%@ include file="../fragments/add/addComentarios.jspf" %>
 
-	<form name="lista_comentarios" action="${prefix}borrarComentarios" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Comentario" class="papelera">	
 
@@ -171,7 +170,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_comentarios)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${comentarios}" var="c">
-			<tr id="Comentario_${c.id}"><td><input  name="Comentario" value="${c.id}" type="checkbox"><a href="${prefix}comentario/${c.id}"> ${c.id}</a><td>${c.asunto}
+			<tr id="Comentario_${c.id}"><td><input  name="Comentario" value="${c.id}" type="checkbox"> ${c.id}<td><c:out value="${c.asunto}"/>
 			</c:forEach>
 		</table>
 	</form>
@@ -185,7 +184,6 @@
 	</div>
 	
 	<%@ include file="../fragments/add/addNovedad.jspf" %>
-	<form name="lista_novedades" action="${prefix}borrarNovedades" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Novedad" class="papelera">	
 	
@@ -196,7 +194,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_novedades)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${novedades}" var="n">
-			<tr id="Novedad_${n.id}"><td><input  name="Novedad" value="${n.id}"  type="checkbox"><a href="${prefix}novedad/${n.id}"> ${n.id}</a><td>${n.mensaje}
+			<tr id="Novedad_${n.id}"><td><input  name="Novedad" value="${n.id}"  type="checkbox"> ${n.id}<td><c:out value="${n.mensaje}"/>
 			</c:forEach>
 		</table>
 	</form>
@@ -211,7 +209,6 @@
 	
 	<%@ include file="../fragments/add/addHito.jspf" %>
 	
-	<form name="lista_hitos" action="${prefix}borrarHitos" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Hito" class="papelera">	
 	
@@ -221,7 +218,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_hitos)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${hitos}" var="h">
-			<tr id="Hito_${h.id}"><td><input  name="Hito" value="${h.id}" type="checkbox"><a href="${prefix}hito/${h.id}"> ${h.id}</a><td>${h.anuncio}
+			<tr id="Hito_${h.id}"><td><input  name="Hito" value="${h.id}" type="checkbox">${h.id}<td><c:out value="${h.anuncio}"/>
 			</c:forEach>
 		</table>
 	</form>
@@ -234,7 +231,6 @@
 	</div>
 	
 	<%@ include file="../fragments/add/addPago.jspf" %>
-	<form name="lista_pagos" action="${prefix}borrarPagos" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Pago" class="papelera">	
 	
@@ -248,7 +244,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_pagos)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${pagos}" var="p">
-			<tr id="Pago_${p.id}"><td><input  name="Pago" value="${p.id}" type="checkbox"><a> ${p.id}</a><td>
+			<tr id="Pago_${p.id}"><td><input  name="Pago" value="${p.id}" type="checkbox"> ${p.id}<td>
 			</c:forEach>
 		</table>
 	</form>
@@ -265,7 +261,6 @@
 	
 	<%@ include file="../fragments/add/addEncuesta.jspf" %>
 	
-	<form name="lista_encuestas" action="${prefix}borrarEncuestas" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Encuesta" class="papelera">	
 	
@@ -275,7 +270,7 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_encuestas)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${encuestas}" var="e">
-			<tr id="Encuesta_${e.id}"><td><input  name="Encuesta" value="${e.id}" type="checkbox"> ${e.id}<td>${e.pregunta.asunto}
+			<tr id="Encuesta_${e.id}"><td><input  name="Encuesta" value="${e.id}" type="checkbox"> ${e.id}<td><c:out value="${e.pregunta.asunto}"/>
 			</c:forEach>
 		</table>
 		</form>
@@ -291,7 +286,6 @@
 	
 	<%@ include file="../fragments/add/addRespuesta.jspf" %>
 	
-	<form name="lista_respuestas" action="${prefix}borrarRespuestas" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Respuesta" class="papelera">	
 		

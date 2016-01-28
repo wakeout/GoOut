@@ -10,7 +10,7 @@
 	<div class="cd-modal">
 		<div class="cd-modal-content">
 									
-			<span id="titulo">Amigos de ${perfil.login}</span>
+			<span id="titulo">Amigos de <c:out value="${perfil.login}"/></span>
 	 		<hr></hr>
 									
 			<c:forEach items="${perfil.amigos}" var="p_amigos">
@@ -19,7 +19,7 @@
 			<td>
 				<a href="../perfil/${p_amigos.id}" style="color:white">
 				<img class="i_people" src="../usuario/imagen?id=${p_amigos.id}" alt="" />
-				${p_amigos.login}
+				<c:out value="${p_amigos.login}"/>
 				</a>
 			</td> 
 			</c:if>

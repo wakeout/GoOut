@@ -51,7 +51,7 @@
 												<a href="actividad/${a.id}">
 												<div class="img_thumb">
 													<div class="img_desc">
-														<p id="actividad">${a.nombre}</p>
+														<p id="actividad"><c:out value="${a.nombre}"/></p>
 													</div>
 
 													<img class="i_actv"
