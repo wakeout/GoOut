@@ -1937,7 +1937,7 @@ public class HomeController {
 				
 				solicitado = false;
 			}
-			
+			model.addAttribute("actv",p.getRegistros());
 			model.addAttribute("amigos", amigos);
 			model.addAttribute("solicitado", solicitado);
 		
