@@ -14,13 +14,13 @@
 		<form action="${prefix}addRegistro" method="post">
 			
 			<label>Id usuario</label>
-			<input type="text" name="id_usuario" id="id_usuario"/>
+			<input type="text" name="id_usuario" id="id_usuario" maxlength="6"/>
 			
 			<br>
 			<br>
 			
 			<label>Id actividad</label>
-			<input type="text" name="id_actividad" id="id_actividad"/> 
+			<input type="text" name="id_actividad" id="id_actividad" maxlength="6"/> 
 			
 			<br>
 			<br>

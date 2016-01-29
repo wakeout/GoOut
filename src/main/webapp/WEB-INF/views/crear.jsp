@@ -42,7 +42,7 @@
 													<span class="titulos">Nombre de la actividad</span>
 													<tr>
 														<td><input type="text" name="nombre_actv"
-															class="caja" placeholder="Nombre de la actividad" required/></td>
+															class="caja" placeholder="Nombre de la actividad" maxlength="40" required/></td>
 													</tr>
 													<table id="tipo_actividad">
 														<tr>
@@ -66,7 +66,7 @@
 																type="checkbox" value="cambio" onchange="habilitar()" />Otros</td>
 															<td><input type="text" name="otro" id="otro"
 																 disabled style="width: 110px; height: 30px"
-																class="caja"></td>
+																class="caja" maxlength="15"></td>
 														</tr>
 													</table>
 
@@ -122,7 +122,7 @@
 												<br>
 												<br>
 												<label>Origen</label> <input type="text"
-													class="caja" id="caja_origen" name="origen" readonly/> 
+													class="caja" id="caja_origen" name="origen" maxlength="60" readonly/> 
 												<br> 
 												<!-- <label>Destino</label> <input type="text"
 													name="destino" id="destino" disabled

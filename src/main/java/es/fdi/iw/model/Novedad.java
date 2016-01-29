@@ -37,6 +37,25 @@ public class Novedad {
 		
 		return n;
 	}
+	public static StringBuilder getJSONString(List<Novedad> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Novedad n : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(n));
+			
+		}
+		
+		
+		sb.append(']');
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Novedad n){
+		return "{ "
+				+ "\"mensaje\": \"" + conversionVista(n.getMensaje()) + "\"}";
+	}
 	
 	@Id
     @GeneratedValue
@@ -73,6 +92,111 @@ public class Novedad {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+
+	//si orden 1 entonces la foto irá antes que el nombre si orden 0 el nombre irá antes que la foto
+	private static String formatoUsuario(String id, String nombre, boolean orden){
+		String f="<a href='perfil/"+id+"'><img class='i_people' src='usuario/imagen?id="
+					+id+" '></a>";
+		String n="<a href='perfil/"+id+"'>"+nombre+"</a>";;
+		
+		if(orden)	
+			return f+n;
+		else
+			return n+f;
+	}
+
+	private static String formatoActividad(String id, String nombre){
+		String m="<a href='actividad/"+id+
+	"'><div class='img_thumb'><div class='img_desc'></div><img class='i_actv' src='actividad/imagen?id="
+	+id+"'><p id='actividad'>"+nombre+"</p></div></a>";
+		
+		return m;
+	}
+	private static String formatoMensaje(){
+		String m="<a href='mensajes?metodo=entrada'></a>";
+		
+		return m;
+	}
+	
+	/*
+	("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
+			" ha comentado en el foro de {Actividad:"+a.getId()+":"+
+					a.getNombre()+ ":Foro} "  , "Comentario")*/
+	private static String conversionVista(String m){
+		String s="";
+		String id="";
+		String nombre="";
+		
+		for(int i=0; i<m.length(); i++){
+			if(m.indexOf(i)=='{'){
+				i++;
+				if(m.indexOf(i)=='U'){
+					i+=7;
+					while(m.indexOf(i)!=':'){
+						id+=m.indexOf(i);
+						i++;
+					}
+					i++;
+					while(m.indexOf(i)!='}' || m.indexOf(i)!=':'){
+						nombre+=m.indexOf(i);
+						i++;
+					}
+					while(m.indexOf(i)!='}')i++;
+					
+					s+=formatoUsuario(id, nombre, true);
+					id="";nombre="";
+				}else{
+					if(m.indexOf(i)=='A'){
+						i+=10;
+						while(m.indexOf(i)!=':'){
+							id+=m.indexOf(i);
+							i++;
+						}
+						i++;
+						while(m.indexOf(i)!='}' || m.indexOf(i)!=':'){
+							nombre+=m.indexOf(i);
+							i++;
+						}
+						while(m.indexOf(i)!='}')i++;
+						
+						s+=formatoActividad(id, nombre);
+						id="";nombre="";
+					}else{
+						if(m.indexOf(i)=='M'){
+							i+=8;
+							while(m.indexOf(i)!='}')i++;
+							
+							s+=formatoMensaje();
+	
+						}else
+							s+=m.indexOf(i);
+					}
+				
+				
+				}
+				
+			}
+		}
+		
+		return s;
+	}
+	
+	
+/*	
+Formato usuario			
+<a href="perfil/4"><img class="i_people" src="usuario/imagen?id=4 "></a>	
+<a href="perfil/4">david</a>
+	*/
+	
+/*	
+Formato actividad			
+<div class="img_thumb">
+<div class="img_desc">
+</div>
+<img class="i_actv" src="actividad/imagen?id=1">
+<p id="actividad">cerves</p>
+</div>
+*/
 	
 	
 }

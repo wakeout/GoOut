@@ -14,13 +14,13 @@
 		<form action="${prefix}addMensaje" method="post">
 			
 			<label>Asunto</label>
-			<input type="text" name="asunto" id="asunto"/> 
+			<input type="text" name="asunto" id="asunto" maxlength="30"/> 
 			
 			<br>
 			<br>
 			
 			<label>Destino</label>
-			<input type="text" name="destinatario" id="destinatario"/> 
+			<input type="text" name="destinatario" id="destinatario" maxlength="30"/> 
 			
 			<br>
 			<br>

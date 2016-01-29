@@ -24,14 +24,14 @@
 			
 			<label>Opcion 1</label>
 			<br>
-			<input type="text" name="opcion1" id="opcion1" required/>
+			<input type="text" name="opcion1" id="opcion1" maxlength="30"required/>
 			
 			<br>
 			<br>
 			
 			<label>Opcion 2</label>
 			<br>
-			<input type="text" name="opcion2" id="opcion2" required/>
+			<input type="text" name="opcion2" id="opcion2" maxlength="30" required/>
 			
 			<br>
 			<br>

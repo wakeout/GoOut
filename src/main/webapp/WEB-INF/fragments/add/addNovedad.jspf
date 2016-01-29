@@ -14,7 +14,7 @@
 		<form action="${prefix}addNovedad" method="post">
 			
 			<label>Tipo</label>
-			<input type="text" name="tipo_novedad" id="tipo_novedad"/>
+			<input type="text" name="tipo_novedad" id="tipo_novedad" maxlength="25"/>
 			<br>
 			<br>
 			
