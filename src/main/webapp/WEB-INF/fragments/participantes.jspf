@@ -12,17 +12,28 @@
 									
 			<span id="titulo">Participantes</span>
 	 		<hr></hr>
-									
+			<form action="${prefix}echarActividad" method="POST">
+										
 			<c:forEach items="${participantes}" var="p">
 
 				<span id="list">
 					<a id="enlace" href="../perfil/${p.id}">
 					<img class="i_people" src="../usuario/imagen?id=${p.id}" alt="" />
 									
-						<c:out value="${p.login}"/>
+						<c:out value="${p.login}"/>			
+						<c:if test="${usuario.id==actividad.creador.id && usuario.id!=p.id}">
+								<input name="participantes" id="" type="checkbox" value="${p.id}"/>
+						</c:if>
 					</a>
 				</span>
 			</c:forEach>
+			
+			<c:if test="${usuario.id==actividad.creador.id}">
+					<input type="hidden" name="actividad" value="${actividad.id}" />
+					<button class="op_varias" name="submit" type="submit">Echar de la actividad</button>	
+			</c:if>
+			</from>
+				
 		</div> <!-- cd-modal-content -->
 	</div> <!-- cd-modal -->
 

@@ -1660,7 +1660,37 @@ public class HomeController {
 		else
 			return "redirect:sin_registro";
 	}
+	@RequestMapping(value = "/echarActividad", method = RequestMethod.POST)
+	@Transactional
+	public String echarActividad(@RequestParam("actividad") long actividad,
+			@RequestParam("participantes") long [] ids,
+			HttpServletRequest request,
+			Model model,HttpSession session){
 	
+		//long[] ids=(long[])request.getAttribute("participantes");
+		
+		
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		 u= (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", u.getLogin()).getSingleResult();
+	
+		Actividad a = entityManager.find(Actividad.class, actividad);
+		
+			for(int i=0;i<ids.length; i++){
+				Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam",actividad).setParameter("usuarioParam", ids[i]).getSingleResult();
+			
+				for(Pago p: r.getPagos()){
+					entityManager.createNamedQuery("delPago").setParameter("idPago", p.getId()).executeUpdate();
+				}
+		
+				entityManager.persist(a);
+				entityManager.createNamedQuery("eliminarRegistro").setParameter("actividadParam",actividad).setParameter("usuarioParam", ids[i]).executeUpdate();
+			
+				a.setNpersonas(a.getNpersonas()-1);
+			}
+		
+		return "redirect:actividad/"+actividad;
+	}
 	
 	@RequestMapping(value = "/salirActividad", method = RequestMethod.POST)
 	@Transactional
