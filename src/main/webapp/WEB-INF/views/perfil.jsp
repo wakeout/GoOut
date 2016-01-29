@@ -17,6 +17,7 @@
 		<!-- Main -->
 		<div id="main-wrapper">
 			<div class="container">
+			
 		<div id="contenido_perfil">
 				<div class="s_perfil">
 					<a class="">
@@ -104,25 +105,26 @@
 							</table>
 							
 						</div>
-						<div class="actv_apuntadas">
+						
+					</div>
+					
+				</div>
+				<div class="actv_apuntadas2">
+				<p class="apuntadas2">Actividades en las que está apuntado</p>
 							<table id="mis_actv">
 								<c:forEach items="${actv}" var="a">
-								<a  href="actividad/${a.actividad.id}">
+								<a  href="../actividad/${a.actividad.id}">
 								<div class='img_thumb'>
 									<div class='img_desc'>
 										<p id='actividad'>${a.actividad.nombre}</p>
 									</div>
-								<img class='i_actv'src="actividad/imagen?id=${a.actividad.id}"/>
+								<img class='i_actv'src="../actividad/imagen?id=${a.actividad.id}"/>
 								</div>
 								</a>
 								</c:forEach>
 							</table>
 							
 						</div>
-
-						
-					</div>
-				</div>
 				</div>
 			</div>
 

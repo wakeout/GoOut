@@ -80,7 +80,7 @@
 													<br>
 													<tr>
 														<span class="titulos">¿Actividad privada? <input
-															type="checkbox" value="" name="actv_privada" id="actv_privada" /></span>
+															type="checkbox" name="actv_privada" id="actv_privada" /></span>
 													</tr>
 												</table>
 											</div>
@@ -117,16 +117,20 @@
 												<!-- <p id="text">¿DÓNDE ES?</p>-->
 
 												<div id="map_canvas"> </div>
-												<input id="address" placeholder="Escribe la ubicacion" type ="" />
+												<input id="address" placeholder="Escribe la ubicacion"/>
 												<input id="search" class="b_buscar" type="button" value ="Buscar" /> 
 												<br>
 												<br>
+												<input id="add_origen" class="add_loc" type="button" value ="Añadir Origen" /> 
+												<input id="add_destino" class="add_loc" type="button" value ="Añadir Destino" /> 
+												<br>
+												<br>
 												<label>Origen</label> <input type="text"
-													class="caja" id="caja_origen" name="origen" maxlength="60" readonly/> 
+													class="caja" id="caja_origen" name="origen" maxlength="60" placeholder="Añade Origen" readonly/> 
 												<br> 
 												<br>
 												<label>Destino</label> <input type="text"
-													class="caja" id="caja_origen" name="destino" maxlength="60" readonly/> 
+													class="caja" id="caja_destino" name="destino" maxlength="60" placeholder="Añade Destino" readonly/> 
 												<br> 
 												<br>
 												<div class="invitar_amigos">

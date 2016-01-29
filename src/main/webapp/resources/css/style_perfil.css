@@ -142,8 +142,19 @@ text-align: center;
     overflow-x: auto;
     height: 250px;
 }
+
+.actv_apuntadas2{
+    overflow-x: auto;
+    height: 300px;
+    width: 100%;
+    margin-top:300px;
+    text-align: center;
+}
 .apuntadas{
 	text-align: center;
+}
+.apuntadas2{
+	margin:0px;
 }
 
 .btne{

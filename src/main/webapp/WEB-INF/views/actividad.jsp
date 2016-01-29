@@ -4,12 +4,13 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css">
-		
-		<script src="${prefix}resources/js/modernizr.js"></script>
-		
+			
 		<%@ include file="../fragments/head.jspf" %>
+		<%@ include file="../fragments/scripts.jspf"%>
 		<%@ page contentType="text/html; charset=UTF-8"%>
 		<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
+		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+		<script src="${prefix}resources/js/mapa.js"></script>
 	
 	</head>
 <body>
@@ -22,7 +23,7 @@
 				<a class=""><img id="i_actv" src="../actividad/imagen?id=${actividad.id}" alt="" /></a>
 				 
 				 <div id="btones_actv">
-					<c:if test="${actividad.privacidad.equals('publica') && pertenece==false}">
+					<c:if test="${actividad.privacidad.equals('publica') && pertenece==false && actividad.estado.equals('abierta')}">
 						<c:if test="${!empty usuario  && actividad.npersonas < actividad.maxPersonas}">
 				 
 						<form action="${prefix}unirseActividad" method="POST">
@@ -65,7 +66,9 @@
 					<span title="privacidad de la actividad"><c:out value="${actividad.privacidad}"/></span></div>
 					<div class="dato_actv">Fecha: <c:out value="${actividad.fecha_ini}"/> - <c:out value="${actividad.fecha_fin}"/></div>
 					<div class="dato_actv">Hora: <c:out value="${actividad.hora_ini}"/> - <c:out value="${actividad.hora_fin}"/></div>
-					<div class="dato_actv">Localización: <c:out value="${actividad.localizacion}"/>
+					<div class="dato_actv">Localización: <input type="hidden" id="orig" value="${actividad.localizacion}"/><c:out value="${actividad.localizacion}"/> - <input type="hidden" id="dest" value="${actividad.destino}"/><c:out value="${actividad.destino}"/>
+						<br>
+						<%@ include file="../fragments/mapa.jspf" %>
 						<br>
 						
 						<c:forEach items="${tags}" var="a">
@@ -231,11 +234,8 @@
 			
 			
 		</div>
-
+<%@ include file="../fragments/scripts.jspf"%>
 	</div>
 	</div>
-		<script src="${prefix}resources/js/jquery-2.1.1.js"></script>		
-		<script src="${prefix}resources/js/efecto.js"></script>
-		<script src="${prefix}resources/js/velocity.min.js"></script>
 </body>
 </html>

@@ -36,7 +36,7 @@
 				<td><br></td>
 				<tr>
 				<td>Origen</td>
-				<td><input type="text" size="19" class="caja" maxlength="40" value="${actividad.localizacion}" id="lugar" name="lugar"/></td>
+				<td><input type="text" size="19" class="caja" maxlength="40" value="${actividad.localizacion}" id="origen" name="origen"/></td>
 				<tr>
 				<td><br></td>
 				<td><br></td>

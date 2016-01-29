@@ -2,8 +2,15 @@
         initialize('avenida complutense');
         $('#search').bind('click',function(){
             initialize($('#address').val()); 
+        });
+        
+        $('#add_origen').bind('click',function(){
             $('#caja_origen').val($('#address').val());
-        })
+        });
+        
+        $('#add_destino').bind('click',function(){
+            $('#caja_destino').val($('#address').val());
+        });
     })
 
 function initialize(address) {
@@ -15,11 +22,6 @@ function initialize(address) {
        
       // I make the request 
   geoCoder.geocode(request, function(result, status){
-              // as a result i get two parameters , result and status.
-              // results is an  array tha contenis objects with the results founds for the search made it.
-              // to simplify the example i take only the first result "result[0]" but you can use more that one if you want
- 
-              // So , using the first result I need to create a  latlng object to be pass later to the map
               var latlng = new google.maps.LatLng(result[0].geometry.location.lat(), result[0].geometry.location.lng());  
  
       // some initial values to the map   
@@ -37,5 +39,4 @@ function initialize(address) {
  
   })
 }
-    
     

@@ -32,7 +32,7 @@
 					<input type="hidden" name="actividad" value="${actividad.id}" />
 					<button class="op_varias" name="submit" type="submit">Echar de la actividad</button>	
 			</c:if>
-			</from>
+			</form>
 				
 		</div> <!-- cd-modal-content -->
 	</div> <!-- cd-modal -->

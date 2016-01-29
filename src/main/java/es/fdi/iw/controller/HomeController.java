@@ -230,13 +230,38 @@ public class HomeController {
 	@Transactional
 	public String modificarActividad(
 			@RequestParam("nombre_actividad") String nombre,
-			@RequestParam("lugar") String lugar,
 			@RequestParam("num_participantes") int nparticipantes,
 			@RequestParam("idactividad") long idactividad,
-			@RequestParam("fecha_inicio") Date fecha_ini,
-			@RequestParam("fecha_fin") Date fecha_fin,
 			@RequestParam("imagen") MultipartFile foto,
-			@RequestParam("descripcion_actividad") String descripcion, HttpSession session){
+			@RequestParam("descripcion_actividad") String descripcion, HttpSession session, HttpServletRequest request){
+		
+		Date fecha_ini=null;
+		Date fecha_fin=null;
+		
+		String f_ini = request.getParameter("fecha_ini");
+		String f_fin = request.getParameter("fecha_fin");
+		
+		SimpleDateFormat dateFormatter = new SimpleDateFormat ( "yyyy-MM-dd" );
+
+		
+		if( f_ini != null && f_ini.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+			try {
+				fecha_ini = new Date(dateFormatter.parse(f_ini).getTime());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if( f_fin != null && f_fin.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+			try {
+				fecha_fin = new Date(dateFormatter.parse(f_fin).getTime());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String origen = request.getParameter("origen"); 
+		String destino = request.getParameter("destino"); 	
 		
 		Actividad a = null;
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
@@ -267,7 +292,8 @@ public class HomeController {
 		
 		
 		a.setNombre(nombre);
-		a.setLocalizacion(lugar);
+		a.setLocalizacion(origen);
+		a.setDestino(destino);
 		a.setMaxPersonas(nparticipantes);
 		a.setFecha_ini(fecha_ini);
 		a.setFecha_fin(fecha_fin);
@@ -649,13 +675,19 @@ public class HomeController {
 
 			String origen="";
 			String destino="";
-			String estado = "abierta";
 			String descripcion;
 			
 			int privado = 0;
 			
 			Date fecha_ini=null;
 			Date fecha_fin=null;
+			
+			String estado = request.getParameter("actv_privada");
+			
+			if(estado != null)
+				estado="cerrada";
+			else
+				estado="abierta";
 			
 			String f_ini = request.getParameter("fecha_ini");
 			String f_fin = request.getParameter("fecha_fin");
@@ -681,6 +713,10 @@ public class HomeController {
 
 			origen = request.getParameter("origen");
 			destino = request.getParameter("destino");
+			
+			if(destino==null){
+				destino=origen;
+			}
 		
 			String tipo = "invitacion";
 			String[] amigosIds = new String[0];

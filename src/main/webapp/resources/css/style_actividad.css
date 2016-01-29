@@ -168,3 +168,9 @@ width: 530px;
 		.tab-content.current{
 			display: inherit;
 		}
+		
+		#map_canvas{
+		height:500px;
+
+	}
+		
