@@ -47,9 +47,9 @@
 	}
 	
 	#max_parti{
-		width:40px;
+		width:60px;
 		height:40px;
-		margin-bottom:50px;
+		margin-bottom:20px;
 	}
 	
 	#nombre_actv{
@@ -82,9 +82,14 @@
 	
 	#b_crear{
 		width:200px;
+		height: 30px;
 		color:black;
 		font-weight: bold;
 		border-radius:20px;
+	}
+	
+	.b_buscar{
+		height: 36px;
 	}
 	
 	.caja{

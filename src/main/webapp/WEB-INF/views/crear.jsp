@@ -102,7 +102,7 @@
 												<br>
 												<br>
 												Descripción de la actividad
-												<textarea rows="5" cols="30" name="descripcion"> </textarea>
+												<textarea rows="5" cols="30" name="descripcion" style="resize:none;"> </textarea>
 												<div id="boton_crear">
 													
 													<button name="submit" id="b_crear"
@@ -118,16 +118,16 @@
 
 												<div id="map_canvas"> </div>
 												<input id="address" placeholder="Escribe la ubicacion" type ="" />
-												<input id="search" type="button" value ="Buscar" /> 
+												<input id="search" class="b_buscar" type="button" value ="Buscar" /> 
 												<br>
 												<br>
 												<label>Origen</label> <input type="text"
 													class="caja" id="caja_origen" name="origen" maxlength="60" readonly/> 
 												<br> 
-												<!-- <label>Destino</label> <input type="text"
-													name="destino" id="destino" disabled
-													style="width: 110px; height: 30px" class="caja"/>-->
 												<br>
+												<label>Destino</label> <input type="text"
+													class="caja" id="caja_origen" name="destino" maxlength="60" readonly/> 
+												<br> 
 												<br>
 												<div class="invitar_amigos">
 												<%@ include file="../fragments/invitacionesAmigos.jspf"%>

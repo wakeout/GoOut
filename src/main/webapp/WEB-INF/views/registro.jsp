@@ -17,11 +17,11 @@
 				    </p>
 				    <p class="a">
 				        <label for="login">Usuario*</label>
-				        <input type="text" name="login" id="login" placeholder="Usuario" maxlength="40">
+				        <input type="text" name="login" id="login" placeholder="Usuario" maxlength="40" required>
 				    </p>
 				    <p class="a">
 				        <label for="login">Nombre</label>
-				        <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Usuario" maxlength="30" required>
+				        <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre" maxlength="30">
 				    </p>
 				    <p class="a">
 				        <label for="password">Contraseña*</label>

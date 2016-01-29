@@ -15,16 +15,10 @@
 
 		
 		<form action="${prefix}invitarAmigo" method="post">
-		
-			<!--<input class="barra_men" type="text" name="destinatario" size="20">
-			<input type="hidden" name="asunto" value="Apuntate a ${actividad.nombre}">
-			<input type="hidden" name="mensaje" value="${actividad.id}">
-			<input type="hidden" name="tipo" value="invitacion">
-			
-			<input class="enviar" type="submit"
-					value="Enviar Invitacion" name="Enviar"> -->
+		<c:set var="existe" value="${false}"/>
 			<c:forEach items="${amigos}" var="p">
 				<c:if test="${p.borrado == false }">
+				<c:set var="existe" value="${true}"/>
 				<span id="list">
 					<a id="enlace" href="../perfil/${p.id}">
 					<img class="i_people" src="../usuario/imagen?id=${p.id}" alt="" />
@@ -41,9 +35,10 @@
 			<input type="hidden" name="actividad_id" value="${actividad.id}">
 			<br>
 			<br>
+			<c:if test="${existe == true}">
 			<input class="enviar" type="submit"
 					value="Enviar Invitacion" name="Enviar">
-
+			</c:if>
 		</form>
 		
 		</div> <!-- cd-modal-content -->
