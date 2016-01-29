@@ -14,7 +14,7 @@
 		<form action="${prefix}addComentario" method="post">
 			
 			<label>Id actividad</label>
-			<input type="text" name="id_actividad" id="id_actividad"/> 
+			<input type="text" name="id_actividad" id="id_actividad" maxlength="6"/> 
 			
 			<br>
 			<br>

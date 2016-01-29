@@ -14,7 +14,7 @@
 		<form action="${prefix}addEncuesta" method="post">
 			
 			<label>Id actividad</label>
-			<input type="text" name="id_actividad" id="id_actividad" required/>
+			<input type="text" name="id_actividad" id="id_actividad" maxlength="6" required/>
 			
 			<br>
 			<br>
@@ -28,14 +28,14 @@
 			
 			<label>Opcion 1</label>
 			<br>
-			<input type="text" name="opcion1" id="opcion1" required/>
+			<input type="text" name="opcion1" id="opcion1" maxlength="100" required/>
 			
 			<br>
 			<br>
 			
 			<label>Opcion 2</label>
 			<br>
-			<input type="text" name="opcion2" id="opcion2" required/>
+			<input type="text" name="opcion2" id="opcion2" maxlength="100" required/>
 			
 			<br>
 			<br>

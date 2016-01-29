@@ -22,7 +22,7 @@
 			<input type="hidden" name="actividad" value=" ${actividad.id}">
 			
 			<label>Descripcion</label>
-			<input type="text" name="descripcion" id="descripcion" required/> 
+			<input type="text" maxlength="100" name="descripcion" id="descripcion" required/> 
 			
 			<br>
 			<br>

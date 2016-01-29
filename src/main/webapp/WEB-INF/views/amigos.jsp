@@ -39,7 +39,7 @@
 								<div id="contenido" align="center">
 
 										<span>
-										<input type="text" onkeyup="buscar()" id="buscar_amigos" name="amigo_b">
+										<input type="text" onkeyup="buscar()" id="buscar_amigos" name="amigo_b" maxlength="40">
 										</span>
 										<br>
 										

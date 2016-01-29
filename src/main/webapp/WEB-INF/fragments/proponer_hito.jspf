@@ -14,7 +14,7 @@
 		<form action="${prefix}crearHito" method="post">
 			
 			<label>Titulo</label>
-			<input type="text" name=asunto id="asunto" required/>
+			<input type="text" name=asunto id="asunto" maxlength="40"required/>
 			
 			<br>
 			<br>

@@ -17,7 +17,7 @@
 			<tbody>
 				<tr>
 				<td>Nombre de la actividad</td>
-				<td><input type="text" size="19" class="caja" name="nombre_actividad" id="nombre_actividad" required/></td>
+				<td><input type="text" size="19" class="caja" name="nombre_actividad" id="nombre_actividad" maxlength="40" required/></td>
 				<tr>
 				<td><br></td>
 				<td><br></td>
@@ -35,13 +35,13 @@
 				<td><br></td>
 				<tr>
 				<td>Origen</td>
-				<td><input type="text" size="19" class="caja" id="lugar" name="lugar" required/></td>
+				<td><input type="text" size="19" class="caja" id="lugar" name="lugar" maxlength="50" required/></td>
 				<tr>
 				<td><br></td>
 				<td><br></td>
 				<tr>
 				<td>Destino</td>
-				<td><input type="text" size="19" class="caja" id="destino" name="destino" required/></td>
+				<td><input type="text" size="19" class="caja" id="destino" name="destino" maxlength="50" required/></td>
 				<tr>
 				<td><br></td>
 				<td><br></td>

@@ -14,13 +14,13 @@
 		<form action="${prefix}addHito" method="post">
 			
 			<label>Titulo</label>
-			<input type="text" name="nombre" id="nombre" required/>
+			<input type="text" name="nombre" id="nombre" maxlength="30" required/>
 			
 			<br>
 			<br>
 			
 			<label>Id actividad</label>
-			<input type="text" name="id_actividad" id="id_actividad" required/> 
+			<input type="text" name="id_actividad" id="id_actividad" maxlength="6" required/> 
 			
 			<br>
 			<br>

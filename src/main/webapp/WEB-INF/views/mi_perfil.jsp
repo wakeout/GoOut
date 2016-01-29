@@ -127,7 +127,7 @@
 	  							<legend>Datos usuario</legend>
 	  							<div class="campos_Perfil">
 									<label for="nick_perfil">Nick de usuario:</label> 
-									<input id="nick_perfil" type="text" value="${usuario.login}" disabled/>
+									<input id="nick_perfil" type="text" value="${usuario.login}" maxlength="40" disabled/>
 									<input type="hidden" name="nick_perfil" type="text" value="${usuario.login}"/>
 								</div>
 								
@@ -137,7 +137,7 @@
 								</div>
 								<div class="campos_Perfil">
 									<label for="prov_perfil">Provincia:</label> 
-									<input id="prov_perfil" name="prov_perfil" type="text" value="${usuario.provincia}"/>
+									<input id="prov_perfil" name="prov_perfil" type="text" value="${usuario.provincia}" maxlength="30"/>
 								</div>
 								<div class="campos_Perfil">
 									<label for="email_perfil">Email: </label> 
@@ -159,16 +159,16 @@
 	  							<div class="campos_Perfil">
 	  								<input type="hidden" name="nick_psw" value="${usuario.login}">
 									<label for="psw_actual_perfil">Password Actual:</label> 
-									<input id="psw_actual_perfil" type="password" name="psw_actual"/>
+									<input id="psw_actual_perfil" type="password" name="psw_actual" maxlength="20"/>
 								</div>
 								
 								<div class="campos_Perfil">
 								<label>Nuevo Password:</label> 
-									<input id="psw_nuevo_perfil" type="password" name="psw_nuevo"/>
+									<input id="psw_nuevo_perfil" type="password" name="psw_nuevo" maxlength="20"/>
 								</div>
 								<div class="campos_Perfil">
 									<label for="psw_nuevo2_perfil">Repite Password:</label> 
-									<input id="psw_nuevo2_perfil" type="password" name="psw_nuevo_2"/>
+									<input id="psw_nuevo2_perfil" type="password" name="psw_nuevo_2" maxlength="20"/>
 								</div>
 								<div class="actualizar">
 									<button id="actualizar_password" name="submit" type="submit">Cambiar Password</button>

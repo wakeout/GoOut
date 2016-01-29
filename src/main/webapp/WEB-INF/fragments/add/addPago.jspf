@@ -14,19 +14,19 @@
 			<form action="${prefix}addPago" method="post">
 			
 			<label>Id registro</label>
-			<input type="text" name="id_registro" id="id_registro" required/>
+			<input type="text" name="id_registro" id="id_registro" maxlength="10" required/>
 			
 			<br>
 			<br>
 			
 			<label>Precio individual</label>
-			<input type="number" name="precio_individual" id="precio_individual" required/> 
+			<input type="number" name="precio_individual" id="precio_individual" maxlength="10" required/> 
 			
 			<br>
 			<br>
 			
 			<label>Descripcion</label>
-			<input type="text" name="descripcion" id="descripcion" required/> 
+			<input type="text" name="descripcion" id="descripcion" maxlength="100"required/> 
 			
 			<br>
 			<br>

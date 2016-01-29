@@ -14,25 +14,25 @@
 		<form action="${prefix}addUsuario" method="post">
 			
 			<label for="login">Usuario</label>
-			<input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Usuario">
+			<input type="text" name="nombre_usuario" id="nombre_usuario" maxlength="40"placeholder="Usuario">
 			
 			<br>
 			<br>
 			
 			<label for="password">Contraseña</label>
-			<input type="password" name="contraseña_usuario" id="contraseña_usuario" placeholder="Contraseña"> 
+			<input type="password" name="contraseña_usuario" id="contraseña_usuario" maxlength="20" placeholder="Contraseña"> 
 			
 			<br>
 			<br>
 			
 			<label for="email">Email</label>
-			<input type="email" name="corre_usuario" id="corre_usuario" placeholder="Email"> 
+			<input type="email" name="corre_usuario" id="corre_usuario" maxlength="40" placeholder="Email"> 
 			
 			<br>
 			<br>
 			
 			<label for="email">Rol</label>
-			<input type="text" name="rol_usuario" id="rol_usuario"/> 
+			<input type="text" name="rol_usuario" maxlength="20" id="rol_usuario"/> 
 			
 			<br>
 			<br>

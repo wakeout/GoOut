@@ -19,11 +19,11 @@
 				    </p>
 				    <p class="a">
 				        <label for="login">Usuario</label>
-				        <input type="text" name="login" id="login" placeholder="Usuario">
+				        <input type="text" name="login" id="login" placeholder="Usuario" maxlength="30">
 				    </p>
 				    <p class="a">
 				        <label for="password">Contraseña</label>
-				        <input type="password" name="pass" id="pass" placeholder="Contraseña"> 
+				        <input type="password" name="pass" id="pass" placeholder="Contraseña" maxlength="20"> 
 				    </p>
 
 				    <p class="a">

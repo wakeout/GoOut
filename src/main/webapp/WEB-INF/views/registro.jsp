@@ -17,23 +17,23 @@
 				    </p>
 				    <p class="a">
 				        <label for="login">Usuario*</label>
-				        <input type="text" name="login" id="login" placeholder="Usuario">
+				        <input type="text" name="login" id="login" placeholder="Usuario" maxlength="40">
 				    </p>
 				    <p class="a">
 				        <label for="login">Nombre</label>
-				        <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Usuario" required>
+				        <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Usuario" maxlength="30" required>
 				    </p>
 				    <p class="a">
 				        <label for="password">Contraseña*</label>
-				        <input type="password" name="pass" id="pass" placeholder="Contraseña"> 
+				        <input type="password" name="pass" id="pass" placeholder="Contraseña" maxlength="20"> 
 				    </p>
 				    <p class="a">
 				        <label for="password2">Repite Contraseña*</label>
-				        <input type="password" name="pass2" id="pass2" placeholder="Repite contraseña"> 
+				        <input type="password" name="pass2" id="pass2" maxlength="20" placeholder="Repite contraseña"> 
 				    </p>
 					<p class="a">
 				        <label for="email">Email*</label>
-				        <input type="email" name="email" id="email" placeholder="Email" required> 
+				        <input type="email" name="email" id="email" placeholder="Email" maxlength="40" required> 
 				    </p>
 
 				    <p class="a">

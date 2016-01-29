@@ -14,7 +14,7 @@
 		<form action="${prefix}addTag" method="post">
 			
 			<label>Nombre tag</label>
-			<input type="text" name="nombre_tag" id="nombre_tag"/>
+			<input type="text" name="nombre_tag" id="nombre_tag" maxlength="20"/>
 			<br>
 			<br>
 			
