@@ -37,8 +37,9 @@
 				
 						<%@ include file="../fragments/mensaje_a_creador.jspf" %>				  
 						
-						<%@ include file="../fragments/ajustes_actividad.jspf" %>			  
-						
+						<c:if test="${usuario.id==actividad.creador.id}">
+							<%@ include file="../fragments/ajustes_actividad.jspf" %>			  
+						</c:if>
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />
 						<button class="op_varias" name="submit" type="submit">Salir de la actividad</button>
