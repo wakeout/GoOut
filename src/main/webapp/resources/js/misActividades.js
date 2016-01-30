@@ -26,11 +26,18 @@ $('input[type="checkbox"][name="switch1"]').change(function(){
 });
 
 function actualizar(){
+	var fil;
+	
+	
+	fil=objetos;
+	
+	
+	
 	if($('#switch1').prop('checked')){
-		lista(objetos);
+		lista(fil);
 	}
 	else{
-		burbuja(objetos);
+		burbuja(fil);
 	}
 }
 
@@ -49,6 +56,7 @@ function buscar(){
 	
 	$.post("buscarActividades", {buscado:buscado, tipo:tipo},function(data) {
 			objetos=$.parseJSON(data);
+			
 		   	actualizar();
 	  });
 	

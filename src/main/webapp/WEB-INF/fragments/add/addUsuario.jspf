@@ -1,7 +1,7 @@
 <section class="cd-section">
 	<div class="cd-modal-action">
 		<a href="#0" class="btne" data-type="modal-trigger">
-		Añadir usuario
+			<div id="add" style=" margin-top: 8px;"></div>
 		</a>
 		<span class="cd-modal-bg"></span>
 	</div> <!-- cd-modal-action -->

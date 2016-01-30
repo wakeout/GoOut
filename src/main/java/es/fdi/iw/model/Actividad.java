@@ -81,7 +81,7 @@ public class Actividad{
 		return "{ "
 				+ "\"id\": \"" + a.getId() + "\", "
 				+ "\"estado\": \"" + a.getEstado() + "\", "
-				+ "\"num\": \"" + a.getNpersonas() + "\", "
+				+ "\"numero\": \"" + a.getNpersonas() + "\", "
 				+ "\"fecha\": \"" + a.getFecha_ini() + "\", "
 				+ "\"localizacion\": \"" + a.getLocalizacion() + "\", "
 				+ "\"nombre\": \""+a.getNombre()+"\"}";

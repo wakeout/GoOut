@@ -40,7 +40,7 @@
 									    <label for="switch1">Modo lista</label>
 									</div>
 									
-								<!-- 	
+								 	
 									<div id="filtro_MisActividades">
 										<div id="cajaA">
 										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
@@ -52,7 +52,7 @@
 										</div>
 								
 									</div> 
-									-->
+									
 									<div id="modo_lista">
 									
 									

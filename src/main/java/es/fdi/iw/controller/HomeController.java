@@ -538,7 +538,7 @@ public class HomeController {
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
 				.setParameter("actividadParam", actv).getSingleResult();
 		
-		asunto = "Denuncia actividad";
+		asunto = "Denuncia comentario";
 		//contenido = "La actividad ha sido denunciada";
 		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
 		" ha denunciado un comentario en la actividad " + a.getNombre() + "(" + a.getId()
