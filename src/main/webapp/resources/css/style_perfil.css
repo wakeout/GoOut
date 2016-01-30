@@ -46,6 +46,10 @@
 	overflow-y: scroll;
 }
 
+#cont_amigos{
+	float:right;
+}
+
 .historial_actv {
 	background-color: white;
 	width: 1200px;

@@ -26,7 +26,7 @@
 								<div id="global" align="center">
 
 										<span>
-										<input onkeyup="buscar()" type="text" id="buscar_actividades" name="actividad_b" maxlength="30">
+										<input onkeyup="buscar()" type="text" id="buscar_actividades" name="actividad_b" maxlength="30" placeholder="Buscar actividades...">
 										</span>
 									
 										<br>
