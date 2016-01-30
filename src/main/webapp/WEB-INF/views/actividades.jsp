@@ -26,7 +26,7 @@
 								<div id="global" align="center">
 
 										<span>
-										<input onkeyup="buscar()" type="text" id="buscar_actividades" name="actividad_b" maxlength="30" placeholder="Buscar actividades...">
+										<input onkeyup="buscar()" type="text" id="buscar_actividades" name="actividad_b" maxlength="30" placeholder="  Buscar actividades...">
 										</span>
 									
 										<br>
@@ -43,11 +43,11 @@
 								 	
 									<div id="filtro_MisActividades">
 										<div id="cajaA">
-										<input type="radio" id="act_fin" name="activas_fin" value="activas" checked="checked"/>Activas
-										<input type="radio" id="act_fin" name="activas_fin" value="finalizadas"/>Finalizadas
+										<input type="radio" onchange="buscar()" id="activas" name="activas_fin" value="activas" checked="checked"/>Abiertas
+										<input type="radio" onchange="buscar()" id="finalizadas" name="activas_fin" value="finalizadas"/>Cerradas
 											
-										<input type="checkbox" onchange="filtro(${hoy})"  id="f1" value="1" name="filtro" />Hoy
-										<input type="checkbox" onchange="filtro(${mes})" id="f2" value="2" name="filtro" />Este mes
+										<input type="checkbox" onchange="buscar()"  id="hoy" value="1" name="filtro" />Hoy
+										<input type="checkbox" onchange="buscar()" id="mes" value="2" name="filtro" />Este mes
 										
 										</div>
 								

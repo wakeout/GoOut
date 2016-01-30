@@ -39,7 +39,7 @@
 								<div id="contenido" align="center">
 
 										<span>
-										<input type="text" onkeyup="buscar()" id="buscar_amigos" name="amigo_b" maxlength="40" placeholder="Buscar amigos...">
+										<input type="text" onkeyup="buscar()" id="buscar_amigos" name="amigo_b" maxlength="40" placeholder="  Buscar amigos...">
 										</span>
 										<br>
 										

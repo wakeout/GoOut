@@ -14,6 +14,12 @@
 	    height: 575px;
 
 	}
+	#buscar_actividades{
+	  	border: solid;
+    	border-color: gray;
+    	border-radius: 20px;
+	}
+	
 	
 	#fotos{
 		
@@ -28,7 +34,6 @@
 	}
 	
 	#filtro_MisActividades{
-		border:2px solid black;
 		width:800px;
 		height:50px;
 		/*margin:20px;*/

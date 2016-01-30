@@ -1,3 +1,8 @@
+#buscar_amigos{
+	border: solid;
+    border-color: gray;
+    border-radius: 20px;
+}
 
 	#boton_buscar{
 	float:right;

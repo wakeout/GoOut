@@ -26,20 +26,53 @@ $('input[type="checkbox"][name="switch1"]').change(function(){
 });
 
 function actualizar(){
-	var fil;
+	var filtro=new Object();
 	
 	
-	fil=objetos;
-	
+	$.each(objetos, function(i, o) {
+		filtro[i]=new Object();
+		filtro[i]=null;
+		
+		
+		
+		if($("#activas" ).prop('checked') ){
+			if(o.estado=="abierta") filtro[i]=o;
+		}else{
+			if($("#finalizadas" ).prop('checked') )
+				if(o.estado=="cerrada")filtro[i]=o;
+			
+		}
+		
+		/*if($("#hoy" ).prop('checked') ){
+			if(o.fecha==hoy) filtro[i]=o;
+		}else{
+			if($("#mes" ).prop('checked') ){
+				if(o.fecha==mes) filtro[i]=o;
+				
+			}else{
+				if($("#activas" ).prop('checked') ){
+					if(o.estado=="Abirta") filtro[i]=o;
+				}else{
+					if($("#finalizadas" ).prop('checked') ){
+						if(o.estado=="Cerrada")filtro[i]=o;
+					}else{
+						filtro[i]=o;
+					}
+				}
+			}
+		}*/
+		console.log(filtro);
+	})
 	
 	
 	if($('#switch1').prop('checked')){
-		lista(fil);
+		lista(filtro);
 	}
 	else{
-		burbuja(fil);
+		burbuja(filtro);
 	}
-}
+	
+}	
 
 $('input[type="radio"][name="tipo_busqueda"]').change(function() {
     if(this.checked){
@@ -68,11 +101,12 @@ function burbuja(obj){
 	var div="<div id='modo_burbuja'>";
 
 	$.each(obj, function(i, o) {
-		div+="<div><a class='' href='actividad/"+o.id+
-		"'><div class='img_thumb'><div class='img_desc'></div><img class='i_actv' src='actividad/imagen?id="
-		+o.id+"' /><p>"+ o.nombre+"</p></div>"+ 
-		"</a>";
-
+		if(o!=null){
+			div+="<div><a class='' href='actividad/"+o.id+
+			"'><div class='img_thumb'><div class='img_desc'></div><img class='i_actv' src='actividad/imagen?id="
+			+o.id+"' /><p>"+ o.nombre+"</p></div>"+ 
+			"</a>";
+		}
 	})
 			
 	div+="</div>"
@@ -86,14 +120,14 @@ function lista(obj){
 			"<td>Máximo</td><td>Dia</td><td>Lugar</td><td>Estado</td></tr>";
 
 	$.each(obj, function(i, o) {
+		if(o!=null){
+			console.log(o.nombre);
 		
-		console.log(o.nombre);
-		
-		div+="<tr><td><a href='actividad/"+o.id+"'>"+ o.nombre
-		+ "</a></td><td>1</td><td>"+o.maxPersonas+"</td><td>"
-		+o.fecha_ini+"</td><td>"+o.localizacion+"</td><td>"
-		+o.estado+"</td></tr>";
-
+			div+="<tr><td><a href='actividad/"+o.id+"'>"+ o.nombre
+			+ "</a></td><td>1</td><td>"+o.maxPersonas+"</td><td>"
+			+o.fecha_ini+"</td><td>"+o.localizacion+"</td><td>"
+			+o.estado+"</td></tr>";
+		}
 	})	
 			
 	div+="</table></div>";
