@@ -73,21 +73,9 @@
 							
 						</div>
 						<div id="ver_amigos">
-						
-						<section class="cd-section">
-								<div class="cd-modal-action">
-									<a href="#0"  data-type="modal-trigger"><center><button>Ver amigos de ${perfil.login}</button></center></a>
-									<span class="cd-modal-bg"></span>
-								</div> <!-- cd-modal-action -->
-						
-								<div class="cd-modal">	
-									<div class="cd-modal-content">
-										<%@ include file="../fragments/ver_amigos.jspf" %>
-									</div> <!-- cd-modal-content -->
-								</div> <!-- cd-modal -->
-						
-								<a href="#0" class="cd-modal-close">Close</a>
-							</section>	
+
+							<%@ include file="../fragments/ver_amigos.jspf" %>
+
 											
 						</div>
 					</div>	

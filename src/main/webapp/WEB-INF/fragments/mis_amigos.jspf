@@ -16,8 +16,8 @@
 			<c:forEach items="${amigos}" var="p">
 				<c:if test="${p.borrado == false }">
 				<span id="list">
-					<a id="" href="../perfil/${p.id}" style="color:white">
-					<img class="i_people" src="usuario/imagen?id=${p.id}" alt="" />
+					<a href="perfil/${p.id}" style="color:white">
+					<img class="i_people" src="usuario/imagen?id=${p.id}" />
 						<c:out value="${p.login}"/>
 					</a>
 				</span>
