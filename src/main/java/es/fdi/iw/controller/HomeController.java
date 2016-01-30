@@ -315,7 +315,7 @@ public class HomeController {
 			if(re.getUsuario().getNovedades().isEmpty())
 				re.getUsuario().setNovedades(new ArrayList<Novedad>());
 			
-			re.getUsuario().getNovedades().add(n);
+			re.getUsuario().getNovedades().add(0, n);
 			entityManager.persist(re);	
 		}
 		
@@ -522,6 +522,34 @@ public class HomeController {
 		model.addAttribute("nombre", p);
 		return "mensajes";
 	}
+	@RequestMapping(value= "/denunciarComentario", method=RequestMethod.POST)
+	@Transactional
+	public String denunciarComentario(@RequestParam("id_actividad") long actv, @RequestParam("login_usuario") String logu, @RequestParam("id_usuario") long idu,
+			@RequestParam("id_comentario") long com, Model model, HttpSession session){
+		Mensaje m = null;
+		Usuario u = null;
+		Usuario d = null;
+		Actividad a = null;
+		
+		String asunto;
+		String contenido;
+		
+		u=(Usuario)session.getAttribute("usuario");
+		a = (Actividad) entityManager.createNamedQuery("unaActividad")
+				.setParameter("actividadParam", actv).getSingleResult();
+		
+		asunto = "Denuncia actividad";
+		//contenido = "La actividad ha sido denunciada";
+		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
+		" ha denunciado un comentario en la actividad " + a.getNombre() + "(" + a.getId()
+		+ ", "+com+"), al usuario"+logu + "Entre paréntesis el id de cada elemento respectivamente (Actividad y Comentario";
+		
+		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d, false);
+		entityManager.persist(m);
+		
+		return "redirect:actividad/"+actv;
+		//return "actividad";
+	}
 	
 	@RequestMapping(value= "/denunciarActividad")
 	@Transactional
@@ -595,7 +623,7 @@ public class HomeController {
 			if(re.getUsuario().getNovedades().isEmpty())
 				re.getUsuario().setNovedades(new ArrayList<Novedad>());
 			
-			re.getUsuario().getNovedades().add(n);
+			re.getUsuario().getNovedades().add(0, n);
 			entityManager.persist(re);	
 		}
 		
@@ -810,10 +838,10 @@ public class HomeController {
 				entityManager.persist(u);
 				
 				for(Usuario amigo: u.getAmigos()){
-					amigo.getNovedades().add(n);
+					amigo.getNovedades().add(0, n);
 				}
 				
-				u.getNovedades().add(n);
+				u.getNovedades().add(0, n);
 				
 				
 				
@@ -954,7 +982,7 @@ public class HomeController {
 			if(r.getUsuario().getNovedades().isEmpty())
 				r.getUsuario().setNovedades(new ArrayList<Novedad>());
 			
-			r.getUsuario().getNovedades().add(n);
+			r.getUsuario().getNovedades().add(0, n);
 			entityManager.persist(r);	
 		}
 		
@@ -996,7 +1024,7 @@ public class HomeController {
 			if(re.getUsuario().getNovedades().isEmpty())
 				re.getUsuario().setNovedades(new ArrayList<Novedad>());
 			
-			re.getUsuario().getNovedades().add(n);
+			re.getUsuario().getNovedades().add(0, n);
 			entityManager.persist(re);	
 		}
 		
@@ -1052,7 +1080,7 @@ public class HomeController {
 			if(re.getUsuario().getNovedades().isEmpty())
 				re.getUsuario().setNovedades(new ArrayList<Novedad>());
 			
-			re.getUsuario().getNovedades().add(n);
+			re.getUsuario().getNovedades().add(0, n);
 			entityManager.persist(re);	
 		}
 		
@@ -1155,7 +1183,7 @@ public class HomeController {
 			if(re.getUsuario().getNovedades().isEmpty())
 				re.getUsuario().setNovedades(new ArrayList<Novedad>());
 			
-			re.getUsuario().getNovedades().add(n);
+			re.getUsuario().getNovedades().add(0, n);
 			entityManager.persist(re);	
 		}
 		
@@ -1238,7 +1266,7 @@ public class HomeController {
 				entityManager.persist(n);
 				entityManager.persist(d);
 				
-				d.getNovedades().add(n);
+				d.getNovedades().add(0, n);
 				
 			}
 			catch(NoResultException nre){
@@ -1275,7 +1303,7 @@ public class HomeController {
 			entityManager.persist(m);
 			if(destinatario.getNovedades().isEmpty())
 				destinatario.setNovedades(new ArrayList<Novedad>());
-			destinatario.getNovedades().add(n);
+			destinatario.getNovedades().add(0, n);
 			entityManager.persist(destinatario);
 		}
 	
@@ -1316,7 +1344,7 @@ public class HomeController {
 			entityManager.persist(n);
 			entityManager.persist(d);
 			
-			d.getNovedades().add(n);
+			d.getNovedades().add(0, n);
 			
 			
 		}
@@ -1371,7 +1399,7 @@ public class HomeController {
 					if(amigos.getNovedades().isEmpty())
 						amigos.setNovedades(new ArrayList<Novedad>());
 					
-					amigos.getNovedades().add(n);
+					amigos.getNovedades().add(0, n);
 					entityManager.persist(amigos);
 				}
 				for(Usuario amigos: usuario_amigo.getAmigos()){
@@ -1379,7 +1407,7 @@ public class HomeController {
 						if(amigos.getNovedades().isEmpty())
 							amigos.setNovedades(new ArrayList<Novedad>());
 					
-						amigos.getNovedades().add(n);
+						amigos.getNovedades().add(0, n);
 						entityManager.persist(amigos);
 					}
 				}
@@ -1544,7 +1572,7 @@ public class HomeController {
 						if(re.getUsuario().getNovedades().isEmpty())
 							re.getUsuario().setNovedades(new ArrayList<Novedad>());
 						
-						re.getUsuario().getNovedades().add(n);
+						re.getUsuario().getNovedades().add(0, n);
 						entityManager.persist(re);	
 					}
 					
@@ -1757,7 +1785,7 @@ public class HomeController {
 			if(re.getUsuario().getNovedades().isEmpty())
 				re.getUsuario().setNovedades(new ArrayList<Novedad>());
 			
-			re.getUsuario().getNovedades().add(n);
+			re.getUsuario().getNovedades().add(0, n);
 			entityManager.persist(re);	
 		}
 		

@@ -151,6 +151,13 @@
 									<c:out value="${c.asunto}"/>
 								</p>
 								<c:out value="${c.usuario.login}"/>	
+									<form action="${prefix}denunciarComentario" method="POST">
+									<input type="hidden" name="id_usuario" value="${c.usuario.id}" />
+									<input type="hidden" name="login_usuario" value="${c.usuario.login}" />
+									<input type="hidden" name="id_comentario" value="${c.id}" />
+									<input type="hidden" name="id_actividad" value="${actividad.id}" />
+									<button  name="submit" type="submit" id="boton_reportar">Denunciar comentario</button>
+									</form>
 								<hr></hr>								
 							</div>
 						</c:forEach>
