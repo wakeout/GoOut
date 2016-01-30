@@ -191,7 +191,7 @@
 							<c:forEach items="${e.respuestas}" var="r">
 								<input type="checkbox" name="respuestas" value="${r.id}"/> ${r.mensaje.asunto}	
 								<c:forEach items="${r.usuario}" var="u">
-									
+								
 								</c:forEach>								
 								<br>
 							</c:forEach>

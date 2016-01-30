@@ -97,7 +97,7 @@ public class Novedad {
 	private static String formatoUsuario(String id, String nombre, boolean orden){
 		String f="<a href='perfil/"+id+"'><img class='i_people' src='usuario/imagen?id="
 					+id+" '></a>";
-		String n="<a href='perfil/"+id+"'>"+nombre+"</a>";;
+		String n="<a href='perfil/"+id+"'>"+nombre+"</a>";
 		
 		if(orden)	
 			return f+n;
@@ -113,7 +113,7 @@ public class Novedad {
 		return m;
 	}
 	private static String formatoMensaje(){
-		String m="<a href='mensajes?metodo=entrada'></a>";
+		String m="<a href='mensajes?metodo=entrada'>ve a tu bandeja de entrada</a>";
 		
 		return m;
 	}
@@ -127,55 +127,70 @@ public class Novedad {
 		String id="";
 		String nombre="";
 		
+		
 		for(int i=0; i<m.length(); i++){
-			if(m.indexOf(i)=='{'){
+		
+			if(m.charAt(i)=='{'){
+				
 				i++;
-				if(m.indexOf(i)=='U'){
-					i+=7;
-					while(m.indexOf(i)!=':'){
-						id+=m.indexOf(i);
+				if(m.charAt(i)=='U'){
+					i+=8;
+					while(m.charAt(i)!=':'){
+						id+=m.charAt(i);
 						i++;
-					}
-					i++;
-					while(m.indexOf(i)!='}' || m.indexOf(i)!=':'){
-						nombre+=m.indexOf(i);
-						i++;
-					}
-					while(m.indexOf(i)!='}')i++;
-					
-					s+=formatoUsuario(id, nombre, true);
-					id="";nombre="";
-				}else{
-					if(m.indexOf(i)=='A'){
-						i+=10;
-						while(m.indexOf(i)!=':'){
-							id+=m.indexOf(i);
-							i++;
-						}
-						i++;
-						while(m.indexOf(i)!='}' || m.indexOf(i)!=':'){
-							nombre+=m.indexOf(i);
-							i++;
-						}
-						while(m.indexOf(i)!='}')i++;
-						
-						s+=formatoActividad(id, nombre);
-						id="";nombre="";
-					}else{
-						if(m.indexOf(i)=='M'){
-							i+=8;
-							while(m.indexOf(i)!='}')i++;
-							
-							s+=formatoMensaje();
-	
-						}else
-							s+=m.indexOf(i);
 					}
 				
+					
+					i++;
+					while(m.charAt(i)!='}' &&  m.charAt(i)!=':'){
+						nombre+=m.charAt(i);
+						i++;
+					}
+					
+					while(m.charAt(i)!='}')i++;
+					i++;
+					
+					s+=formatoUsuario(id, nombre, true);
+					
+					id="";nombre="";
+				}else{
+					if(m.charAt(i)=='A'){
+						i+=10;
+						while(m.charAt(i)!=':'){
+							id+=m.charAt(i);
+							i++;
+						}
+						i++;
+						while(m.charAt(i)!='}' && m.charAt(i)!=':'){
+							nombre+=m.charAt(i);
+							i++;
+						}
+						
+						while(m.charAt(i)!='}')i++;
+						i++;
+						
+						s+=formatoActividad(id, nombre);
+						
+						id="";nombre="";
+					}else{
+						if(m.charAt(i)=='M'){
+							while(m.charAt(i)!='}')i++;
+													
+							s+=formatoMensaje();
+							
+						}
+						
+						
+					}
 				
 				}
 				
 			}
+			
+			if(m.charAt(i)=='}')i++;
+			else			
+				s+=m.charAt(i);
+			
 		}
 		
 		return s;

@@ -1574,8 +1574,6 @@ public class HomeController {
 			if(!u.getNovedades().isEmpty())
 				model.addAttribute("novedades", Novedad.getJSONString(u.getNovedades()));
 			
-			System.out.println( Novedad.getJSONString(u.getNovedades()));
-			
 			
 			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();
 			
@@ -1600,8 +1598,6 @@ public class HomeController {
 			
 			if(!u.getNovedades().isEmpty())
 				model.addAttribute("novedades", Novedad.getJSONString(u.getNovedades()));
-			
-			System.out.println( Novedad.getJSONString(u.getNovedades()));
 			
 			
 			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();
@@ -2050,6 +2046,8 @@ public class HomeController {
 	@RequestMapping(value = "/sin_registro", method = RequestMethod.GET)
 	public String sin_registro(Model model){
 		model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
+	
+		
 		return "sin_registro";
 	}
 	

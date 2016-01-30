@@ -108,3 +108,10 @@ insert into usuario_amigos(usuario, amigos)values(2,1)
 insert into usuario_amigos(usuario, amigos)values(1,4)
 insert into usuario_amigos(usuario, amigos)values(4,1)
 
+INSERT INTO "PUBLIC"."NOVEDAD" ( "ID", "FECHA", "MENSAJE", "TIPO" ) VALUES (3, '1212-12-12', '{Actividad:8:visita ciudad} unete a esto', 'h')
+INSERT INTO "PUBLIC"."NOVEDAD"( "ID", "FECHA", "MENSAJE", "TIPO" )VALUES (4, '1212-12-12', '{Usuario:2:david} quiere ser una puta mierda', 'h1')
+INSERT INTO "PUBLIC"."NOVEDAD"( "ID", "FECHA", "MENSAJE", "TIPO" )VALUES (5, '1212-12-12', '{Mensaje:entrada}', 'h2')
+
+INSERT INTO "PUBLIC"."USUARIO_NOVEDADES"( "USUARIO", "NOVEDADES" )VALUES (1 , 5)
+INSERT INTO "PUBLIC"."USUARIO_NOVEDADES"( "USUARIO", "NOVEDADES" )VALUES (1 , 4)
+INSERT INTO "PUBLIC"."USUARIO_NOVEDADES"( "USUARIO", "NOVEDADES" )VALUES (1 , 3)

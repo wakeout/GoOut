@@ -31,6 +31,8 @@
 										
 										<p><a href="actividades">Pincha aquí y comienza tu experiencia en goout</a></p>
 									</div>
+									${novedades}
+									
 									<c:if test="${novedades!=null}">
 												<script>
 
