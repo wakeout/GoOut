@@ -1572,7 +1572,7 @@ public class HomeController {
 			
 			
 			if(!u.getNovedades().isEmpty())
-				model.addAttribute("novedades", Novedad.getJSONString(u.getNovedades()));
+				model.addAttribute("novedades", Novedad.getString(u.getNovedades()));
 			
 			
 			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();
@@ -1597,7 +1597,7 @@ public class HomeController {
 			
 			
 			if(!u.getNovedades().isEmpty())
-				model.addAttribute("novedades", Novedad.getJSONString(u.getNovedades()));
+				model.addAttribute("novedades", Novedad.getString(u.getNovedades()));
 			
 			
 			List<Mensaje> men = entityManager.createNamedQuery("buscarNoLeidos").setParameter("destino",((Usuario)session.getAttribute("usuario")).getId()).getResultList();

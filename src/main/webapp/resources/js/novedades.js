@@ -1,7 +1,6 @@
 
 function formato(obj){
-	
-	if(obj!=null){
+		alert(hola);
 		var div="<div id='actv_nov'>"+
 		"<p id='text'>NOVEDADES</p>";
 	
@@ -13,5 +12,4 @@ function formato(obj){
 		div+="</div>"
 		
 		$("#actv_nov").replaceWith(div);
-	}
 }

@@ -37,24 +37,22 @@ public class Novedad {
 		
 		return n;
 	}
-	public static StringBuilder getJSONString(List<Novedad> l){
-		StringBuilder sb = new StringBuilder("[");
+	public static StringBuilder getString(List<Novedad> l){
+		StringBuilder sb = new StringBuilder("");
 		
 		for (Novedad n : l) {
-			if (sb.length()>1) sb.append(",");
+			if (sb.length()>1) sb.append("<br>");
 			sb.append(getSingleString(n));
 			
 		}
 		
 		
-		sb.append(']');
 		
 		return sb;
 	}
 	
 	public static String getSingleString(Novedad n){
-		return "{ "
-				+ "\"mensaje\": \"" + conversionVista(n.getMensaje()) + "\"}";
+		return  conversionVista(n.getMensaje());
 	}
 	
 	@Id
@@ -113,7 +111,7 @@ public class Novedad {
 		return m;
 	}
 	private static String formatoMensaje(){
-		String m="<a href='mensajes?metodo=entrada'>ve a tu bandeja de entrada</a>";
+		String m="<a href='mensajes?metodo=entrada'>!Tienes un mensaje nuevo! ve a tu bandeja de entrada</a>";
 		
 		return m;
 	}

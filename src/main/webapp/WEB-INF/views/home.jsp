@@ -26,25 +26,23 @@
 								<div id="novedades">
 									<div id="actv_nov">
 										<p id="text">NOVEDADES</p>
-										<br>
-										<h2>!Aún no hay ninguna novedad!</h2>
+										<c:choose> 
+										    <c:when test="${novedades != ''}">
+											${novedades}
+										        
+										    </c:when>
+										    <c:otherwise>
+										       <br>
+											<h2>!Aún no hay ninguna novedad!</h2>
+											
+											<p><a href="actividades">Pincha aquí y comienza tu experiencia en goout</a></p>
 										
-										<p><a href="actividades">Pincha aquí y comienza tu experiencia en goout</a></p>
-									</div>
-									${novedades}
+										    </c:otherwise>
+										</c:choose>
+										</div>
 									
-									<c:if test="${novedades!=null}">
-												<script>
-
-													$(function(){
-
-		    											var obj = "${novedades}";
-		    
-														formato(obj);
-													});
-	
-												</script>
-									</c:if>
+									
+							
 
 								</div>
 							</div>
@@ -82,17 +80,7 @@
 
 	<!-- Scripts -->
 	<%@ include file="../fragments/scripts.jspf"%>
-		<script>
 
-		$(function(){
-
-			console.log("${novedades}");
-		    var obj = "${novedades}";
-		    
-			formato(obj);
-		});
-	
-	</script>
 	
 </body>
 </html>
