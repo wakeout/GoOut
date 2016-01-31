@@ -42,7 +42,9 @@ public class Novedad {
 		
 		for (Novedad n : l) {
 			if (sb.length()>1) sb.append("<br>");
+			sb.append("<div class='nov'>");
 			sb.append(getSingleString(n));
+			sb.append("</div>");
 			
 		}
 		
@@ -93,8 +95,8 @@ public class Novedad {
 
 	//si orden 1 entonces la foto irá antes que el nombre si orden 0 el nombre irá antes que la foto
 	private static String formatoUsuario(String id, String nombre, boolean orden){
-		String f="<a href='perfil/"+id+"'><img class='i_people' src='usuario/imagen?id="
-					+id+" '></a>";
+		String f="<a href='perfil/"+id+"'><img class='i_people_nov' src='usuario/imagen?id="
+					+id+"'></a>";
 		String n="<a href='perfil/"+id+"'>"+nombre+"</a>";
 		
 		if(orden)	
@@ -104,22 +106,16 @@ public class Novedad {
 	}
 
 	private static String formatoActividad(String id, String nombre){
-		String m="<a href='actividad/"+id+
-	"'><div class='img_thumb'><div class='img_desc'></div><img class='i_actv' src='actividad/imagen?id="
-	+id+"'><p id='actividad'>"+nombre+"</p></div></a>";
+		String m="<a href='actividad/"+id+"'><img class='i_actv2' src='actividad/imagen?id="+id+"'>"+nombre+"</a>";
 		
 		return m;
 	}
 	private static String formatoMensaje(){
-		String m="<a href='mensajes?metodo=entrada'>!Tienes un mensaje nuevo! ve a tu bandeja de entrada</a>";
+		String m="<a href='mensajes?metodo=entrada'><img class='i_men' src='resources/images/mensaje.png'>!Tienes un mensaje nuevo! ve a tu bandeja de entrada</a>";
 		
 		return m;
 	}
 	
-	/*
-	("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
-			" ha comentado en el foro de {Actividad:"+a.getId()+":"+
-					a.getNombre()+ ":Foro} "  , "Comentario")*/
 	private static String conversionVista(String m){
 		String s="";
 		String id="";
@@ -193,23 +189,5 @@ public class Novedad {
 		
 		return s;
 	}
-	
-	
-/*	
-Formato usuario			
-<a href="perfil/4"><img class="i_people" src="usuario/imagen?id=4 "></a>	
-<a href="perfil/4">david</a>
-	*/
-	
-/*	
-Formato actividad			
-<div class="img_thumb">
-<div class="img_desc">
-</div>
-<img class="i_actv" src="actividad/imagen?id=1">
-<p id="actividad">cerves</p>
-</div>
-*/
-	
 	
 }

@@ -2,15 +2,6 @@
 
 /* CSS GoOut */
 
-/* 	html, body, div, span, p, blockquote, a, ins, kbd, strong, center, ul, li,table,thead, tr, th, td, footer, header, nav  { */
-/* 		margin: 0; */
-/* 		padding: 0; */
-/* 		border: 0; */
-/* 		font-size: 100%; */
-/* 		font: inherit; */
-/* 		vertical-align: baseline; */
-/*         font-style: normal; */
-/* 	} */
 
 	body {
 		line-height: 1;
@@ -131,7 +122,6 @@
 		width:100px;
 		height:100px;
 		border-radius:500px;
-		/*border: 2px solid black;*/
 		margin:0px;
 	}
 	
@@ -198,6 +188,23 @@
  	-moz-transition: 1.0s ease; /* Firefox */
  	-webkit-transition: 1.0s ease; /* Chrome - Safari */
  	-o-transition: 1.0s ease; /* Opera */
+	}
+	
+ 	.img_thumb2{
+	display: block;
+	float: left;
+	position: relative;
+	top: 50px;
+    padding: 10px 10px 10px 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    margin-bottom: 35px;
+	transition: 1.0s ease;
+ 	-moz-transition: 1.0s ease; /* Firefox */
+ 	-webkit-transition: 1.0s ease; /* Chrome - Safari */
+ 	-o-transition: 1.0s ease; /* Opera */
 }
 
 
@@ -224,6 +231,23 @@
 		-ms-transform : scale(1.5); /* IE9 */
 		}
 	
+.nov{
+	 background-color: gainsboro;
+    border-radius: 300px;
+    height: 80px;
+    width: 600px;
+	
+}
+
+.i_men{
+	width: 40px;
+    height: 40px;
+    border-radius: 500px;
+    object-fit: cover;
+    margin: 10px;
+    vertical-align: middle;
+    padding: 0px 0px;
+}
 	
 /* Para la vista de Actividad */
 
@@ -248,6 +272,21 @@
 		-webkit-transform : scale(1.2); /* Chrome - Safari */
 		-o-transform : scale(1.2); /* Opera */
 		-ms-transform : scale(1.2); /* IE9 */
+	}
+	
+	.i_people_nov, .i_actv2{
+		width:50px;
+		height:50px;
+		border-radius:500px;
+		object-fit: cover;
+		margin:10px;
+		vertical-align: middle;
+		padding: 0px 0px;
+		transition: 1.5s ease;
+ 		-moz-transition: 1.5s ease; /* Firefox */
+ 		-webkit-transition: 1.5s ease; /* Chrome - Safari */
+ 		-o-transition: 1.5s ease; /* Opera */
+
 	}
 	
 	.btn {
