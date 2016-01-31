@@ -26,6 +26,8 @@
 
 					<div id="datos_perfil">
 					
+					<div id="cont_amigos">
+					
 					<div id="amigos">
 						<p>Amigos</p>
 							<table>
@@ -40,7 +42,10 @@
 									</c:if>
 									</c:forEach>
 							</table>
-							<section class="cd-section">
+							
+						</div>
+						
+						<section class="cd-section">
 								<div class="cd-modal-action">
 									<a href="#0"  data-type="modal-trigger"><center><button>Ver mis amigos</button></center></a>
 									<span class="cd-modal-bg"></span>
@@ -54,7 +59,7 @@
 						
 								<a href="#0" class="cd-modal-close">Close</a>
 							</section>
-						</div>
+					</div>			
 							
 						<div id="opciones_perfil">
 							<ul id="menu">
