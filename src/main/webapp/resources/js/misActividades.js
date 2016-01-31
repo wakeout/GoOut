@@ -17,10 +17,10 @@ $('.img_thumb' ).hover(function(e){
 $('input[type="checkbox"][name="switch1"]').change(function(){
 	if(this.checked){
 		$("#modo_lista" ).show("slow");
-		$("#modo_burbuja" ).slideUp();
+		$("#modo_burbuja" ).hide();
 	}else{
 		$( "#modo_burbuja" ).show( "slow" );
-		$( "#modo_lista" ).slideUp();
+		$( "#modo_lista" ).hide();
 	}
 	actualizar();
 });
