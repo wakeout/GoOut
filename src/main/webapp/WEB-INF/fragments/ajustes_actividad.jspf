@@ -53,6 +53,21 @@
 				<td><br></td>
 				<td><br></td>
 				<tr>
+				<td>Estado actividad</td>
+				<c:if test="${actividad.estado == 'abierta'}">
+					<td><input type="radio" name="estado_actividad" value="abierta" checked/>Abierta</td>
+					<td><input type="radio" name="estado_actividad" value="cerrada" />Cerrada</td>
+				</c:if>
+				<c:if test="${actividad.estado == 'cerrada'}">
+					<td><input type="radio" name="estado_actividad" value="abierta" />Abierta</td>
+					<td><input type="radio" name="estado_actividad" value="cerrada" checked />Cerrada</td>
+				</c:if>
+				<!--<td><input type="radio" name="estado_abierta" value="abierta"/>Abierta</td>
+				<td><input type="radio" name="estado_cerrada" value="cerrada"/>Cerrada</td>-->
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
 				<td>Cambiar imagen</td>
 				<td><input type="file" name="imagen" class="cambio_img"></td>
 			

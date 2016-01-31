@@ -233,6 +233,7 @@ public class HomeController {
 			@RequestParam("num_participantes") int nparticipantes,
 			@RequestParam("idactividad") long idactividad,
 			@RequestParam("imagen") MultipartFile foto,
+			@RequestParam("estado_actividad") String estado,
 			@RequestParam("descripcion_actividad") String descripcion, HttpSession session, HttpServletRequest request){
 		
 		Date fecha_ini=null;
@@ -298,6 +299,7 @@ public class HomeController {
 		a.setFecha_ini(fecha_ini);
 		a.setFecha_fin(fecha_fin);
 		a.setDescripcion(descripcion);
+		a.setEstado(estado);
 		entityManager.persist(a);
 		
 
