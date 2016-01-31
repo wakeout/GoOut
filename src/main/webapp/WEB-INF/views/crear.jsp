@@ -85,6 +85,7 @@
 												</table>
 											</div>
 											<div id="crear_2">
+											<div id="c_tiempo">
 												<!-- <p id="text">¿CUÁNDO QUIERES HACERLO?</p>-->
 												<br>
 												<label class="nombre_caja"> Inicio:</label> <input type="date" size="12"
@@ -101,15 +102,19 @@
 												<label class="nombre_caja">Hora Fin: </label> <input type="time" name="hora_fin" id="caja_hora">
 												<br>
 												<br>
+											</div>	
 												Descripción de la actividad
 												<textarea rows="5" cols="30" name="descripcion" style="resize:none;"> </textarea>
+												<br>
+												<div class="invitar_amigos">
+												<%@ include file="../fragments/invitacionesAmigos.jspf"%>
+												</div>
+												
 												<div id="boton_crear">
-													
 													<button name="submit" id="b_crear"
 														value="CREAR ACTIVIDAD" onclick="comprobarDatosActividad()">
 														CREAR ACTIVIDAD
 													</button>
-													
 												</div>
 
 											</div>
@@ -131,11 +136,6 @@
 												<br>
 												<label>Destino</label> <input type="text"
 													class="caja" id="caja_destino" name="destino" maxlength="60" placeholder="Añade Destino" readonly/> 
-												<br> 
-												<br>
-												<div class="invitar_amigos">
-												<%@ include file="../fragments/invitacionesAmigos.jspf"%>
-												</div>
 											</div>
 										</form>
 									</div>

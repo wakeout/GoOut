@@ -36,6 +36,11 @@
 		display: inline-block;
 	}
 	
+	#c_tiempo{
+	text-align: right;
+    margin-right: 50px;
+	}
+	
 	#crear_3{
 		
 		border-radius: 50px;
@@ -77,7 +82,7 @@
 	}
 	
 	#boton_crear{
-		margin-top:100px;
+		margin-top:80px;
 	}
 	
 	#b_crear{
