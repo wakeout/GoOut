@@ -718,6 +718,13 @@ public class HomeController {
 			Model model, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
+		
+		String[] amigosIds = new String[0];
+		amigosIds = request.getParameterValues("amigo");
+		
+		if(max_participantes<amigosIds.length){
+			return "redirect:crear";
+		}
 			String origen="";
 			String destino="";
 			String descripcion;
@@ -764,10 +771,7 @@ public class HomeController {
 			}
 		
 			String tipo = "invitacion";
-			String[] amigosIds = new String[0];
-			amigosIds = request.getParameterValues("amigo");
-			
-			
+		
 			descripcion = request.getParameter("descripcion");
 			
 			/*Tratamiento de los tags*/
@@ -906,6 +910,8 @@ public class HomeController {
 	
 				//Error
 			}
+				
+			
 
 				return "redirect:actividades";
 			}
