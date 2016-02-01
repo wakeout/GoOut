@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -53,7 +54,7 @@ public class Encuesta {
 		this.pregunta = pregunta;
 	}
 	
-	@OneToMany(targetEntity=Respuesta.class)
+	@OneToMany(targetEntity=Respuesta.class,  fetch=FetchType.EAGER)
 	@JoinColumn(name="id_encuesta")
 	public List<Respuesta> getRespuestas() {
 		return respuestas;

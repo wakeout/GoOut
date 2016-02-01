@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="${prefix}resources/css/style_actividad.css"> 
 		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
 		<script src="${prefix}resources/js/mapa.js"></script>
-	
+		<script src="${prefix}resources/js/actividades.js"></script>
 	</head>
 <body>
 	<div id="pagina">
@@ -192,13 +192,13 @@
 				<div id="encuestas" class="tab-content">
 					<div class="foro_actv">
 					<c:forEach items="${encuestas}" var="e"> 
-						<form action="${prefix}responderEncuesta" method="post">
+						<form action="${prefix}responderEncuesta" method="post" onsubmit="comprobar()">
 							<span> <c:out value="${e.pregunta.asunto}"/></span>
 							<br>
 							<c:forEach items="${e.respuestas}" var="r">
-								<input type="checkbox" name="respuestas" value="${r.id}"/> ${r.mensaje.asunto}	
+								<input id="respuestas" type="checkbox" name="respuestas" value="${r.id}"/> ${r.mensaje.asunto}	
 								<c:forEach items="${r.usuario}" var="u">
-								
+									<img class="i_people_nov" src="../usuario/imagen?id=${u.id}"/>
 								</c:forEach>								
 								<br>
 							</c:forEach>

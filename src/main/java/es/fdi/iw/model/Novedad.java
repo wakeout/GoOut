@@ -26,14 +26,12 @@ public class Novedad {
 	private String mensaje;
 	private String tipo;
 	private Date fecha;
-	private List<Usuario> usuarios;
 	
 	public static Novedad crearNovedad(String mensaje, String tipo){
 		Novedad n = new Novedad();
 
 		n.mensaje = mensaje;
 		n.tipo = tipo;
-		n.usuarios=new ArrayList<Usuario>();
 		
 		return n;
 	}
@@ -78,13 +76,7 @@ public class Novedad {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	@ManyToMany(targetEntity=Usuario.class, fetch=FetchType.EAGER)
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
+
 	
 	public Date getFecha() {
 		return fecha;
