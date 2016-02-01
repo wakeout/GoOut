@@ -27,12 +27,14 @@ public class Encuesta {
 	private long id;
 	private Comentario pregunta;
 	List<Respuesta> respuestas;
+	private boolean borrado;
 	
 	public static Encuesta crearEncuesta(Comentario pregunta){
 		Encuesta e = new Encuesta();
 		
 		e.pregunta = pregunta;
 		e.respuestas = new ArrayList<Respuesta>();
+		e.borrado = false;
 
 		return e;
 	}
@@ -61,6 +63,14 @@ public class Encuesta {
 	}
 	public void setRespuestas(List<Respuesta> respuestas) {
 		this.respuestas = respuestas;
+	}
+
+	public boolean isBorrado() {
+		return borrado;
+	}
+
+	public void setBorrado(boolean borrado) {
+		this.borrado = borrado;
 	}
 	
 	

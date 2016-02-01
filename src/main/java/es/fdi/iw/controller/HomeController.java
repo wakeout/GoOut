@@ -328,19 +328,33 @@ public class HomeController {
 	@Transactional
 	public String modPerfil(
 			@RequestParam("nick_perfil") String nick,
-			@RequestParam("fecha_perfil") Date nacimiento,
+			//@RequestParam("fecha_perfil") Date nacimiento,
 			@RequestParam("prov_perfil") String provincia,
 			@RequestParam("email_perfil") String email,
 			@RequestParam("photo") MultipartFile foto,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 		
+			String nombre = request.getParameter("nombre_perfil");
+			
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
+			
+			Date fecha_perfil=null;
+			String fecha_p = request.getParameter("fecha_perfil");
+			SimpleDateFormat dateFormatter = new SimpleDateFormat ( "yyyy-MM-dd" );
+
+			
+			if( fecha_p != null && fecha_p.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+				try {
+					fecha_perfil = new Date(dateFormatter.parse(fecha_p).getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			
 			String imagen ="";
 			try {
 	        	if(!foto.isEmpty()){
-	        		//String nombre_imagen = foto.getOriginalFilename();
-					//extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
 					
 	        		imagen = usuario.getId()+"";
 				
@@ -366,10 +380,11 @@ public class HomeController {
 					u = (Usuario)entityManager.createNamedQuery("userByLogin")
 						.setParameter("loginParam", nick).getSingleResult();
 					
+					u.setNombre(nombre);
 					u.setProvincia(provincia);
 					u.setEmail(email);
 
-					u.setNacimiento(nacimiento);
+					u.setNacimiento(fecha_perfil);
 					
 					entityManager.persist(u);
 					
@@ -1111,6 +1126,7 @@ public class HomeController {
 		r1 = Respuesta.crearRespuesta(c1);
 		r2 = Respuesta.crearRespuesta(c2);
 		
+		e.setBorrado(false);
 		e.getRespuestas().add(r1);
 		e.getRespuestas().add(r2);
 		
@@ -1829,6 +1845,7 @@ public class HomeController {
 			
 			
 			if(pertenece) model.addAttribute("pagos", r.getPagos());
+			model.addAttribute("usuario", u);
 			model.addAttribute("hitos", a.getHitos());
 			model.addAttribute("comentarios", a.getForo().getComentarios());
 			model.addAttribute("pertenece", pertenece);
@@ -2117,7 +2134,6 @@ public class HomeController {
 	public void borrarElemento(@RequestParam("id") long [] id, @RequestParam("tipo") String tipo, HttpServletRequest request, HttpSession session){
 		Usuario usu = (Usuario)session.getAttribute("usuario");
 		try {
-			//(cascade=CascadeType.REMOVE)
 			if(tipo.equals("Actividad")){
 				
 				for(int i = 0; i < id.length; i++){
@@ -2126,16 +2142,6 @@ public class HomeController {
 					entityManager.persist(a);
 				}
 				
-				/*for(int i = 0; i < id.length; i++){
-					Actividad a = entityManager.find(Actividad.class, id[i]);
-					for(int j = 0; j < a.getRegistros().size(); j++){
-						Registro r = entityManager.find(Registro.class, a.getRegistros().get(j).getId());
-						for(Pago p: r.getPagos()){
-							entityManager.createNamedQuery("delPago").setParameter("idPago", p.getId()).executeUpdate();
-						}
-						entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
-					}
-					entityManager.createNamedQuery("eliminarActividad").setParameter("idActividad", a.getId()).executeUpdate();*/
 			}else{
 				if(tipo.equals("Usuario")){
 					Usuario u = null;
@@ -2160,7 +2166,17 @@ public class HomeController {
 							a.setNpersonas(a.getNpersonas()-1);
 						}
 					}
-					else{
+					if(tipo.equals("Encuesta")){
+						Encuesta e = null;
+						for(int i = 0; i < id.length; i++){
+							e = entityManager.find(Encuesta.class, id[i]);
+							e.setBorrado(true);
+							entityManager.persist(e);
+							
+						}
+					}
+					else
+					{
 						for(int i=0; i<id.length; i++)
 							entityManager.createNamedQuery("del"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
 					}

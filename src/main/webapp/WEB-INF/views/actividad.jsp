@@ -134,6 +134,7 @@
 		
 		<div class="movimiento">
 			
+			<c:if test="${not empty usuario}">
 			<div class="container">
 
 				<ul class="tabs">
@@ -192,7 +193,7 @@
 				<div id="encuestas" class="tab-content">
 					<div class="foro_actv">
 					<c:forEach items="${encuestas}" var="e"> 
-						<form action="${prefix}responderEncuesta" method="post" onsubmit="comprobar()">
+						<form action="${prefix}responderEncuesta" method="post" onsubmit="return comprobar()">
 							<span> <c:out value="${e.pregunta.asunto}"/></span>
 							<br>
 							<c:forEach items="${e.respuestas}" var="r">
@@ -238,7 +239,7 @@
 
 			</div><!-- container -->
 			
-			
+			</c:if>
 			
 		</div>
 <%@ include file="../fragments/scripts.jspf"%>

@@ -81,21 +81,37 @@
 					</div>	
 
 						<div class="n_perfil">
-
-							 <table>
-							 <tr>
-								<td id="login_perfil"><c:out value="${perfil.login}"/></td>
-							 </tr>
-							 <tr>
-								 <td id="nacimiento_perfil"> <c:out value="${perfil.email}"/> </td>
-							 </tr>
-							 <tr>
-						 		<td id="provincia_perfil"> <c:out value="${perfil.provincia}"/></td>
-							 </tr>
-							 <tr>
-								<td id="email_perfil"> <c:out value="${perfil.provincia}"/></td>
-							 </tr>
-							</table>
+						<p id="login_perfil"><c:out value="${perfil.login}"/></p>
+						
+					<fieldset class="estilo_campos">
+  							<legend>Datos usuario</legend>
+  					
+  							<div class="campos_Perfil">
+								<label for="nombre_perfil">Nombre:</label> 
+								<label id="nombre_perfil"><c:out value="${perfil.nombre}"/></label>
+							</div>
+							<br>
+							<div class="campos_Perfil">
+								<label for="fecha_perfil">Fecha Nac:</label> 
+								<label id="fecha_perfil"><c:out value="${perfil.nacimiento}"/></label>
+							</div>
+							<br>
+							<div class="campos_Perfil">
+								<label for="prov_perfil">Provincia:</label> 
+								<label id="prov_perfil"><c:out value="${perfil.provincia}"/></label>
+							</div>
+							<br>
+							<div class="campos_Perfil">
+								<label for="email_perfil">Email: </label> 
+								<label id="email_perfil"><c:out value="${perfil.email}"/></label>
+							</div>
+							<br>
+							<div class="campos_Perfil">
+								<label for="tipo_usuario">Tipo de usuario: </label> 
+								<label id="tipo_usuario"><c:out value="${perfil.rol}"/></label>
+							</div>
+					
+							</fieldset>
 							
 						</div>
 						
@@ -103,7 +119,7 @@
 					
 				</div>
 				<div class="actv_apuntadas2">
-				<p class="apuntadas2">Actividades en las que está apuntado</p>
+				<p class="apuntadas2">Actividades a las que está apuntado</p>
 							<table id="mis_actv">
 								<c:forEach items="${actv}" var="a">
 								<a  href="../actividad/${a.actividad.id}">

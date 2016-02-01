@@ -65,6 +65,11 @@
 						<fieldset class="estilo_campos">
   							<legend>Datos usuario</legend>
   							<div class="campos_Perfil">
+								<label for="nick_perfil">Nick:</label> 
+								<label id="nick_perfil"><c:out value="${usuario.login}"/></label>
+							</div>
+							<br>
+  							<div class="campos_Perfil">
 								<label for="nombre_perfil">Nombre:</label> 
 								<label id="nombre_perfil"><c:out value="${usuario.nombre}"/></label>
 							</div>
@@ -124,10 +129,15 @@
 									<input id="nick_perfil" type="text" value="${usuario.login}" maxlength="40" disabled/>
 									<input type="hidden" name="nick_perfil" type="text" value="${usuario.login}"/>
 								</div>
+								<div class="campos_Perfil">
+									<label for="nombre_perfil">Nombre:</label> 
+									<input id="nombre_perfil" type="text" value="${usuario.nombre}" maxlength="40"/>
+									<input type="hidden" name="nombre_perfil" type="text" value="${usuario.nombre}"/>
+								</div>
 								
 								<div class="campos_Perfil">
 									<label for="fecha_perfil">Fecha Nac:</label> 
-									<input id="fecha_perfil" name="fecha_perfil" type="date" value="${usuario.nacimiento}" required/>
+									<input id="fecha_perfil" name="fecha_perfil" type="date" value="${usuario.nacimiento}"/>
 								</div>
 								<div class="campos_Perfil">
 									<label for="prov_perfil">Provincia:</label> 
