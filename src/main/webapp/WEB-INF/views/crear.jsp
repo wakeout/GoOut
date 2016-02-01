@@ -6,7 +6,7 @@
 <%@ include file="../fragments/head.jspf"%>
 <%@ include file="../fragments/scripts.jspf"%>
 <link rel="stylesheet" href="${prefix}resources/css/style_crear.css">
-<link rel="stylesheet" href="${prefix}resources/css/style_efecto_admin.css">
+<link rel="stylesheet" href="${prefix}resources/css/style_efecto.css">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
 <script src="${prefix}resources/js/crear.js"></script>

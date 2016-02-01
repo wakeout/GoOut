@@ -427,6 +427,8 @@ color: #fff;
             background: black;
             position:relative;
             bottom: opx;
+            text-align: center;
+            color:white;
 	}
 
 /* Desktop */
