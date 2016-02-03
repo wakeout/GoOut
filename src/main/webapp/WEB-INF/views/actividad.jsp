@@ -43,12 +43,13 @@
 						</c:if>
 						<form action="${prefix}salirActividad" method="POST">
 						<input type="hidden" name="actividad" value="${actividad.id}" />
-						<button class="op_varias" name="submit" type="submit">Salir de la actividad</button>
-						</from>
+						<button class="op_varias" type="submit">Salir de la actividad</button>
+						</form>
 						
 						<form action="${prefix}denunciarActividad" method="POST">
 						<input type="hidden" name="id_actividad" value="${actividad.id}" />
-						<button class="op_varias" name="submit" type="submit" id="boton_reportar">Denunciar actividad</button>
+						<input type="hidden" name="id_creador" value="${actividad.creador.id}" />
+						<button class="op_varias" type="submit" id="boton_reportar">Denunciar actividad</button>
 						</form>
 						
 						</c:if>
@@ -158,6 +159,7 @@
 									<input type="hidden" name="login_usuario" value="${c.usuario.login}" />
 									<input type="hidden" name="id_comentario" value="${c.id}" />
 									<input type="hidden" name="id_actividad" value="${actividad.id}" />
+									<input type="hidden" name="id_creador" value="${actividad.creador.id}" />
 									<button  name="submit" type="submit" id="boton_reportar">Denunciar comentario</button>
 									</form>
 								<hr></hr>								

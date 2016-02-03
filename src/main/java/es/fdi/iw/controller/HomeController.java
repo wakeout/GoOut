@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -328,7 +329,6 @@ public class HomeController {
 	@Transactional
 	public String modPerfil(
 			@RequestParam("nick_perfil") String nick,
-			//@RequestParam("fecha_perfil") Date nacimiento,
 			@RequestParam("prov_perfil") String provincia,
 			@RequestParam("email_perfil") String email,
 			@RequestParam("photo") MultipartFile foto,
@@ -421,11 +421,11 @@ public class HomeController {
 			String pass_cod="";
 			
 			if (!usuario.isPassValid(pass_actual)) {
-				logger.info("pass actual invalido");
+				model.addAttribute("modError", "Password actual incorrecto");
 			}
 			else{
 				if (pass_nuevo == null || pass_nuevo.length() < 3 || pass_nuevo2 == null || pass_nuevo2.length() < 3) {
-					model.addAttribute("passError", "Los passwords no son válidos");
+					model.addAttribute("modError", "Los passwords no son válidos");
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				}
 				else{
@@ -541,12 +541,17 @@ public class HomeController {
 	}
 	@RequestMapping(value= "/denunciarComentario", method=RequestMethod.POST)
 	@Transactional
-	public String denunciarComentario(@RequestParam("id_actividad") long actv, @RequestParam("login_usuario") String logu, @RequestParam("id_usuario") long idu,
+	public String denunciarComentario(@RequestParam("id_actividad") long actv, @RequestParam("login_usuario") String logu,
+			@RequestParam("id_usuario") long idu,  @RequestParam("id_creador") long id_creador,
 			@RequestParam("id_comentario") long com, Model model, HttpSession session){
 		Mensaje m = null;
 		Usuario u = null;
-		Usuario d = null;
+		Usuario creador = null;
+		List<Usuario> destinos = null;
 		Actividad a = null;
+		boolean incluido=false;
+		
+		creador = entityManager.find(Usuario.class, id_creador);
 		
 		String asunto;
 		String contenido;
@@ -556,25 +561,47 @@ public class HomeController {
 				.setParameter("actividadParam", actv).getSingleResult();
 		
 		asunto = "Denuncia comentario";
-		//contenido = "La actividad ha sido denunciada";
+
 		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
 		" ha denunciado un comentario en la actividad " + a.getNombre() + "(" + a.getId()
-		+ ", "+com+"), al usuario"+logu + "Entre paréntesis el id de cada elemento respectivamente (Actividad y Comentario";
+		+ ", "+com+"), al usuario"+logu + ". Entre paréntesis el id de cada elemento respectivamente (Actividad y Comentario)";
 		
-		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d, false);
-		entityManager.persist(m);
+		destinos = entityManager.createNamedQuery("allUsers").getResultList();
+		
+		for(Usuario re: destinos){
+			if(re.getRol().equals("admin")){
+				
+				if(creador.equals(re))
+					incluido=true;
+				
+				m = Mensaje.crearMensaje(asunto, contenido, "denuncia", u, re, false);
+				entityManager.persist(m);
+				
+			}	
+		}
+		
+		
+		if(!incluido){
+			m = Mensaje.crearMensaje(asunto, contenido, "denuncia", u, creador, false);
+			entityManager.persist(m);
+		}
+		
 		
 		return "redirect:actividad/"+actv;
-		//return "actividad";
 	}
 	
-	@RequestMapping(value= "/denunciarActividad")
+	@RequestMapping(value="/denunciarActividad", method = RequestMethod.POST)
 	@Transactional
-	public String denunciarActividad(@RequestParam("id_actividad") long actv, Model model, HttpSession session){
+	public String denunciarActividad(@RequestParam("id_actividad") long actv, @RequestParam("id_creador") long id_creador,
+			Model model, HttpSession session){
 		Mensaje m = null;
 		Usuario u = null;
+		Usuario creador = null;
 		List<Usuario> destinos = null;
 		Actividad a = null;
+		boolean incluido = false;
+		
+		creador = entityManager.find(Usuario.class, id_creador);
 		
 		String asunto;
 		String contenido;
@@ -584,25 +611,32 @@ public class HomeController {
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
 				.setParameter("actividadParam", actv).getSingleResult();
 		
+		
+		
 		asunto = "Denuncia actividad";
 
 		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
 		" ha denunciado la actividad " + a.getNombre() + "(" + a.getId()
-		+ ")." + "Entre paréntesis el id de cada elemento respectivamente";
+		+ "). Entre paréntesis el id de cada elemento respectivamente";
 		
-		System.out.println("ENTRAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		
 		destinos = entityManager.createNamedQuery("allUsers").getResultList();
 		
 		for(Usuario re: destinos){
 			if(re.getRol().equals("admin")){
 				
+				if(creador.equals(re))
+					incluido=true;
+				
 				m = Mensaje.crearMensaje(asunto, contenido, "denuncia", u, re, false);
 				entityManager.persist(m);
 				
-			}
-
-				
+			}	
+		}
+		
+		if(!incluido){
+			m = Mensaje.crearMensaje(asunto, contenido, "denuncia", u, creador, false);
+			entityManager.persist(m);
 		}
 		
 		return "redirect:actividad/"+actv;
@@ -734,9 +768,11 @@ public class HomeController {
 		String[] amigosIds = new String[0];
 		amigosIds = request.getParameterValues("amigo");
 		
-		if(max_participantes<amigosIds.length){
-			return "redirect:crear";
-		}
+		if(amigosIds!=null)
+			if(max_participantes<amigosIds.length){
+				return "redirect:crear";
+			}
+		
 			String origen="";
 			String destino="";
 			String descripcion;
@@ -1737,12 +1773,13 @@ public class HomeController {
 	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
 	public String actividades(Model model, HttpSession session){
 		
-		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+		Calendar c = Calendar.getInstance();
+		c = new GregorianCalendar();
+		int dia = c.get(Calendar.DATE);
+		int mes = c.get(Calendar.MONTH);
+		int annio = c.get(Calendar.YEAR);
 		
-		model.addAttribute("hoy", sqlDate.getDay());
-		model.addAttribute("mes", sqlDate.getMonth());
-		
-		
+
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	

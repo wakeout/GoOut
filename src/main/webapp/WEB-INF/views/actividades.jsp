@@ -46,8 +46,8 @@
 										<input type="radio" onchange="buscar()" id="activas" name="activas_fin" value="activas" checked="checked"/>Abiertas
 										<input type="radio" onchange="buscar()" id="finalizadas" name="activas_fin" value="finalizadas"/>Cerradas
 											
-										<input type="checkbox" onchange="buscar()"  id="hoy" value="1" name="filtro" />Hoy
-										<input type="checkbox" onchange="buscar()" id="mes" value="2" name="filtro" />Este mes
+										<input type="checkbox" onchange="f_fecha()"  id="hoy" value="1" name="filtro" />Hoy
+										<input type="checkbox" onchange="f_fecha()" id="mes" value="2" name="filtro" />Este mes
 										
 										</div>
 								
@@ -81,10 +81,11 @@
 		<%@ include file="../fragments/scripts.jspf" %>
 			<script>
 
-		$(function(){
-			buscar();
-			actualizar();
-		});
+			$(function(){
+				//f_fecha("${fecha}");
+				buscar();
+				actualizar();
+			});
 	
 	</script>
 		<!--FIN DEL AÑADIDO -->
