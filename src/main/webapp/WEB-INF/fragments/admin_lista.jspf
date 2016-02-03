@@ -270,7 +270,9 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_encuestas)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${encuestas}" var="e">
+			<c:if test="${e.borrado == false }">
 			<tr id="Encuesta_${e.id}"><td><input  name="Encuesta" value="${e.id}" type="checkbox"> ${e.id}<td><c:out value="${e.pregunta.asunto}"/>
+			</c:if>
 			</c:forEach>
 		</table>
 		</form>

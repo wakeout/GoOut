@@ -24,7 +24,7 @@
 							<nav id="nav">
 								<ul>
 									<li><a id="b_registro" href="registro">REGISTRARSE</a></li>
-									<li><a id="b_login" href="login">INICIAR SESION</a></li>
+									<li><a id="b_login" href="login">INICIAR SESIÓN</a></li>
 								</ul>
 							</nav>
 			</div>

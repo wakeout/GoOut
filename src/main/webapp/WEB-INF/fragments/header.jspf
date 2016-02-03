@@ -8,11 +8,11 @@
 
 				
 				<div id="loginText">
-
+				<c:if test="${not empty usuario}">
 					<ul class="nav">
-
+						
 						<li><a href="${prefix}mi_perfil"><img class="i_profile" src="${prefix}usuario/imagen?id=${usuario.id}"></a>
-							<ul>
+							<ul>		
 								<c:choose>
 
 									<c:when test="${not empty usuario}">
@@ -34,7 +34,7 @@
 							</li>
 					</ul>
 
-
+				</c:if>
 				</div>
 			</div>
 
