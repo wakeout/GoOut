@@ -6,10 +6,15 @@ var temp4 = null;
 
 var objetos;
 var fecha=null;
+var mes=null;
 
+function f_fecha(){
 
-function f_fecha(f){
-	fecha=f;
+	var f = new Date();
+	fecha=f.getFullYear() + "-" + ("0" + (f.getMonth() + 1)).slice(-2) + "-" + ("0" + (f.getDate())).slice(-2);
+	
+	mes=f.getFullYear() + "-" + ("0" + (f.getMonth() + 1)).slice(-2);
+	
 }
 
 $('.img_thumb' ).hover(function(e){
@@ -37,34 +42,18 @@ function actualizar(){
 	$.each(objetos, function(i, o) {
 		filtro[i]=new Object();
 		filtro[i]=null;
-		
-		
-		if($("#activas" ).prop('checked') ){
-			if(o.estado=="abierta") filtro[i]=o;
+		if($("#todas" ).prop('checked')){
+			filtro[i]=o;
 		}else{
-			if($("#finalizadas" ).prop('checked') )
-				if(o.estado=="cerrada")filtro[i]=o;
-			
-		}
-		
-		/*if($("#hoy" ).prop('checked') ){
-			if(o.fecha==hoy) filtro[i]=o;
-		}else{
-			if($("#mes" ).prop('checked') ){
-				if(o.fecha==mes) filtro[i]=o;
-				
+			if($("#activas" ).prop('checked') ){
+				if(o.estado=="abierta") filtro[i]=o;
 			}else{
-				if($("#activas" ).prop('checked') ){
-					if(o.estado=="Abirta") filtro[i]=o;
-				}else{
-					if($("#finalizadas" ).prop('checked') ){
-						if(o.estado=="Cerrada")filtro[i]=o;
-					}else{
-						filtro[i]=o;
-					}
-				}
+				if($("#finalizadas" ).prop('checked') )
+					if(o.estado=="cerrada")filtro[i]=o;
+			
 			}
-		}*/
+		}
+
 	})
 	
 	
@@ -105,13 +94,19 @@ function burbuja(obj){
 
 	$.each(obj, function(i, o) {
 		if(o!=null){
-			var f=o.fecha;
-			console.log(f);
+			//var mes_o=("0" + (o.fecha.getMonth() + 1)).slice(-2);
+			
+			var mes_o=o.fecha.substring(0, 7);
+			
+			if(o.fecha==fecha && $("#hoy" ).prop('checked')||mes_o==mes && $("#mes" ).prop('checked')  || !$("#hoy" ).prop('checked') && !$("#mes" ).prop('checked')){
 			
 			div+="<div><a class='' href='actividad/"+o.id+
 			"'><div class='img_thumb'><div class='img_desc'></div><img class='i_actv' src='actividad/imagen?id="
 			+o.id+"' /><p>"+ o.nombre+"</p></div>"+ 
 			"</a>";
+		
+			}
+			
 		}
 	})
 			
@@ -127,11 +122,17 @@ function lista(obj){
 
 	$.each(obj, function(i, o) {
 		if(o!=null){
-		
+			var mes_o=o.fecha.substring(0, 7);
+			
+			if(o.fecha==fecha && $("#hoy" ).prop('checked')||mes_o==mes && $("#mes" ).prop('checked')  || !$("#hoy" ).prop('checked') && !$("#mes" ).prop('checked')){
+			
+				
 			div+="<tr><td><a href='actividad/"+o.id+"'>"+ o.nombre
-			+ "</a></td><td>1</td><td>"+o.maxPersonas+"</td><td>"
-			+o.fecha_ini+"</td><td>"+o.localizacion+"</td><td>"
+			+ "</a></td><td>"+o.npersonas+"</td><td>"+o.max+"</td><td>"
+			+o.fecha+"</td><td>"+o.localizacion+"</td><td>"
 			+o.estado+"</td></tr>";
+		
+			}	
 		}
 	})	
 			

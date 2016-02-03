@@ -1773,12 +1773,6 @@ public class HomeController {
 	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
 	public String actividades(Model model, HttpSession session){
 		
-		Calendar c = Calendar.getInstance();
-		c = new GregorianCalendar();
-		int dia = c.get(Calendar.DATE);
-		int mes = c.get(Calendar.MONTH);
-		int annio = c.get(Calendar.YEAR);
-		
 
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());

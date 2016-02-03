@@ -43,11 +43,12 @@
 								 	
 									<div id="filtro_MisActividades">
 										<div id="cajaA">
-										<input type="radio" onchange="buscar()" id="activas" name="activas_fin" value="activas" checked="checked"/>Abiertas
+										<input type="radio" onchange="buscar()" id="todas" name="activas_fin" value="todas" checked="checked"/>Todas
+										<input type="radio" onchange="buscar()" id="activas" name="activas_fin" value="activas"/>Abiertas
 										<input type="radio" onchange="buscar()" id="finalizadas" name="activas_fin" value="finalizadas"/>Cerradas
 											
-										<input type="checkbox" onchange="f_fecha()"  id="hoy" value="1" name="filtro" />Hoy
-										<input type="checkbox" onchange="f_fecha()" id="mes" value="2" name="filtro" />Este mes
+										<input type="checkbox" onchange="buscar()"  id="hoy" value="1" name="filtro" />Hoy
+										<input type="checkbox" onchange="buscar()" id="mes" value="2" name="filtro" />Este mes
 										
 										</div>
 								
@@ -82,7 +83,7 @@
 			<script>
 
 			$(function(){
-				//f_fecha("${fecha}");
+				f_fecha();
 				buscar();
 				actualizar();
 			});
