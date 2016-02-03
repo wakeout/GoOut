@@ -15,12 +15,12 @@
 	
 	<div class="admin_actv">
 	
-	<div class="search">
+	<!--  <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en las Actividades">
    		
 	</div>
-			
+		-->	
 	<%@ include file="../fragments/add/addActividad.jspf" %>	
 	
 	<button id="Actividad" class="papelera"></button>	
@@ -38,11 +38,11 @@
 	
 	<div class="admin_usuario">
 	
-	<div class="search">
+	<!--  <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Usuarios">
 	</div>
-	
+	-->
 	<%@ include file="../fragments/add/addUsuario.jspf" %>
 	<button id="Usuario" class="papelera"></button>	
 	
@@ -65,12 +65,12 @@
 	
 	<div class="admin_registros">
 	
-	<div class="search">
+	<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Registros">
    		
 	</div>
-	
+	 -->
 	<%@ include file="../fragments/add/addRegistro.jspf" %>
 	
 	<form name="lista_registros" action="${prefix}borrarRegistros" method="POST" onsubmit="return confirmar()">
@@ -99,12 +99,12 @@
 	</div>
 	
 	<div class="admin_mensaje">
-	<div class="search">
+	<!--  <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Mensajes">
    		
 	</div>
-	
+	-->
 	<%@ include file="../fragments/add/addMensaje.jspf" %>
 	
 	<form name="lista_mensajes" action="${prefix}borrarMensajes" method="POST" onsubmit="return confirmar()">
@@ -125,12 +125,12 @@
 	</div>
 	
 	<div class="admin_tags">
-	<div class="search">
+	<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Tags">
    		
 	</div>
-	
+	 -->
 	<%@ include file="../fragments/add/addTag.jspf" %>
 	
 	<form name="lista_tags" action="${prefix}borrarTags" method="POST" onsubmit="return confirmar()">
@@ -152,12 +152,12 @@
 	
 	
 	<div class="admin_comentarios">
-	<div class="search">
+	<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Comentarios">
    		
 	</div>
-	
+	 -->
 	<%@ include file="../fragments/add/addComentarios.jspf" %>
 
 	<input type="hidden" name="tipo" value="admin"/>
@@ -179,12 +179,12 @@
 	</div>
 	
 	<div class="admin_novedades">
-	<div class="search">
+	<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en las Novedades">
    		
 	</div>
-	
+	 -->
 	<%@ include file="../fragments/add/addNovedad.jspf" %>
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Novedad" class="papelera">	
@@ -203,12 +203,12 @@
 	</div>
 	
 	<div class="admin_hitos">
-	<div class="search">
+	<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Hitos">
    		
 	</div>
-	
+	 -->
 	<%@ include file="../fragments/add/addHito.jspf" %>
 	
 	<input type="hidden" name="tipo" value="admin"/>
@@ -226,11 +226,11 @@
 	</form>
 	</div>
 		<div class="admin_pagos">
-		<div class="search">
+		<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en los Pagos">
    		
-	</div>
+	</div> -->
 	
 	<%@ include file="../fragments/add/addPago.jspf" %>
 	<input type="hidden" name="tipo" value="admin"/>
@@ -255,11 +255,11 @@
 	
 	
 	<div class="admin_encuestas">
-		<div class="search">
+		<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en las Encuestas">
    		
-	</div>
+	</div> -->
 	
 	<%@ include file="../fragments/add/addEncuesta.jspf" %>
 	
@@ -282,11 +282,11 @@
 	
 	
 	<div class="admin_respuestas">
-		<div class="search">
+		<!-- <div class="search">
    		<input>
    		<input type="submit"  value="Buscar en las Respuestas">
    		
-	</div>
+	</div> -->
 	
 	<%@ include file="../fragments/add/addRespuesta.jspf" %>
 	
