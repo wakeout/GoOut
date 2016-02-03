@@ -175,7 +175,7 @@ width: 530px;
 		
 		#u_votados{
 		display: inline-flex;
-    	width: 530px;
+    	width: 300px;
     	overflow: auto;
     	argin-left: 10px;
 		}
