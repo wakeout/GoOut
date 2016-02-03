@@ -2188,8 +2188,24 @@ public class HomeController {
 							
 						}
 					}
-					else
+					else if(tipo.equals("Comentario"))
 					{
+						Comentario c = null;
+						for(int  i = 0; i < id.length;i++){
+							c = entityManager.find(Comentario.class, id[i]);
+							c.setBorrado(true);
+							entityManager.persist(c);
+						}
+					}
+					else if(tipo.equals("Respuesta")){
+						Respuesta res = null;
+						for(int i = 0; i < id.length;i++){
+							res = entityManager.find(Respuesta.class, id[i]);
+							res.getMensaje().setBorrado(true);
+							entityManager.persist(res);
+						}
+					}
+					else{
 						for(int i=0; i<id.length; i++)
 							entityManager.createNamedQuery("del"+tipo).setParameter("id"+tipo, id[i]).executeUpdate();
 					}

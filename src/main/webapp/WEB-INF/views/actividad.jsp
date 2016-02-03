@@ -146,6 +146,7 @@
 				<div id="foro" class="tab-content current">
 					<div class="foro_actv">
 						<c:forEach items="${comentarios}" var="c"> 
+							<c:if test="${c.borrado == false }">
 							<div class="m_actv">
 								<a href="../perfil/${c.usuario.id}"><img class="i_people" src="../usuario/imagen?id=${c.usuario.id}" alt="" /></a>
 								<p  class="mensajes_actv">
@@ -161,6 +162,7 @@
 									</form>
 								<hr></hr>								
 							</div>
+							</c:if>
 						</c:forEach>
 					</div>	
 						

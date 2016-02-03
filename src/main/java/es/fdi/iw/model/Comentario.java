@@ -21,6 +21,7 @@ public class Comentario {
 	private Usuario usuario;// key Usuario
 	private String asunto;
 	private boolean sugiero;
+	private boolean borrado;
 	
 	
 	public static Comentario crearComentario(String asunto, Usuario u){
@@ -29,6 +30,7 @@ public class Comentario {
 		c.usuario=u;
 		c.asunto=asunto;
 		c.sugiero = false;
+		c.borrado = false;
 		
 		return c;
 	}
@@ -52,6 +54,14 @@ public class Comentario {
 	 }
 	 public void setSugiero(boolean sugiero) {
 		this.sugiero = sugiero;
+	 }
+	 
+	 public boolean getBorrado(){
+		 return borrado;
+	 }
+	 
+	 public void setBorrado(boolean b){
+		 this.borrado = b;
 	 }
 	
 	 @OneToOne(targetEntity=Usuario.class)
