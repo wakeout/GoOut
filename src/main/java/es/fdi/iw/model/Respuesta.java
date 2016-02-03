@@ -28,12 +28,14 @@ public class Respuesta{
 	private long id;
 	private Comentario mensaje;
 	private List<Usuario> usuario;//USUARIOS QUE HAN RESPONDIDO
+	private boolean borrado;
 
 	public static Respuesta crearRespuesta(Comentario mensaje){
 		Respuesta r = new Respuesta();
 		
 		r.mensaje = mensaje;
 		r.usuario = new ArrayList<Usuario>();
+		r.borrado = false;
 		
 		return r;
 	}
@@ -61,6 +63,14 @@ public class Respuesta{
 	}
 	public void setUsuario(List<Usuario> usuario) {
 		this.usuario = usuario;
+	}
+	
+	public boolean getBorrado(){
+		return borrado;
+	}
+	
+	public void setBorrado(boolean b){
+		this.borrado = b;
 	}
 	
 }

@@ -171,6 +171,16 @@ width: 530px;
 		
 		#map_canvas{
 		height:500px;
-
-	}
+		}
+		
+		#u_votados{
+		display: inline-flex;
+    	width: 530px;
+    	overflow: auto;
+    	argin-left: 10px;
+		}
+		
+		.num_totales{
+			float:right;
+		}
 		

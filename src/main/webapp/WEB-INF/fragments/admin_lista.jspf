@@ -170,7 +170,9 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_comentarios)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${comentarios}" var="c">
+			<c:if test="${c.borrado == false }">
 			<tr id="Comentario_${c.id}"><td><input  name="Comentario" value="${c.id}" type="checkbox"> ${c.id}<td><c:out value="${c.asunto}"/>
+			</c:if>
 			</c:forEach>
 		</table>
 	</form>
@@ -297,7 +299,9 @@
 		<a class="desmarcar" onclick="deseleccionar(lista_respuestas)">Desmarcar todos</a>
 		<table>
 			<c:forEach items="${respuestas}" var="r">
+			<c:if test="${r.borrado == false }">
 			<tr id="Respuesta_${r.id}"><td><input  name="Respuesta" value="${r.id}" type="checkbox">${r.id}<td>
+			</c:if>
 			</c:forEach>
 		</table>
 		</form>
