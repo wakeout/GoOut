@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -722,9 +723,11 @@ public class HomeController {
 		String[] amigosIds = new String[0];
 		amigosIds = request.getParameterValues("amigo");
 		
-		if(max_participantes<amigosIds.length){
-			return "redirect:crear";
-		}
+		if(amigosIds!=null)
+			if(max_participantes<amigosIds.length){
+				return "redirect:crear";
+			}
+		
 			String origen="";
 			String destino="";
 			String descripcion;
@@ -1730,12 +1733,13 @@ public class HomeController {
 	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
 	public String actividades(Model model, HttpSession session){
 		
-		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+		Calendar c = Calendar.getInstance();
+		c = new GregorianCalendar();
+		int dia = c.get(Calendar.DATE);
+		int mes = c.get(Calendar.MONTH);
+		int annio = c.get(Calendar.YEAR);
 		
-		model.addAttribute("hoy", sqlDate.getDay());
-		model.addAttribute("mes", sqlDate.getMonth());
-		
-		
+
 		if(((Usuario)session.getAttribute("usuario"))!=null){
 			model.addAttribute("actividades", entityManager.createNamedQuery("allActividades").getResultList());
 	

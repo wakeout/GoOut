@@ -5,7 +5,12 @@ var temp3 = null;
 var temp4 = null;
 
 var objetos;
+var fecha=null;
 
+
+function f_fecha(f){
+	fecha=f;
+}
 
 $('.img_thumb' ).hover(function(e){
     target = $(this);
@@ -34,7 +39,6 @@ function actualizar(){
 		filtro[i]=null;
 		
 		
-		
 		if($("#activas" ).prop('checked') ){
 			if(o.estado=="abierta") filtro[i]=o;
 		}else{
@@ -61,7 +65,6 @@ function actualizar(){
 				}
 			}
 		}*/
-		console.log(filtro);
 	})
 	
 	
@@ -102,6 +105,9 @@ function burbuja(obj){
 
 	$.each(obj, function(i, o) {
 		if(o!=null){
+			var f=o.fecha;
+			console.log(f);
+			
 			div+="<div><a class='' href='actividad/"+o.id+
 			"'><div class='img_thumb'><div class='img_desc'></div><img class='i_actv' src='actividad/imagen?id="
 			+o.id+"' /><p>"+ o.nombre+"</p></div>"+ 
@@ -121,7 +127,6 @@ function lista(obj){
 
 	$.each(obj, function(i, o) {
 		if(o!=null){
-			console.log(o.nombre);
 		
 			div+="<tr><td><a href='actividad/"+o.id+"'>"+ o.nombre
 			+ "</a></td><td>1</td><td>"+o.maxPersonas+"</td><td>"
