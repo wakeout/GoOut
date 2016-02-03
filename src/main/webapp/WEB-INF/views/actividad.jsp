@@ -199,10 +199,14 @@
 							<span> <c:out value="${e.pregunta.asunto}"/></span>
 							<br>
 							<c:forEach items="${e.respuestas}" var="r">
-								<input id="respuestas" type="checkbox" name="respuestas" value="${r.id}"/> ${r.mensaje.asunto}	
+								<input id="respuestas" type="checkbox" name="respuestas" value="${r.id}"/> ${r.mensaje.asunto}
+								<c:set var="num" value="${0}"/>
+								<div id="u_votados">	
 								<c:forEach items="${r.usuario}" var="u">
-									<img class="i_people_nov" src="../usuario/imagen?id=${u.id}"/>
-								</c:forEach>								
+									<img class="i_people_nov" src="../usuario/imagen?id=${u.id}"/><c:set var="num" value="${num+1}"/>
+								</c:forEach>
+								</div>
+								<span class="num_totales"><c:out value="${num}"/> votos</span>								
 								<br>
 							</c:forEach>
 							<br>
