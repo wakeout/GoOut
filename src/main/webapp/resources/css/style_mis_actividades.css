@@ -18,6 +18,8 @@
 	  	border: solid;
     	border-color: gray;
     	border-radius: 20px;
+    	margin-bottom: 10px;
+    	text-align: center;
 	}
 	
 	
@@ -40,7 +42,6 @@
 	}
 	
 	#cajaA{
-		margin: 10px;
 		float: center;
 	}
 	

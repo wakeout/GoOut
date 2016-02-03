@@ -573,27 +573,39 @@ public class HomeController {
 	public String denunciarActividad(@RequestParam("id_actividad") long actv, Model model, HttpSession session){
 		Mensaje m = null;
 		Usuario u = null;
-		Usuario d = null;
+		List<Usuario> destinos = null;
 		Actividad a = null;
 		
 		String asunto;
 		String contenido;
 		
 		u=(Usuario)session.getAttribute("usuario");
+		
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
 				.setParameter("actividadParam", actv).getSingleResult();
 		
 		asunto = "Denuncia actividad";
-		//contenido = "La actividad ha sido denunciada";
+
 		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
 		" ha denunciado la actividad " + a.getNombre() + "(" + a.getId()
 		+ ")." + "Entre paréntesis el id de cada elemento respectivamente";
 		
-		m = Mensaje.crearMensaje(asunto, contenido, "denuncia", d, d, false);
-		entityManager.persist(m);
+		System.out.println("ENTRAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
+		destinos = entityManager.createNamedQuery("allUsers").getResultList();
+		
+		for(Usuario re: destinos){
+			if(re.getRol().equals("admin")){
+				
+				m = Mensaje.crearMensaje(asunto, contenido, "denuncia", u, re, false);
+				entityManager.persist(m);
+				
+			}
+
+				
+		}
 		
 		return "redirect:actividad/"+actv;
-		//return "actividad";
 	}
 	/*----------------------------------------operaciones administrador---------------------------*/
 	
@@ -779,11 +791,6 @@ public class HomeController {
 			
 			String tag;
 			tag = request.getParameter("otro");
-			//System.out.println(tag);
-			/*if(tag != null){
-				Tag otro_tag = new Tag();
-				otro_tag.crearTag(tag);
-			}*/
 			
 			if (tags != null) {
 				tagIds = new long[tags.length];

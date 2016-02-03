@@ -131,8 +131,7 @@
 								</div>
 								<div class="campos_Perfil">
 									<label for="nombre_perfil">Nombre:</label> 
-									<input id="nombre_perfil" type="text" value="${usuario.nombre}" maxlength="40"/>
-									<input type="hidden" name="nombre_perfil" type="text" value="${usuario.nombre}"/>
+									<input id="nombre_perfil" type="text" name="nombre_perfil" value="${usuario.nombre}" maxlength="40"/>
 								</div>
 								
 								<div class="campos_Perfil">
