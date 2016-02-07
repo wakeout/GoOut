@@ -135,7 +135,7 @@
 		
 		<div class="movimiento">
 			
-			<c:if test="${not empty usuario}">
+			<c:if test="${not empty usuario && (pertenece || actividad.privacidad == 'publica')}">
 			<div class="container">
 
 				<ul class="tabs">
