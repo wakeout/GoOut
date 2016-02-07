@@ -2123,6 +2123,7 @@ public class HomeController {
 			@RequestParam("tipo") String tipo,Model model, HttpSession session){
 		
 
+		System.out.println(tipo);
 		entityManager.createNamedQuery("delMensaje").setParameter("idMensaje", mensajesId).executeUpdate();
 
 		return "redirect:mensajes?metodo="+tipo;

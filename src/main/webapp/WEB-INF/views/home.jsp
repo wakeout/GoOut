@@ -27,7 +27,7 @@
 									<div id="actv_nov">
 										<p id="text">NOVEDADES</p>
 										<c:choose> 
-										    <c:when test="${novedades != ''}">
+										    <c:when test="${novedades != null}">
 											${novedades}
 										        
 										    </c:when>

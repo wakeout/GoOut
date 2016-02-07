@@ -60,7 +60,6 @@
 			</c:if>
 			</c:forEach>
 		</table>
-	</form>
 	</div>	
 	
 	<div class="admin_registros">
@@ -73,7 +72,6 @@
 	 -->
 	<%@ include file="../fragments/add/addRegistro.jspf" %>
 	
-	<form name="lista_registros" action="${prefix}borrarRegistros" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Registro" class="papelera">	
 	
@@ -94,7 +92,6 @@
 		</table>
 	
 	
-	</form>
 	
 	</div>
 	
@@ -107,7 +104,6 @@
 	-->
 	<%@ include file="../fragments/add/addMensaje.jspf" %>
 	
-	<form name="lista_mensajes" action="${prefix}borrarMensajes" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Mensaje" class="papelera">	
 	
@@ -121,7 +117,6 @@
 			<tr id="Mensaje_${m.id}"><td><input name="Mensaje" value="${m.id}" type="checkbox"> ${m.id}<td><c:out value="${m.titulo}"/>
 			</c:forEach>
 		</table>
-	</form>
 	</div>
 	
 	<div class="admin_tags">
@@ -133,7 +128,6 @@
 	 -->
 	<%@ include file="../fragments/add/addTag.jspf" %>
 	
-	<form name="lista_tags" action="${prefix}borrarTags" method="POST" onsubmit="return confirmar()">
 	<input type="hidden" name="tipo" value="admin"/>
 		<input type="button" id="Tag" class="papelera">	
 	
@@ -146,7 +140,6 @@
 			<tr id="Tag_${t.id}"><td><input name="Tag" value="${t.id}" type="checkbox"> ${t.id}<td><c:out value="${t.nombre}"/>
 			</c:forEach>
 		</table>
-	</form>
 	</div>
 	
 	
@@ -175,7 +168,6 @@
 			</c:if>
 			</c:forEach>
 		</table>
-	</form>
 	</div>
 	
 	<div class="admin_novedades">
@@ -199,7 +191,6 @@
 			<tr id="Novedad_${n.id}"><td><input  name="Novedad" value="${n.id}"  type="checkbox"> ${n.id}<td><c:out value="${n.mensaje}"/>
 			</c:forEach>
 		</table>
-	</form>
 	</div>
 	
 	<div class="admin_hitos">
@@ -223,7 +214,6 @@
 			<tr id="Hito_${h.id}"><td><input  name="Hito" value="${h.id}" type="checkbox">${h.id}<td><c:out value="${h.anuncio}"/>
 			</c:forEach>
 		</table>
-	</form>
 	</div>
 		<div class="admin_pagos">
 		<!-- <div class="search">
@@ -249,7 +239,6 @@
 			<tr id="Pago_${p.id}"><td><input  name="Pago" value="${p.id}" type="checkbox"> ${p.id}<td>
 			</c:forEach>
 		</table>
-	</form>
 	</div>
 	
 	
@@ -277,7 +266,6 @@
 			</c:if>
 			</c:forEach>
 		</table>
-		</form>
 	</div>
 	
 	
@@ -304,10 +292,8 @@
 			</c:if>
 			</c:forEach>
 		</table>
-		</form>
 	</div>
 	
 	</c:if>
 
 	</div>
-	</form>

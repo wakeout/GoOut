@@ -41,7 +41,6 @@
 <c:if test="${param.metodo == 'entrada'}">
 
 <div class="mensaje_entrada">
-<form action="borrarMensajes" method="post">
 	<table class="mensajes">
 		<thead>
 			<tr>
@@ -58,19 +57,20 @@
 			<td><c:if test="${a.leido == false}"><span class="no_leido"></c:if><c:out value="${a.titulo}"/><c:if test="${a.leido == false}"></span></c:if>
 			<td>
 			<td>
-				<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button" onclick="leer(${a.id})">Leer</button></a>
-				<input type="hidden" name="tipo" value="entrada"/>
-				<input type="hidden" name="mensajes" value="${a.id}"/>
-				<button type="submit" name="submit">Borrar</button>
+				<form action="borrarMensajes" method="post">
+					<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button" onclick="leer(${a.id})">Leer</button></a>
+					<input type="hidden" name="tipo" value="entrada"/>
+					<input type="hidden" name="mensajes" value="${a.id}"/>
+					<button type="submit" name="submit">Borrar</button>
+				</form>
 			</c:forEach>
 		</tbody>
 	</table>
-</form>
 </div>
 </c:if>
 <c:if test="${param.metodo == 'salida'}">
 <div class="mensaje_salida">
-<form action="borrarMensajes" method="post">
+
 	<table class="mensajes">
 		<thead>
 			<tr>
@@ -80,21 +80,25 @@
 				<td>Acciones
 		</thead>
 		<tbody>
+		
+
 			<c:forEach items="${mensajeS}" var="a">
 		<tr>	
 			<td><c:out value="${a.destinos.login}"/>
 			<td><c:out value="${a.titulo}"/>
 			<td>
 			<td>
-				<a href="mensajes?metodo=leer&origen=salida&id=${a.id}">
-				<button type="button">Leer</button></a>
-				<input type="hidden" name="tipo" value="salida"/>
-				<input type="hidden" name="mensajes" value="${a.id}"/>
-				<button type="submit" name="submit">Borrar</button>
+				<form action="borrarMensajes" method="post">
+					<a href="mensajes?metodo=leer&origen=salida&id=${a.id}">
+					<button type="button">Leer</button></a>
+					<input type="hidden" name="mensajes" value="${a.id}"/>
+					<input type="hidden" name="tipo" value="salida"/>
+					<button type="submit" name="submit">Borrar</button>
+				</form>
 		</c:forEach>
 		</tbody>
 	</table>
-</form>
+
 </div>
 </c:if>
 
