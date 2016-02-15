@@ -1,9 +1,4 @@
 var target = null;
-var temp = null;
-var temp2 = null;
-var temp3 = null;
-var temp4 = null;
-
 var objetos;
 var fecha=null;
 var mes=null;

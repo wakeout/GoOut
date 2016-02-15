@@ -182,13 +182,16 @@
 						
 						<div class="mi_galeria">
 						<br>
+						<c:set var="hay" value="no"></c:set>
 							<form method="POST" action="${prefix}subirGaleria" enctype="multipart/form-data">
 							Selecciona una actividad
 							<select name="id_actv">
 							<c:forEach items="${registros}" var="reg">
+							<c:set var="hay" value="si"/>
 							<option value="${reg.actividad.id}">${reg.actividad.nombre}</option> 	
 							</c:forEach>
 							</select>
+							<c:if test="${hay == 'si' }">
 							<br>
 							<br>
 							<div id="upload">
@@ -201,7 +204,12 @@
 								Descripción de la imagen
 								<textarea rows="3" cols="30" name="desc"></textarea>
 								<br>
+								
 								<button type="submit" name="submit" class="btne">Subir imagen a la actividad</button>
+								</c:if>
+								<c:if test="${hay == 'no' }">
+								<p>No estás apuntado a ninguna actividad!</p>
+								</c:if>
 					    	</div>
 								
 							</form>

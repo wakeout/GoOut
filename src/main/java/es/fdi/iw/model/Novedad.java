@@ -103,7 +103,7 @@ public class Novedad {
 		return m;
 	}
 	private static String formatoMensaje(){
-		String m="<a href='mensajes?metodo=entrada'><img class='i_men' src='resources/images/mensaje.png'>!Tienes un mensaje nuevo! ve a tu bandeja de entrada</a>";
+		String m="<a href='mensajes?metodo=entrada'><img class='i_men' src='resources/images/mensaje.png'>!Tienes un mensaje nuevo!</a>";
 		
 		return m;
 	}

@@ -14,13 +14,7 @@
 	<c:if test="${usuario.rol == rol}">
 	
 	<div class="admin_actv">
-	
-	<!--  <div class="search">
-   		<input>
-   		<input type="submit"  value="Buscar en las Actividades">
-   		
-	</div>
-		-->	
+
 	<%@ include file="../fragments/add/addActividad.jspf" %>	
 	
 	<button id="Actividad" class="papelera"></button>	
@@ -29,7 +23,7 @@
 	<h1>Actividades</h1>
 	<a class="marcar" onclick="seleccionar(lista_actividades)">Marcar todos</a>
 	<a class="desmarcar" onclick="deseleccionar(lista_actividades)">Desmarcar todos</a>
-		<table>
+		<table name="lista_actividades">
 			<c:forEach items="${actividades}" var="a">
 			<c:if test="${a.eliminado == false }"><tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td><c:out value="${a.nombre}"/></c:if>
 			</c:forEach>
@@ -38,11 +32,6 @@
 	
 	<div class="admin_usuario">
 	
-	<!--  <div class="search">
-   		<input>
-   		<input type="submit"  value="Buscar en los Usuarios">
-	</div>
-	-->
 	<%@ include file="../fragments/add/addUsuario.jspf" %>
 	<button id="Usuario" class="papelera"></button>	
 	
@@ -64,12 +53,6 @@
 	
 	<div class="admin_registros">
 	
-	<!-- <div class="search">
-   		<input>
-   		<input type="submit"  value="Buscar en los Registros">
-   		
-	</div>
-	 -->
 	<%@ include file="../fragments/add/addRegistro.jspf" %>
 	
 	<input type="hidden" name="tipo" value="admin"/>

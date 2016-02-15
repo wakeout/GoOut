@@ -246,7 +246,7 @@ public class HomeController {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat ( "yyyy-MM-dd" );
 
 		
-		if( f_ini != null && f_ini.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+		if( comprobarFecha(f_ini)) {
 			try {
 				fecha_ini = new Date(dateFormatter.parse(f_ini).getTime());
 			} catch (ParseException e) {
@@ -254,7 +254,7 @@ public class HomeController {
 			}
 		}
 		
-		if( f_fin != null && f_fin.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+		if( comprobarFecha(f_fin)) {
 			try {
 				fecha_fin = new Date(dateFormatter.parse(f_fin).getTime());
 			} catch (ParseException e) {
@@ -272,9 +272,6 @@ public class HomeController {
 		String imagen ="";
 		try {
         	if(!foto.isEmpty()){
-        		//String nombre_imagen = foto.getOriginalFilename();
-				//extension = nombre_imagen.substring(nombre_imagen.lastIndexOf("."),nombre_imagen.length());
-				
         		imagen = a.getId()+"";
 			
 			byte[] bytes = foto.getBytes();
@@ -794,8 +791,7 @@ public class HomeController {
 			
 			SimpleDateFormat dateFormatter = new SimpleDateFormat ( "yyyy-MM-dd" );
 
-			
-			if( f_ini != null && f_ini.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+			if( comprobarFecha(f_ini)) {
 				try {
 					fecha_ini = new Date(dateFormatter.parse(f_ini).getTime());
 				} catch (ParseException e) {
@@ -803,7 +799,7 @@ public class HomeController {
 				}
 			}
 			
-			if( f_fin != null && f_fin.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+			if( comprobarFecha(f_fin)) {
 				try {
 					fecha_fin = new Date(dateFormatter.parse(f_fin).getTime());
 				} catch (ParseException e) {
@@ -923,7 +919,6 @@ public class HomeController {
 					
 				
 				for (long aid : tagIds) {
-					// adding authors to book is useless, since author is the owning side (= has no mappedBy)
 					Tag t = entityManager.find(Tag.class, aid);
 					t.getEtiquetados().add(a);
 					entityManager.persist(t);
@@ -1064,8 +1059,7 @@ public class HomeController {
 			@RequestParam("actividad") long actividad,
 			HttpServletRequest request,
 			HttpSession session){
-		
-		//String[] respuestas=request.getParameterValues("respuestas");
+
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		Actividad a=entityManager.find(Actividad.class, actividad);
@@ -1276,9 +1270,6 @@ public class HomeController {
 			
 			d = (Usuario)entityManager.createNamedQuery("userByLogin")
 					.setParameter("loginParam", destino).getSingleResult();
-			
-			//d = entityManager.find(Usuario.class, destino);
-			
 			
 			m = Mensaje.crearMensaje(titulo, contenido, "ordinario",u, d,false);
 			entityManager.persist(m);
@@ -1649,7 +1640,6 @@ public class HomeController {
 			{
 				//Aviso al usuario de que no puede unirse a esta actividad por que esta llena
 			}
-		//}
 		
 		}
 		
@@ -1715,22 +1705,6 @@ public class HomeController {
 			
 			u = entityManager.find(Usuario.class,u.getId());
 			
-			/*HashMap<Integer, Tag> tagMap = new HashMap<Integer, Tag>();
-		
-			List<Tag> lT=entityManager.createNamedQuery("allTags").getResultList();
-			
-			 for (Tag t: lT) {
-				 tagMap.put(t.getEtiquetados().size(), t);
-			 }		
-			 
-			 Iterator<Tag> iter = (Iterator) tagMap.values().iterator();
-
-			 List<Tag> fin=new ArrayList<Tag>();
-			 int i=0;
-			 while (iter.hasNext() && i<10) {
-			        fin.add((Tag)iter.next());
-			        i++;
-			 } */
 			List<Tag> lT=entityManager.createNamedQuery("allTags").getResultList();
 			 
 			model.addAttribute("tags", lT);
@@ -1960,7 +1934,6 @@ public class HomeController {
 						todos_usuarios.add(t);
 				}
 				sb = Usuario.getJSONString(todos_usuarios);
-				//sb=Usuario.getJSONString(usuarios);
 			}
 		}
 
@@ -2295,6 +2268,14 @@ public class HomeController {
 	    String token=UUID.randomUUID().toString();
 	    session.setAttribute("csrf_token", token);
 	    return token;
+	}
+	
+	boolean comprobarFecha(String fecha){
+		if(fecha != null && fecha.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")){
+			return true;
+		}
+		else
+			return false;
 	}
 	
 }

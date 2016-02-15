@@ -3,6 +3,7 @@
 <div class="mensaje_redactar">
 <form action="crearMensaje" method="post">
 	<table class="mensajes" align="center">
+				<c:set var="existe_a" value="0"></c:set>
 		<tbody>
 			<tr>
 				<td colspan="2"><b>¡Envía mensajes a otros usuarios de
@@ -13,6 +14,7 @@
 					size="20"> 
 					Destinatario:<select class="sel_mensaje" name="destinatario">
 					<c:forEach items="${amigos}" var="amigos">
+					<c:set var="existe_a" value="${existe_a +1}"></c:set>
 					<option value="${amigos.login}">${amigos.login}</option>
 					</c:forEach>
 					<c:if test="${nombre.login != null}">
@@ -27,10 +29,11 @@
 			</tr>
 			<tr>
 				<input type="hidden" name="tipo" value="ordinario">
-			
+			<c:if test="${existe_a > 0 }">
 				<td colspan="2"><input class="enviar" type="submit"
 					value="Enviar Mensaje" name="Enviar"> <input type="reset"
 					value="Borrar" name="Borrar"></td>
+			</c:if>
 			</tr>
 		</tbody>
 	</table>
@@ -41,6 +44,7 @@
 <c:if test="${param.metodo == 'entrada'}">
 
 <div class="mensaje_entrada">
+
 	<table class="mensajes">
 		<thead>
 			<tr>
@@ -57,12 +61,12 @@
 			<td><c:if test="${a.leido == false}"><span class="no_leido"></c:if><c:out value="${a.titulo}"/><c:if test="${a.leido == false}"></span></c:if>
 			<td>
 			<td>
-				<form action="borrarMensajes" method="post">
-					<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button" onclick="leer(${a.id})">Leer</button></a>
-					<input type="hidden" name="tipo" value="entrada"/>
-					<input type="hidden" name="mensajes" value="${a.id}"/>
-					<button type="submit" name="submit">Borrar</button>
-				</form>
+			<form action="borrarMensajes" method="post">
+				<a href="mensajes?metodo=leer&origen=entrada&id=${a.id}"><button type="button" onclick="leer(${a.id})">Leer</button></a>
+				<input type="hidden" name="tipo" value="entrada"/>
+				<input type="hidden" name="mensajes" value="${a.id}"/>
+				<button type="submit" name="submit">Borrar</button>
+			</form>
 			</c:forEach>
 		</tbody>
 	</table>
@@ -70,7 +74,6 @@
 </c:if>
 <c:if test="${param.metodo == 'salida'}">
 <div class="mensaje_salida">
-
 	<table class="mensajes">
 		<thead>
 			<tr>
@@ -80,25 +83,22 @@
 				<td>Acciones
 		</thead>
 		<tbody>
-		
-
 			<c:forEach items="${mensajeS}" var="a">
 		<tr>	
 			<td><c:out value="${a.destinos.login}"/>
 			<td><c:out value="${a.titulo}"/>
 			<td>
 			<td>
-				<form action="borrarMensajes" method="post">
-					<a href="mensajes?metodo=leer&origen=salida&id=${a.id}">
-					<button type="button">Leer</button></a>
-					<input type="hidden" name="mensajes" value="${a.id}"/>
-					<input type="hidden" name="tipo" value="salida"/>
-					<button type="submit" name="submit">Borrar</button>
-				</form>
+			<form action="borrarMensajes" method="post">
+				<a href="mensajes?metodo=leer&origen=salida&id=${a.id}">
+				<button type="button">Leer</button></a>
+				<input type="hidden" name="tipo" value="salida"/>
+				<input type="hidden" name="mensajes" value="${a.id}"/>
+				<button type="submit" name="submit">Borrar</button>
+			</form>
 		</c:forEach>
 		</tbody>
 	</table>
-
 </div>
 </c:if>
 

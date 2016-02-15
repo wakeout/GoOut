@@ -14,44 +14,44 @@
 		<link rel="stylesheet" href="${prefix}resources/css/style_efecto_admin.css">
 
 	</head>
-<body>
+<body onload="mostrar('.admin_actv')">
 	<div class="cabecera">
 		<a href="home"><h1>GoOut <h1></a>
 	</div>
 
 	<ul>
  		<li>
- 		  <button id="b_actividad" type="submit" name="upload"> Actividades </button>
+ 		  <button id="b_actividad" type="submit" name="upload" onclick="mostrar('.admin_actv')"> Actividades </button>
  		</li>
  		<li>
- 		  <button id="b_usuarios" >Usuarios</button>
+ 		  <button id="b_usuarios" onclick="mostrar('.admin_usuario')" >Usuarios</button>
   		</li>
   		<li>
- 		  <button id="b_registros" >Registros</button>
+ 		  <button id="b_registros" onclick="mostrar('.admin_registros')">Registros</button>
   		</li>
   		<li>
-  		  <button id="b_mensajes">Mensajes</button>
+  		  <button id="b_mensajes" onclick="mostrar('.admin_mensaje')">Mensajes</button>
   		</li>
   		<li>
-  		  <button id="b_tags">Tags</button>
+  		  <button id="b_tags" onclick="mostrar('.admin_tags')">Tags</button>
   		</li>
    		<li>
-  		  <button id="b_comentarios">Comentarios</button>
+  		  <button id="b_comentarios" onclick="mostrar('.admin_comentarios')">Comentarios</button>
   		</li>
    		<li>
-  		  <button id="b_novedades">Novedades</button>
+  		  <button id="b_novedades" onclick="mostrar('.admin_novedades')">Novedades</button>
   		</li>
   		<li>
-  		  <button id="b_hitos">Hitos</button>
+  		  <button id="b_hitos" onclick="mostrar('.admin_hitos')">Hitos</button>
   		</li>
   		<li>
-  		  <button id="b_pagos">Pagos</button>
+  		  <button id="b_pagos" onclick="mostrar('.admin_pagos')">Pagos</button>
   		</li>
   		<li>
-  			<button id="b_encuestas">Encuestas</button>
+  			<button id="b_encuestas" onclick="mostrar('.admin_encuestas')">Encuestas</button>
   		</li>
   		<li>
-  			<button id="b_respuestas">Respuestas</button>
+  			<button id="b_respuestas" onclick="mostrar('.admin_respuestas')">Respuestas</button>
   		</li>  		
 	</ul>
 
