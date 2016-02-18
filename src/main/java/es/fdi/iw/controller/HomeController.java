@@ -1940,6 +1940,19 @@ public class HomeController {
 		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/buscarElemento", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> buscarElemento(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo, HttpSession session){
+		
+		
+		
+		
+		
+		
+		return new ResponseEntity<String>( "]", HttpStatus.OK);	
+	}
+	
+	
 	@RequestMapping(value = "/buscarActividades", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> buscarActividades(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo, HttpSession session){

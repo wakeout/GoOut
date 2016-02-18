@@ -59,6 +59,7 @@
 		<%@ include file="../fragments/admin_lista.jspf" %>
 	</div>	
 		
+	<script src="${prefix}resources/js/buscar_admin.js"></script>
 		
 	<%@ include file="../fragments/scripts.jspf" %>
 

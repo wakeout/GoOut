@@ -165,3 +165,12 @@ hr {
 .desmarcar{
 	cursor: pointer;
 }
+.busqueda{
+	width: 200px;
+	outline: none;
+	border: solid;
+	border-color: gray;
+	border-radius: 20px;
+	margin-bottom: 10px;
+	text-align: center;
+}
