@@ -107,14 +107,16 @@
 						<div class="actv_apuntadas">
 							<table id="mis_actv">
 								<c:forEach items="${actv}" var="a">
+								<c:if test="${a.actividad.eliminado == false }">
 								<a  href="actividad/${a.actividad.id}">
 								<div class='img_thumb'>
 									<div class='img_desc'>
 										<p id='actividad'>${a.actividad.nombre}</p>
 									</div>
-								<img class='i_actv'src="actividad/imagen?id=${a.actividad.id}"/>
+								<img class='i_actv' src="actividad/imagen?id=${a.actividad.id}"/>
 								</div>
 								</a>
+								</c:if>
 								</c:forEach>
 							</table>
 							
