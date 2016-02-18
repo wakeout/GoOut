@@ -40,26 +40,19 @@ function mostrar(elemento){
 
 //Marcar y desmarcar
 
-function seleccionar(form){
-    
-var formulario = eval(form)  
-for(var i=0, len=formulario.elements.length; i<len ; i++)  
- {  
-   if ( formulario.elements[i].type == "checkbox" )  
-     formulario.elements[i].checked = 1;
- } 
-    
+
+function checkTodos(pID) {
+	 
+ $( "#" + pID + " :checkbox").prop('checked',true); 
+
 }
-function deseleccionar(form){
-    
-	var formulario = eval(form)  
-	for(var i=0, len=formulario.elements.length; i<len ; i++)  
-	 {  
-	   if ( formulario.elements[i].type == "checkbox" )  
-	     formulario.elements[i].checked = 0;
-	 } 
-	    
+
+function noCheckTodos(pID) {
+	 
+	 $( "#" + pID + " :checkbox").prop('checked',false); 
+
 }
+
 
 function confirmar(){
 	

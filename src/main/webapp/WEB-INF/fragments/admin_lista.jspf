@@ -10,6 +10,10 @@
 
 <div class="list">
 
+<div id="vista_previa">
+	
+	</div>
+
 	<c:set var="rol" scope="session" value="admin"/>	
 	<c:if test="${usuario.rol == rol}">
 	
@@ -21,9 +25,9 @@
 	
 	<br>
 	<h1>Actividades</h1>
-	<a class="marcar" onclick="seleccionar(lista_actividades)">Marcar todos</a>
-	<a class="desmarcar" onclick="deseleccionar(lista_actividades)">Desmarcar todos</a>
-		<table name="lista_actividades">
+	<a class="marcar" onclick="checkTodos('lista_actividades')">Marcar todos</a>
+	<a class="desmarcar" onclick="noCheckTodos('lista_actividades')">Desmarcar todos</a>
+		<table id="lista_actividades">
 			<c:forEach items="${actividades}" var="a">
 			<c:if test="${a.eliminado == false }"><tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td><c:out value="${a.nombre}"/></c:if>
 			</c:forEach>
@@ -40,9 +44,9 @@
 	
 	<br>
 	<h1>Usuarios</h1>
-	<a class="marcar" onclick="seleccionar(lista_usuarios)">Marcar todos</a>
-	<a class="desmarcar" onclick="deseleccionar(lista_usuarios)">Desmarcar todos</a>
-		<table>
+	<a class="marcar" onclick="checkTodos('lista_usuarios')">Marcar todos</a>
+	<a class="desmarcar" onclick="noCheckTodos('lista_usuarios')">Desmarcar todos</a>
+		<table id="lista_usuarios">
 			<c:forEach items="${usuarios}" var="u">
 			<c:if test="${u.borrado == false }">
 			<tr id="Usuario_${u.id}"><td><input name="Usuario" value="${u.id}" type="checkbox"><a href="${prefix}perfil/${u.id}"> ${u.id}</a><td><c:out value="${u.login}"/>
@@ -62,9 +66,9 @@
 	
 	<br>
 	<h1>Registros</h1>
-	<a class="marcar" onclick="seleccionar(lista_registros)">Marcar todos</a>
-	<a class="desmarcar" onclick="deseleccionar(lista_registros)">Desmarcar todos</a>
-		<table>
+	<a class="marcar" onclick="checkTodos('lista_registros')">Marcar todos</a>
+	<a class="desmarcar" onclick="noCheckTodos('lista_registros')">Desmarcar todos</a>
+		<table id="lista_registros">
 			<c:forEach items="${registros}" var="r">
 			<c:if test="${r.actividad.eliminado == false }">
 			<tr id="Registro_${r.id}"><td><input name="Registro" value="${r.id}" type="checkbox"><a> ${r.id}</a>    ${r.usuario.id}  ${r.actividad.id}<td>
@@ -93,9 +97,9 @@
 	
 	<br>
 	<h1>Mensajes</h1>
-	<a class="marcar" onclick="seleccionar(lista_mensajes)">Marcar todos</a>
-	<a class="desmarcar" onclick="deseleccionar(lista_mensajes)">Desmarcar todos</a>
-		<table>
+	<a class="marcar" onclick="checkTodos('lista_mensajes')">Marcar todos</a>
+	<a class="desmarcar" onclick="noCheckTodos('lista_mensajes')">Desmarcar todos</a>
+		<table id="lista_mensajes">
 			<c:forEach items="${mensajes}" var="m">
 			<tr id="Mensaje_${m.id}"><td><input name="Mensaje" value="${m.id}" type="checkbox"> ${m.id}<td><c:out value="${m.titulo}"/>
 			</c:forEach>
@@ -116,9 +120,9 @@
 	
 	<br>
 		<h1>Tags</h1>
-		<a class="marcar" onclick="seleccionar(lista_tags)">Marcar todos</a>
-		<a class="desmarcar" onclick="deseleccionar(lista_tags)">Desmarcar todos</a>
-		<table>
+		<a class="marcar" onclick="checkTodos('lista_tags')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_tags')">Desmarcar todos</a>
+		<table id="lista_tags">
 			<c:forEach items="${tags}" var="t">
 			<tr id="Tag_${t.id}"><td><input name="Tag" value="${t.id}" type="checkbox"> ${t.id}<td><c:out value="${t.nombre}"/>
 			</c:forEach>
@@ -142,12 +146,22 @@
 	
 	<br>
 		<h1>Comentarios</h1>
-		<a class="marcar" onclick="seleccionar(lista_comentarios)">Marcar todos</a>
-		<a class="desmarcar" onclick="deseleccionar(lista_comentarios)">Desmarcar todos</a>
-		<table>
+		<a class="marcar" onclick="checkTodos('lista_comentarios')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_comentarios')">Desmarcar todos</a>
+		
+		<table id="lista_comentarios">
 			<c:forEach items="${comentarios}" var="c">
+			
+			<c:set var="re" value="${c.asunto}"/>
+			<c:set var="recortada" value="${fn:substring(re, 0, 30)}"/>
+			
+			<c:if test="${fn:length(recortada) > 27}">
+				<c:set var="recortada" value="${recortada}..."/>
+			</c:if>
+			
 			<c:if test="${c.borrado == false }">
-			<tr id="Comentario_${c.id}"><td><input  name="Comentario" value="${c.id}" type="checkbox"> ${c.id}<td><c:out value="${c.asunto}"/>
+			<tr id="Comentario_${c.id}"><td>			
+			<input  name="Comentario" value="${c.id}" type="checkbox"> ${c.id}<td><c:out value="${recortada}"/>
 			</c:if>
 			</c:forEach>
 		</table>
@@ -167,9 +181,9 @@
 		
 	<br>
 		<h1>Novedades</h1>
-		<a class="marcar" onclick="seleccionar(lista_novedades)">Marcar todos</a>
-		<a class="desmarcar" onclick="deseleccionar(lista_novedades)">Desmarcar todos</a>
-		<table>
+		<a class="marcar" onclick="checkTodos('lista_novedades')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_novedades')">Desmarcar todos</a>
+		<table id="lista_novedades">
 			<c:forEach items="${novedades}" var="n">
 			<tr id="Novedad_${n.id}"><td><input  name="Novedad" value="${n.id}"  type="checkbox"> ${n.id}<td><c:out value="${n.mensaje}"/>
 			</c:forEach>
@@ -190,9 +204,9 @@
 	
 	<br>
 		<h1>Hitos</h1>
-		<a class="marcar" onclick="seleccionar(lista_hitos)">Marcar todos</a>
-		<a class="desmarcar" onclick="deseleccionar(lista_hitos)">Desmarcar todos</a>
-		<table>
+		<a class="marcar" onclick="checkTodos('lista_hitos')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_hitos')">Desmarcar todos</a>
+		<table id="lista_hitos">
 			<c:forEach items="${hitos}" var="h">
 			<tr id="Hito_${h.id}"><td><input  name="Hito" value="${h.id}" type="checkbox">${h.id}<td><c:out value="${h.anuncio}"/>
 			</c:forEach>
@@ -215,9 +229,9 @@
 	
 	<br> 
 		<h1>Pagos</h1>
-		<a class="marcar" onclick="seleccionar(lista_pagos)">Marcar todos</a>
-		<a class="desmarcar" onclick="deseleccionar(lista_pagos)">Desmarcar todos</a>
-		<table>
+		<a class="marcar" onclick="checkTodos('lista_pagos')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_pagos')">Desmarcar todos</a>
+		<table id="lista_pagos">
 			<c:forEach items="${pagos}" var="p">
 			<tr id="Pago_${p.id}"><td><input  name="Pago" value="${p.id}" type="checkbox"> ${p.id}<td>
 			</c:forEach>
@@ -240,9 +254,9 @@
 	
 	<br>
 		<h1>Encuestas</h1>
-		<a class="marcar" onclick="seleccionar(lista_encuestas)">Marcar todos</a>
-		<a class="desmarcar" onclick="deseleccionar(lista_encuestas)">Desmarcar todos</a>
-		<table>
+		<a class="marcar" onclick="checkTodos('lista_encuestas')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_encuestas')">Desmarcar todos</a>
+		<table id="lista_encuestas">
 			<c:forEach items="${encuestas}" var="e">
 			<c:if test="${e.borrado == false }">
 			<tr id="Encuesta_${e.id}"><td><input  name="Encuesta" value="${e.id}" type="checkbox"> ${e.id}<td><c:out value="${e.pregunta.asunto}"/>
@@ -266,9 +280,9 @@
 		
 	<br>
 		<h1>Respuestas</h1>
-		<a class="marcar" onclick="seleccionar(lista_respuestas)">Marcar todos</a>
-		<a class="desmarcar" onclick="deseleccionar(lista_respuestas)">Desmarcar todos</a>
-		<table>
+		<a class="marcar" onclick="checkTodos('lista_respuestas')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_respuestas')">Desmarcar todos</a>
+		<table id="lista_respuestas">
 			<c:forEach items="${respuestas}" var="r">
 			<c:if test="${r.borrado == false }">
 			<tr id="Respuesta_${r.id}"><td><input  name="Respuesta" value="${r.id}" type="checkbox">${r.id}<td>

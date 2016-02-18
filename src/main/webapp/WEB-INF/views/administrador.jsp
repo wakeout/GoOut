@@ -9,6 +9,7 @@
 		<%@ page contentType="text/html; charset=UTF-8"%>
 		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<%@ taglib  uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" prefix="e" %>
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 		
 		<link rel="stylesheet" href="${prefix}resources/css/style_admin.css">
 		<link rel="stylesheet" href="${prefix}resources/css/style_efecto_admin.css">
