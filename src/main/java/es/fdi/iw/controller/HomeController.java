@@ -2276,6 +2276,77 @@ public class HomeController {
 		}
 	}
 	
+	@RequestMapping(value = "/vistaPrevia", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> vistaPrevia(@RequestParam("buscado") long id,@RequestParam("tipo") String tipo, HttpSession session){
+		
+		
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		StringBuilder sb = new StringBuilder("[");
+		u= (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", u.getLogin()).getSingleResult();
+		
+		switch(tipo){
+		case "Actividad":
+			List<Actividad> a = new ArrayList<Actividad>();
+			a = entityManager.createNamedQuery("unaActividad").setParameter("actividadParam",id).getResultList();
+			sb=Actividad.getJSONString(a);
+			break;
+		case "Usuario":
+			List<Usuario> usu = new ArrayList<Usuario>();;
+			usu = entityManager.createNamedQuery("unUsuario").setParameter("idUsuario",id).getResultList();
+			sb=Usuario.getJSONString(usu);
+			break;
+//		case "Registro":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Mensaje":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Tag":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Comentario":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Novedad":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Hito":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Pago":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Encuesta":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+//		case "Respuesta":
+//			List<Actividad> a = null;
+//			a = entityManager.createNamedQuery("unaActividad").getResultList();
+//			sb=Actividad.getJSONString(a);
+//			;
+		}
+	
+		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
+	}
+	
 
 	static String getTokenForSession (HttpSession session) {
 	    String token=UUID.randomUUID().toString();

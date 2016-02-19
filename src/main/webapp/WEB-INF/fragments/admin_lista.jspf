@@ -11,7 +11,7 @@
 
 <div class="list">
 
-<div id="vista_previa">
+<div id="vista_previa" class="transicion_previa">
 	
 	</div>
 
@@ -34,7 +34,16 @@
 	<a class="desmarcar" onclick="noCheckTodos('lista_actividades')">Desmarcar todos</a>
 		<table id="lista_actividades">
 			<c:forEach items="${actividades}" var="a">
-			<c:if test="${a.eliminado == false }"><tr id="Actividad_${a.id}"><td><input name="Actividad" value="${a.id}" type="checkbox"><a href="${prefix}actividad/${a.id}"> ${a.id}</a><td><c:out value="${a.nombre}"/></c:if>
+			<c:if test="${a.eliminado == false }"><tr id="Actividad_${a.id}">
+			<td>
+			<input name="Actividad" value="${a.id}" type="checkbox">
+			<a href="${prefix}actividad/${a.id}"> ${a.id}</a>
+			<td>
+			<span class="element_previa" onmouseover="buscarElementos(${a.id},'Actividad',this)" onmouseout="desaparece(this)">
+			<c:out value="${a.nombre}"/>
+			</span>
+			<button class="editar"></button>
+			</c:if>
 			</c:forEach>
 		</table>
 	</div>
@@ -159,17 +168,10 @@
 		
 		<table id="lista_comentarios">
 			<c:forEach items="${comentarios}" var="c">
-			
-			<c:set var="re" value="${c.asunto}"/>
-			<c:set var="recortada" value="${fn:substring(re, 0, 30)}"/>
-			
-			<c:if test="${fn:length(recortada) > 27}">
-				<c:set var="recortada" value="${recortada}..."/>
-			</c:if>
-			
+
 			<c:if test="${c.borrado == false }">
 			<tr id="Comentario_${c.id}"><td>			
-			<input  name="Comentario" value="${c.id}" type="checkbox"> ${c.id}<td><c:out value="${recortada}"/>
+			<input  name="Comentario" value="${c.id}" type="checkbox"> ${c.id}<td><c:out value="${c.asunto}"/>
 			</c:if>
 			</c:forEach>
 		</table>
@@ -183,9 +185,7 @@
 	
 	<%@ include file="../fragments/add/addNovedad.jspf" %>
 	<input type="hidden" name="tipo" value="admin"/>
-		<input type="button" id="Novedad" class="papelera">	
-	
-		
+		<input type="button" id="Novedad" class="papelera"/>
 	<br>
 		<h1>Novedades</h1>
 		<a class="marcar" onclick="checkTodos('lista_novedades')">Marcar todos</a>

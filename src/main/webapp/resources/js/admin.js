@@ -1,3 +1,6 @@
+var objetos;
+
+
 $(".papelera").click(function() {
 		
 	
@@ -61,4 +64,60 @@ function confirmar(){
 	}
 	else
 		return false;
+}
+
+
+function buscarElementos(buscado,tipo,target){
+	
+	$(".element_previa").css("color", "black");
+	$("#vista_previa").css("display", "block");
+	$(target).css("color", "green");
+
+	$.post("vistaPrevia", {buscado:buscado, tipo:tipo},function(data) {
+			objetos=$.parseJSON(data);
+			
+			actualizar();
+	  });
+	
+}
+
+function desaparece(target){
+	
+	//$("#vista_previa").css("display", "none");
+}
+
+function actualizar(){
+	var filtro = null;
+	filtro = new Object();
+	
+	$.each(objetos, function(i, o) {
+		
+		filtro[i] = o;
+	});
+	
+	vista(filtro);
+}
+
+function vista(obj){
+
+	$.each(obj, function(i, o) {
+		if(o!=null){
+			
+			$("#vista_previa").html("<table>" +
+					"<tr><td> ID: "+o.id+"</td>" +
+					"<tr><td>Nombre: "+o.nombre+"</td>" +
+					"<tr><td>Creador: "+o.creador+"</td>"+
+					"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+					"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+					"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+					"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+					"<tr><td>Origen: "+o.localizacion+"</td>" +
+					"<tr><td>Destino: "+o.destino+"</td>"+
+					"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+					"<tr><td>Máximo de personas: "+o.max+"</td>"+
+					"<tr><td>Estado: "+o.estado+"</td>" +
+					"</table>");
+		}
+	});
+	
 }
