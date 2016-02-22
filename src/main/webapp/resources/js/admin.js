@@ -67,6 +67,13 @@ function confirmar(){
 }
 
 
+function habilitarEdicion(){
+	
+	
+	
+}
+
+
 function buscarElementos(buscado,tipo,target){
 	
 	$(".element_previa").css("color", "black");
@@ -76,7 +83,7 @@ function buscarElementos(buscado,tipo,target){
 	$.post("vistaPrevia", {buscado:buscado, tipo:tipo},function(data) {
 			objetos=$.parseJSON(data);
 			
-			actualizar();
+			actualizar(tipo);
 	  });
 	
 }
@@ -86,7 +93,7 @@ function desaparece(target){
 	//$("#vista_previa").css("display", "none");
 }
 
-function actualizar(){
+function actualizar(tipo){
 	var filtro = null;
 	filtro = new Object();
 	
@@ -95,14 +102,17 @@ function actualizar(){
 		filtro[i] = o;
 	});
 	
-	vista(filtro);
+	vista(filtro,tipo);
 }
+
 
 function vista(obj){
 
 	$.each(obj, function(i, o) {
 		if(o!=null){
 			
+			switch(tipo){
+			case "Actividad":
 			$("#vista_previa").html("<table>" +
 					"<tr><td> ID: "+o.id+"</td>" +
 					"<tr><td>Nombre: "+o.nombre+"</td>" +
@@ -117,6 +127,177 @@ function vista(obj){
 					"<tr><td>Máximo de personas: "+o.max+"</td>"+
 					"<tr><td>Estado: "+o.estado+"</td>" +
 					"</table>");
+			break;
+			
+			case "Usuario":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Login: "+o.login+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>"+
+						"<tr><td>Nacimiento: "+o.nacimiento+"</td>" +
+						"<tr><td>Provincia: "+o.provincia+"</td>"+
+						"<tr><td>E-Mail: "+o.email+"</td>"+
+						"<tr><td>Rol: "+o.rol+"</td>" +
+						"<tr><td>Nº Amigos: "+o.namigos+"</td>" +
+						"</table>");
+			break;
+			
+			case "Comentario":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>ID Usuario: <a href='#'>"+o.idusuario+"</a></td>" +
+						"<tr><td>Nombre Usuario: <a href='#'>"+o.nusuario+"</a></td>" +
+						"<tr><td>Asunto: "+o.asunto+"</td>"+
+						"</table>");
+			break;
+			
+			case "Encuesta":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Pregunta: "+o.pregunta+"</td>" +
+						"<tr><td>: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"</table>");
+			break;
+				
+			case "Foro":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+			
+			case "Hito":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+				
+			case "Mensaje":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+				
+			case "Novedad":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+			
+			case "Pago":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+			
+			case "Registro":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+			
+			case "Respuesta":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+			
+			case "Tag":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Nombre: "+o.nombre+"</td>" +
+						"<tr><td>Creador: "+o.creador+"</td>"+
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
+						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+			}
+
 		}
 	});
 	

@@ -1,10 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<script type="text/javacsript" src="${prefix}resources/js/misActividades.js"></script>
 	<link rel="stylesheet" href="${prefix}resources/css/style_buscar.css">
 	<link rel="stylesheet" href="${prefix}resources/css/style_mis_actividades.css">
-	
+		
 	<%@ include file="../fragments/head.jspf" %>
 
 	</head>
@@ -31,9 +30,9 @@
 									
 										<br>
 									
-										<input type="radio" id="misactividades" name="tipo_busqueda" checked/>Mis actividades
-										<input type="radio" id="nomias" name="tipo_busqueda"/>Actividades nuevas
-										<input type="radio" id="todo" name="tipo_busqueda"/>Todas las actividades
+										<input type="radio" onchange="buscar()"  id="misactividades" name="tipo_busqueda" checked/>Mis actividades
+										<input type="radio" onchange="buscar()"  id="nomias" name="tipo_busqueda"/>Actividades nuevas
+										<input type="radio" onchange="buscar()"  id="todo" name="tipo_busqueda"/>Todas las actividades
 								
 									<div id="cambio_modo">
 									    <input type="checkbox" id="switch1" name="switch1" class="switch"/>
@@ -77,7 +76,6 @@
 		<%@ include file="../fragments/footer.jspf" %>
 
 
-
 		<!-- Scripts -->
 		<%@ include file="../fragments/scripts.jspf" %>
 			<script>
@@ -89,6 +87,7 @@
 			});
 	
 	</script>
+	<script src="${prefix}resources/js/misActividades.js"></script>	
 		<!--FIN DEL AÑADIDO -->
 
 	</body>
