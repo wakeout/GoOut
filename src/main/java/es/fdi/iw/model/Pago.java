@@ -26,6 +26,27 @@ public class Pago {
 	private String descripcion;
 	private boolean pagado;
 	
+	public static StringBuilder getJSONString(List<Pago> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Pago p: l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(p));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Pago p){
+		return "{ "
+				+ "\"id\": \"" + p.getId() + "\", "
+				+ "\"descripcion\": \"" + p.getDescripcion() + "\", "
+				+ "\"pagado\": \"" + p.getPagado() + "\", "
+				+ "\"precio\": \"" + p.getPrecioIndividual() + "\", "
+				+ "\"fecha\": \""+p.getFechaLimite()+"\"}";
+	}
+	
+	
 	public static Pago crearPago(double precio, Date fecha, String descripcion, long registro){
 		Pago p = new Pago();
 		

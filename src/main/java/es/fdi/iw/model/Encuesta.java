@@ -29,6 +29,25 @@ public class Encuesta {
 	List<Respuesta> respuestas;
 	private boolean borrado;
 	
+
+
+	public static StringBuilder getJSONString(List<Encuesta> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Encuesta e : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(e));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Encuesta e){
+		return "{ "
+				+ "\"id\": \"" + e.getId() + "\", "
+				+ "\"pregunta\": \"" + e.getPregunta().getAsunto() + "\", "
+				+ "\"asunto\": \""+c.getNombre()+"\"}";
+	}
 	public static Encuesta crearEncuesta(Comentario pregunta){
 		Encuesta e = new Encuesta();
 		

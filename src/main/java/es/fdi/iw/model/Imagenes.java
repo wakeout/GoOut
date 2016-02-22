@@ -21,6 +21,23 @@ public class Imagenes {
 		private String descripcion;
 		private String nombre;
 		
+	public static StringBuilder getJSONString(List<Imagenes> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Imagenes i : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(i));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Imagenes i){
+		return "{ "
+				+ "\"id\": \"" + i.getId() + "\", "
+				+ "\"descripcion\": \"" + i.getDescripcion() + "\", "
+				+ "\"nombre\": \""+i.getNombre()+"\"}";
+	}
 		public static Imagenes crearImagen(String descripcion, String nombre){
 			Imagenes i = new Imagenes();
 			i.descripcion=descripcion;

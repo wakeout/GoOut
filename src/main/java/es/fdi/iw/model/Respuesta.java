@@ -30,6 +30,25 @@ public class Respuesta{
 	private List<Usuario> usuario;//USUARIOS QUE HAN RESPONDIDO
 	private boolean borrado;
 
+
+	public static StringBuilder getJSONString(List<Respuesta> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Respuesta r: l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(r));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Respuesta r){
+		return "{ "
+				+ "\"id\": \"" + r.getId() + "\", "
+				+ "\"mensaje\": \"" + r.getMensaje().getAsunto() + "\", "
+				+ "\"nusuarios\": \"" + r.getUsuario().getSize() + "\"}";
+	}
+	
 	public static Respuesta crearRespuesta(Comentario mensaje){
 		Respuesta r = new Respuesta();
 		

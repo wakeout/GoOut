@@ -26,6 +26,27 @@ public class Tag {
 	private String nombre;
 	private List<Actividad> actividades;
 	
+
+
+	public static StringBuilder getJSONString(List<Tag> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Tag t: l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(t));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Tag t){
+		return "{ "
+				+ "\"id\": \"" + t.getId() + "\", "
+				+ "\"nombre\": \"" + t.getNombre() + "\", "
+				+ "\"nactividades\": \"" + t.getEtiquetados().size() + "\"}";
+	}
+
+
 	public static Tag crearTag(String nombre_tag) {
 		
 		Tag t = new Tag();

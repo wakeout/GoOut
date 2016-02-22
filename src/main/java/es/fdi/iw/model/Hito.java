@@ -25,6 +25,25 @@ public class Hito {
 	private Date fecha;
 	private boolean completado;
 	
+
+
+	public static StringBuilder getJSONString(List<Hito> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Hito h : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(h));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Hito h){
+		return "{ "
+				+ "\"id\": \"" + h.getId() + "\", "
+				+ "\"fecha\": \"" + h.getFecha() + "\", "
+				+ "\"anuncio\": \""+h.getAnuncio()+"\"}";
+	}
 	public static Hito crearHito(String anuncio, Date fecha){
 		Hito h = new Hito();
 	
