@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name="allHitos",
             query="select h from Hito h"),
+            @NamedQuery(name="unHito", 
+    		query="select h from Hito h where h.id = :idHito"),
     @NamedQuery(name="delHito", 
     		query="delete from Hito h where h.id = :idHito")
 })

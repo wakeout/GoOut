@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name="allComentarios",
             query="select c from Comentario c"),
+            @NamedQuery(name="unComentario", 
+    		query="select c from Comentario c where c.id = :idComentario"),
     @NamedQuery(name="delComentario", 
     		query="delete from Comentario c where c.id = :idComentario")
 })

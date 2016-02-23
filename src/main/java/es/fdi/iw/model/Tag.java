@@ -16,6 +16,8 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(name="allTags",
             query="select t from Tag t"),
+            @NamedQuery(name="unTag", 
+    		query="select t from Tag t where t.id = :idTag"),
     @NamedQuery(name="delTag", 
     		query="delete from Tag t where t.id = :idTag"),
     @NamedQuery(name="TagByNombre", 

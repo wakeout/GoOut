@@ -11,7 +11,9 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name="allGaleria",
-            query="select g from Imagenes g")
+            query="select g from Imagenes g"),
+            @NamedQuery(name="unaGaleria", 
+    		query="select g from Imagenes g where g.id = :idGaleria")
             
 })
 

@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name="allEncuestas",
             query="select e from Encuesta e"),
+            @NamedQuery(name="unaEncuesta", 
+    		query="select e from Encuesta e where e.id = :idEncuesta"),
             @NamedQuery(name="delEncuesta", 
     		query="delete from Encuesta e where e.id = :idEncuesta")
 })

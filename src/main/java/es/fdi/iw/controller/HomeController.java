@@ -2298,49 +2298,48 @@ public class HomeController {
 			sb=Usuario.getJSONString(usu);
 			break;
 //		case "Registro":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Registro> r = null;
+//			r = entityManager.createNamedQuery("unRegistro").setParameter("idRegistro",id).getResultList();
+//			sb=Registro.getJSONString(r);
 //			;
 //		case "Mensaje":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
-//			;
-//		case "Tag":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Mensaje> m = null;
+//			m = entityManager.createNamedQuery("unMensaje").setParameter("idMensaje",id).getResultList();
+//			sb=Mensaje.getJSONString(m);
+//	case "Tag":
+//			List<Tag> t = null;
+//			t = entityManager.createNamedQuery("unTag").setParameter("idTag",id).getResultList();
+//			sb=Tag.getJSONString(t);
 //			;
 //		case "Comentario":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Comentario> c = null;
+//			c = entityManager.createNamedQuery("unComentario").setParameter("idMensaje",id).getResultList();
+//			sb=Comentario.getJSONString(c);
 //			;
 //		case "Novedad":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Novedad> n = null;
+//			n = entityManager.createNamedQuery("unaNovedad").setParameter("idNovedad",id).getResultList();
+//			sb=Novedad.getJSONString(n);
 //			;
 //		case "Hito":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Hito> h = null;
+//			h = entityManager.createNamedQuery("unHito").setParameter("idHito",id).getResultList();
+//			sb=Actividad.getJSONString(h);
 //			;
 //		case "Pago":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Pago> p = null;
+//			p = entityManager.createNamedQuery("unPago").setParameter("idPago",id).getResultList();
+//			sb=Pago.getJSONString(p);
 //			;
 //		case "Encuesta":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Encuesta> e = null;
+//			e = entityManager.createNamedQuery("unaEncuesta").setParameter("idEncuesta",id).getResultList();
+//			sb=Encuesta.getJSONString(e);
 //			;
 //		case "Respuesta":
-//			List<Actividad> a = null;
-//			a = entityManager.createNamedQuery("unaActividad").getResultList();
-//			sb=Actividad.getJSONString(a);
+//			List<Respuesta> res = null;
+//			res = entityManager.createNamedQuery("unaRespuesta").setParameter("idRespuesta",id).getResultList();
+//			sb=Respuesta.getJSONString(res);
 //			;
 		}
 	
