@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name="allNovedades",
             query="select n from Novedad n"),
+            @NamedQuery(name="unaNovedad", 
+    		query="select n from Novedad n where n.id = :idNovedad"),
     @NamedQuery(name="delNovedad", 
     		query="delete from Novedad n where n.id = :idNovedad")
 })

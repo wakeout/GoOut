@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 @NamedQueries({
     @NamedQuery(name="allForos",
             query="select f from Foro f"),
+            @NamedQuery(name="unForo", 
+    		query="select f from Foro f where f.id = :idForo"),
     @NamedQuery(name="delForo", 
     		query="delete from Foro f where f.id = :idForo")
 })
