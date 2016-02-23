@@ -38,6 +38,26 @@ public class Registro {
 	Actividad actividad;
 	List<Pago> pagos;
 
+	public static StringBuilder getJSONString(List<Registro> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Registro r: l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(r));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Registro r){
+		return "{ "
+				+ "\"id\": \"" + r.getId() + "\", "
+				+ "\"usuario\": \"" + r.getUsuario() + "\", "
+				+ "\"actividad\": \"" + r.getActividad() + "\", "
+				+ "\"npagos\": \""+r.getPagos().size()+"\"}";
+	}
+	
+
 	public static Registro crearRegistro(Actividad  actv, Usuario user) {
 		
 		Registro r = new Registro();

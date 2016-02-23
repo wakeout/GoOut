@@ -25,7 +25,24 @@ public class Comentario {
 	private boolean sugiero;
 	private boolean borrado;
 	
+		
+	public static StringBuilder getJSONString(List<Comentario> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Comentario c : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(c));
+		}
+		
+		return sb;
+	}
 	
+	public static String getSingleString(Comentario c){
+		return "{ "
+				+ "\"id\": \"" + c.getId() + "\", "
+				+ "\"usuario\": \"" + c.getUsuario() + "\", "
+				+ "\"asunto\": \""+c.getNombre()+"\"}";
+	}
 	public static Comentario crearComentario(String asunto, Usuario u){
 		Comentario c=new Comentario();
 		

@@ -66,6 +66,12 @@ public class Usuario {
 	public static String getSingleString(Usuario u){
 		return "{ "
 				+ "\"id\": \"" + u.getId() + "\", "
+				+ "\"nombre\": \"" + u.getNombre() + "\", "
+				+ "\"nacimiento\": \"" + u.getNacimiento() + "\", "
+				+ "\"email\": \"" + u.getEmail() + "\", "
+				+ "\"rol\": \"" + u.getRol() + "\", "
+				+ "\"namigos\": \"" + u.getAmigos().size() + "\", "
+				+ "\"provincia\": \"" + u.getProvincia() + "\", "
 				+ "\"login\": \""+u.getLogin()+"\"}";
 	}
 	

@@ -45,6 +45,31 @@ public class Mensaje {
 	private String contenido;
 	private String tipo;
 	private boolean leido;
+
+
+	public static StringBuilder getJSONString(List<Mensaje> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Mensaje m : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(m));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Mensaje m){
+		return "{ "
+				+ "\"id\": \"" + m.getId() + "\", "
+				+ "\"leido\": \"" + m.getLeido() + "\", "
+				+ "\"titulo\": \"" + m.getTitulo() + "\", "
+				+ "\"tipo\": \"" + m.getTipo() + "\", "
+				+ "\"contenido\": \"" + m.getContenido() + "\", "
+				+ "\"idorigen\": \"" + m.getOrigen().getId() + "\", "
+				+ "\"iddestino\": \"" + m.getDestinos().getId() + "\", "
+				+ "\"nombredestinos\": \"" + m.getDestinos().getNombre() + "\", "
+				+ "\"nombreorigen\": \""+m.getOrigen().getNombre()+"\"}";
+	}
 	
 	public static Mensaje crearMensaje(String titulo, String contenido, String tipo, 
 			Usuario u, Usuario destino, boolean leido){

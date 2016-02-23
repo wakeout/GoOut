@@ -29,6 +29,25 @@ public class Novedad {
 	private String tipo;
 	private Date fecha;
 	
+
+	public static StringBuilder getJSONString(List<Novedad> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Novedad n : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(n));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Novedad n){
+		return "{ "
+				+ "\"id\": \"" + n.getId() + "\", "
+				+ "\"fecha\": \"" + n.getFecha() + "\", "
+				+ "\"mensaje\": \"" + n.getMensaje() + "\", "
+				+ "\"tipo\": \""+n.getTipo+"\"}";
+	}
 	public static Novedad crearNovedad(String mensaje, String tipo){
 		Novedad n = new Novedad();
 

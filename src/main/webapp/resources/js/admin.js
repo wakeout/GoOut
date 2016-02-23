@@ -2,8 +2,6 @@ var objetos;
 
 
 $(".papelera").click(function() {
-		
-	
 		if(confirmar()){
 			var target = $(this); 
 			var tipo = target.attr("id");
@@ -106,7 +104,11 @@ function actualizar(tipo){
 }
 
 
+<<<<<<< HEAD
+function vista(obj){
+=======
 function vista(obj,tipo){
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 
 	$.each(obj, function(i, o) {
 		if(o!=null){
@@ -156,6 +158,11 @@ function vista(obj,tipo){
 						"<tr><td> ID: "+o.id+"</td>" +
 						"<tr><td>Pregunta: "+o.pregunta+"</td>" +
 						"<tr><td>: "+o.creador+"</td>"+
+<<<<<<< HEAD
+						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
+						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
+=======
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 						"</table>");
 			break;
 				
@@ -186,10 +193,21 @@ function vista(obj,tipo){
 						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
 						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
 						"<tr><td>Origen: "+o.localizacion+"</td>" +
+<<<<<<< HEAD
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+						"</table>");
+			break;
+				
+			case "Mensaje":
+=======
 						"</table>");
 			break;
 				
 			case "Mensajes":
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
 						"<tr><td>Nombre: "+o.nombre+"</td>" +
@@ -199,6 +217,13 @@ function vista(obj,tipo){
 						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
 						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
 						"<tr><td>Origen: "+o.localizacion+"</td>" +
+<<<<<<< HEAD
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+=======
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 						"</table>");
 			break;
 				
@@ -211,6 +236,14 @@ function vista(obj,tipo){
 						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
 						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
 						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+<<<<<<< HEAD
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+=======
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 						"</table>");
 			break;
 			
@@ -223,6 +256,14 @@ function vista(obj,tipo){
 						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
 						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
 						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+<<<<<<< HEAD
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+=======
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 						"</table>");
 			break;
 			
@@ -235,6 +276,14 @@ function vista(obj,tipo){
 						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
 						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
 						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+<<<<<<< HEAD
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+=======
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 						"</table>");
 			break;
 			
@@ -247,6 +296,14 @@ function vista(obj,tipo){
 						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
 						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
 						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+<<<<<<< HEAD
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+=======
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 						"</table>");
 			break;
 			
@@ -259,6 +316,14 @@ function vista(obj,tipo){
 						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
 						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
 						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
+<<<<<<< HEAD
+						"<tr><td>Origen: "+o.localizacion+"</td>" +
+						"<tr><td>Destino: "+o.destino+"</td>"+
+						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
+						"<tr><td>Máximo de personas: "+o.max+"</td>"+
+						"<tr><td>Estado: "+o.estado+"</td>" +
+=======
+>>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
 						"</table>");
 			break;
 			}

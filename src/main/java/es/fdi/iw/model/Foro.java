@@ -30,6 +30,21 @@ public class Foro {
 	private List<Comentario>  comentarios;
 
 	
+	public static StringBuilder getJSONString(List<Foro> l){
+		StringBuilder sb = new StringBuilder("[");
+		
+		for (Foro f : l) {
+			if (sb.length()>1) sb.append(",");
+			sb.append(getSingleString(f));
+		}
+		
+		return sb;
+	}
+	
+	public static String getSingleString(Foro f){
+		return "{ "
+				+ "\"id\": \"" + f.getId() + "\"}";
+	}
 	public static Foro crearForo(){
 		Foro f=new Foro();
 		List<Comentario> lc=new ArrayList<Comentario>();
