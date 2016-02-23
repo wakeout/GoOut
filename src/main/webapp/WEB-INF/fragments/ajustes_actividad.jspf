@@ -11,9 +11,10 @@
 									
 			<span id="titulo">Ajustes Actividad</span>
 	 		<hr></hr>
-		<!-- <form action="${prefix}crearMensaje" method="post">-->
+
 		<form action="${prefix}modificarActividad" method="post" enctype="multipart/form-data">
 		<table>
+		
 			<input type="hidden" name="idactividad" value="${actividad.id}" />
 			<tbody>
 				<tr>

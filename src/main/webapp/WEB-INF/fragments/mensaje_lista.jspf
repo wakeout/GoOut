@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<input type="hidden" name="tipo" value="ordinario">
-			<c:if test="${existe_a > 0 }">
+			<c:if test="${existe_a > 0  || param.nombre_amigo != null}">
 				<td colspan="2"><input class="enviar" type="submit"
 					value="Enviar Mensaje" name="Enviar"> <input type="reset"
 					value="Borrar" name="Borrar"></td>

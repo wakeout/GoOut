@@ -237,6 +237,21 @@ public class HomeController {
 			@RequestParam("estado_actividad") String estado,
 			@RequestParam("descripcion_actividad") String descripcion, HttpSession session, HttpServletRequest request){
 		
+		Usuario u=(Usuario)session.getAttribute("usuario");
+		
+		Actividad a = null;
+		a = (Actividad) entityManager.createNamedQuery("unaActividad")
+				.setParameter("actividadParam", idactividad).getSingleResult();
+		
+		long creador = a.getCreador().getId();
+		
+		//Si no eres creador no se puede modificar la actividad
+		
+		if(creador != u.getId()){
+			return "redirect:actividad/"+idactividad;
+		
+		}
+
 		Date fecha_ini=null;
 		Date fecha_fin=null;
 		
@@ -264,10 +279,6 @@ public class HomeController {
 		
 		String origen = request.getParameter("origen"); 
 		String destino = request.getParameter("destino"); 	
-		
-		Actividad a = null;
-		a = (Actividad) entityManager.createNamedQuery("unaActividad")
-				.setParameter("actividadParam", idactividad).getSingleResult();
 		
 		String imagen ="";
 		try {
@@ -301,7 +312,6 @@ public class HomeController {
 		entityManager.persist(a);
 		
 
-		Usuario u=(Usuario)session.getAttribute("usuario");
 		
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
 		
@@ -2164,6 +2174,11 @@ public class HomeController {
 	@Transactional
 	public void borrarElemento(@RequestParam("id") long [] id, @RequestParam("tipo") String tipo, HttpServletRequest request, HttpSession session){
 		Usuario usu = (Usuario)session.getAttribute("usuario");
+		
+		usu = entityManager.find(Usuario.class, usu.getId());
+		
+		if(usu.getRol() == "admin"){
+			
 		try {
 			if(tipo.equals("Actividad")){
 				
@@ -2238,6 +2253,7 @@ public class HomeController {
 				Actividad act = entityManager.find(Actividad.class, id[i]);
 				act.setEliminado(true);
 			}
+		}
 		}
 	
 	}
