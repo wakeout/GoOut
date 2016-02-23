@@ -2,6 +2,8 @@ var objetos;
 
 
 $(".papelera").click(function() {
+		
+	
 		if(confirmar()){
 			var target = $(this); 
 			var tipo = target.attr("id");
@@ -65,9 +67,12 @@ function confirmar(){
 }
 
 
-function habilitarEdicion(){
+function habilitarEdicion(tipo){
 	
-	
+	$.each(objetos, function(i, o) {
+		
+		alert(o.nombre);
+	});
 	
 }
 
@@ -104,12 +109,9 @@ function actualizar(tipo){
 }
 
 
-<<<<<<< HEAD
-function vista(obj){
-=======
 function vista(obj,tipo){
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-
+	
+	objetos = obj;
 	$.each(obj, function(i, o) {
 		if(o!=null){
 			
@@ -128,7 +130,8 @@ function vista(obj,tipo){
 					"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
 					"<tr><td>Máximo de personas: "+o.max+"</td>"+
 					"<tr><td>Estado: "+o.estado+"</td>" +
-					"</table>");
+					"</table>"+
+					"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Usuario":
@@ -141,29 +144,26 @@ function vista(obj,tipo){
 						"<tr><td>E-Mail: "+o.email+"</td>"+
 						"<tr><td>Rol: "+o.rol+"</td>" +
 						"<tr><td>Nº Amigos: "+o.namigos+"</td>" +
-						"</table>");
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Comentario":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
 						"<tr><td>ID Usuario: <a href='#'>"+o.idusuario+"</a></td>" +
-						"<tr><td>Nombre Usuario: <a href='#'>"+o.nusuario+"</a></td>" +
+						"<tr><td>Nombre Usuario: <a href='#'>"+o.usuario+"</a></td>" +
 						"<tr><td>Asunto: "+o.asunto+"</td>"+
-						"</table>");
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Encuesta":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
 						"<tr><td>Pregunta: "+o.pregunta+"</td>" +
-						"<tr><td>: "+o.creador+"</td>"+
-<<<<<<< HEAD
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-=======
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-						"</table>");
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 				
 			case "Foro":
@@ -180,151 +180,81 @@ function vista(obj,tipo){
 						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
 						"<tr><td>Máximo de personas: "+o.max+"</td>"+
 						"<tr><td>Estado: "+o.estado+"</td>" +
-						"</table>");
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Hito":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
-						"<tr><td>Nombre: "+o.nombre+"</td>" +
-						"<tr><td>Creador: "+o.creador+"</td>"+
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-						"<tr><td>Origen: "+o.localizacion+"</td>" +
-<<<<<<< HEAD
-						"<tr><td>Destino: "+o.destino+"</td>"+
-						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-						"<tr><td>Máximo de personas: "+o.max+"</td>"+
-						"<tr><td>Estado: "+o.estado+"</td>" +
-						"</table>");
-			break;
-				
-			case "Mensaje":
-=======
-						"</table>");
-			break;
-				
-			case "Mensajes":
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-				$("#vista_previa").html("<table>" +
-						"<tr><td> ID: "+o.id+"</td>" +
-						"<tr><td>Nombre: "+o.nombre+"</td>" +
-						"<tr><td>Creador: "+o.creador+"</td>"+
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-						"<tr><td>Origen: "+o.localizacion+"</td>" +
-<<<<<<< HEAD
-						"<tr><td>Destino: "+o.destino+"</td>"+
-						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-						"<tr><td>Máximo de personas: "+o.max+"</td>"+
-						"<tr><td>Estado: "+o.estado+"</td>" +
-=======
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-						"</table>");
+						"<tr><td>Fecha: "+o.fecha+"</td>" +
+						"<tr><td>Anuncio: "+o.anuncio+"</td>"+
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 				
 			case "Novedad":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
-						"<tr><td>Nombre: "+o.nombre+"</td>" +
-						"<tr><td>Creador: "+o.creador+"</td>"+
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-<<<<<<< HEAD
-						"<tr><td>Origen: "+o.localizacion+"</td>" +
-						"<tr><td>Destino: "+o.destino+"</td>"+
-						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-						"<tr><td>Máximo de personas: "+o.max+"</td>"+
-						"<tr><td>Estado: "+o.estado+"</td>" +
-=======
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-						"</table>");
+						"<tr><td>Fecha: "+o.fecha+"</td>" +
+						"<tr><td>Mensaje: "+o.mensaje+"</td>"+
+						"<tr><td>Tipo: "+o.tipo+"</td>" +
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
+			break;
+				
+			case "Mensajes":
+				$("#vista_previa").html("<table>" +
+						"<tr><td> ID: "+o.id+"</td>" +
+						"<tr><td>Titulo: "+o.titulo+"</td>" +
+						"<tr><td>Tipo: "+o.tipo+"</td>"+
+						"<tr><td>Contenido: "+o.contenido+"</td>" +
+						"<tr><td>ID Origen: "+o.idorigen+"</td>"+
+						"<tr><td>ID Destino: "+o.iddestino+"</td>"+
+						"<tr><td>Usuario Origen: "+o.nombreorigen+"</td>" +
+						"<tr><td>Usuario Destino: "+o.nombredestinos+"</td>" +
+						"<tr><td>Leido: "+o.hora_ini+"</td>"+
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Pago":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
-						"<tr><td>Nombre: "+o.nombre+"</td>" +
-						"<tr><td>Creador: "+o.creador+"</td>"+
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-<<<<<<< HEAD
-						"<tr><td>Origen: "+o.localizacion+"</td>" +
-						"<tr><td>Destino: "+o.destino+"</td>"+
-						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-						"<tr><td>Máximo de personas: "+o.max+"</td>"+
-						"<tr><td>Estado: "+o.estado+"</td>" +
-=======
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-						"</table>");
+						"<tr><td>Descripcion: "+o.descripcion+"</td>" +
+						"<tr><td>Precio: "+o.precio+"€</td>"+
+						"<tr><td>Pagado: "+o.pagado+"</td>" +
+						"<tr><td>Fecha: "+o.fecha+"</td>"+
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Registro":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
-						"<tr><td>Nombre: "+o.nombre+"</td>" +
-						"<tr><td>Creador: "+o.creador+"</td>"+
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-<<<<<<< HEAD
-						"<tr><td>Origen: "+o.localizacion+"</td>" +
-						"<tr><td>Destino: "+o.destino+"</td>"+
-						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-						"<tr><td>Máximo de personas: "+o.max+"</td>"+
-						"<tr><td>Estado: "+o.estado+"</td>" +
-=======
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-						"</table>");
+						"<tr><td>Usuario: "+o.usuario+"</td>" +
+						"<tr><td>Actividad: "+o.actividad+"</td>"+
+						"<tr><td>Nº Pagos: "+o.npagos+"</td>" +
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Respuesta":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
-						"<tr><td>Nombre: "+o.nombre+"</td>" +
-						"<tr><td>Creador: "+o.creador+"</td>"+
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-<<<<<<< HEAD
-						"<tr><td>Origen: "+o.localizacion+"</td>" +
-						"<tr><td>Destino: "+o.destino+"</td>"+
-						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-						"<tr><td>Máximo de personas: "+o.max+"</td>"+
-						"<tr><td>Estado: "+o.estado+"</td>" +
-=======
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-						"</table>");
+						"<tr><td>Mensaje: "+o.mensaje+"</td>" +
+						"<tr><td>Nº Usuarios: "+o.nusuarios+"</td>"+
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Tag":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
 						"<tr><td>Nombre: "+o.nombre+"</td>" +
-						"<tr><td>Creador: "+o.creador+"</td>"+
-						"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-						"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-						"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-						"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-<<<<<<< HEAD
-						"<tr><td>Origen: "+o.localizacion+"</td>" +
-						"<tr><td>Destino: "+o.destino+"</td>"+
-						"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-						"<tr><td>Máximo de personas: "+o.max+"</td>"+
-						"<tr><td>Estado: "+o.estado+"</td>" +
-=======
->>>>>>> c0345534e4a5f65e7666ed81199586d80eccc2d7
-						"</table>");
+						"<tr><td>Nº Actividades: "+o.nactividades+"</td>"+
+						"</table>"+
+						"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
 			break;
 			}
 

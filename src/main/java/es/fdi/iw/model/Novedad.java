@@ -35,18 +35,18 @@ public class Novedad {
 		
 		for (Novedad n : l) {
 			if (sb.length()>1) sb.append(",");
-			sb.append(getSingleString(n));
+			sb.append(getSingleStringJSon(n));
 		}
 		
 		return sb;
 	}
 	
-	public static String getSingleString(Novedad n){
+	public static String getSingleStringJSon(Novedad n){
 		return "{ "
 				+ "\"id\": \"" + n.getId() + "\", "
 				+ "\"fecha\": \"" + n.getFecha() + "\", "
 				+ "\"mensaje\": \"" + n.getMensaje() + "\", "
-				+ "\"tipo\": \""+n.getTipo+"\"}";
+				+ "\"tipo\": \""+n.getTipo()+"\"}";
 	}
 	public static Novedad crearNovedad(String mensaje, String tipo){
 		Novedad n = new Novedad();

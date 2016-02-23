@@ -43,7 +43,7 @@ public class Pago {
 		return "{ "
 				+ "\"id\": \"" + p.getId() + "\", "
 				+ "\"descripcion\": \"" + p.getDescripcion() + "\", "
-				+ "\"pagado\": \"" + p.getPagado() + "\", "
+				+ "\"pagado\": \"" + p.isPagado() + "\", "
 				+ "\"precio\": \"" + p.getPrecioIndividual() + "\", "
 				+ "\"fecha\": \""+p.getFechaLimite()+"\"}";
 	}

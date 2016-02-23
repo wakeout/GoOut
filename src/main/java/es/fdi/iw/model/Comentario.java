@@ -1,4 +1,6 @@
 package es.fdi.iw.model;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,8 +42,9 @@ public class Comentario {
 	public static String getSingleString(Comentario c){
 		return "{ "
 				+ "\"id\": \"" + c.getId() + "\", "
-				+ "\"usuario\": \"" + c.getUsuario() + "\", "
-				+ "\"asunto\": \""+c.getNombre()+"\"}";
+				+ "\"idusuario\": \"" + c.getUsuario().getId() + "\", "
+				+ "\"usuario\": \"" + c.getUsuario().getLogin() + "\", "
+				+ "\"asunto\": \""+c.getAsunto()+"\"}";
 	}
 	public static Comentario crearComentario(String asunto, Usuario u){
 		Comentario c=new Comentario();

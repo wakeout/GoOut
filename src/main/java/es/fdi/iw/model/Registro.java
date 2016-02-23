@@ -22,6 +22,8 @@ import javax.persistence.OneToMany;
     		query="select r from Registro r where r.usuario= :idUsuario AND r.actividad= :idActividad"),
     @NamedQuery(name="unRegistro",
     		query="select r from Registro r where r.id = :registroParam"),
+    @NamedQuery(name="unReg",
+    		query="select r from Registro r where r.id = :idRegistro"),
     @NamedQuery(name="delRegistro", 
      		query="delete  from Registro r where r.id= :idRegistro"),
      @NamedQuery(name="pertenece", 
@@ -52,8 +54,8 @@ public class Registro {
 	public static String getSingleString(Registro r){
 		return "{ "
 				+ "\"id\": \"" + r.getId() + "\", "
-				+ "\"usuario\": \"" + r.getUsuario() + "\", "
-				+ "\"actividad\": \"" + r.getActividad() + "\", "
+				+ "\"usuario\": \"" + r.getUsuario().getLogin() + "\", "
+				+ "\"actividad\": \"" + r.getActividad().getNombre() + "\", "
 				+ "\"npagos\": \""+r.getPagos().size()+"\"}";
 	}
 	

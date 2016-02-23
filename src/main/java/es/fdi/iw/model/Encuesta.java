@@ -47,8 +47,7 @@ public class Encuesta {
 	public static String getSingleString(Encuesta e){
 		return "{ "
 				+ "\"id\": \"" + e.getId() + "\", "
-				+ "\"pregunta\": \"" + e.getPregunta().getAsunto() + "\", "
-				+ "\"asunto\": \""+c.getNombre()+"\"}";
+				+ "\"pregunta\": \"" + e.getPregunta().getAsunto() + "\"}";
 	}
 	public static Encuesta crearEncuesta(Comentario pregunta){
 		Encuesta e = new Encuesta();

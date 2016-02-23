@@ -48,7 +48,7 @@ public class Respuesta{
 		return "{ "
 				+ "\"id\": \"" + r.getId() + "\", "
 				+ "\"mensaje\": \"" + r.getMensaje().getAsunto() + "\", "
-				+ "\"nusuarios\": \"" + r.getUsuario().getSize() + "\"}";
+				+ "\"nusuarios\": \"" + r.getUsuario().size() + "\"}";
 	}
 	
 	public static Respuesta crearRespuesta(Comentario mensaje){
