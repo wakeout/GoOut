@@ -54,7 +54,7 @@ public class Encuesta {
 		e.pregunta = pregunta;
 		e.respuestas = new ArrayList<Respuesta>();
 		e.borrado = false;
-
+		
 		return e;
 	}
 	

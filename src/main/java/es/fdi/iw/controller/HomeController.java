@@ -1942,14 +1942,42 @@ public class HomeController {
 	
 	@RequestMapping(value = "/buscarElemento", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> buscarElemento(@RequestParam("buscado") String buscado,@RequestParam("tipo") String tipo, HttpSession session){
+	public ResponseEntity<String> buscarElemento(@RequestParam("buscado") String buscado, @RequestParam("tipo") String tipo, HttpSession session){
+		
+		StringBuilder sb = new StringBuilder("[");
+		
+		switch(tipo){
+            case "usuarios": List<Usuario> u=null;
+                            u=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=USUARIO.getJSONString(u);break;
+            case "actividadess": List<Actividad> a=null;
+                            a=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=ACTIVIDAD.getJSONString(a);break;
+            case "comentarios": List<Comentario> c=null;
+                            c=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=COMENTARIO.getJSONString(c);break;
+            case "registros": List<Registro> r=null;
+                            r=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=REGISTRO.getJSONString(r);break;
+            case "encuestas": List<Encuesta> e=null;
+                            e=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=ENCUESTA.getJSONString(e);break;
+            case "tags": List<Tag> t=null;
+                            t=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=TAG.getJSONString(t);break;
+            case "hitos": List<Hito> h=null;
+                            h=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=HITO.getJSONString(h);break;
+            case "respuestas": List<Respuesta> r=null;
+                            r=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=RESPUESTA.getJSONString(r);break;
+            case "foros": List<Foro> f=null;
+                            f=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
+                            sb+=USUARIO.getJSONString(f);break;
+        }
 		
 		
-		
-		
-		
-		
-		return new ResponseEntity<String>( "]", HttpStatus.OK);	
+		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
 	}
 	
 	
