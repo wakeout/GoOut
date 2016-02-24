@@ -236,7 +236,8 @@ public class HomeController {
 			@RequestParam("imagen") MultipartFile foto,
 			@RequestParam("estado_actividad") String estado,
 			@RequestParam("descripcion_actividad") String descripcion, HttpSession session, HttpServletRequest request){
-		
+
+
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		
 		Actividad a = null;
@@ -485,7 +486,7 @@ public class HomeController {
 			@RequestParam("id_actv") String id_actv,
 			@RequestParam("imagen") MultipartFile foto,
 			HttpServletRequest request){
-		
+		//werty
 		String descripcion="";
 		
 		descripcion = request.getParameter("desc");
@@ -494,6 +495,8 @@ public class HomeController {
 		Usuario u = entityManager.find(Usuario.class, id_usuario);
 		int num = a.getImg_galeria().size()+1;
 		
+
+		//if(u.getActividades().contens(id_actv))
 
 		String imagen =num+"_"+id_actv+"_"+id_usuario;
 		Imagenes i = Imagenes.crearImagen("Subida por "+u.getLogin()+" "+descripcion, imagen);
@@ -560,12 +563,17 @@ public class HomeController {
 		
 		creador = entityManager.find(Usuario.class, id_creador);
 		
+
 		String asunto;
 		String contenido;
 		
 		u=(Usuario)session.getAttribute("usuario");
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
 				.setParameter("actividadParam", actv).getSingleResult();
+
+		//werty
+		//u=find
+		//if(u.getActividades().contens(actv))
 		
 		asunto = "Denuncia comentario";
 
@@ -615,8 +623,7 @@ public class HomeController {
 		
 		u=(Usuario)session.getAttribute("usuario");
 		
-		a = (Actividad) entityManager.createNamedQuery("unaActividad")
-				.setParameter("actividadParam", actv).getSingleResult();
+		a = (Actividad) entityManager.createNamedQuery("unaActividad").setParameter("actividadParam", actv).getSingleResult();
 		
 		
 		
@@ -665,6 +672,10 @@ public class HomeController {
 			@RequestParam("fecha") Date fecha,
 			HttpSession session){
 		
+		//werty
+		//if(creador==usuario)
+
+
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		Usuario u = new Usuario();
 		Registro r = new Registro();
@@ -710,6 +721,9 @@ public class HomeController {
 			@RequestParam("descripcion") String descripcion,
 			@RequestParam("fecha") Date fecha){
 		
+		//werty
+		//if(rol==admin)
+
 		Pago p = new Pago();
 		long id_registro = Integer.parseInt(registro);
 		
@@ -737,6 +751,9 @@ public class HomeController {
 			@RequestParam("descripcion") String descripcion,
 			Model model, HttpSession session){
 		
+
+		//werty
+		//if(rol==admin)
 		Actividad a = null;
 		Registro r = null;
 		Usuario usuario_creador = null;
@@ -973,6 +990,9 @@ public class HomeController {
 	public String addTag(
 			@RequestParam("nombre_tag") String nombre){
 		
+		//werty 
+		//if(rol==admin)
+
 		Tag t = null;
 		
 		t = Tag.crearTag(nombre);
@@ -1003,6 +1023,9 @@ public class HomeController {
 			@RequestParam("tipo_novedad") String tipo,
 			@RequestParam("contenido") String novedad){
 		
+		//werty
+		//if(rol==admin)
+
 		Novedad n = null;
 		
 		n = n.crearNovedad(novedad, tipo);
@@ -1017,7 +1040,9 @@ public class HomeController {
 			@RequestParam("id_actividad") String actividad,
 			@RequestParam("comentario") String contenido,
 			HttpSession session){
-		
+		//werty
+		//if(rol==admin)
+
 		long id_actividad = Integer.parseInt(actividad);
 		Comentario c= Comentario.crearComentario(contenido, ((Usuario)session.getAttribute("usuario")));
 		Actividad a = entityManager.find(Actividad.class, id_actividad);
@@ -1033,6 +1058,9 @@ public class HomeController {
 	@Transactional
 	public String hacerComentario(@RequestParam("asunto") String asunto, @RequestParam("actividad") long actividad, HttpSession session){
 		
+		//werty
+		//if(usuario.getActividades().contens(actividad))
+
 		Actividad a = entityManager.find(Actividad.class,actividad);
 		
 		Comentario c= Comentario.crearComentario(asunto, ((Usuario)session.getAttribute("usuario")));
@@ -1069,6 +1097,9 @@ public class HomeController {
 			@RequestParam("actividad") long actividad,
 			HttpServletRequest request,
 			HttpSession session){
+
+		//werty
+		//if(usuario.getActividades().contens(actividad))
 
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
@@ -1113,6 +1144,9 @@ public class HomeController {
 			@RequestParam("opcion2") String opcion2,
 			HttpSession session){
 		
+		//werty
+		//if(usuario.getActividades().contens(actividad))
+
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		Comentario c= Comentario.crearComentario(pregunta, u);
@@ -1165,6 +1199,9 @@ public class HomeController {
 			@RequestParam("opcion1") String opcion1,
 			@RequestParam("opcion2") String opcion2,
 			HttpSession session){
+
+		//werty
+		//if(rol==admin)
 		
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		long id_actividad = Long.parseLong(actividad);
@@ -1203,6 +1240,10 @@ public class HomeController {
 			@RequestParam("id_actividad") String actividad,
 			@RequestParam("fecha") Date fecha){
 		
+
+		//werty
+		//if(rol==admin)
+
 		long id_actividad = Integer.parseInt(actividad);
 		Actividad a=entityManager.find(Actividad.class, id_actividad);
 		Hito h= Hito.crearHito(nombre, fecha);
@@ -1226,6 +1267,10 @@ public class HomeController {
 			@RequestParam("fecha") Date fecha,
 			@RequestParam("asunto") String asunto, HttpSession session){
 		
+
+		//werty
+		//if(usuario.getActividades().contens(actividad))
+
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		
 		Hito h= Hito.crearHito(asunto, fecha);
@@ -1271,6 +1316,9 @@ public class HomeController {
 			@RequestParam("mensaje") String contenido,
 			HttpSession session){
 		
+		//werty
+		//if(rol==admin)
+
 		Mensaje m = null;
 		Usuario u = null;
 		Usuario d = null;
@@ -1356,6 +1404,9 @@ public class HomeController {
 			@RequestParam("actividad_id") long id_actividad,
 			HttpSession session){
 		
+		//werty
+		//if(usuario.getActividades().contens(actividad))
+
 		Usuario origen= new Usuario();
 		origen =(Usuario)session.getAttribute("usuario");
 		Actividad a = entityManager.find(Actividad.class, id_actividad);
@@ -1384,7 +1435,8 @@ public class HomeController {
 	public String solicitudAmigo(
 		@RequestParam("id_amigo") long amigo,
 		HttpSession session){
-		
+
+
 		Usuario usuario_amigo = null;
 		Usuario usuario_propio = null;
 		Usuario d = null; // Destinatario
@@ -1502,6 +1554,10 @@ public class HomeController {
 		@RequestParam("id_propio") long propio,
 		HttpSession session){
 		
+
+		//werty
+		//if(usuario.getAmigos().getContens(amigo))
+
 		Usuario usuario_amigo = null;
 		Usuario usuario_propio = null;
 		int i = 0;
@@ -1546,6 +1602,9 @@ public class HomeController {
 			@RequestParam("id_actividad") String id_actividad,
 			HttpSession session){
 		
+		//werty
+		//if(rol==admin)
+
 		Actividad actv = new Actividad();
 		Usuario usuario = new Usuario();
 		Registro r = null;
@@ -1596,6 +1655,9 @@ public class HomeController {
 			HttpSession session){
 		if(session.getAttribute("usuario")!=null){
 		
+		//werty
+		//if(actividad!=privada)
+
 		Actividad actv = new Actividad();
 		Usuario usuario = new Usuario();
 		Registro r = null;
@@ -1774,7 +1836,7 @@ public class HomeController {
 			Model model,HttpSession session){
 	
 		//long[] ids=(long[])request.getAttribute("participantes");
-		
+
 		
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		 u= (Usuario)entityManager.createNamedQuery("userByLogin")
@@ -1802,6 +1864,9 @@ public class HomeController {
 	@Transactional
 	public String salirActividad(@RequestParam("actividad") long actividad, Model model,HttpSession session){
 		
+		//werty
+		//if(estas en actividad)
+
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		 u= (Usuario)entityManager.createNamedQuery("userByLogin")
 				.setParameter("loginParam", u.getLogin()).getSingleResult();
@@ -1959,31 +2024,31 @@ public class HomeController {
 //		switch(tipo){
 //            case "usuarios": List<Usuario> u=null;
 //                            u=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=USUARIO.getJSONString(u);break;
+//                            sb+=Usuario.getJSONString(u);break;
 //            case "actividadess": List<Actividad> a=null;
 //                            a=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=ACTIVIDAD.getJSONString(a);break;
+//                            sb+=Actividad.getJSONString(a);break;
 //            case "comentarios": List<Comentario> c=null;
-//                            c=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=COMENTARIO.getJSONString(c);break;
+//                            c=entityManager.createNamedQuery("buscaComentario").setParameter("nombreParam", buscado).getResultList();
+//                            sb+=Comentario.getJSONString(c);break;
 //            case "registros": List<Registro> r=null;
-//                            r=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=REGISTRO.getJSONString(r);break;
+//                            r=entityManager.createNamedQuery("buscaRegistro").setParameter("nombreParam", buscado).getResultList();
+//                            sb+=Registro.getJSONString(r);break;
 //            case "encuestas": List<Encuesta> e=null;
-//                            e=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=ENCUESTA.getJSONString(e);break;
+//                            e=entityManager.createNamedQuery("buscaEncuesta").setParameter("nombreParam", buscado).getResultList();
+//                            sb+=Encuesta.getJSONString(e);break;
 //            case "tags": List<Tag> t=null;
-//                            t=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=TAG.getJSONString(t);break;
+//                            t=entityManager.createNamedQuery("buscaTag").setParameter("nombreParam", buscado).getResultList();
+//                            sb+=Tag.getJSONString(t);break;
 //            case "hitos": List<Hito> h=null;
-//                            h=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=HITO.getJSONString(h);break;
+//                            h=entityManager.createNamedQuery("buscaHito").setParameter("nombreParam", buscado).getResultList();
+//                            sb+=Hito.getJSONString(h);break;
 //            case "respuestas": List<Respuesta> r=null;
-//                            r=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=RESPUESTA.getJSONString(r);break;
+//                            r=entityManager.createNamedQuery("buscaRespuesta").setParameter("nombreParam", buscado).getResultList();
+//                            sb+=Respuesta.getJSONString(r);break;
 //            case "foros": List<Foro> f=null;
-//                            f=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-//                            sb+=USUARIO.getJSONString(f);break;
+//                            f=entityManager.createNamedQuery("buscaForo").setParameter("nombreParam", buscado).getResultList();
+//                            sb+=Foro.getJSONString(f);break;
 //        }
 		
 		
@@ -2145,9 +2210,8 @@ public class HomeController {
 	@Transactional
 	public String borrarMensajes(@RequestParam("mensajes") long mensajesId,
 			@RequestParam("tipo") String tipo,Model model, HttpSession session){
-		
-
-		System.out.println(tipo);
+		//werty
+		//if(mensajes son de usuario)
 		entityManager.createNamedQuery("delMensaje").setParameter("idMensaje", mensajesId).executeUpdate();
 
 		return "redirect:mensajes?metodo="+tipo;
@@ -2187,6 +2251,8 @@ public class HomeController {
 			@RequestParam("id") long id_mensaje,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
+			//werty
+			//if(es tu mensaje)
 		
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 			
