@@ -486,7 +486,7 @@ public class HomeController {
 			@RequestParam("id_actv") String id_actv,
 			@RequestParam("imagen") MultipartFile foto,
 			HttpServletRequest request){
-		//werty
+		
 		String descripcion="";
 		
 		descripcion = request.getParameter("desc");
@@ -495,8 +495,10 @@ public class HomeController {
 		Usuario u = entityManager.find(Usuario.class, id_usuario);
 		int num = a.getImg_galeria().size()+1;
 		
+		Registro r=null;
+		r=(Registro)entityManager.createNamedQuery("actividadUsuario").setParameter("idActividad", a.getId()).setParameter("idUsuario", u.getId()).getSingleResult();
 
-		//if(u.getActividades().contens(id_actv))
+		if(r==null)return "redirect:actividad/"+id_a;
 
 		String imagen =num+"_"+id_actv+"_"+id_usuario;
 		Imagenes i = Imagenes.crearImagen("Subida por "+u.getLogin()+" "+descripcion, imagen);
@@ -571,10 +573,11 @@ public class HomeController {
 		a = (Actividad) entityManager.createNamedQuery("unaActividad")
 				.setParameter("actividadParam", actv).getSingleResult();
 
-		//werty
-		//u=find
-		//if(u.getActividades().contens(actv))
-		
+		Registro r=null;
+		r=(Registro)entityManager.createNamedQuery("actividadUsuario").setParameter("idActividad", a.getId()).setParameter("idUsuario", u.getId()).getSingleResult();
+
+		if(r==null)return "redirect:actividad/"+a.getId();
+
 		asunto = "Denuncia comentario";
 
 		contenido = "El usuario " + u.getLogin() + "(" + u.getId() + ")" + 
@@ -672,10 +675,7 @@ public class HomeController {
 			@RequestParam("fecha") Date fecha,
 			HttpSession session){
 		
-		//werty
-		//if(creador==usuario)
-
-
+		
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		Usuario u = new Usuario();
 		Registro r = new Registro();
@@ -693,6 +693,10 @@ public class HomeController {
 		entityManager.persist(r);
 	
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
+		
+		if(!a.getCreador().equals(u))
+			 return "redirect:actividad/"+actividad;
+		
 		
 		Novedad n=Novedad.crearNovedad("{Usuario:"+u.getId()+":"+u.getLogin() +"} "+
 				" ha establecido un nuevo pago en {Actividad:"+a.getId()+":"+
@@ -719,11 +723,13 @@ public class HomeController {
 			@RequestParam("id_registro") String registro,
 			@RequestParam("precio_individual") int precio,
 			@RequestParam("descripcion") String descripcion,
-			@RequestParam("fecha") Date fecha){
+			@RequestParam("fecha") Date fecha, HttpSession session){
+	
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
 		
-		//werty
-		//if(rol==admin)
-
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
+		
 		Pago p = new Pago();
 		long id_registro = Integer.parseInt(registro);
 		
@@ -751,9 +757,11 @@ public class HomeController {
 			@RequestParam("descripcion") String descripcion,
 			Model model, HttpSession session){
 		
-
-		//werty
-		//if(rol==admin)
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
+		
 		Actividad a = null;
 		Registro r = null;
 		Usuario usuario_creador = null;
@@ -988,11 +996,12 @@ public class HomeController {
 	@RequestMapping(value = "/addTag", method = RequestMethod.POST)
 	@Transactional
 	public String addTag(
-			@RequestParam("nombre_tag") String nombre){
+			@RequestParam("nombre_tag") String nombre, HttpSession session){
 		
-		//werty 
-		//if(rol==admin)
-
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
 		Tag t = null;
 		
 		t = Tag.crearTag(nombre);
@@ -1021,11 +1030,12 @@ public class HomeController {
 	@Transactional
 	public String addNovedad(
 			@RequestParam("tipo_novedad") String tipo,
-			@RequestParam("contenido") String novedad){
+			@RequestParam("contenido") String novedad, HttpSession session){
 		
-		//werty
-		//if(rol==admin)
-
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
 		Novedad n = null;
 		
 		n = n.crearNovedad(novedad, tipo);
@@ -1040,8 +1050,11 @@ public class HomeController {
 			@RequestParam("id_actividad") String actividad,
 			@RequestParam("comentario") String contenido,
 			HttpSession session){
-		//werty
-		//if(rol==admin)
+		
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
 
 		long id_actividad = Integer.parseInt(actividad);
 		Comentario c= Comentario.crearComentario(contenido, ((Usuario)session.getAttribute("usuario")));
@@ -1199,11 +1212,12 @@ public class HomeController {
 			@RequestParam("opcion1") String opcion1,
 			@RequestParam("opcion2") String opcion2,
 			HttpSession session){
-
-		//werty
-		//if(rol==admin)
+	
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
 		
-		Usuario u=(Usuario)session.getAttribute("usuario");
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
+		
 		long id_actividad = Long.parseLong(actividad);
 		Actividad a=entityManager.find(Actividad.class, id_actividad);
 		Comentario c= Comentario.crearComentario(pregunta, u);
@@ -1238,11 +1252,13 @@ public class HomeController {
 	public String addHito(
 			@RequestParam("nombre") String nombre,
 			@RequestParam("id_actividad") String actividad,
-			@RequestParam("fecha") Date fecha){
+			@RequestParam("fecha") Date fecha, HttpSession session){
 		
 
-		//werty
-		//if(rol==admin)
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
 
 		long id_actividad = Integer.parseInt(actividad);
 		Actividad a=entityManager.find(Actividad.class, id_actividad);
@@ -1316,11 +1332,12 @@ public class HomeController {
 			@RequestParam("mensaje") String contenido,
 			HttpSession session){
 		
-		//werty
-		//if(rol==admin)
+		Usuario u= entityManager.find(Usuario.class,((Usuario) session.getAttribute("usuario")).getId());
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
 
 		Mensaje m = null;
-		Usuario u = null;
 		Usuario d = null;
 		
 		try{
@@ -1602,8 +1619,10 @@ public class HomeController {
 			@RequestParam("id_actividad") String id_actividad,
 			HttpSession session){
 		
-		//werty
-		//if(rol==admin)
+		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
 
 		Actividad actv = new Actividad();
 		Usuario usuario = new Usuario();
@@ -1611,11 +1630,9 @@ public class HomeController {
 		int i = 0;
 		boolean existe = false;
 		
-		long u = Integer.parseInt(id_usuario);
 		long a = Integer.parseInt(id_actividad);
 		
 		actv = entityManager.find(Actividad.class, a);
-		usuario = entityManager.find(Usuario.class, u);
 		
 		if(actv.getNpersonas() < actv.getMaxPersonas())
 		{
