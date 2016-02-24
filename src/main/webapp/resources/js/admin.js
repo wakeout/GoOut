@@ -1,4 +1,5 @@
 var objetos;
+var editando = false;
 
 
 $(".papelera").click(function() {
@@ -67,18 +68,58 @@ function confirmar(){
 }
 
 
-function habilitarEdicion(tipo){
+function habilitarEdicion(tipo,elem){
+
+	editando = true;
+	
+	
+	for(var i=1;i<=elem;i++){
+		
+		var el = $(".edit"+i).text(); 
+	    $('.edit'+i).replaceWith("<input type='text' class='campo"+i+"' value='"+el+"'/>"); 
+	}
+	 $('#mod_element').replaceWith("<button type='button' id='guardar_element' onclick=guardarElemento('"+tipo+"',"+elem+")>Guardar Modificación</button>"); 
 	
 	$.each(objetos, function(i, o) {
 		
-		alert(o.nombre);
 	});
 	
 }
 
+function guardarElemento(tipo,elem){
+	
+	editando = false;
+	
+	for(var i=1;i<=elem;i++){
+		
+		var el = $(".campo"+i).val(); 
+	    $('.campo'+i).replaceWith("<span class='edit"+i+"'>"+el+"</span>"); 
+	}
+	
+	 $('#guardar_element').replaceWith("<button type='button' id='mod_element' onclick=habilitarEdicion('"+tipo+"',"+elem+")>Modificar "+tipo+"</button>"); 
+	
+//	$.each(objetos, function(i, o) {
+//		
+//	});
+	
+}
+
+$('.editaImagen').hover(
+		   function() {
+		      var el = $(this).children('.edit');                                                
+		      el.replaceWith("<input type='text' value='" + el.text() + "' />");                                                
+		   },
+		   function() {
+		      var el = $(this).children('input');
+		      el.replaceWith("<div class='wrapper'>" + el.val() + "</div>");                                                
+		   }
+);
+
 
 function buscarElementos(buscado,tipo,target){
 	
+	if(editando == false){
+		
 	$(".element_previa").css("color", "black");
 	$("#vista_previa").css("display", "block");
 	$(target).css("color", "green");
@@ -88,6 +129,7 @@ function buscarElementos(buscado,tipo,target){
 			
 			actualizar(tipo);
 	  });
+	}
 	
 }
 
@@ -119,19 +161,19 @@ function vista(obj,tipo){
 			case "Actividad":
 			$("#vista_previa").html("<table>" +
 					"<tr><td> ID: "+o.id+"</td>" +
-					"<tr><td>Nombre: "+o.nombre+"</td>" +
-					"<tr><td>Creador: "+o.creador+"</td>"+
-					"<tr><td>Fecha inicio: "+o.fecha+"</td>" +
-					"<tr><td>Fecha fin: "+o.fecha_fin+"</td>"+
-					"<tr><td>Hora inicio: "+o.hora_ini+"</td>"+
-					"<tr><td>Hora fin: "+o.hora_fin+"</td>" +
-					"<tr><td>Origen: "+o.localizacion+"</td>" +
-					"<tr><td>Destino: "+o.destino+"</td>"+
-					"<tr><td>Personas unidas: "+o.npersonas+"</td>" +
-					"<tr><td>Máximo de personas: "+o.max+"</td>"+
-					"<tr><td>Estado: "+o.estado+"</td>" +
+					"<tr><td>Nombre: <span class='edit2'>"+o.nombre+"</span></td>" +
+					"<tr><td>Creador: <span class='edit3'>"+o.creador+"</span></td>"+
+					"<tr><td>Fecha inicio: <span class='edit4'>"+o.fecha+"</span></td>" +
+					"<tr><td>Fecha fin: <span class='edit5'>"+o.fecha_fin+"</span></td>"+
+					"<tr><td>Hora inicio: <span class='edit6'>"+o.hora_ini+"</span></td>"+
+					"<tr><td>Hora fin: <span class='edit7'>"+o.hora_fin+"</span></td>" +
+					"<tr><td>Origen: <span class='edit8'>"+o.localizacion+"</span></td>" +
+					"<tr><td>Destino: <span class='edit9'>"+o.destino+"</span></td>"+
+					"<tr><td>Personas unidas: <span class='edit10'>"+o.npersonas+"</span></td>" +
+					"<tr><td>Máximo de personas: <span class='edit11'>"+o.max+"</span></td>"+
+					"<tr><td>Estado: <span class='edit12'>"+o.estado+"</span></td>" +
 					"</table>"+
-					"<button id='mod_element' onclick='habilitarEdicion("+tipo+")'>Modificar "+tipo+"</button>");
+					"<button id='mod_element' onclick=habilitarEdicion('"+tipo+"',12)>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Usuario":

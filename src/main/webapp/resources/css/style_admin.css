@@ -205,12 +205,19 @@ hr {
     float: right;
  }
  
- #mod_element{
+ #mod_element, #guardar_element{
 	margin-right: 20px;
     color: black;
     border-radius: 20px;
     padding-left: 2px;
     float: right;
+    border:1px solid black;
+ }
+ 
+ #vista_previa input{
+ 	float: right;
+    width: 120px;
+    height: 20px;
  }
 
 .busqueda{

@@ -142,11 +142,15 @@ public class HomeController {
 			@RequestParam("nombre_usuario") String nombre,
 			@RequestParam("contraseña_usuario") String contraseña,
 			@RequestParam("corre_usuario") String correo,
-			@RequestParam("rol_usuario") String rol){
+			@RequestParam("rol_usuario") String rol, HttpSession session){
 		
 	
 		
-		Usuario u = null;
+		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
+		
+		if(!u.getRol().equals("admin"))
+			return "redirect:administrador";
+		
 		try {
 			u = (Usuario)entityManager.createNamedQuery("userByLogin")
 				.setParameter("loginParam", nombre).getSingleResult();
@@ -757,7 +761,7 @@ public class HomeController {
 			@RequestParam("descripcion") String descripcion,
 			Model model, HttpSession session){
 		
-		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 		
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
@@ -998,7 +1002,11 @@ public class HomeController {
 	public String addTag(
 			@RequestParam("nombre_tag") String nombre, HttpSession session){
 		
-		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		
+		Usuario u= (Usuario)session.getAttribute("usuario");
+		
+		long id=u.getId();
+		u=(Usuario)entityManager.find(Usuario.class, id);
 		
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
@@ -1032,7 +1040,7 @@ public class HomeController {
 			@RequestParam("tipo_novedad") String tipo,
 			@RequestParam("contenido") String novedad, HttpSession session){
 		
-		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 		
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
@@ -1051,7 +1059,7 @@ public class HomeController {
 			@RequestParam("comentario") String contenido,
 			HttpSession session){
 		
-		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 		
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
@@ -1213,7 +1221,7 @@ public class HomeController {
 			@RequestParam("opcion2") String opcion2,
 			HttpSession session){
 	
-		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 		
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
@@ -1255,7 +1263,7 @@ public class HomeController {
 			@RequestParam("fecha") Date fecha, HttpSession session){
 		
 
-		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
+		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 		
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
@@ -1333,6 +1341,7 @@ public class HomeController {
 			HttpSession session){
 		
 		Usuario u= entityManager.find(Usuario.class,((Usuario) session.getAttribute("usuario")).getId());
+		
 		
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
@@ -1619,14 +1628,13 @@ public class HomeController {
 			@RequestParam("id_actividad") String id_actividad,
 			HttpSession session){
 		
-		Usuario u= (Usuario)entityManager.find(Usuario.class,session.getAttribute("usuario"));
-		
+		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
 
 		Actividad actv = new Actividad();
 		Usuario usuario = new Usuario();
-		Registro r = null;
+		Registro r = new Registro();
 		int i = 0;
 		boolean existe = false;
 		
@@ -1643,6 +1651,7 @@ public class HomeController {
 			}
 			
 			if(!existe){
+				r= null;
 				r = Registro.crearRegistro(actv, usuario);
 				
 				usuario.getRegistros().add(r);
