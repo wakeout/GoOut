@@ -2494,6 +2494,38 @@ public class HomeController {
 		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
 	}
 	
+	@RequestMapping(value = "/modElemento", method = RequestMethod.POST)
+	@ResponseBody
+	@Transactional
+	public ResponseEntity<String> modElemento(
+			@RequestParam("nick_perfil") String nick,
+			@RequestParam("nombre_perfil") String nombre,
+			@RequestParam("prov_perfil") String provincia,
+			@RequestParam("email_perfil") String email, HttpSession session){
+		
+		
+		List<Usuario> usu=new ArrayList<Usuario>();
+		Usuario u = null;
+		
+		StringBuilder sb = new StringBuilder("");
+		
+		u= (Usuario)entityManager.createNamedQuery("userByLogin")
+				.setParameter("loginParam", nick).getSingleResult();
+		
+		u.setNombre(nombre);
+		u.setProvincia(provincia);
+		u.setEmail(email);
+		
+		entityManager.persist(u);
+		
+		usu.add(u);	
+		sb=Usuario.getJSONString(usu);
+		System.out.println(sb);
+
+		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
+		
+	}
+	
 
 	static String getTokenForSession (HttpSession session) {
 	    String token=UUID.randomUUID().toString();
