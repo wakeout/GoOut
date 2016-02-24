@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name="allMensajes",
             query="select m from Mensaje m"),
+    @NamedQuery(name="buscaMensaje", 
+     		query="select m from Mensaje m where m.titulo like :nombreParam"),
     @NamedQuery(name="mensajesEntrada",
 			query="select m from Mensaje m where m.destinos = :destinoParam"),
     @NamedQuery(name="mensajesSalida",
@@ -28,7 +30,7 @@ import javax.validation.constraints.NotNull;
     		query="delete from Mensaje m where m.origen = :userParam OR m.destinos = :userParam"),
     @NamedQuery(name="delMensaje", 
     		query="delete from Mensaje m where m.id = :idMensaje"),
-    		@NamedQuery(name="unMensaje", 
+    @NamedQuery(name="unMensaje", 
     		query="select m from Mensaje m where m.id = :idMensaje"),
     @NamedQuery(name="delDenuncia", 
     		query="delete from Mensaje m where m.id = :idParam"),

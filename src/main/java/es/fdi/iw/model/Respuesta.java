@@ -23,6 +23,8 @@ import javax.validation.constraints.NotNull;
             query="select r from Respuesta r"),
             @NamedQuery(name="unaRespuesta", 
     		query="select r from Respuesta r where r.id = :idRespuesta"),
+    		 @NamedQuery(name="buscaRespuesta", 
+     		query="select r from Respuesta r where r.mensaje.asunto like :nombreParam"),
             @NamedQuery(name="delRespuesta", 
     		query="delete from Respuesta r where r.id = :idRespuesta")
 })

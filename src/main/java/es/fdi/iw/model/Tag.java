@@ -21,7 +21,10 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name="delTag", 
     		query="delete from Tag t where t.id = :idTag"),
     @NamedQuery(name="TagByNombre", 
-    		query="select t from Tag t where t.nombre = :nombreTag")
+    		query="select t from Tag t where t.nombre = :nombreTag"),
+    @NamedQuery(name="buscaTag", 
+     		query="select t from Tag t where t.nombre like :nombreParam")
+
 })
 public class Tag {
 	private long id;

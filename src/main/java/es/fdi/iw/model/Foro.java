@@ -23,7 +23,10 @@ import javax.persistence.OneToMany;
             @NamedQuery(name="unForo", 
     		query="select f from Foro f where f.id = :idForo"),
     @NamedQuery(name="delForo", 
-    		query="delete from Foro f where f.id = :idForo")
+    		query="delete from Foro f where f.id = :idForo"),
+    @NamedQuery(name="buscaForo", 
+     		query="select f from Foro f where f.id like :nombreParam")
+
 })
 public class Foro {
 	private long id;

@@ -20,7 +20,10 @@ import javax.validation.constraints.NotNull;
             @NamedQuery(name="unHito", 
     		query="select h from Hito h where h.id = :idHito"),
     @NamedQuery(name="delHito", 
-    		query="delete from Hito h where h.id = :idHito")
+    		query="delete from Hito h where h.id = :idHito"),
+    @NamedQuery(name="buscaHito", 
+     		query="select h from Hito h where h.anuncio like :nombreParam")
+
 })
 public class Hito {
 	private long id;

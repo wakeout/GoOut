@@ -23,7 +23,10 @@ import javax.validation.constraints.NotNull;
             @NamedQuery(name="unaEncuesta", 
     		query="select e from Encuesta e where e.id = :idEncuesta"),
             @NamedQuery(name="delEncuesta", 
-    		query="delete from Encuesta e where e.id = :idEncuesta")
+    		query="delete from Encuesta e where e.id = :idEncuesta"),
+    		@NamedQuery(name="buscaEncuesta", 
+     		query="select e from Encuesta e where e.pregunta.asunto like :nombreParam")
+
 })
 public class Encuesta {
 	private long id;
