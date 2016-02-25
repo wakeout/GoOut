@@ -196,14 +196,7 @@ hr {
 	cursor: pointer;
 }
 
-.editar{
-	background-image: url(../images/editar.png);
-    height: 20px;
-    width: 20px;
-    background-size: 80%;
-    background-repeat: no-repeat;
-    float: right;
- }
+
  
  #mod_element, #guardar_element{
 	margin-right: 20px;
