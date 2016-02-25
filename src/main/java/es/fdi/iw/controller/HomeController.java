@@ -686,9 +686,7 @@ public class HomeController {
 		
 		u=(Usuario)session.getAttribute("usuario");
 		
-		r = (Registro) entityManager.createNamedQuery("actividadUsuario")
-				.setParameter("idUsuario", u).setParameter("idActividad", a).getSingleResult();
-		
+			
 		Pago p = new Pago();
 		p = Pago.crearPago(precio, fecha, descripcion, r.getId());
 		entityManager.persist(p);
