@@ -210,6 +210,7 @@ public class HomeController {
 					}
 				}
 
+				
 				return destino;
 			}
 	
@@ -1784,7 +1785,6 @@ public class HomeController {
 		if(session.getAttribute("usuario")!=null){
 			Usuario u=(Usuario)entityManager.createNamedQuery("userByLogin").setParameter("loginParam",((Usuario)session.getAttribute("usuario")).getLogin()).getSingleResult();
 			
-			
 			if(!u.getNovedades().isEmpty())
 				model.addAttribute("novedades", Novedad.getString(u.getNovedades()));
 			
@@ -2053,7 +2053,7 @@ public class HomeController {
 	@ResponseBody
 	public ResponseEntity<String> buscarElemento(@RequestParam("buscado") String buscado, @RequestParam("tipo") String tipo, HttpSession session){
 		String b=buscado;
-		System.out.println(buscado);
+		System.out.println(tipo);
 		
 		buscado="%"+buscado+"%";
 		
@@ -2089,7 +2089,7 @@ public class HomeController {
 				}
 				sb.append(Registro.getJSONString(r));
 				break;
-			case "encuestas":
+			case "preguntas":
 				
 				List<Encuesta> e = null;
 				e = entityManager.createNamedQuery("buscaEncuesta")
@@ -2352,15 +2352,12 @@ public class HomeController {
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
 
-			Usuario u=entityManager.find(Usuario.class, ((Usuario)session.getAttribute("usuario")).getId());
-		
 			Mensaje m=entityManager.find(Mensaje.class, id_mensaje);
 		
 		
-			if(m.getOrigen().getId()==u.getId() || m.getOrigen().getId()==u.getId()){
-				m.setLeido(true);
-				entityManager.persist(m);
-		}
+			m.setLeido(true);
+			entityManager.persist(m);
+		
 	}
 	
 	
@@ -2372,7 +2369,7 @@ public class HomeController {
 		
 		usu = entityManager.find(Usuario.class, usu.getId());
 		
-		if(usu.getRol() == "admin"){
+		if(usu.getRol().equals("admin")){
 			
 		try {
 			if(tipo.equals("Actividad")){

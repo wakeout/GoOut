@@ -78,6 +78,7 @@ public class Actividad{
 	}
 	
 	public static String getSingleString(Actividad a){
+		if(a.getEliminado()==false){
 		return "{ "
 				+ "\"id\": \"" + a.getId() + "\", "
 				+ "\"estado\": \"" + a.getEstado() + "\", "
@@ -92,6 +93,8 @@ public class Actividad{
 				+ "\"hora_fin\": \"" + a.getHora_fin() + "\", "
 				+ "\"destino\": \"" + a.getDestino() + "\", "
 				+ "\"nombre\": \""+a.getNombre()+"\"}";
+		}
+		return "";
 	}
 	
 	

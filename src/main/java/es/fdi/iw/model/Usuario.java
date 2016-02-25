@@ -64,7 +64,8 @@ public class Usuario {
 	
 	
 	public static String getSingleString(Usuario u){
-		return "{ "
+		if(u.getBorrado()==false){
+			return "{ "
 				+ "\"id\": \"" + u.getId() + "\", "
 				+ "\"nombre\": \"" + u.getNombre() + "\", "
 				+ "\"nacimiento\": \"" + u.getNacimiento() + "\", "
@@ -73,6 +74,8 @@ public class Usuario {
 				+ "\"namigos\": \"" + u.getAmigos().size() + "\", "
 				+ "\"provincia\": \"" + u.getProvincia() + "\", "
 				+ "\"login\": \""+u.getLogin()+"\"}";
+		}
+		return "";
 	}
 	
 	

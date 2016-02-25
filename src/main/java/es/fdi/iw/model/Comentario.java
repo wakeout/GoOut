@@ -43,11 +43,14 @@ public class Comentario {
 	}
 	
 	public static String getSingleString(Comentario c){
-		return "{ "
+		if(c.getBorrado()==false){
+			return "{ "
 				+ "\"id\": \"" + c.getId() + "\", "
 				+ "\"idusuario\": \"" + c.getUsuario().getId() + "\", "
 				+ "\"usuario\": \"" + c.getUsuario().getLogin() + "\", "
 				+ "\"asunto\": \""+c.getAsunto()+"\"}";
+		}
+		return "";
 	}
 	public static Comentario crearComentario(String asunto, Usuario u){
 		Comentario c=new Comentario();

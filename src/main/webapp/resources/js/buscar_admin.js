@@ -20,7 +20,8 @@ function elementos(objetos, tipo){
 	});
 	
 	codigo+="</table>";
-
+	
+		
 	$("#lista_"+tipo).replaceWith(codigo);
 }
 
@@ -31,12 +32,12 @@ function avista(o, tipo){
 	switch(tipo){
 
 		case "actividades": codigo+=" 	'Actividad_"+ o.id +"'><td><input name='Actividad' value='"+o.id+"' type='checkbox'>"+
-							"<a href='${prefix}actividad/"+o.id+"''>"+ o.id +"</a><td>"+
+							"<a href='actividad/"+o.id+"'>"+ o.id +"</a><td>"+
 							"<span class='element_previa' onmouseover=buscarElementos("+o.id+",'Actividad',this) onmouseout=desaparece(this)>"+
 							o.nombre+"</span>";break;
 	
 		case "usuarios": codigo+=" 'Usuario_"+ o.id +"''><td><input name='Usuario' value='"+o.id+"' type='checkbox'>"+
-							"<a href='${prefix}perfil/"+o.id+"''>"+ o.id +"  </a><span class='element_previa' onmouseover=buscarElementos("+o.id+",'Usuario',this) onmouseout=desaparece(this)>"+
+							"<a href='perfil/"+o.id+"'>"+ o.id +"  </a><span class='element_previa' onmouseover=buscarElementos("+o.id+",'Usuario',this) onmouseout=desaparece(this)>"+
 							o.login+"</span>";break;
 
 		case "registros": codigo+=" 'Registro_"+o.id+"'><td><input name='Registro' value='"+o.id+"' type='checkbox'>"+ o.id+" " +
@@ -44,13 +45,13 @@ function avista(o, tipo){
 				"</span>";
 							break;
 			
-		case "encuestas": codigo+=" 'Encuesta_"+o.id+"'><td><input  name='Encuesta' value='"+o.id+"' type='checkbox'>"+o.id+"<td>"
+		case "preguntas": codigo+=" 'Encuesta_"+o.id+"'><td><input  name='Encuesta' value='"+o.id+"' type='checkbox'>"+o.id+"<td>"
 			+"<span class='element_previa' onmouseover=buscarElementos("+o.id+",'Encuesta',this) onmouseout=desaparece(this)>"
-			+o.asunto
+			+o.pregunta
 			+"</span>";break;
 				
-		case "foros": codigo+="'Usuario_"+ o.id +"''><td><input name='Usuario' value='"+o.id+"' type='checkbox'>"+
-							"<a href='${prefix}perfil/"+o.id+"''>"+ o.id +"</a><td><c:out value='"+o.login+"'/>";break;
+		case "foros": codigo+="'Usuario_"+ o.id +"'><td><input name='Usuario' value='"+o.id+"' type='checkbox'>"+
+							"<a href='perfil/"+o.id+"'>"+ o.id +"</a><td><c:out value='"+o.login+"'/>";break;
 			
 		case "hitos": 	codigo+="'Hito_"+o.id+"'><td><input  name='Hito' value='"+o.id+"' type='checkbox'>"+o.id+"<td>"
 		+"<span class='element_previa' onmouseover=buscarElementos("+o.id+",'Hito',this) onmouseout=desaparece(this)>"

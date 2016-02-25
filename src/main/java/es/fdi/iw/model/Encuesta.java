@@ -25,7 +25,7 @@ import javax.validation.constraints.NotNull;
             @NamedQuery(name="delEncuesta", 
     		query="delete from Encuesta e where e.id = :idEncuesta"),
     		@NamedQuery(name="buscaEncuesta", 
-     		query="select e from Encuesta e where e.pregunta.asunto like :nombreParam")
+     		query="select e from Encuesta e where e.pregunta.asunto like :nombreParam AND borrado='TRUE'")
 
 })
 public class Encuesta {
@@ -48,9 +48,12 @@ public class Encuesta {
 	}
 	
 	public static String getSingleString(Encuesta e){
-		return "{ "
+		if(e.isBorrado()==false){
+			return "{ "
 				+ "\"id\": \"" + e.getId() + "\", "
 				+ "\"pregunta\": \"" + e.getPregunta().getAsunto() + "\"}";
+		}
+		return "";
 	}
 	public static Encuesta crearEncuesta(Comentario pregunta){
 		Encuesta e = new Encuesta();

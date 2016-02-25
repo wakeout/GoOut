@@ -281,9 +281,9 @@
 	
 	<br>
 		<h1>Encuestas</h1>
-		<a class="marcar" onclick="checkTodos('lista_encuestas')">Marcar todos</a>
-		<a class="desmarcar" onclick="noCheckTodos('lista_encuestas')">Desmarcar todos</a>
-		<table id="lista_encuestas">
+		<a class="marcar" onclick="checkTodos('lista_preguntas')">Marcar todos</a>
+		<a class="desmarcar" onclick="noCheckTodos('lista_preguntas')">Desmarcar todos</a>
+		<table id="lista_preguntas">
 			<c:forEach items="${encuestas}" var="e">
 			<c:if test="${e.borrado == false }">
 			<tr id="Encuesta_${e.id}"><td><input  name="Encuesta" value="${e.id}" type="checkbox"> ${e.id}<td>

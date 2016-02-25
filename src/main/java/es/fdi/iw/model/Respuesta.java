@@ -47,10 +47,13 @@ public class Respuesta{
 	}
 	
 	public static String getSingleString(Respuesta r){
-		return "{ "
+		if(r.getBorrado()==false){
+			return "{ "
 				+ "\"id\": \"" + r.getId() + "\", "
 				+ "\"mensaje\": \"" + r.getMensaje().getAsunto() + "\", "
 				+ "\"nusuarios\": \"" + r.getUsuario().size() + "\"}";
+		}
+		return "";
 	}
 	
 	public static Respuesta crearRespuesta(Comentario mensaje){
