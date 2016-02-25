@@ -2394,6 +2394,7 @@ public class HomeController {
 							Actividad a = r.getActividad();
 							entityManager.createNamedQuery("delRegistro").setParameter("idRegistro", r.getId()).executeUpdate();
 							a.setNpersonas(a.getNpersonas()-1);
+							entityManager.persist(r);
 						}
 					}
 					if(tipo.equals("Encuesta")){
@@ -2418,7 +2419,7 @@ public class HomeController {
 						Respuesta res = null;
 						for(int i = 0; i < id.length;i++){
 							res = entityManager.find(Respuesta.class, id[i]);
-							res.getMensaje().setBorrado(true);
+							res.setBorrado(true);
 							entityManager.persist(res);
 						}
 					}
