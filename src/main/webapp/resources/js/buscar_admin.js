@@ -39,7 +39,9 @@ function avista(o, tipo){
 							"<a href='${prefix}perfil/"+o.id+"''>"+ o.id +"  </a><span class='element_previa' onmouseover=buscarElementos("+o.id+",'Usuario',this) onmouseout=desaparece(this)>"+
 							o.login+"</span>";break;
 
-		case "registros": codigo+=" 'Registro_"+o.id+"'><td><input name='Registro' value='"+o.id+"' type='checkbox'>"+ o.id+" "+o.usuario+" "+o.actividad;
+		case "registros": codigo+=" 'Registro_"+o.id+"'><td><input name='Registro' value='"+o.id+"' type='checkbox'>"+ o.id+" " +
+				"<td> <span class='element_previa' onmouseover=buscarElementos("+o.id+",'Registro',this) onmouseout=desaparece(this)>"+o.usuario +"  "+o.actividad+
+				"</span>";
 							break;
 			
 		case "encuestas": codigo+=" 'Encuesta_"+o.id+"'><td><input  name='Encuesta' value='"+o.id+"' type='checkbox'>"+o.id+"<td>"
