@@ -2498,29 +2498,131 @@ public class HomeController {
 	@ResponseBody
 	@Transactional
 	public ResponseEntity<String> modElemento(
-			@RequestParam("nick_perfil") String nick,
-			@RequestParam("nombre_perfil") String nombre,
-			@RequestParam("prov_perfil") String provincia,
-			@RequestParam("email_perfil") String email, HttpSession session){
+			@RequestParam("tipo") String tipo,
+			HttpSession session, HttpServletRequest request){
+			
+			//Variables para Usuario
+			String nick="";
+			String nombre="";
+			String provincia="";
+			String nacimiento="";
+			Date f_nac=null;
+			String rol="";
+			String email="";
+			
+			//Variables para Actividad
+			String nombre_a = "";
+			String creador = "";
+			String f_ini = "";
+			String f_fin = "";
+			Date fecha_ini = null;
+			Date fecha_fin = null;
+			String hora_ini = "";
+			String hora_fin = "";
+			String origen = "";
+			String destino = "";
+			String estado = "";
+			long id_actv;
+			
+			StringBuilder sb = new StringBuilder("");
 		
 		
-		List<Usuario> usu=new ArrayList<Usuario>();
-		Usuario u = null;
+		if(tipo.equals("Usuario"))
+		{
+			nick=request.getParameter("nick_perfil");
+			nombre=request.getParameter("nombre_perfil");
+			provincia=request.getParameter("prov_perfil");
+			SimpleDateFormat dateFormatter = new SimpleDateFormat ( "yyyy-MM-dd" );
+			nacimiento=request.getParameter("nacimiento");
+			
+			if( comprobarFecha(nacimiento)) {
+				try {
+					f_nac = new Date(dateFormatter.parse(nacimiento).getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			rol=request.getParameter("rol");
+			email=request.getParameter("email_perfil");
+			
+			List<Usuario> usu=new ArrayList<Usuario>();
+			Usuario u = null;
+			
+			u= (Usuario)entityManager.createNamedQuery("userByLogin")
+						.setParameter("loginParam", nick).getSingleResult();
+				
+			u.setNombre(nombre);
+			u.setProvincia(provincia);
+			u.setEmail(email);
+			u.setNacimiento(f_nac);
+			u.setRol(rol);
+			
+			entityManager.persist(u);
+			
+			usu.add(u);	
+			sb=Usuario.getJSONString(usu);
+		}
 		
-		StringBuilder sb = new StringBuilder("");
 		
-		u= (Usuario)entityManager.createNamedQuery("userByLogin")
-				.setParameter("loginParam", nick).getSingleResult();
+		if(tipo.equals("Actividad"))
+		{
+			nombre_a=request.getParameter("nombre_a");
+			creador=request.getParameter("creador");
+			hora_ini=request.getParameter("hora_ini");
+			hora_fin=request.getParameter("hora_fin");
+			origen=request.getParameter("origen");
+			destino=request.getParameter("destino");
+			estado=request.getParameter("estado");
+			f_ini=request.getParameter("f_ini");
+			f_fin=request.getParameter("f_fin");
+			id_actv=Long.parseLong(request.getParameter("id_actv"));
+			
+			
+			SimpleDateFormat dateFormatter = new SimpleDateFormat ( "yyyy-MM-dd" );
+			if( comprobarFecha(f_ini)) {
+				try {
+					fecha_ini = new Date(dateFormatter.parse(f_ini).getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			if( comprobarFecha(f_fin)) {
+				try {
+					fecha_fin = new Date(dateFormatter.parse(f_fin).getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			List<Actividad> actv=new ArrayList<Actividad>();
+			Actividad a = null;
+			Usuario u_creador=null;
+			
+			u_creador= (Usuario)entityManager.createNamedQuery("userByLogin")
+					.setParameter("loginParam", creador).getSingleResult();
+			
+			a= (Actividad)entityManager.createNamedQuery("unaActividad")
+						.setParameter("actividadParam", id_actv).getSingleResult();
+			
+			a.setNombre(nombre_a);
+			a.setCreador(u_creador);
+			a.setDestino(destino);
+			a.setFecha_ini(fecha_ini);
+			a.setFecha_fin(fecha_fin);
+			a.setLocalizacion(origen);
+			a.setEstado(estado);
+			a.setHora_ini(hora_ini);
+			a.setHora_fin(hora_fin);
+			
+			
+			entityManager.persist(a);
+			
+			actv.add(a);	
+			sb=Actividad.getJSONString(actv);
+			
+		}
 		
-		u.setNombre(nombre);
-		u.setProvincia(provincia);
-		u.setEmail(email);
-		
-		entityManager.persist(u);
-		
-		usu.add(u);	
-		sb=Usuario.getJSONString(usu);
-		System.out.println(sb);
 
 		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
 		

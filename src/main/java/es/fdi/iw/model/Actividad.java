@@ -87,7 +87,7 @@ public class Actividad{
 				+ "\"fecha\": \"" + a.getFecha_ini() + "\", "
 				+ "\"fecha_fin\": \"" + a.getFecha_fin() + "\", "
 				+ "\"localizacion\": \"" + a.getLocalizacion() + "\", "
-				+ "\"creador\": \"" + a.getCreador().getNombre() + "\", "
+				+ "\"creador\": \"" + a.getCreador().getLogin() + "\", "
 				+ "\"hora_ini\": \"" + a.getHora_ini() + "\", "
 				+ "\"hora_fin\": \"" + a.getHora_fin() + "\", "
 				+ "\"destino\": \"" + a.getDestino() + "\", "

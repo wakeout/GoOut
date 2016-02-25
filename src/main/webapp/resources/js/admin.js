@@ -75,49 +75,79 @@ function habilitarEdicion(tipo,elem){
 	
 	for(var i=1;i<=elem;i++){
 		
-		var el = $(".edit"+i).text(); 
-	    $('.edit'+i).replaceWith("<input type='text' class='campo"+i+"' value='"+el+"'/>"); 
-	}
-	 $('#mod_element').replaceWith("<button type='button' id='guardar_element' onclick=guardarElemento('"+tipo+"',"+elem+")>Guardar Modificación</button>"); 
-	
-	$.each(objetos, function(i, o) {
+		var el = $(".edit"+i).text();
 		
-	});
+		if(i==3 || ((tipo == "Actividad") && i==4))
+			$('.edit'+i).replaceWith("<input type='date' class='campo"+i+"' value='"+el+"'/>");
+		else
+			$('.edit'+i).replaceWith("<input type='text' class='campo"+i+"' value='"+el+"'/>");	
+	}
+		
+	 $('#mod_element').replaceWith("<button type='button' id='guardar_element' onclick=guardarElemento('"+tipo+"',"+elem+")>Guardar Modificación</button>"); 
 	
 }
 
-function guardarElemento(tipo,elem){
-	
+function guardarElemento(tipo,elem)
+{
 	editando = false;
 	
-	for(var i=1;i<=elem;i++){
-		
-		var el = $(".campo"+i).val(); 
-	    $('.campo'+i).replaceWith("<span class='edit"+i+"'>"+el+"</span>"); 
+	if(tipo == "Usuario")
+	{
+		 var nick;
+		 var nombre = $('.campo2').val();
+		 var nacimiento = $('.campo3').val();
+		 var provincia = $('.campo4').val();
+		 var email = $('.campo5').val();
+		 var rol = $('.campo6').val();
+	}
+	
+	if(tipo == "Actividad")
+	{
+		var id_actv;
+		var nombre_a = $('.campo1').val();
+		var creador = $('.campo2').val();
+		var f_ini = $('.campo3').val();
+		var f_fin = $('.campo4').val();
+		var hora_ini = $('.campo5').val();
+		var hora_fin = $('.campo6').val();
+		var origen = $('.campo7').val();
+		var destino = $('.campo8').val();
+		var estado = $('.campo9').val();
+	}
+	
+	for(var i=1;i<=elem;i++)
+	{
+		var valor = $(".campo"+i).val(); 
+	    $('.campo'+i).replaceWith("<span class='edit"+i+"'>"+valor+"</span>"); 
 	}
 	
 	 $('#guardar_element').replaceWith("<button type='button' id='mod_element' onclick=habilitarEdicion('"+tipo+"',"+elem+")>Modificar "+tipo+"</button>"); 
-	
-	 if(tipo == "Usuario"){
+
+	 if(tipo == "Usuario")
+	 {
+		 $.each(objetos, function(i, o) {
+				
+				nick=o.login;
+		});
 		 
-		 var nick = $('.e_login').val();
-		 var provincia = $('.e_provincia').val();
-		 var email = $('.e_email').val();
-		 var nombre = $('.e_nombre').val();
-	 
+			$.post("modElemento", {tipo:tipo,nick_perfil:nick, prov_perfil:provincia, email_perfil:email, nombre_perfil:nombre, nacimiento:nacimiento, rol:rol},function(data) {
+				objetos=$.parseJSON(data);
+				actualizar(tipo);
+		  });
+		
+	 }
+		
+	if(tipo == "Actividad")
+	{
 		$.each(objetos, function(i, o) {
 			
-			nick=o.login;
-			
+			id_actv=o.id;
 		});
-		
-		$.post("modElemento", {nick_perfil:nick, prov_perfil:provincia, email_perfil:email, nombre_perfil:nombre},function(data) {
-			objetos=$.parseJSON(data);
-			actualizar(tipo);
-	  });
-	
-	
-	
+			
+			$.post("modElemento", {tipo:tipo,id_actv:id_actv,nombre_a:nombre_a, creador:creador, hora_ini:hora_ini, hora_fin:hora_fin, origen:origen, destino:destino, estado:estado, f_ini:f_ini, f_fin:f_fin},function(data) {
+				objetos=$.parseJSON(data);
+				actualizar(tipo);
+			});
 	 }
 	
 }
@@ -175,25 +205,25 @@ function vista(obj,tipo){
 					"<tr><td>Hora fin: <span class='edit6'>"+o.hora_fin+"</span></td>" +
 					"<tr><td>Origen: <span class='edit7'>"+o.localizacion+"</span></td>" +
 					"<tr><td>Destino: <span class='edit8'>"+o.destino+"</span></td>"+
-					"<tr><td>Personas unidas: <span class='edit9'>"+o.npersonas+"</span></td>" +
-					"<tr><td>Máximo de personas: <span class='edit10'>"+o.max+"</span></td>"+
-					"<tr><td>Estado: <span class='edit11'>"+o.estado+"</span></td>" +
+					"<tr><td>Personas unidas: <span class=''>"+o.npersonas+"</span></td>" +
+					"<tr><td>Máximo de personas: <span class=''>"+o.max+"</span></td>"+
+					"<tr><td>Estado: <span class='edit9'>"+o.estado+"</span></td>" +
 					"</table>"+
-					"<button id='mod_element' onclick=habilitarEdicion('"+tipo+"',11)>Modificar "+tipo+"</button>");
+					"<button id='mod_element' onclick=habilitarEdicion('"+tipo+"',9)>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Usuario":
 				$("#vista_previa").html("<table>" +
 						"<tr><td> ID: "+o.id+"</td>" +
-						"<tr><td>Login: <span class='edit1 e_login'>"+o.login+"</span></td>" +
-						"<tr><td>Nombre: <span class='edit2 e_nombre'>"+o.nombre+"</span></td>"+
-						"<tr><td>Nacimiento: <span class='edit3 e_nacimiento'>"+o.nacimiento+"</span></td>" +
-						"<tr><td>Provincia: <span class='edit4 e_provincia'>"+o.provincia+"</span></td>"+
-						"<tr><td>E-Mail: <span class='edit5 e_email'>"+o.email+"</span></td>"+
-						"<tr><td>Rol: <span class='edit6 e_rol'>"+o.rol+"</span></td>" +
-						"<tr><td>Nº Amigos: <span class='edit7 e_namigos'>"+o.namigos+"</span></td>" +
+						"<tr><td>Login: <span class=''>"+o.login+"</span></td>" +
+						"<tr><td>Nombre: <span class='edit2'>"+o.nombre+"</span></td>"+
+						"<tr><td>Nacimiento: <span class='edit3'>"+o.nacimiento+"</span></td>" +
+						"<tr><td>Provincia: <span class='edit4'>"+o.provincia+"</span></td>"+
+						"<tr><td>E-Mail: <span class='edit5'>"+o.email+"</span></td>"+
+						"<tr><td>Rol: <span class='edit6'>"+o.rol+"</span></td>" +
+						"<tr><td>Nº Amigos: <span class=''>"+o.namigos+"</span></td>" +
 						"</table>"+
-						"<button id='mod_element' onclick=habilitarEdicion('"+tipo+"',7)>Modificar "+tipo+"</button>");
+						"<button id='mod_element' onclick=habilitarEdicion('"+tipo+"',6)>Modificar "+tipo+"</button>");
 			break;
 			
 			case "Comentario":
