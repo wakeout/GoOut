@@ -96,9 +96,9 @@
 		<table id="lista_registros">
 			<c:forEach items="${registros}" var="r">
 			<c:if test="${r.actividad.eliminado == false }">
-			<tr id="Registro_${r.id}"><td><input name="Registro" value="${r.id}" type="checkbox"> <c:out value="${r.id}"/>  ${r.usuario.id}  ${r.actividad.id}<td>
+			<tr id="Registro_${r.id}"><td><input name="Registro" value="${r.id}" type="checkbox"> <c:out value="${r.id}"/><td>
 			<span class="element_previa" onmouseover="buscarElementos(${r.id},'Registro',this)" onmouseout="desaparece(this)">
-			Reg <c:out value="${r.id}"/>
+			  ${r.usuario.login} ${r.actividad.nombre}
 			</span>
 			</tr>
 			</c:if>
