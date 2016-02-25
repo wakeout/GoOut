@@ -12,7 +12,7 @@
 									
 			<span id="titulo">Participantes</span>
 	 		<hr></hr>
-			<form action="${prefix}echarActividad" method="POST">
+			<form action="${prefix}echarActividad" method="POST" onsubmit="return comprobar()">
 										
 			<c:forEach items="${participantes}" var="p">
 
