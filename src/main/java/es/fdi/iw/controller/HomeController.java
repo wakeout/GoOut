@@ -1079,8 +1079,9 @@ public class HomeController {
 	@Transactional
 	public String hacerComentario(@RequestParam("asunto") String asunto, @RequestParam("actividad") long actividad, HttpSession session){
 		
-		//werty
-		//if(usuario.getActividades().contens(actividad))
+		try{
+			Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam", actividad).setParameter("usuarioParam", ((Usuario)session.getAttribute("usuario")).getId()).getSingleResult();
+		}catch(NoResultException n){}
 
 		Actividad a = entityManager.find(Actividad.class,actividad);
 		
@@ -1119,8 +1120,10 @@ public class HomeController {
 			HttpServletRequest request,
 			HttpSession session){
 
-		//werty
-		//if(usuario.getActividades().contens(actividad))
+		try{
+			Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam", actividad).setParameter("usuarioParam", ((Usuario)session.getAttribute("usuario")).getId()).getSingleResult();
+		}catch(NoResultException n){}
+
 
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		u=(Usuario)entityManager.find(Usuario.class, u.getId());
@@ -1165,8 +1168,9 @@ public class HomeController {
 			@RequestParam("opcion2") String opcion2,
 			HttpSession session){
 		
-		//werty
-		//if(usuario.getActividades().contens(actividad))
+		try{
+			Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam", actividad).setParameter("usuarioParam", ((Usuario)session.getAttribute("usuario")).getId()).getSingleResult();
+		}catch(NoResultException n){}
 
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		Actividad a=entityManager.find(Actividad.class, actividad);
@@ -1292,8 +1296,10 @@ public class HomeController {
 			@RequestParam("asunto") String asunto, HttpSession session){
 		
 
-		//werty
-		//if(usuario.getActividades().contens(actividad))
+		try{
+			Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam", actividad).setParameter("usuarioParam", ((Usuario)session.getAttribute("usuario")).getId()).getSingleResult();
+		}catch(NoResultException n){}
+
 
 		Actividad a=entityManager.find(Actividad.class, actividad);
 		
@@ -1430,8 +1436,9 @@ public class HomeController {
 			@RequestParam("actividad_id") long id_actividad,
 			HttpSession session){
 		
-		//werty
-		//if(usuario.getActividades().contens(actividad))
+		try{
+			Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam", id_actividad).setParameter("usuarioParam", ((Usuario)session.getAttribute("usuario")).getId()).getSingleResult();
+		}catch(NoResultException n){}
 
 		Usuario origen= new Usuario();
 		origen =(Usuario)session.getAttribute("usuario");
@@ -1579,10 +1586,7 @@ public class HomeController {
 		@RequestParam("id_amigo") long amigo,
 		@RequestParam("id_propio") long propio,
 		HttpSession session){
-		
 
-		//werty
-		//if(usuario.getAmigos().getContens(amigo))
 
 		Usuario usuario_amigo = null;
 		Usuario usuario_propio = null;
@@ -1681,10 +1685,12 @@ public class HomeController {
 			HttpSession session){
 		if(session.getAttribute("usuario")!=null){
 		
-		//werty
-		//if(actividad!=privada)
-
+	
 		Actividad actv = new Actividad();
+		if(!actv.getPrivacidad().equals("privada"))
+			return "redirect:actividad/"+id_actividad;
+		
+			
 		Usuario usuario = new Usuario();
 		Registro r = null;
 		int i = 0;
@@ -1890,8 +1896,10 @@ public class HomeController {
 	@Transactional
 	public String salirActividad(@RequestParam("actividad") long actividad, Model model,HttpSession session){
 		
-		//werty
-		//if(estas en actividad)
+		try{
+			Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam", actividad).setParameter("usuarioParam", ((Usuario)session.getAttribute("usuario")).getId()).getSingleResult();
+		}catch(NoResultException n){}
+
 
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		 u= (Usuario)entityManager.createNamedQuery("userByLogin")
@@ -2044,52 +2052,102 @@ public class HomeController {
 	@RequestMapping(value = "/buscarElemento", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> buscarElemento(@RequestParam("buscado") String buscado, @RequestParam("tipo") String tipo, HttpSession session){
+		String b=buscado;
+		System.out.println(buscado);
 		
 		buscado="%"+buscado+"%";
 		
-		StringBuilder sb = new StringBuilder("[");
+		StringBuilder sb = new StringBuilder("");
+		try{
+			
+		switch (tipo) {
+			case "usuarios":
+				List<Usuario> u = null;
+				u = entityManager.createNamedQuery("buscaUsuario")
+						.setParameter("loginParam", buscado).getResultList();
+				sb.append(Usuario.getJSONString(u));
+				break;
+			case "actividades":
+				List<Actividad> a = null;
+				a = entityManager.createNamedQuery("buscaActividad")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Actividad.getJSONString(a));
+				break;
+			case "comentarios":
+				List<Comentario> c = null;
+				c = entityManager.createNamedQuery("buscaComentario")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Comentario.getJSONString(c));
+				break;
+			case "registros":
+				List<Registro> r = null;
+				if(!b.isEmpty()){
+					r = entityManager.createNamedQuery("buscaRegistro")
+						.setParameter("nombreParam", Long.parseLong(b)).getResultList();
+				}else{
+					r=entityManager.createNamedQuery("allRegistros").getResultList();
+				}
+				sb.append(Registro.getJSONString(r));
+				break;
+			case "encuestas":
+				
+				List<Encuesta> e = null;
+				e = entityManager.createNamedQuery("buscaEncuesta")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Encuesta.getJSONString(e));
+				break;
+			case "tags":
+				List<Tag> t = null;
+				t = entityManager.createNamedQuery("buscaTag")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Tag.getJSONString(t));
+				break;
+			case "hitos":
+				List<Hito> h = null;
+				h = entityManager.createNamedQuery("buscaHito")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Hito.getJSONString(h));
+				break;
+			case "respuestas":
+				List<Respuesta> rp = null;
+				rp = entityManager.createNamedQuery("buscaRespuesta")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Respuesta.getJSONString(rp));
+				break;
+			case "foros":
+				List<Foro> f = null;
+				f = entityManager.createNamedQuery("buscaForo")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Foro.getJSONString(f));
+				break;
+			case "mensajes":
+				List<Mensaje> m = null;
+				m = entityManager.createNamedQuery("buscaMensaje")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Mensaje.getJSONString(m));
+				break;
+			case "novedades":
+				List<Novedad> n = null;
+				n = entityManager.createNamedQuery("buscaNovedad")
+						.setParameter("nombreParam", buscado).getResultList();
+				sb.append(Novedad.getJSONString(n));
+				break;
+			case "pagos":
+				List<Pago> p = null;
+				if(!b.isEmpty()){
+					p = entityManager.createNamedQuery("buscaPago")
+						.setParameter("nombreParam", Long.parseLong(b)).getResultList();
+				}else{
+					p=entityManager.createNamedQuery("allPagos").getResultList();
+				}
+				sb.append(Pago.getJSONString(p));
+				break;
+		}
+
+		}catch(NoResultException n){}
 		
-		switch(tipo){
-            case "usuarios": List<Usuario> u=null;
-                            u=entityManager.createNamedQuery("buscaUsuario").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Usuario.getJSONString(u));break;
-            case "actividades": List<Actividad> a=null;
-                            a=entityManager.createNamedQuery("buscaActividad").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Actividad.getJSONString(a));break;
-            case "comentarios": List<Comentario> c=null;
-                            c=entityManager.createNamedQuery("buscaComentario").setParameter("asuntoParam", buscado).getResultList();
-                            sb.append(Comentario.getJSONString(c));break;
-            case "registros": List<Registro> r=null;
-                            r=entityManager.createNamedQuery("buscaRegistro").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Registro.getJSONString(r));break;
-            case "encuestas": List<Encuesta> e=null;
-                            e=entityManager.createNamedQuery("buscaEncuesta").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Encuesta.getJSONString(e));break;
-            case "tags": List<Tag> t=null;
-                            t=entityManager.createNamedQuery("buscaTag").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Tag.getJSONString(t));break;
-            case "hitos": List<Hito> h=null;
-                            h=entityManager.createNamedQuery("buscaHito").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Hito.getJSONString(h));break;
-            case "respuestas": List<Respuesta> rp=null;
-                            rp=entityManager.createNamedQuery("buscaRespuesta").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Respuesta.getJSONString(rp));break;
-            case "foros": List<Foro> f=null;
-                            f=entityManager.createNamedQuery("buscaForo").setParameter("nombreParam", buscado).getResultList();
-                            sb.append(Foro.getJSONString(f));break;
-            case "mensajes": List<Mensaje> m=null;
-            				m=entityManager.createNamedQuery("buscaMensaje").setParameter("nombreParam", buscado).getResultList();
-            				sb.append(Mensaje.getJSONString(m));break;
-            case "novedades": List<Novedad> n=null;
-            				n=entityManager.createNamedQuery("buscaNovedad").setParameter("nombreParam", buscado).getResultList();
-            				sb.append(Novedad.getJSONString(n));break;
-            case "pagos": List<Pago> p=null;
-            				p=entityManager.createNamedQuery("buscaPago").setParameter("nombreParam", buscado).getResultList();
-            				sb.append(Pago.getJSONString(p));break;
-        }
-		
-		
-		return new ResponseEntity<String>(sb + "]", HttpStatus.OK);	
+		System.out.println(sb);
+		return new ResponseEntity<String>(sb+"]", HttpStatus.OK);	
 	}
 	
 	
@@ -2247,9 +2305,14 @@ public class HomeController {
 	@Transactional
 	public String borrarMensajes(@RequestParam("mensajes") long mensajesId,
 			@RequestParam("tipo") String tipo,Model model, HttpSession session){
-		//werty
-		//if(mensajes son de usuario)
-		entityManager.createNamedQuery("delMensaje").setParameter("idMensaje", mensajesId).executeUpdate();
+
+		Usuario u=entityManager.find(Usuario.class, ((Usuario)session.getAttribute("usuario")).getId());
+		
+		Mensaje m=entityManager.find(Mensaje.class, mensajesId);
+		
+		
+		if(m.getOrigen().getId()==u.getId() || m.getOrigen().getId()==u.getId())
+			entityManager.createNamedQuery("delMensaje").setParameter("idMensaje", mensajesId).executeUpdate();
 
 		return "redirect:mensajes?metodo="+tipo;
 
@@ -2288,15 +2351,16 @@ public class HomeController {
 			@RequestParam("id") long id_mensaje,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
-			//werty
-			//if(es tu mensaje)
+
+			Usuario u=entityManager.find(Usuario.class, ((Usuario)session.getAttribute("usuario")).getId());
 		
-			Usuario usuario = (Usuario)session.getAttribute("usuario");
-			
-			Mensaje m = entityManager.find(Mensaje.class,id_mensaje);
-			m.setLeido(true);
-			entityManager.persist(m);
-			
+			Mensaje m=entityManager.find(Mensaje.class, id_mensaje);
+		
+		
+			if(m.getOrigen().getId()==u.getId() || m.getOrigen().getId()==u.getId()){
+				m.setLeido(true);
+				entityManager.persist(m);
+		}
 	}
 	
 	
