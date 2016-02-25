@@ -241,6 +241,9 @@ public class HomeController {
 			@RequestParam("estado_actividad") String estado,
 			@RequestParam("descripcion_actividad") String descripcion, HttpSession session, HttpServletRequest request){
 
+		
+		String hora_ini = request.getParameter("hora_ini");
+		String hora_fin = request.getParameter("hora_fin");
 
 		Usuario u=(Usuario)session.getAttribute("usuario");
 		
@@ -312,6 +315,8 @@ public class HomeController {
 		a.setMaxPersonas(nparticipantes);
 		a.setFecha_ini(fecha_ini);
 		a.setFecha_fin(fecha_fin);
+		a.setHora_ini(hora_ini);
+		a.setHora_fin(hora_fin);
 		a.setDescripcion(descripcion);
 		a.setEstado(estado);
 		entityManager.persist(a);
@@ -498,11 +503,6 @@ public class HomeController {
 		Actividad a = entityManager.find(Actividad.class, id_a);
 		Usuario u = entityManager.find(Usuario.class, id_usuario);
 		int num = a.getImg_galeria().size()+1;
-		
-		Registro r=null;
-		r=(Registro)entityManager.createNamedQuery("actividadUsuario").setParameter("idActividad", a.getId()).setParameter("idUsuario", u.getId()).getSingleResult();
-
-		if(r==null)return "redirect:actividad/"+id_a;
 
 		String imagen =num+"_"+id_actv+"_"+id_usuario;
 		Imagenes i = Imagenes.crearImagen("Subida por "+u.getLogin()+" "+descripcion, imagen);
@@ -1632,12 +1632,13 @@ public class HomeController {
 			@RequestParam("id_actividad") String id_actividad,
 			HttpSession session){
 		
+		
 		Usuario u= (Usuario)entityManager.find(Usuario.class,((Usuario)session.getAttribute("usuario")).getId());
 		if(!u.getRol().equals("admin"))
 			return "redirect:administrador";
 
 		Actividad actv = new Actividad();
-		Usuario usuario = new Usuario();
+		Usuario usuario = (Usuario)entityManager.find(Usuario.class,Long.parseLong(id_usuario));
 		Registro r = new Registro();
 		int i = 0;
 		boolean existe = false;
@@ -1687,8 +1688,6 @@ public class HomeController {
 		
 	
 		Actividad actv = new Actividad();
-		if(!actv.getPrivacidad().equals("privada"))
-			return "redirect:actividad/"+id_actividad;
 		
 			
 		Usuario usuario = new Usuario();
@@ -2306,12 +2305,6 @@ public class HomeController {
 	public String borrarMensajes(@RequestParam("mensajes") long mensajesId,
 			@RequestParam("tipo") String tipo,Model model, HttpSession session){
 
-		Usuario u=entityManager.find(Usuario.class, ((Usuario)session.getAttribute("usuario")).getId());
-		
-		Mensaje m=entityManager.find(Mensaje.class, mensajesId);
-		
-		
-		if(m.getOrigen().getId()==u.getId() || m.getOrigen().getId()==u.getId())
 			entityManager.createNamedQuery("delMensaje").setParameter("idMensaje", mensajesId).executeUpdate();
 
 		return "redirect:mensajes?metodo="+tipo;
@@ -2351,16 +2344,12 @@ public class HomeController {
 			@RequestParam("id") long id_mensaje,
 			HttpServletRequest request, HttpServletResponse response, 
 			Model model, HttpSession session) {
-
-			Usuario u=entityManager.find(Usuario.class, ((Usuario)session.getAttribute("usuario")).getId());
 		
 			Mensaje m=entityManager.find(Mensaje.class, id_mensaje);
 		
 		
-			if(m.getOrigen().getId()==u.getId() || m.getOrigen().getId()==u.getId()){
 				m.setLeido(true);
 				entityManager.persist(m);
-		}
 	}
 	
 	
@@ -2372,7 +2361,7 @@ public class HomeController {
 		
 		usu = entityManager.find(Usuario.class, usu.getId());
 		
-		if(usu.getRol() == "admin"){
+		if(usu.getRol().equals("admin")){
 			
 		try {
 			if(tipo.equals("Actividad")){

@@ -25,13 +25,25 @@
 				<td><br></td>
 				<tr>
 				<td>Fecha inicio</td>
-				<td><input type="date" size="12" id="inputField" class="caja" value="${actividad.fecha_ini}" id="fecha_inicio" name="fecha_inicio"/></td>
+				<td><input type="date" size="12" id="inputField" class="caja" value="${actividad.fecha_ini}" id="fecha_inicio" name="fecha_ini"/></td>
 				<tr>
 				<td><br></td>
 				<td><br></td>
 				<tr>
 				<td>Fecha fin</td>
 				<td><input type="date" size="12" id="inputField" class="caja" value="${actividad.fecha_fin}" id="fecha_fin" name="fecha_fin"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Hora inicio</td>
+				<td><input type="text" size="12" id="inputField" class="caja" value="${actividad.hora_ini}" id="hora_inicio" name="hora_ini"/></td>
+				<tr>
+				<td><br></td>
+				<td><br></td>
+				<tr>
+				<td>Hora fin</td>
+				<td><input type="text" size="12" id="inputField" class="caja" value="${actividad.hora_fin}" id="hora_fin" name="hora_fin"/></td>
 				<tr>
 				<td><br></td>
 				<td><br></td>

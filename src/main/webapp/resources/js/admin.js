@@ -76,6 +76,9 @@ function habilitarEdicion(tipo,elem){
 	for(var i=1;i<=elem;i++){
 		
 		var el = $(".edit"+i).text();
+		if(el =="null"){
+			el="";
+		}
 		
 		if(i==3 || ((tipo == "Actividad") && i==4))
 			$('.edit'+i).replaceWith("<input type='date' class='campo"+i+"' value='"+el+"'/>");
@@ -118,6 +121,9 @@ function guardarElemento(tipo,elem)
 	for(var i=1;i<=elem;i++)
 	{
 		var valor = $(".campo"+i).val(); 
+		if(valor =="null"){
+			valor="";
+		}
 	    $('.campo'+i).replaceWith("<span class='edit"+i+"'>"+valor+"</span>"); 
 	}
 	
@@ -171,7 +177,7 @@ function buscarElementos(buscado,tipo,target){
 
 function desaparece(target){
 	
-	//$("#vista_previa").css("display", "none");
+	//$("#vista_previa").hide("slow");
 }
 
 function actualizar(tipo){
