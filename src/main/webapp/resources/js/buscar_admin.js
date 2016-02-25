@@ -77,8 +77,8 @@ function avista(o, tipo){
 		+"</span>";break;
 			
 		case "respuestas": codigo+="'Respuesta_"+o.id+"'><td><input  name='Respuesta' value='"+o.id+"' type='checkbox'>"+o.id+"<td>"
-			+"<span class='element_previa' onmouseover=buscarElementos( "+o.id+",'Respuesta',this) onmouseout=desaparece(this)>"
-			+"Respuesta "+o.id
+			+"<span class='element_previa' onmouseover=buscarElementos("+o.id+",'Respuesta',this) onmouseout=desaparece(this)>"
+			+ "Respuesta"+ o.id
 			+"</span>";break;
 
 		case "tags": codigo+="'Tag_"+o.id+"'><td><input name='Tag' value='"+o.id+"' type='checkbox'>"+o.id+"<td>"
