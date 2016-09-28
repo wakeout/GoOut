@@ -99,6 +99,11 @@ insert into pago (id, descripcion, precio_individual, pagado, id_registro) value
 insert into pago (id, descripcion, precio_individual, pagado, id_registro) values (2, 'contactar con David para pagar las cervezas', 3, 'true', '1')
 
 insert into usuario_amigos(usuario, amigos)values(1,2)
+insert into usuario_amigos(usuario, amigos)values(1,6)
 insert into usuario_amigos(usuario, amigos)values(2,1)
 insert into usuario_amigos(usuario, amigos)values(1,4)
 insert into usuario_amigos(usuario, amigos)values(4,1)
+insert into usuario_amigos(usuario, amigos)values(6,1)
+insert into usuario_amigos(usuario, amigos)values(4,6)
+insert into usuario_amigos(usuario, amigos)values(6,4)
+

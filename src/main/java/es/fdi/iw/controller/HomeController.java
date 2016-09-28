@@ -91,7 +91,7 @@ public class HomeController {
 			Model model, HttpSession session) {
 		
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin);
-		
+		System.out.println("hola");
 		
 		// validate request
 		if (formLogin == null || formLogin.length() < 3 || formPass == null || formPass.length() < 4) 
@@ -1434,15 +1434,14 @@ public class HomeController {
 			@RequestParam("actividad_id") long id_actividad,
 			HttpSession session){
 		
-		try{
-			Registro r=(Registro)entityManager.createNamedQuery("pertenece").setParameter("actividadParam", id_actividad).setParameter("usuarioParam", ((Usuario)session.getAttribute("usuario")).getId()).getSingleResult();
-		}catch(NoResultException n){}
-
+		
 		Usuario origen= new Usuario();
-		origen =(Usuario)session.getAttribute("usuario");
+		origen = entityManager.find(Usuario.class, ((Usuario)session.getAttribute("usuario")).getId());
 		Actividad a = entityManager.find(Actividad.class, id_actividad);
 	
-		Novedad n=Novedad.crearNovedad("{Usuario:"+origen.getId()+"} "+origen.getLogin() +" te ha invitado a que te unas a {Actividad:"+a.getId()+"} " +a.getNombre() , "Invitacion Actividad");
+		Novedad n=Novedad.crearNovedad("{Usuario:"+origen.getId()+":"+origen.getLogin() +"} "+
+				" te ha invitado a {Actividad:"+a.getId()+":"+a.getNombre()+"} " 
+				 , "Invitacion");
 		
 		entityManager.persist(n);
 		

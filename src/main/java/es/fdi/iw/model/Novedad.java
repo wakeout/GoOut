@@ -136,7 +136,7 @@ public class Novedad {
 		String id="";
 		String nombre="";
 		
-		
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAa= "+m);
 		for(int i=0; i<m.length(); i++){
 		
 			if(m.charAt(i)=='{'){
